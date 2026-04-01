@@ -8,7 +8,7 @@ export function LegalBar() {
           <p>&copy; {new Date().getFullYear()} Old West Solutions. All rights reserved.</p>
           <p className="flex items-center gap-2">
             <CheckCircle className="h-3.5 w-3.5 text-neutral-400" strokeWidth={1.25} aria-hidden />
-            256-Bit Encryption · At Rest · In Transit
+            256-Bit Encryption
           </p>
         </div>
       </div>
