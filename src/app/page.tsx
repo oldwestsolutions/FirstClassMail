@@ -6,7 +6,6 @@ import {
   Mail,
   ArrowRight,
   CheckCircle,
-  Inbox,
   Send,
   FileInput,
   Warehouse,
@@ -21,6 +20,7 @@ import {
   Server,
 } from 'lucide-react'
 import Link from 'next/link'
+import { PortalMockMini, PortalProductDemo } from '@/components/PortalMock'
 
 function IsoBlock({ className, delay = 0 }: { className: string; delay?: number }) {
   return (
@@ -314,25 +314,33 @@ export default function HomePage() {
               </p>
             </div>
             <div className="col-span-12 mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-8 lg:grid-cols-3 lg:gap-6">
-              {[
+              {(
                 [
-                  'Encryption first',
-                  'TLS and strong encryption protect messages in transit; storage follows rigorous security practices so content stays private.',
-                ],
-                [
-                  'Verified parties',
-                  'Know you are connecting with the right person. Verified sourcing reduces impersonation and mistaken identity.',
-                ],
-                [
-                  'No data brokerage',
-                  'We do not sell email addresses or message data to brokers. Your contact graph is not our product.',
-                ],
-              ].map(([title, body]) => (
+                  [
+                    'Encryption first',
+                    'TLS and strong encryption protect messages in transit; storage follows rigorous security practices so content stays private.',
+                    'encryption',
+                  ],
+                  [
+                    'Verified parties',
+                    'Know you are connecting with the right person. Verified sourcing reduces impersonation and mistaken identity.',
+                    'verified',
+                  ],
+                  [
+                    'No data brokerage',
+                    'We do not sell email addresses or message data to brokers. Your contact graph is not our product.',
+                    'no-brokerage',
+                  ],
+                ] as const
+              ).map(([title, body, preset]) => (
                 <div
                   key={title}
                   className="flex flex-col rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm transition hover:border-neutral-300 md:p-9"
                 >
-                  <h3 className="font-serif text-xl text-neutral-900">{title}</h3>
+                  <div className="flex justify-center md:justify-start">
+                    <PortalMockMini preset={preset} />
+                  </div>
+                  <h3 className="mt-6 font-serif text-xl text-neutral-900">{title}</h3>
                   <p className="mt-5 text-sm leading-relaxed text-neutral-600">{body}</p>
                 </div>
               ))}
@@ -370,12 +378,15 @@ export default function HomePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 0.45, delay: i * 0.08 }}
-                  className="flex min-h-[320px] flex-col rounded-3xl border border-neutral-200 bg-neutral-50 p-8 text-center shadow-sm lg:min-h-[340px] lg:p-10"
+                  className="flex min-h-[300px] flex-col rounded-3xl border border-neutral-200 bg-neutral-50 p-8 text-center shadow-sm lg:min-h-[320px] lg:p-10"
                 >
-                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-neutral-200 bg-white font-mono text-sm font-medium text-neutral-900 shadow-sm">
+                  <div className="flex justify-center">
+                    <PortalMockMini preset={`journey-${i + 1}`} />
+                  </div>
+                  <div className="mx-auto mt-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-neutral-200 bg-white font-mono text-sm font-medium text-neutral-900 shadow-sm">
                     {step.step}
                   </div>
-                  <h3 className="mt-8 font-serif text-xl text-neutral-900 md:text-2xl">{step.title}</h3>
+                  <h3 className="mt-6 font-serif text-xl text-neutral-900 md:text-2xl">{step.title}</h3>
                   <p className="mt-5 flex-1 text-left text-sm leading-[1.85] text-neutral-600 md:text-[0.95rem]">{step.text}</p>
                 </motion.article>
               ))}
@@ -483,86 +494,9 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45 }}
-              className="mx-auto mt-14 max-w-4xl"
+              className="mx-auto mt-14 max-w-2xl"
             >
-              <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-50 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.12)]">
-                <div className="flex items-center justify-between gap-4 border-b border-neutral-200 bg-white px-4 py-3 sm:px-5">
-                  <div className="flex min-w-0 items-center gap-3">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-neutral-200 bg-neutral-50">
-                      <Mail className="h-4 w-4 text-neutral-800" strokeWidth={1.25} />
-                    </div>
-                    <div className="min-w-0 text-left">
-                      <p className="truncate font-serif text-sm text-neutral-900">Client portal</p>
-                      <p className="truncate font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Preview</p>
-                    </div>
-                  </div>
-                  <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
-                    <span className="rounded-full bg-emerald-50 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-emerald-800">
-                      TLS
-                    </span>
-                    <span className="rounded-full bg-neutral-100 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-neutral-700">
-                      Verified thread
-                    </span>
-                  </div>
-                </div>
-                <div className="flex flex-col md:flex-row md:min-h-[280px]">
-                  <nav
-                    className="flex w-full border-b border-neutral-200 bg-white md:w-52 md:shrink-0 md:border-b-0 md:border-r"
-                    aria-label="Example mailbox navigation"
-                  >
-                    <div className="flex w-full gap-1 p-3 md:flex-col md:gap-0">
-                      <p className="hidden pb-2 font-mono text-[9px] uppercase tracking-widest text-neutral-400 md:block">Mailboxes</p>
-                      <div className="flex flex-1 rounded-lg bg-neutral-100 px-3 py-2.5 text-left text-sm font-medium text-neutral-900 md:flex-none">
-                        <Inbox className="mr-2 h-4 w-4 shrink-0 opacity-70" strokeWidth={1.25} aria-hidden />
-                        Inbox
-                      </div>
-                      <div className="flex flex-1 items-center rounded-lg px-3 py-2.5 text-left text-sm text-neutral-500 md:flex-none">
-                        <Send className="mr-2 h-4 w-4 shrink-0 opacity-70" strokeWidth={1.25} aria-hidden />
-                        Sent
-                      </div>
-                    </div>
-                  </nav>
-                  <div className="flex min-w-0 flex-1 flex-col bg-white p-4 sm:p-6">
-                    <div className="border-b border-neutral-100 pb-4 text-left">
-                      <p className="font-serif text-lg text-neutral-900">Riverside Legal</p>
-                      <p className="mt-1 text-xs text-neutral-500">Recipient verified · Routed to office mail server</p>
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        <span className="inline-flex items-center gap-1 rounded-md border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-[10px] text-neutral-600">
-                          <Shield className="h-3 w-3 text-neutral-500" strokeWidth={1.5} aria-hidden />
-                          End-to-end policy
-                        </span>
-                        <span className="inline-flex items-center gap-1 rounded-md border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-[10px] text-neutral-600">
-                          <CheckCircle className="h-3 w-3 text-emerald-600" strokeWidth={1.5} aria-hidden />
-                          Sourcing checked
-                        </span>
-                      </div>
-                    </div>
-                    <div className="mt-4 flex flex-1 flex-col gap-3 text-left">
-                      <div className="rounded-xl bg-neutral-50 p-3 text-sm text-neutral-700">
-                        <p className="mb-1.5 font-mono text-[10px] uppercase tracking-wider text-neutral-400">You · encrypted</p>
-                        <p className="leading-relaxed">Following up on the filing timeline we discussed last week.</p>
-                      </div>
-                      <div className="rounded-xl border border-neutral-200 p-3 text-sm text-neutral-700">
-                        <p className="mb-1.5 font-mono text-[10px] uppercase tracking-wider text-neutral-400">
-                          Office · delivered
-                        </p>
-                        <p className="leading-relaxed">We can confirm receipt on our side. Next steps are in the attachment.</p>
-                      </div>
-                    </div>
-                    <div className="mt-6 flex items-end gap-2 rounded-2xl border border-dashed border-neutral-200 bg-neutral-50/80 p-3">
-                      <div className="min-h-[44px] flex-1 rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm text-neutral-400">
-                        Write a reply…
-                      </div>
-                      <span className="btn btn-primary pointer-events-none shrink-0 px-5 py-2.5 text-[10px] uppercase tracking-widest opacity-90">
-                        Send
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p id="demo-note" className="mt-6 text-center text-xs leading-relaxed text-neutral-500">
-                Illustrative only—live portal screens and labels may differ slightly after sign-in.
-              </p>
+              <PortalProductDemo />
             </motion.div>
           </div>
         </div>
