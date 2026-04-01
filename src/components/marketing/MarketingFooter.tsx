@@ -26,28 +26,18 @@ export function MarketingFooter() {
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Product</p>
             <ul className="mt-5 space-y-3 text-sm text-neutral-600">
               <li>
-                <Link href="/correspondence" className="transition hover:text-neutral-900">
-                  Correspondence
+                <Link href="/mailbox" className="transition hover:text-neutral-900">
+                  Mailbox
                 </Link>
               </li>
               <li>
-                <Link href="/journey" className="transition hover:text-neutral-900">
-                  The Journey
+                <Link href="/security" className="transition hover:text-neutral-900">
+                  Security
                 </Link>
               </li>
               <li>
-                <Link href="/practice" className="transition hover:text-neutral-900">
-                  Practice
-                </Link>
-              </li>
-              <li>
-                <Link href="/platform" className="transition hover:text-neutral-900">
-                  Portal
-                </Link>
-              </li>
-              <li>
-                <Link href="/#contact" className="transition hover:text-neutral-900">
-                  Contact
+                <Link href="/appointments" className="transition hover:text-neutral-900">
+                  Appointments
                 </Link>
               </li>
             </ul>
