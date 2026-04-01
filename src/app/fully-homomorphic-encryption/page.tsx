@@ -16,13 +16,14 @@ export default function FhePage() {
             <div className="mx-auto max-w-3xl">
               <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Platform</p>
               <h1 className="mt-5 font-serif text-4xl font-medium leading-[1.1] text-neutral-900 md:text-5xl lg:text-[3.15rem]">
-                Fully Homomorphic Encryption
+                Homomorphic Encryption
               </h1>
               <p className="mt-8 text-lg leading-relaxed text-neutral-600">
-                Fully homomorphic encryption (FHE) allows a server—or any third party—to run computations on ciphertexts and
-                produce encrypted results, without ever observing plaintext. For correspondence platforms, that opens a path to
-                policy checks, analytics, and workflow automation that remain bound to encrypted mail: the operator can enforce
-                rules without reading message bodies in the clear, when engineering and key-management assumptions support it.
+                Homomorphic encryption lets ciphertexts be combined and transformed so that decryption recovers the result of a
+                computation—as if it had been done on plaintext. The fully homomorphic (FHE) setting supports arbitrary circuits;
+                leveled or partial schemes often trade expressiveness for performance. For correspondence platforms, the promise is
+                policy checks, analytics, or workflow steps that stay bound to encrypted mail: less pressure to “decrypt to
+                analyze,” when engineering and key-management assumptions support it.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link href="/security" className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
@@ -47,17 +48,17 @@ export default function FhePage() {
                 {
                   icon: Lock,
                   title: 'Compute without exposure',
-                  body: 'Addition and multiplication on ciphertexts enable rich programs; the tradeoff is cost and latency—FHE is powerful but not free.',
+                  body: 'Homomorphic operations enable rich programs on ciphertexts; cost and latency remain the practical constraint—especially for full FHE.',
                 },
                 {
                   icon: Binary,
                   title: 'Keys and lifecycle',
-                  body: 'Bootstrapping, key rotation, and hybrid designs (FHE + traditional TLS) are first-order engineering concerns for any serious deployment.',
+                  body: 'Bootstrapping, key rotation, and hybrid designs (homomorphic layers + traditional TLS) are first-order concerns for serious deployment.',
                 },
                 {
                   icon: Workflow,
                   title: 'Where it helps mail',
-                  body: 'Batch triage, retention scoring, or compliance tagging can in principle run under encryption—reducing “decrypt to analyze” pressure on operators.',
+                  body: 'Batch triage, retention scoring, or compliance tagging can in principle run under encryption—reducing plaintext exposure in operator pipelines.',
                 },
               ].map((item, i) => (
                 <motion.article
@@ -81,12 +82,12 @@ export default function FhePage() {
           <div className="shell">
             <div className="mx-auto max-w-2xl text-center">
               <p className="text-sm leading-relaxed text-neutral-600">
-                FHE adoption depends on performance budgets, regulatory posture, and threat models. FirstClassMail’s baseline
-                remains strong transport security and verified sourcing; advanced cryptography layers are evaluated against those
-                operational realities.
+                Adoption depends on performance budgets, regulatory posture, and threat models. FirstClassMail’s baseline remains
+                strong transport security and verified sourcing; advanced homomorphic layers are evaluated against those operational
+                realities.
               </p>
               <Link href="/probabilistically-checkable-proofs" className="mt-8 inline-block text-sm font-medium text-neutral-900 underline-offset-4 hover:underline">
-                Related: Probabilistically Checkable Proofs
+                Related: Checkable Proofs
               </Link>
             </div>
           </div>

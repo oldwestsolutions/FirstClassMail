@@ -16,13 +16,14 @@ export default function PcpPage() {
             <div className="mx-auto max-w-3xl">
               <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Platform</p>
               <h1 className="mt-5 font-serif text-4xl font-medium leading-[1.1] text-neutral-900 md:text-5xl lg:text-[3.15rem]">
-                Probabilistically Checkable Proofs
+                Checkable Proofs
               </h1>
               <p className="mt-8 text-lg leading-relaxed text-neutral-600">
-                A probabilistically checkable proof (PCP) lets a verifier inspect only a tiny, randomly chosen fragment of a proof
-                yet gain high confidence that a statement holds—without replaying an entire computation. PCPs sit at the foundation
-                of modern verifier-efficient cryptography: they explain why complex claims can be checked with bounded work, which
-                matters when systems must scale audit and integrity across millions of messages.
+                Checkable proofs, in this sense, mean verifier-efficient proofs—most famously the probabilistically checkable proof (PCP)
+                model: a verifier reads only a tiny random fragment yet gains high confidence that a statement holds, without
+                replaying an entire computation. That pattern underpins modern succinct arguments and scalable integrity: complex
+                claims can be validated with bounded work, which matters when platforms must audit mail and policy outcomes at
+                scale.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link href="/security" className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
@@ -57,7 +58,7 @@ export default function PcpPage() {
                 {
                   icon: Cpu,
                   title: 'Product relevance',
-                  body: 'FirstClassMail emphasizes verifiable sourcing and policy-governed delivery; PCP-class thinking aligns with proving integrity and eligibility without naive “trust me” checkpoints.',
+                  body: 'FirstClassMail emphasizes verifiable sourcing and policy-governed delivery; checkable-proof thinking aligns with proving integrity and eligibility without naive “trust me” checkpoints.',
                 },
               ].map((item, i) => (
                 <motion.article
@@ -85,7 +86,7 @@ export default function PcpPage() {
                 consult your security and compliance stakeholders before relying on any single proof system in production.
               </p>
               <Link href="/zero-knowledge-proofs" className="mt-8 inline-block text-sm font-medium text-neutral-900 underline-offset-4 hover:underline">
-                Next: Zero Knowledge Proofs
+                Next: Zero Knowledge
               </Link>
             </div>
           </div>

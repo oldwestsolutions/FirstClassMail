@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Zero Knowledge Proofs',
+  title: 'Zero Knowledge',
   description:
-    'Zero-knowledge proofs: how provers convince verifiers of statements about mail, identity, and policy without revealing underlying secrets.',
+    'Zero knowledge: proofs and protocols that establish facts about mail, identity, and policy without unnecessary disclosure.',
   openGraph: {
-    title: 'Zero Knowledge Proofs | FirstClassMail',
+    title: 'Zero Knowledge | FirstClassMail',
     description:
-      'ZK proofs for verified sourcing and selective disclosure—proof obligations, not raw data exposure, on FirstClassMail.',
+      'Zero-knowledge techniques for verified sourcing and selective disclosure on FirstClassMail.',
   },
 }
 

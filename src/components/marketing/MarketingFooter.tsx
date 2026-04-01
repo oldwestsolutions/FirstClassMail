@@ -27,17 +27,17 @@ export function MarketingFooter() {
             <ul className="mt-5 space-y-3 text-sm text-neutral-600">
               <li>
                 <Link href="/probabilistically-checkable-proofs" className="transition hover:text-neutral-900">
-                  Probabilistically Checkable Proofs
+                  Checkable Proofs
                 </Link>
               </li>
               <li>
                 <Link href="/fully-homomorphic-encryption" className="transition hover:text-neutral-900">
-                  Fully Homomorphic Encryption
+                  Homomorphic Encryption
                 </Link>
               </li>
               <li>
                 <Link href="/zero-knowledge-proofs" className="transition hover:text-neutral-900">
-                  Zero Knowledge Proofs
+                  Zero Knowledge
                 </Link>
               </li>
             </ul>

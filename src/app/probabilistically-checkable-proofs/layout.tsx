@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Probabilistically Checkable Proofs',
+  title: 'Checkable Proofs',
   description:
-    'How probabilistically checkable proofs (PCPs) relate to verifiable computation and trust-minimized checks in modern messaging platforms.',
+    'Checkable proofs (including probabilistically checkable proofs / PCPs): verifier-efficient integrity and audit for professional messaging.',
   openGraph: {
-    title: 'Probabilistically Checkable Proofs | FirstClassMail',
+    title: 'Checkable Proofs | FirstClassMail',
     description:
-      'Verifier-efficient proofs and their role in scalable integrity and auditability for professional communication systems.',
+      'How checkable proof ideas support scalable verification and trust-minimized checks on FirstClassMail.',
   },
 }
 

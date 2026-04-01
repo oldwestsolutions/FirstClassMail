@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, EyeOff, UserCheck, Shield } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
 
-export default function ZeroKnowledgeProofsPage() {
+export default function ZeroKnowledgePage() {
   return (
     <div className="min-h-screen bg-white text-neutral-600">
       <MarketingHeader />
@@ -16,13 +16,14 @@ export default function ZeroKnowledgeProofsPage() {
             <div className="mx-auto max-w-3xl">
               <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Platform</p>
               <h1 className="mt-5 font-serif text-4xl font-medium leading-[1.1] text-neutral-900 md:text-5xl lg:text-[3.15rem]">
-                Zero Knowledge Proofs
+                Zero Knowledge
               </h1>
               <p className="mt-8 text-lg leading-relaxed text-neutral-600">
-                A zero-knowledge proof is a cryptographic object: a prover convinces a verifier that a statement holds—without
-                transmitting the witness that makes it true. For professional mail, proofs replace raw credential dumps with
-                attestations: “this sender is in good standing,” “this thread satisfies policy,” or “this party is the intended
-                recipient”—each check backed by a proof obligation, not by exposing full identity graphs or message bodies.
+                In cryptography, <em>zero knowledge</em> is a guarantee: a protocol can convince someone that a statement is true
+                while revealing nothing beyond that fact. In practice, zero-knowledge <em>proofs</em> are the usual mechanism—a
+                prover convinces a verifier without transmitting the witness. For professional mail, that maps to attestations:
+                show you may open a thread, satisfy policy, or reach an office—without publishing full credentials, graphs, or
+                message bodies.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link href="/security" className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
@@ -47,17 +48,17 @@ export default function ZeroKnowledgeProofsPage() {
                 {
                   icon: EyeOff,
                   title: 'Statement, not payload',
-                  body: 'Proofs carry validity of a claim—authorization, policy match, membership—while leaving plaintext and unnecessary attributes out of the transcript.',
+                  body: 'Zero-knowledge proofs carry validity of a claim—authorization, policy match, membership—while keeping plaintext and unnecessary attributes out of the transcript.',
                 },
                 {
                   icon: UserCheck,
                   title: 'Verified sourcing',
-                  body: 'Eligibility and relationship proofs support verified sourcing: show you may open a thread or reach an office without publishing how the graph was built.',
+                  body: 'Eligibility proofs support verified sourcing: demonstrate permission to engage without exposing how your directory or graph was constructed.',
                 },
                 {
                   icon: Shield,
-                  title: 'Composable proofs',
-                  body: 'Proofs can be batched or chained so organizations stack checks (role, jurisdiction, matter) with bounded leakage and clearer audit semantics.',
+                  title: 'Composable checks',
+                  body: 'Proofs can be batched or chained so organizations stack jurisdiction, role, or matter checks with bounded leakage and clearer audit semantics.',
                 },
               ].map((item, i) => (
                 <motion.article
@@ -81,12 +82,12 @@ export default function ZeroKnowledgeProofsPage() {
           <div className="shell">
             <div className="mx-auto max-w-2xl text-center">
               <p className="text-sm leading-relaxed text-neutral-600">
-                Deploying ZK proofs in production depends on proof system choice, circuit design, trusted setup or transparent
-                alternatives, and verifier latency. FirstClassMail treats these as engineering and governance decisions alongside TLS,
-                intermediary policy, and retention—not as a replacement for them.
+                Production use depends on proof system choice, circuit design, trusted setup or transparent alternatives, and verifier
+                latency. FirstClassMail treats these as engineering and governance decisions alongside TLS, intermediary policy, and
+                retention—not as a substitute for them.
               </p>
               <Link href="/fully-homomorphic-encryption" className="mt-8 inline-block text-sm font-medium text-neutral-900 underline-offset-4 hover:underline">
-                Related: Fully Homomorphic Encryption
+                Related: Homomorphic Encryption
               </Link>
             </div>
           </div>

@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Fully Homomorphic Encryption',
+  title: 'Homomorphic Encryption',
   description:
-    'Fully homomorphic encryption (FHE): computing on ciphertexts and what it enables for privacy-preserving mail and workflow.',
+    'Homomorphic encryption: computing on ciphertexts—including fully homomorphic schemes—and what it enables for private mail and workflow.',
   openGraph: {
-    title: 'Fully Homomorphic Encryption | FirstClassMail',
+    title: 'Homomorphic Encryption | FirstClassMail',
     description:
-      'Why FHE matters for confidential processing and how it complements transport security in correspondence platforms.',
+      'Homomorphic encryption and confidential processing alongside transport security on FirstClassMail.',
   },
 }
 
