@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mail, MapPin, LayoutDashboard, FileText, BookOpen, LifeBuoy, Shield, Building2 } from 'lucide-react'
+import { Mail, MapPin, BookOpen, LifeBuoy, Shield, Building2 } from 'lucide-react'
 
 export function MarketingFooter() {
   return (
@@ -66,21 +66,18 @@ export function MarketingFooter() {
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Platform</p>
             <ul className="mt-5 space-y-3 text-sm text-neutral-600">
               <li>
-                <Link href="/portal" className="inline-flex items-center gap-2 transition hover:text-neutral-900">
-                  <LayoutDashboard className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
-                  Client portal
+                <Link href="/probabilistically-checkable-proofs" className="transition hover:text-neutral-900">
+                  Probabilistically Checkable Proofs
                 </Link>
               </li>
               <li>
-                <Link href="/dashboard" className="inline-flex items-center gap-2 transition hover:text-neutral-900">
-                  <FileText className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
-                  Dashboard
+                <Link href="/fully-homomorphic-encryption" className="transition hover:text-neutral-900">
+                  Fully Homomorphic Encryption
                 </Link>
               </li>
               <li>
-                <Link href="/security" className="inline-flex items-center gap-2 transition hover:text-neutral-900">
-                  <Shield className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
-                  Security overview
+                <Link href="/zero-knowledge-systems" className="transition hover:text-neutral-900">
+                  Zero Knowledge Systems
                 </Link>
               </li>
             </ul>
@@ -120,6 +117,12 @@ export function MarketingFooter() {
                   <LifeBuoy className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
                   Help center
                 </a>
+              </li>
+              <li>
+                <Link href="/security" className="inline-flex items-center gap-2 transition hover:text-neutral-900">
+                  <Shield className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
+                  Security overview
+                </Link>
               </li>
             </ul>
           </div>
