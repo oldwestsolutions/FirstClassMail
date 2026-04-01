@@ -346,12 +346,12 @@ export default function HomePage() {
                   className={`flex min-h-full flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-sm ${p.border} border-l-[5px]`}
                 >
                   <div className={`h-1.5 w-full shrink-0 ${p.accent}`} aria-hidden />
-                  <div className="flex flex-1 flex-col p-8 text-center md:p-10">
-                    <div className="mx-auto flex w-full justify-center md:justify-start">
+                  <div className="flex flex-1 flex-col items-center p-8 text-center md:p-10">
+                    <div className="w-full max-w-[248px]">
                       <PortalMockMini preset={p.illustration} />
                     </div>
-                    <h3 className="mt-8 font-serif text-xl text-neutral-900 md:text-2xl">{p.title}</h3>
-                    <p className="mt-5 flex-1 text-left text-sm leading-[1.85] text-neutral-600">{p.body}</p>
+                    <h3 className="mt-8 w-full max-w-[20rem] font-serif text-xl text-neutral-900 md:text-2xl">{p.title}</h3>
+                    <p className="mt-5 w-full max-w-[20rem] flex-1 text-sm leading-[1.85] text-neutral-600">{p.body}</p>
                   </div>
                 </motion.div>
               ))}
