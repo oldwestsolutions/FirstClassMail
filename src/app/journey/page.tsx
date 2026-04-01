@@ -2,9 +2,20 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, Radio, Fingerprint, Building2, Inbox } from 'lucide-react'
+import {
+  ArrowRight,
+  Radio,
+  Fingerprint,
+  Building2,
+  Inbox,
+  Filter,
+  ShieldCheck,
+  Archive,
+} from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
+import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 import { PortalMockMini } from '@/components/PortalMock'
+import { PathIllustration } from '@/components/PracticeIllustrations'
 
 const stages = [
   {
@@ -41,6 +52,47 @@ const stages = [
   },
 ] as const
 
+const pathSteps = [
+  {
+    step: 'Step 1',
+    title: 'Automation',
+    illustration: 'users' as const,
+    icon: Filter,
+    lead:
+      'Inbound traffic terminates on TLS sessions at the platform edge. Before a thread is created, automated intake applies policy-aware sorting: classification by priority, destination, and channel rules your administrators define.',
+    detail: [
+      'Spam and abuse signals are evaluated at ingress—reputation checks, rate limits, and content heuristics reduce unsolicited and malicious mail before it reaches a verified thread. Legitimate traffic is not treated as an open relay: each hop is logged and bounded by session identity.',
+      'Automation runs on FirstClassMail-operated infrastructure with consistent patching and capacity isolation. Processing is segmented so intake and sorting do not share uncontrolled execution paths with arbitrary internet workloads.',
+    ],
+  },
+  {
+    step: 'Step 2',
+    title: 'Enforcement',
+    illustration: 'platform' as const,
+    icon: ShieldCheck,
+    lead:
+      'After authentication, messages are evaluated against sourcing and release policy. Email authentication expectations (alignment between envelope, header, and sending identity) and account-level rules are enforced before mail is forwarded or delivered downstream.',
+    detail: [
+      'Verification is not a one-time check: sessions and sending identities are revalidated against policy as mail moves through the queue. Messages that fail authentication or policy gates are held, rejected, or routed according to your configuration—not silently forwarded.',
+      'Enforcement logic runs in the same governed environment as routing and audit logs, so operators can explain what happened to a message without reconstructing ad-hoc server hops across unmanaged hosts.',
+    ],
+  },
+  {
+    step: 'Step 3',
+    title: 'Storage',
+    illustration: 'office' as const,
+    icon: Archive,
+    lead:
+      'Approved mail is handed off to the office mail endpoint over encrypted channels. Retention, archiving, and continuity are governed alongside the thread record so audit and retrieval stay aligned with how you already run mail.',
+    detail: [
+      'Storage posture is deliberate: records needed for continuity and compliance are retained under access control aligned to your organization—not duplicated into ungoverned tooling by default.',
+      'The path remains three segments—client, platform, office—with encryption and policy applied at each boundary rather than treating the public internet as a single undifferentiated pipe.',
+    ],
+  },
+] as const
+
+const sectionShell = 'flex min-h-[100svh] flex-col justify-center border-b border-neutral-200 py-16 md:py-24'
+
 export default function JourneyPage() {
   return (
     <div className="min-h-screen bg-white text-neutral-600">
@@ -56,8 +108,9 @@ export default function JourneyPage() {
               </h1>
               <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
                 Each stage exists to keep communication private, authentic, and professionally managed—from the first encrypted
-                byte to confirmed receipt—without exposing you to unnecessary risk. The sequence below is the same model
-                summarized on the homepage, expanded for operators who need clarity before adoption.
+                byte to confirmed receipt. Below, the <strong className="font-medium text-neutral-800">message path</strong>{' '}
+                details how automation, enforcement, and storage work on platform infrastructure; then the four protocol phases
+                summarize the same commitments from a product perspective.
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-4">
                 <Link href="/portal" className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
@@ -68,7 +121,7 @@ export default function JourneyPage() {
                   href="/practice"
                   className="inline-flex items-center rounded-full border border-neutral-200 px-6 py-3 text-sm text-neutral-700 transition hover:border-neutral-400"
                 >
-                  See platform practice
+                  Practice & surfaces
                 </Link>
               </div>
             </div>
@@ -88,34 +141,95 @@ export default function JourneyPage() {
           </div>
         </div>
 
-        <section className="border-b border-neutral-200 bg-neutral-50 py-20 md:py-28">
-          <div className="shell space-y-24 md:space-y-32">
-            {stages.map((stage, i) => (
-              <motion.article
-                key={stage.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.5 }}
-                className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-10"
-              >
-                <div className={`lg:col-span-5 ${i % 2 === 1 ? 'lg:order-2' : 'lg:order-1'}`}>
-                  <div className={`flex justify-center ${i % 2 === 1 ? 'lg:justify-end' : 'lg:justify-start'}`}>
-                    <PortalMockMini preset={stage.preset} />
-                  </div>
-                </div>
-                <div className={`lg:col-span-7 ${i % 2 === 1 ? 'lg:order-1' : 'lg:order-2'}`}>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Mail Protocol · Phase {i + 1}</p>
-                  <h2 className="mt-4 font-serif text-3xl text-neutral-900 md:text-4xl">{stage.title}</h2>
-                  <p className="mt-6 text-lg leading-relaxed text-neutral-700">{stage.lead}</p>
-                  <p className="mt-5 leading-relaxed text-neutral-600">{stage.detail}</p>
-                </div>
-              </motion.article>
-            ))}
+        {/* Message path — full-page sections */}
+        <section className={`${sectionShell} bg-neutral-50`}>
+          <div className="shell">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Message path</p>
+              <h2 className="mt-4 font-serif text-3xl text-neutral-900 md:text-4xl lg:text-[2.75rem]">
+                From users to our servers to the office
+              </h2>
+              <p className="mt-6 text-lg leading-relaxed text-neutral-600">
+                The path is deliberately segmented: client, platform, and office mail server. Each hop applies encryption and
+                policy at the boundary; traffic is not treated as an open relay across the public internet to arbitrary inboxes.
+                The three steps below are how that segmentation is operationalized—automation and filtering at intake,
+                enforcement before release, and controlled handoff to your endpoint.
+              </p>
+            </div>
           </div>
         </section>
 
-        <section className="border-b border-neutral-200 bg-white py-20 md:py-28">
+        {pathSteps.map((step, i) => (
+          <section
+            key={step.title}
+            className={`${sectionShell} ${i % 2 === 0 ? 'bg-white' : 'bg-neutral-50'}`}
+            aria-labelledby={`path-step-${i}`}
+          >
+            <div className="shell">
+              <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-10">
+                <div className={`lg:col-span-5 ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
+                  <div className={`flex justify-center ${i % 2 === 1 ? 'lg:justify-end' : 'lg:justify-start'}`}>
+                    <PathIllustration variant={step.illustration} />
+                  </div>
+                </div>
+                <div className={`lg:col-span-7 ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
+                  <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">
+                    <step.icon className="h-3.5 w-3.5" strokeWidth={1.25} />
+                    {step.step}
+                  </div>
+                  <h2 id={`path-step-${i}`} className="font-serif text-3xl text-neutral-900 md:text-4xl">
+                    {step.title}
+                  </h2>
+                  <p className="mt-6 text-lg leading-relaxed text-neutral-700">{step.lead}</p>
+                  {step.detail.map((para) => (
+                    <p key={para.slice(0, 40)} className="mt-5 leading-relaxed text-neutral-600">
+                      {para}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        ))}
+
+        <section className={`${sectionShell} bg-white`}>
+          <div className="shell">
+            <div className="mx-auto max-w-4xl">
+              <h2 className="text-center font-serif text-3xl text-neutral-900 md:text-4xl">Four protocol phases (product view)</h2>
+              <p className="mx-auto mt-6 max-w-2xl text-center leading-relaxed text-neutral-600">
+                The same guarantees appear again as stages you can brief to stakeholders: transmission, sourcing, intermediary
+                governance, and delivery. Each stage below expands the narrative; mini mocks illustrate the idea in the UI
+                language of the portal.
+              </p>
+            </div>
+            <div className="mx-auto mt-16 space-y-24 md:space-y-32">
+              {stages.map((stage, i) => (
+                <motion.article
+                  key={stage.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ duration: 0.5 }}
+                  className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-10"
+                >
+                  <div className={`lg:col-span-5 ${i % 2 === 1 ? 'lg:order-2' : 'lg:order-1'}`}>
+                    <div className={`flex justify-center ${i % 2 === 1 ? 'lg:justify-end' : 'lg:justify-start'}`}>
+                      <PortalMockMini preset={stage.preset} />
+                    </div>
+                  </div>
+                  <div className={`lg:col-span-7 ${i % 2 === 1 ? 'lg:order-1' : 'lg:order-2'}`}>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Mail Protocol · Phase {i + 1}</p>
+                    <h3 className="mt-4 font-serif text-3xl text-neutral-900 md:text-4xl">{stage.title}</h3>
+                    <p className="mt-6 text-lg leading-relaxed text-neutral-700">{stage.lead}</p>
+                    <p className="mt-5 leading-relaxed text-neutral-600">{stage.detail}</p>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className={`${sectionShell} bg-neutral-50`}>
           <div className="shell">
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
               <div className="lg:col-span-4">
@@ -133,7 +247,7 @@ export default function JourneyPage() {
                     ['Third-party management', 'Keeps routing under policy instead of personal forwarding.'],
                     ['Private delivery', 'Minimizes exposure at the organizational boundary.'],
                   ].map(([h, b]) => (
-                    <div key={h} className="rounded-2xl border border-neutral-200 bg-neutral-50 p-6">
+                    <div key={h} className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
                       <p className="font-serif text-lg text-neutral-900">{h}</p>
                       <p className="mt-2 text-sm leading-relaxed text-neutral-600">{b}</p>
                     </div>
@@ -144,19 +258,22 @@ export default function JourneyPage() {
           </div>
         </section>
 
-        <section className="bg-neutral-50 py-16 md:py-20">
+        <section className="border-b border-neutral-200 bg-white py-16 md:py-20">
           <div className="shell">
-            <div className="mx-auto flex max-w-3xl flex-col items-center rounded-[2rem] border border-neutral-200 bg-white px-8 py-12 text-center shadow-sm md:px-14">
+            <div className="mx-auto flex max-w-3xl flex-col items-center rounded-[2rem] border border-neutral-200 bg-neutral-50 px-8 py-12 text-center shadow-sm md:px-14">
               <h2 className="font-serif text-2xl text-neutral-900 md:text-3xl">Operate inside this protocol</h2>
               <p className="mt-5 text-neutral-600">
-                The live client portal implements the same stages. Sign in to send, receive, and audit correspondence against
-                these expectations.
+                The live client portal implements the same stages and path. Sign in to send, receive, and audit correspondence
+                against these expectations.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-5">
                 <Link href="/portal" className="btn btn-primary px-10 py-3.5 text-xs uppercase tracking-[0.2em]">
                   Open portal
                 </Link>
-                <Link href="/platform" className="rounded-full px-6 py-3 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900">
+                <Link
+                  href="/platform"
+                  className="rounded-full px-6 py-3 text-sm text-neutral-600 hover:bg-white hover:text-neutral-900"
+                >
                   Portal product tour
                 </Link>
               </div>
@@ -165,6 +282,7 @@ export default function JourneyPage() {
         </section>
       </main>
 
+      <MarketingFooter />
     </div>
   )
 }
