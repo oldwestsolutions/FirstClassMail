@@ -1,6 +1,6 @@
 'use client'
 
-import { CalendarClock, CheckCircle, Inbox, Mail, Send, Shield, Wallet } from 'lucide-react'
+import { Ban, CalendarClock, CheckCircle, FileText, Inbox, Mail, Megaphone, Send, Shield, Wallet } from 'lucide-react'
 
 const shell =
   'overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 shadow-sm'
@@ -73,6 +73,50 @@ export function PortalMockMini({ preset }: { preset: string }) {
               No broker resale
             </span>
             <p className="text-left text-[9px] leading-snug text-neutral-600">Addresses stay off marketing lists</p>
+          </div>
+        </div>
+      )
+    case 'webform':
+      return (
+        <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
+          <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
+            <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
+              <FileText className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
+              Web form
+            </span>
+            <span className="shrink-0 rounded bg-emerald-50 px-1.5 py-0.5 font-mono text-[7px] text-emerald-800">TLS</span>
+          </div>
+          <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
+            <div className="space-y-1.5">
+              <div className="h-1.5 rounded bg-neutral-200/90" />
+              <div className="h-1.5 w-11/12 rounded bg-neutral-200/90" />
+              <div className="h-1.5 w-3/4 rounded bg-neutral-200/90" />
+            </div>
+            <div className="rounded-md border border-neutral-200 bg-white px-2 py-1.5 text-left font-mono text-[8px] leading-snug text-neutral-600">
+              Submit → verified thread
+            </div>
+          </div>
+        </div>
+      )
+    case 'spam-ads':
+      return (
+        <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
+          <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
+            <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
+              <Ban className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
+              Spam guard
+            </span>
+            <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">On</span>
+          </div>
+          <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
+            <div className="rounded-md border border-neutral-200 bg-white px-2 py-1.5 text-left font-mono text-[8px] text-neutral-600">
+              <span className="text-neutral-400">Filtered · </span>
+              Junk & bulk held
+            </div>
+            <div className="flex items-center gap-1.5 rounded-md border border-amber-100 bg-amber-50/80 px-2 py-1.5 text-left font-mono text-[8px] text-amber-950">
+              <Megaphone className="h-2.5 w-2.5 shrink-0 opacity-80" strokeWidth={1.5} aria-hidden />
+              Ad share · wallet rail
+            </div>
           </div>
         </div>
       )

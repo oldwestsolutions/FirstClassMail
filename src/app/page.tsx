@@ -286,9 +286,9 @@ export default function HomePage() {
               {(
                 [
                   [
-                    'Encryption first',
-                    'TLS and strong encryption protect messages in transit; storage follows rigorous security practices so content stays private.',
-                    'encryption',
+                    'Web forms',
+                    'Publish contact and intake forms that submit over TLS into verified threads—structured fields, bot resistance, and submissions that are not resold as marketing leads.',
+                    'webform',
                   ],
                   [
                     'Verified parties',
@@ -296,9 +296,9 @@ export default function HomePage() {
                     'verified',
                   ],
                   [
-                    'No data brokerage',
-                    'We do not sell email addresses or message data to brokers. Your contact graph is not our product.',
-                    'no-brokerage',
+                    'Spam & ad sharing',
+                    'Aggressive junk and abuse filtering keeps noise out of priority mail; where ads are part of the surface, revenue can be shared to wallets with explicit rules—without monetizing your graph through list brokers.',
+                    'spam-ads',
                   ],
                 ] as const
               ).map(([title, body, preset]) => (
