@@ -1,8 +1,23 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { Mail, ArrowRight, CheckCircle, Inbox, Send, FileInput, Warehouse } from 'lucide-react'
+import {
+  Mail,
+  ArrowRight,
+  CheckCircle,
+  Inbox,
+  Send,
+  FileInput,
+  Warehouse,
+  MapPin,
+  BookOpen,
+  Shield,
+  LifeBuoy,
+  Building2,
+  FileText,
+  LayoutDashboard,
+} from 'lucide-react'
 import Link from 'next/link'
 
 function TiltCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
@@ -28,7 +43,7 @@ function TiltCard({ children, className = '' }: { children: React.ReactNode; cla
       }}
     >
       <motion.div
-        className="h-full overflow-hidden rounded-3xl border border-neutral-800/90 bg-neutral-950"
+        className="h-full overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-sm"
         style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
       >
         {children}
@@ -44,7 +59,7 @@ function IsoBlock({ className, delay = 0 }: { className: string; delay?: number 
       initial={false}
     >
       <motion.div
-        className={`absolute inset-0 rounded-2xl border border-white/15 ${className}`}
+        className={`absolute inset-0 rounded-2xl border border-black/10 ${className}`}
         style={{ transformStyle: 'preserve-3d' }}
         animate={{
           rotateX: [14, 22, 14],
@@ -59,21 +74,55 @@ function IsoBlock({ className, delay = 0 }: { className: string; delay?: number 
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [headerHidden, setHeaderHidden] = useState(false)
+  const lastScrollY = useRef(0)
+  const ticking = useRef(false)
+
+  useEffect(() => {
+    lastScrollY.current = typeof window !== 'undefined' ? window.scrollY : 0
+  }, [])
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (ticking.current) return
+      ticking.current = true
+      requestAnimationFrame(() => {
+        const y = window.scrollY
+        const prev = lastScrollY.current
+        const delta = y - prev
+        if (y < 48) {
+          setHeaderHidden(false)
+        } else if (delta > 6) {
+          setHeaderHidden(true)
+        } else if (delta < -6) {
+          setHeaderHidden(false)
+        }
+        lastScrollY.current = y
+        ticking.current = false
+      })
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const journey = [
     {
+      step: '01',
       title: 'Collection',
       text: 'Someone leaves a note at the window—a form, a reply, a campaign. Each piece is dated and addressed before it goes anywhere.',
     },
     {
+      step: '02',
       title: 'Sorting',
       text: 'Like letters under a clerk’s hand, messages are read for the essentials: who it is for, what it concerns, where it should go next.',
     },
     {
+      step: '03',
       title: 'Holding',
       text: 'When the mail is heavy, it waits in the back room—orderly stacks, nothing lost—until the route is ready to carry it out.',
     },
     {
+      step: '04',
       title: 'Delivery',
       text: 'Carriers take each item to its destination: an inbox, a team, a system that asked for it. Proof of arrival closes the loop.',
     },
@@ -119,7 +168,7 @@ export default function HomePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-black text-neutral-300">
+    <div className="min-h-screen bg-white text-neutral-600">
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
@@ -128,7 +177,7 @@ export default function HomePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/80"
+              className="fixed inset-0 z-40 bg-neutral-900/30"
               onClick={() => setMobileMenuOpen(false)}
               aria-label="Close menu"
             />
@@ -137,13 +186,13 @@ export default function HomePage() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.28 }}
-              className="fixed right-0 top-0 z-50 flex h-full w-[min(100%,22rem)] flex-col rounded-l-[2rem] border-l border-neutral-800 bg-neutral-950 shadow-2xl"
+              className="fixed right-0 top-0 z-50 flex h-full w-[min(100%,22rem)] flex-col rounded-l-[2rem] border-l border-neutral-200 bg-white shadow-2xl"
             >
-              <div className="flex items-center justify-between border-b border-neutral-800/80 p-6">
-                <span className="font-serif text-lg text-white">Menu</span>
+              <div className="flex items-center justify-between border-b border-neutral-200 p-6">
+                <span className="font-serif text-lg text-neutral-900">Menu</span>
                 <button
                   type="button"
-                  className="rounded-full p-2 text-neutral-500 transition hover:bg-neutral-900 hover:text-white"
+                  className="rounded-full p-2 text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-900"
                   onClick={() => setMobileMenuOpen(false)}
                   aria-label="Close"
                 >
@@ -162,7 +211,7 @@ export default function HomePage() {
                   <Link
                     key={href}
                     href={href}
-                    className="rounded-2xl px-4 py-3.5 text-sm text-neutral-400 transition hover:bg-neutral-900 hover:text-white"
+                    className="rounded-2xl px-4 py-3.5 text-sm text-neutral-600 transition hover:bg-neutral-100 hover:text-neutral-900"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {label}
@@ -181,28 +230,33 @@ export default function HomePage() {
         )}
       </AnimatePresence>
 
-      <div className="border-b border-neutral-900/80 bg-black pb-4 pt-4 sm:pt-6">
+      <motion.header
+        className="fixed left-0 right-0 top-0 z-50 border-b border-transparent bg-white/80 pb-4 pt-4 backdrop-blur-md sm:pt-6"
+        initial={false}
+        animate={{ y: headerHidden ? '-100%' : '0%' }}
+        transition={{ type: 'tween', duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      >
         <div className="shell">
-          <nav className="flex h-14 items-center justify-between rounded-full border border-neutral-800/90 bg-neutral-950/90 px-4 shadow-sm backdrop-blur-md sm:h-[3.75rem] sm:px-6 lg:px-8">
+          <nav className="flex h-14 items-center justify-between rounded-full border border-neutral-200/90 bg-white/95 px-4 shadow-sm sm:h-[3.75rem] sm:px-6 lg:px-8">
             <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-700/80 bg-black">
-                <Mail className="h-4 w-4 text-white" strokeWidth={1.25} />
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-200 bg-neutral-50">
+                <Mail className="h-4 w-4 text-neutral-900" strokeWidth={1.25} />
               </div>
               <div>
-                <span className="font-serif text-lg tracking-wide text-white md:text-xl">FirstClass Mail</span>
+                <span className="font-serif text-lg tracking-wide text-neutral-900 md:text-xl">FirstClass Mail</span>
                 <p className="hidden font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500 sm:block">
                   Digital post
                 </p>
               </div>
             </Link>
-            <div className="hidden items-center gap-8 lg:gap-10 md:flex">
-              <Link href="#correspondence" className="text-sm text-neutral-400 transition hover:text-white">
+            <div className="hidden items-center gap-8 md:flex lg:gap-10">
+              <Link href="#correspondence" className="text-sm text-neutral-600 transition hover:text-neutral-900">
                 Correspondence
               </Link>
-              <Link href="#journey" className="text-sm text-neutral-400 transition hover:text-white">
+              <Link href="#journey" className="text-sm text-neutral-600 transition hover:text-neutral-900">
                 The journey
               </Link>
-              <Link href="#practice" className="text-sm text-neutral-400 transition hover:text-white">
+              <Link href="#practice" className="text-sm text-neutral-600 transition hover:text-neutral-900">
                 Practice
               </Link>
               <Link href="/portal" className="btn btn-primary px-6 py-2.5 text-xs uppercase tracking-widest">
@@ -211,7 +265,7 @@ export default function HomePage() {
             </div>
             <button
               type="button"
-              className="rounded-full p-2.5 text-neutral-400 transition hover:bg-neutral-900 hover:text-white md:hidden"
+              className="rounded-full p-2.5 text-neutral-600 transition hover:bg-neutral-100 hover:text-neutral-900 md:hidden"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open menu"
             >
@@ -221,17 +275,20 @@ export default function HomePage() {
             </button>
           </nav>
         </div>
-      </div>
+      </motion.header>
 
-      <header className="border-b border-neutral-900/80">
+      {/* Reserve space for fixed header so content is not covered */}
+      <div className="h-[5.75rem] sm:h-[6.5rem]" aria-hidden />
+
+      <header className="border-b border-neutral-200">
         <div className="shell py-16 md:py-24 lg:py-28">
           <div className="grid grid-cols-12 gap-x-6 gap-y-12 lg:gap-x-10 lg:gap-y-16">
             <div className="col-span-12 flex flex-col justify-end lg:col-span-7 lg:row-span-1">
               <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.4em] text-neutral-500">Internet correspondence</p>
-              <h1 className="mb-8 max-w-[22ch] font-serif text-4xl font-medium leading-[1.08] text-white md:text-5xl lg:text-[3.5rem] xl:text-6xl">
+              <h1 className="mb-8 max-w-[22ch] font-serif text-4xl font-medium leading-[1.08] text-neutral-900 md:text-5xl lg:text-[3.5rem] xl:text-6xl">
                 The way mail has always worked—now over the network.
               </h1>
-              <p className="max-w-xl text-base leading-[1.75] text-neutral-500 md:text-lg">
+              <p className="max-w-xl text-base leading-[1.75] text-neutral-600 md:text-lg">
                 Paper or wire, the idea is unchanged: a message is written, addressed, handled with care, and brought to the
                 right door. FirstClass Mail carries that sequence for everything you collect and send online.
               </p>
@@ -242,7 +299,7 @@ export default function HomePage() {
                 </Link>
                 <Link
                   href="#journey"
-                  className="text-center text-sm text-neutral-500 underline-offset-4 transition hover:text-white hover:underline sm:text-left"
+                  className="text-center text-sm text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline sm:text-left"
                 >
                   Read how delivery works
                 </Link>
@@ -259,17 +316,17 @@ export default function HomePage() {
         </div>
       </header>
 
-      <section id="correspondence" className="border-b border-neutral-900/80 bg-neutral-950">
+      <section id="correspondence" className="border-b border-neutral-200 bg-neutral-50">
         <div className="shell py-20 md:py-28">
           <div className="grid grid-cols-12 gap-x-6 gap-y-10 lg:gap-x-10">
             <div className="col-span-12 lg:col-span-5 lg:col-start-1">
-              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-600">Correspondence</p>
-              <h2 className="mt-5 font-serif text-3xl leading-tight text-white md:text-4xl lg:text-[2.75rem]">
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Correspondence</p>
+              <h2 className="mt-5 font-serif text-3xl leading-tight text-neutral-900 md:text-4xl lg:text-[2.75rem]">
                 Not a metaphor—an office you never see.
               </h2>
             </div>
             <div className="col-span-12 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:self-end">
-              <p className="text-neutral-500 leading-[1.8] lg:text-[1.05rem]">
+              <p className="leading-[1.8] text-neutral-600 lg:text-[1.05rem]">
                 In the physical world, mail moves through rooms you do not visit: counters, sorting tables, holding areas,
                 outgoing carts. On the internet, the same roles exist—only the rooms are machines. Someone still decides what is
                 legitimate, what waits, and what goes out next.
@@ -283,10 +340,10 @@ export default function HomePage() {
               ].map(([title, body]) => (
                 <div
                   key={title}
-                  className="flex flex-col rounded-3xl border border-neutral-800/80 bg-black p-8 transition hover:border-neutral-700 md:p-9"
+                  className="flex flex-col rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm transition hover:border-neutral-300 md:p-9"
                 >
-                  <h3 className="font-serif text-xl text-white">{title}</h3>
-                  <p className="mt-5 text-sm leading-relaxed text-neutral-500">{body}</p>
+                  <h3 className="font-serif text-xl text-neutral-900">{title}</h3>
+                  <p className="mt-5 text-sm leading-relaxed text-neutral-600">{body}</p>
                 </div>
               ))}
             </div>
@@ -294,72 +351,102 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="journey" className="border-b border-neutral-900/80">
-        <div className="shell py-20 md:py-28">
-          <div className="grid grid-cols-12 gap-x-6 lg:gap-x-12">
-            <div className="col-span-12 lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
-              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-600">The journey</p>
-              <h2 className="mt-5 max-w-[14ch] font-serif text-3xl leading-tight text-white md:text-4xl">
+      <section
+        id="journey"
+        className="relative border-b border-neutral-200 bg-white"
+        aria-labelledby="journey-heading"
+      >
+        <div className="flex min-h-[100svh] flex-col justify-center py-20 md:py-28">
+          <div className="shell">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">The journey</p>
+              <h2
+                id="journey-heading"
+                className="mt-5 font-serif text-[clamp(1.75rem,4vw,3rem)] font-medium leading-[1.15] text-neutral-900"
+              >
                 From hand to hand, in four beats.
               </h2>
-              <div className="mt-10 hidden h-px w-16 rounded-full bg-neutral-800 lg:block" aria-hidden />
+              <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
+                Four symmetrical stages—each with a clear role—mirror how physical mail is received, classified, queued, and
+                released. The same discipline applies to every message you route online.
+              </p>
             </div>
-            <div className="col-span-12 mt-12 grid gap-5 lg:col-span-8 lg:mt-0 lg:gap-6">
+
+            <div className="mx-auto mt-16 grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 xl:grid-cols-4 xl:gap-6">
               {journey.map((step, i) => (
-                <article
-                  key={step.title}
-                  className="grid grid-cols-12 gap-4 rounded-[1.75rem] border border-neutral-800/80 bg-neutral-950/50 p-6 sm:p-8 md:gap-6 md:p-10"
+                <motion.article
+                  key={step.step}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.45, delay: i * 0.08 }}
+                  className="flex min-h-[320px] flex-col rounded-3xl border border-neutral-200 bg-neutral-50/90 p-8 text-center shadow-sm lg:min-h-[340px] lg:p-10"
                 >
-                  <div className="col-span-12 flex items-start sm:col-span-2 md:col-span-2">
-                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-neutral-800 bg-black font-mono text-xs text-neutral-500">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
+                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-neutral-200 bg-white font-mono text-sm font-medium text-neutral-900 shadow-sm">
+                    {step.step}
                   </div>
-                  <div className="col-span-12 sm:col-span-10 md:col-span-10">
-                    <h3 className="font-serif text-2xl text-white">{step.title}</h3>
-                    <p className="mt-4 text-neutral-500 leading-[1.8]">{step.text}</p>
-                  </div>
-                </article>
+                  <h3 className="mt-8 font-serif text-xl text-neutral-900 md:text-2xl">{step.title}</h3>
+                  <p className="mt-5 flex-1 text-left text-sm leading-[1.85] text-neutral-600 md:text-[0.95rem]">{step.text}</p>
+                </motion.article>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section id="practice" className="border-b border-neutral-900/80 bg-neutral-950">
-        <div className="shell py-20 md:py-28">
-          <div className="grid grid-cols-12">
-            <div className="col-span-12 max-w-3xl">
-              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-600">In practice</p>
-              <h2 className="mt-5 font-serif text-3xl text-white md:text-4xl">What FirstClass Mail holds for you.</h2>
-            </div>
-          </div>
-
-          <div className="mt-14 grid grid-cols-12 gap-5 lg:mt-20 lg:gap-6">
-            {pillars.map((p) => (
-              <div
-                key={p.title}
-                className={`col-span-12 flex flex-col overflow-hidden rounded-3xl border border-neutral-800/90 bg-black md:col-span-6 lg:col-span-4 ${p.border} border-l-[5px]`}
+      <section id="practice" className="border-b border-neutral-200 bg-neutral-50" aria-labelledby="practice-heading">
+        <div className="flex min-h-[100svh] flex-col justify-center py-20 md:py-28">
+          <div className="shell">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">In practice</p>
+              <h2
+                id="practice-heading"
+                className="mt-5 font-serif text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight text-neutral-900"
               >
-                <div className={`h-1.5 w-full ${p.accent}`} aria-hidden />
-                <div className="flex flex-1 flex-col p-8 md:p-9">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-neutral-800 bg-neutral-950">
-                    <p.icon className="h-5 w-5 text-white" strokeWidth={1.25} />
-                  </div>
-                  <h3 className="mt-8 font-serif text-xl text-white">{p.title}</h3>
-                  <p className="mt-4 flex-1 text-sm leading-relaxed text-neutral-500">{p.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+                What FirstClass Mail holds for you.
+              </h2>
+              <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
+                Three capabilities cover ingestion, queueing, and delivery; three stations show how work moves through the
+                house—aligned, evenly weighted, and easy to scan.
+              </p>
+            </div>
 
-          <div className="mt-16 grid grid-cols-12 lg:mt-24">
-            <div className="col-span-12">
-              <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6 lg:gap-8">
+            <div className="mx-auto mt-16 grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-3 md:gap-6 lg:gap-8">
+              {pillars.map((p, i) => (
+                <motion.div
+                  key={p.title}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.07 }}
+                  className={`flex min-h-full flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-sm ${p.border} border-l-[5px]`}
+                >
+                  <div className={`h-1.5 w-full shrink-0 ${p.accent}`} aria-hidden />
+                  <div className="flex flex-1 flex-col p-8 text-center md:p-10">
+                    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-neutral-200 bg-neutral-50">
+                      <p.icon className="h-6 w-6 text-neutral-900" strokeWidth={1.25} />
+                    </div>
+                    <h3 className="mt-8 font-serif text-xl text-neutral-900 md:text-2xl">{p.title}</h3>
+                    <p className="mt-5 flex-1 text-left text-sm leading-[1.85] text-neutral-600">{p.body}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mx-auto mt-20 max-w-5xl border-t border-neutral-200 pt-20 md:mt-24 md:pt-24">
+              <div className="mx-auto max-w-2xl text-center">
+                <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Processing stations</p>
+                <h3 className="mt-4 font-serif text-2xl text-neutral-900 md:text-3xl">Collect, sort, release</h3>
+                <p className="mt-4 text-neutral-600">
+                  Three equal stations—same footprint, same clarity—map to how items enter, are classified, and leave for the
+                  reader.
+                </p>
+              </div>
+              <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-6 lg:gap-10">
                 {[
-                  { title: 'Collect', sub: 'Windows for new mail', icon: Inbox },
-                  { title: 'Sort', sub: 'Rules that read the address block', icon: Mail },
-                  { title: 'Release', sub: 'When the route is open', icon: Send },
+                  { title: 'Collect', sub: 'Windows for new mail', icon: Inbox, station: 'Station 1' },
+                  { title: 'Sort', sub: 'Rules that read the address block', icon: Mail, station: 'Station 2' },
+                  { title: 'Release', sub: 'When the route is open', icon: Send, station: 'Station 3' },
                 ].map((step, i) => (
                   <motion.div
                     key={step.title}
@@ -367,12 +454,15 @@ export default function HomePage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.06 }}
+                    className="flex h-full justify-center"
                   >
-                    <TiltCard className="p-8 md:p-9">
-                      <step.icon className="h-5 w-5 text-neutral-400" strokeWidth={1.25} />
-                      <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-600">Station {i + 1}</p>
-                      <h3 className="mt-3 font-serif text-xl text-white">{step.title}</h3>
-                      <p className="mt-3 text-sm leading-relaxed text-neutral-500">{step.sub}</p>
+                    <TiltCard className="flex h-full min-h-[280px] w-full max-w-md flex-col p-8 md:p-10">
+                      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-neutral-100">
+                        <step.icon className="h-5 w-5 text-neutral-700" strokeWidth={1.25} />
+                      </div>
+                      <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500">{step.station}</p>
+                      <h4 className="mt-3 font-serif text-xl text-neutral-900">{step.title}</h4>
+                      <p className="mt-4 text-sm leading-relaxed text-neutral-600">{step.sub}</p>
                     </TiltCard>
                   </motion.div>
                 ))}
@@ -382,33 +472,50 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-b border-neutral-900/80">
-        <div className="shell py-20 md:py-28">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-serif text-3xl text-white md:text-4xl">Voices from the hall</h2>
-          </div>
-          <div className="mt-14 grid grid-cols-12 gap-5 lg:mt-16 lg:gap-8">
-            {testimonials.map((t) => (
-              <blockquote
-                key={t.name}
-                className="col-span-12 flex flex-col rounded-[1.75rem] border border-neutral-800/80 bg-neutral-950 p-9 md:col-span-6 md:p-10 lg:p-12"
-              >
-                <p className="font-serif text-lg leading-relaxed text-neutral-400 md:text-xl">&ldquo;{t.quote}&rdquo;</p>
-                <footer className="mt-auto border-t border-neutral-800/80 pt-8">
-                  <cite className="not-italic font-medium text-white">{t.name}</cite>
-                  <p className="mt-1.5 text-sm text-neutral-600">{t.title}</p>
-                </footer>
-              </blockquote>
-            ))}
+      <section
+        className="border-b border-neutral-200 bg-white"
+        aria-labelledby="voices-heading"
+      >
+        <div className="flex min-h-[85svh] flex-col justify-center py-20 md:py-28">
+          <div className="shell">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Testimonials</p>
+              <h2 id="voices-heading" className="mt-5 font-serif text-[clamp(1.75rem,4vw,3rem)] font-medium text-neutral-900">
+                Voices from the hall
+              </h2>
+              <p className="mx-auto mt-6 max-w-2xl text-neutral-600">
+                Operators and marketers describe the same outcome: mail they can reason about—provenance, queue time, and
+                arrival—without retraining the organization.
+              </p>
+            </div>
+            <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
+              {testimonials.map((t, i) => (
+                <motion.div
+                  key={t.name}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <blockquote className="flex min-h-[320px] flex-col rounded-3xl border border-neutral-200 bg-neutral-50 p-10 shadow-sm md:min-h-[340px] lg:p-12">
+                    <p className="font-serif text-lg leading-[1.75] text-neutral-700 md:text-xl">&ldquo;{t.quote}&rdquo;</p>
+                    <footer className="mt-auto border-t border-neutral-200 pt-10">
+                      <cite className="not-italic text-base font-semibold text-neutral-900">{t.name}</cite>
+                      <p className="mt-2 text-sm text-neutral-500">{t.title}</p>
+                    </footer>
+                  </blockquote>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="contact" className="border-b border-neutral-900/80 bg-neutral-950">
+      <section id="contact" className="border-b border-neutral-200 bg-neutral-50">
         <div className="shell py-20 md:py-28">
-          <div className="mx-auto max-w-3xl rounded-[2rem] border border-neutral-800/90 bg-black px-8 py-14 text-center md:px-14 md:py-16">
-            <h2 className="font-serif text-3xl text-white md:text-4xl">Begin your file.</h2>
-            <p className="mx-auto mt-6 max-w-lg text-neutral-500 leading-relaxed">
+          <div className="mx-auto max-w-3xl rounded-[2rem] border border-neutral-200 bg-white px-8 py-14 text-center shadow-sm md:px-14 md:py-16">
+            <h2 className="font-serif text-3xl text-neutral-900 md:text-4xl">Begin your file.</h2>
+            <p className="mx-auto mt-6 max-w-lg leading-relaxed text-neutral-600">
               The portal is where you open accounts, watch the queue, and confirm that what you sent arrived as intended.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
@@ -417,7 +524,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="#correspondence"
-                className="rounded-full px-6 py-3 text-sm text-neutral-500 transition hover:bg-neutral-900 hover:text-white"
+                className="rounded-full px-6 py-3 text-sm text-neutral-600 transition hover:bg-neutral-100 hover:text-neutral-900"
               >
                 Back to correspondence
               </Link>
@@ -426,53 +533,134 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="bg-black py-16 md:py-20">
-        <div className="shell">
-          <div className="grid grid-cols-12 gap-10 lg:gap-12">
-            <div className="col-span-12 md:col-span-6 lg:col-span-5">
+      <footer className="border-t border-neutral-200 bg-neutral-50">
+        <div className="shell py-16 md:py-24">
+          <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-3 lg:grid-cols-7 lg:gap-x-8 xl:gap-x-10">
+            <div className="col-span-2 md:col-span-3 lg:col-span-2">
               <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-neutral-700/80">
-                  <Mail className="h-4 w-4 text-white" strokeWidth={1.25} />
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-neutral-200 bg-white shadow-sm">
+                  <Mail className="h-4 w-4 text-neutral-900" strokeWidth={1.25} />
                 </div>
-                <span className="font-serif text-xl text-white">FirstClass Mail</span>
+                <span className="font-serif text-xl text-neutral-900">FirstClass Mail</span>
               </div>
-              <p className="mt-8 max-w-md text-sm leading-[1.8] text-neutral-600">
+              <p className="mt-6 max-w-sm text-sm leading-[1.85] text-neutral-600">
                 Digital handling for messages that deserve the same care as paper: addressing, sorting, holding, and proof of
                 delivery—over the internet.
               </p>
+              <p className="mt-6 flex items-start gap-2.5 text-sm text-neutral-700">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.5} aria-hidden />
+                <span>Post, Texas</span>
+              </p>
             </div>
-            <div className="col-span-6 md:col-span-3 lg:col-span-3 lg:col-start-8">
-              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-700">Explore</p>
+
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Product</p>
               <ul className="mt-5 space-y-3 text-sm text-neutral-600">
                 <li>
-                  <Link href="#journey" className="transition hover:text-white">
+                  <Link href="#correspondence" className="transition hover:text-neutral-900">
+                    Correspondence
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#journey" className="transition hover:text-neutral-900">
                     The journey
                   </Link>
                 </li>
                 <li>
-                  <Link href="#practice" className="transition hover:text-white">
+                  <Link href="#practice" className="transition hover:text-neutral-900">
                     In practice
                   </Link>
                 </li>
                 <li>
-                  <Link href="/portal" className="transition hover:text-white">
-                    Portal
+                  <Link href="#contact" className="transition hover:text-neutral-900">
+                    Contact
                   </Link>
                 </li>
               </ul>
             </div>
-            <div className="col-span-6 md:col-span-3 lg:col-span-2">
-              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-700">Legal</p>
-              <ul className="mt-5 space-y-3 text-sm text-neutral-700">
-                <li>Privacy — soon</li>
-                <li>Terms — soon</li>
+
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Platform</p>
+              <ul className="mt-5 space-y-3 text-sm text-neutral-600">
+                <li>
+                  <Link href="/portal" className="inline-flex items-center gap-2 transition hover:text-neutral-900">
+                    <LayoutDashboard className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
+                    Client portal
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/dashboard" className="inline-flex items-center gap-2 transition hover:text-neutral-900">
+                    <FileText className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
+                    Dashboard
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Resources</p>
+              <ul className="mt-5 space-y-3 text-sm text-neutral-600">
+                <li>
+                  <Link href="#practice" className="inline-flex items-center gap-2 transition hover:text-neutral-900">
+                    <BookOpen className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
+                    Documentation
+                  </Link>
+                </li>
+                <li>
+                  <a href="#contact" className="inline-flex items-center gap-2 transition hover:text-neutral-900">
+                    <LifeBuoy className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
+                    Help center
+                  </a>
+                </li>
+                <li>
+                  <span className="inline-flex items-center gap-2 text-neutral-400">
+                    <Shield className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
+                    Security overview
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Company</p>
+              <ul className="mt-5 space-y-3 text-sm text-neutral-600">
+                <li>
+                  <Link href="#correspondence" className="inline-flex items-center gap-2 transition hover:text-neutral-900">
+                    <Building2 className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <span className="text-neutral-400">Careers — soon</span>
+                </li>
+                <li>
+                  <Link href="#contact" className="transition hover:text-neutral-900">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Legal</p>
+              <ul className="mt-5 space-y-3 text-sm text-neutral-600">
+                <li>
+                  <span className="text-neutral-400">Privacy policy — soon</span>
+                </li>
+                <li>
+                  <span className="text-neutral-400">Terms of service — soon</span>
+                </li>
+                <li>
+                  <span className="text-neutral-400">Cookie policy — soon</span>
+                </li>
               </ul>
             </div>
           </div>
-          <div className="mt-14 flex flex-col items-start justify-between gap-4 rounded-2xl border border-neutral-900/80 bg-neutral-950/50 px-6 py-6 text-xs text-neutral-700 md:flex-row md:items-center md:px-8">
+
+          <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-neutral-200 pt-10 text-xs text-neutral-500 md:flex-row md:items-center">
             <p>&copy; {new Date().getFullYear()} FirstClass Mail. All rights reserved.</p>
             <p className="flex items-center gap-2">
-              <CheckCircle className="h-3.5 w-3.5 text-neutral-600" strokeWidth={1.25} />
+              <CheckCircle className="h-3.5 w-3.5 text-neutral-400" strokeWidth={1.25} aria-hidden />
               Messages encrypted in transit
             </p>
           </div>
