@@ -9,7 +9,7 @@ const panelShadow = 'shadow-[0_12px_40px_-14px_rgba(0,0,0,0.12)]'
 
 /** Smaller mock-ups for Correspondence / Journey cards — same chrome as product preview */
 export function PortalMockMini({ preset }: { preset: string }) {
-  const base = `${shell} w-full max-w-[220px] text-left`
+  const base = `${shell} w-full max-w-[248px] text-left`
 
   switch (preset) {
     case 'encryption':
@@ -22,9 +22,9 @@ export function PortalMockMini({ preset }: { preset: string }) {
             </span>
           </div>
           <div className="space-y-1.5 p-2.5">
-            <div className="rounded-md bg-white p-2 text-[9px] leading-snug text-neutral-600 ring-1 ring-neutral-100">
+            <div className="rounded-md bg-white p-2 text-[9px] leading-tight text-neutral-600 ring-1 ring-neutral-100">
               <p className="font-mono text-[7px] uppercase tracking-wider text-neutral-400">In transit</p>
-              <p className="mt-0.5 text-neutral-700">Payload encrypted · not readable on the wire</p>
+              <p className="mt-0.5 text-neutral-700">Payload encrypted; unreadable on the wire</p>
             </div>
           </div>
         </div>

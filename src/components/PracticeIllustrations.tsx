@@ -4,7 +4,7 @@ type PillarVariant = 'encrypted' | 'verified' | 'privacy'
 type PathVariant = 'users' | 'platform' | 'office'
 
 export function PillarIllustration({ variant }: { variant: PillarVariant }) {
-  const shell = 'w-full max-w-[220px] overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 shadow-sm'
+  const shell = 'w-full max-w-[250px] overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 shadow-sm'
 
   if (variant === 'encrypted') {
     return (
@@ -13,10 +13,10 @@ export function PillarIllustration({ variant }: { variant: PillarVariant }) {
           <span className="font-mono text-[7px] uppercase tracking-[0.2em] text-neutral-500">Transmission</span>
           <span className="rounded bg-emerald-50 px-1.5 py-0.5 font-mono text-[7px] text-emerald-800">TLS</span>
         </div>
-        <div className="space-y-1.5 p-2.5">
+          <div className="space-y-1.5 p-2.5">
           <div className="h-2 rounded bg-neutral-200/80" />
           <div className="h-2 w-4/5 rounded bg-neutral-200/80" />
-          <div className="rounded-md border border-neutral-200 bg-white px-2 py-1.5 font-mono text-[8px] text-neutral-500">
+            <div className="rounded-md border border-neutral-200 bg-white px-2 py-1.5 font-mono text-[8px] leading-tight text-neutral-500">
             Encrypted payload
           </div>
         </div>

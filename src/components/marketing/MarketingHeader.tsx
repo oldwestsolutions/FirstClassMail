@@ -10,7 +10,6 @@ const nav = [
   { href: '/correspondence', label: 'Correspondence' },
   { href: '/journey', label: 'The Journey' },
   { href: '/practice', label: 'Practice' },
-  { href: '/platform', label: 'Portal' },
 ] as const
 
 export function MarketingHeader() {

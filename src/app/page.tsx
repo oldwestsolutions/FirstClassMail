@@ -36,6 +36,7 @@ function IsoBlock({ className, delay = 0 }: { className: string; delay?: number 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [headerHidden, setHeaderHidden] = useState(false)
+  const [activeJourney, setActiveJourney] = useState<number | null>(null)
   const lastScrollY = useRef(0)
   const ticking = useRef(false)
 
@@ -169,7 +170,6 @@ export default function HomePage() {
                   ['Correspondence', '/correspondence'],
                   ['The Journey', '/journey'],
                   ['Practice', '/practice'],
-                  ['Portal', '/platform'],
                   ['Contact', '/#contact'],
                 ].map(([label, href]) => (
                   <Link
@@ -222,9 +222,6 @@ export default function HomePage() {
               </Link>
               <Link href="/practice" className="text-sm text-neutral-600 transition hover:text-neutral-900">
                 Practice
-              </Link>
-              <Link href="/platform" className="text-sm text-neutral-600 transition hover:text-neutral-900">
-                Portal
               </Link>
               <Link href="/portal" className="btn btn-primary px-6 py-2.5 text-xs uppercase tracking-widest">
                 Open portal
@@ -375,9 +372,13 @@ export default function HomePage() {
                     <PortalMockMini preset={`journey-${i + 1}`} />
                   </div>
                   <h3 className="mt-6 shrink-0 font-serif text-xl text-neutral-900 md:text-2xl">{step.title}</h3>
-                  <p className="mt-5 flex-1 text-balance text-left text-sm leading-[1.85] text-neutral-600 md:text-[0.95rem]">
-                    {step.text}
-                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setActiveJourney(i)}
+                    className="mt-5 inline-flex items-center justify-center rounded-full border border-neutral-200 px-4 py-2 text-xs font-medium uppercase tracking-[0.15em] text-neutral-600 transition hover:border-neutral-400 hover:text-neutral-900"
+                  >
+                    View details
+                  </button>
                 </motion.article>
               ))}
             </div>
@@ -514,6 +515,44 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <AnimatePresence>
+        {activeJourney !== null && (
+          <>
+            <motion.button
+              type="button"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[70] bg-neutral-900/40"
+              onClick={() => setActiveJourney(null)}
+              aria-label="Close details modal"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 12 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-x-4 top-1/2 z-[80] mx-auto w-full max-w-2xl -translate-y-1/2 rounded-3xl border border-neutral-200 bg-white p-7 shadow-2xl md:p-9"
+              role="dialog"
+              aria-modal="true"
+            >
+              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-neutral-500">The Journey</p>
+              <h3 className="mt-3 font-serif text-2xl text-neutral-900 md:text-3xl">{journey[activeJourney].title}</h3>
+              <p className="mt-5 text-sm leading-[1.85] text-neutral-600 md:text-base">{journey[activeJourney].text}</p>
+              <div className="mt-8 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => setActiveJourney(null)}
+                  className="rounded-full border border-neutral-200 px-5 py-2 text-sm text-neutral-700 transition hover:border-neutral-400 hover:text-neutral-900"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       <MarketingFooter />
     </div>
