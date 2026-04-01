@@ -250,7 +250,7 @@ export default function HomePage() {
                     href="/journey"
                     className="text-center text-sm text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline sm:text-left"
                   >
-                    How protection works
+                    Mail Protocol
                   </Link>
                 </div>
               </div>

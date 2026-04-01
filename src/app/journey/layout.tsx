@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'The Journey',
+  title: 'Mail Protocol',
   description:
-    'From encrypted transmission through verified sourcing and third-party management to private delivery—every stage explained.',
+    'Mail Protocol on FirstClassMail.xyz: encrypted transmission, verified sourcing, third-party management, and private delivery.',
   openGraph: {
-    title: 'The Journey | FirstClassMail.xyz',
-    description: 'Four stages of secure, professionally managed communication on FirstClassMail.xyz.',
+    title: 'Mail Protocol | FirstClassMail.xyz',
+    description: 'The four-stage protocol for secure, professionally managed communication on FirstClassMail.xyz.',
   },
 }
 

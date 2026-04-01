@@ -51,9 +51,9 @@ export default function JourneyPage() {
         <div className="border-b border-neutral-200 bg-white">
           <div className="shell py-16 md:py-24 lg:py-28">
             <div className="mx-auto max-w-4xl text-center">
-              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">The Journey</p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Mail Protocol</p>
               <h1 className="mt-5 font-serif text-4xl font-medium leading-[1.12] text-neutral-900 md:text-5xl lg:text-[3.25rem]">
-                From encryption to verified delivery—in four deliberate stages.
+                The four-stage protocol for secure professional delivery.
               </h1>
               <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
                 Each stage exists to keep communication private, authentic, and professionally managed—from the first encrypted
@@ -106,7 +106,7 @@ export default function JourneyPage() {
                   </div>
                 </div>
                 <div className={`lg:col-span-7 ${i % 2 === 1 ? 'lg:order-1' : 'lg:order-2'}`}>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">The Journey · Part {i + 1}</p>
+                  <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Mail Protocol · Phase {i + 1}</p>
                   <h2 className="mt-4 font-serif text-3xl text-neutral-900 md:text-4xl">{stage.title}</h2>
                   <p className="mt-6 text-lg leading-relaxed text-neutral-700">{stage.lead}</p>
                   <p className="mt-5 leading-relaxed text-neutral-600">{stage.detail}</p>
@@ -148,7 +148,7 @@ export default function JourneyPage() {
         <section className="bg-neutral-50 py-16 md:py-20">
           <div className="shell">
             <div className="mx-auto flex max-w-3xl flex-col items-center rounded-[2rem] border border-neutral-200 bg-white px-8 py-12 text-center shadow-sm md:px-14">
-              <h2 className="font-serif text-2xl text-neutral-900 md:text-3xl">Operate inside this journey</h2>
+              <h2 className="font-serif text-2xl text-neutral-900 md:text-3xl">Operate inside this protocol</h2>
               <p className="mt-5 text-neutral-600">
                 The live client portal implements the same stages. Sign in to send, receive, and audit correspondence against
                 these expectations.
