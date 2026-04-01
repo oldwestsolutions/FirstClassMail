@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { Fragment, useState, useEffect, useRef } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import {
   Mail,
   ArrowRight,
@@ -17,53 +17,10 @@ import {
   Building2,
   FileText,
   LayoutDashboard,
+  User,
+  Server,
 } from 'lucide-react'
 import Link from 'next/link'
-
-function TiltCard({
-  children,
-  className = '',
-  variant = 'light',
-}: {
-  children: React.ReactNode
-  className?: string
-  variant?: 'light' | 'dark'
-}) {
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-  const springX = useSpring(x, { stiffness: 280, damping: 30 })
-  const springY = useSpring(y, { stiffness: 280, damping: 30 })
-  const rotateX = useTransform(springY, [-0.5, 0.5], ['5deg', '-5deg'])
-  const rotateY = useTransform(springX, [-0.5, 0.5], ['-5deg', '5deg'])
-
-  const inner =
-    variant === 'dark'
-      ? 'border border-neutral-800 bg-neutral-950 shadow-none'
-      : 'border border-neutral-200 bg-white shadow-sm'
-
-  return (
-    <motion.div
-      className={`relative ${className}`}
-      style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
-      onMouseMove={(e) => {
-        const r = e.currentTarget.getBoundingClientRect()
-        x.set((e.clientX - r.left) / r.width - 0.5)
-        y.set((e.clientY - r.top) / r.height - 0.5)
-      }}
-      onMouseLeave={() => {
-        x.set(0)
-        y.set(0)
-      }}
-    >
-      <motion.div
-        className={`h-full overflow-hidden rounded-3xl ${inner}`}
-        style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
-      >
-        {children}
-      </motion.div>
-    </motion.div>
-  )
-}
 
 function IsoBlock({ className, delay = 0 }: { className: string; delay?: number }) {
   return (
@@ -165,18 +122,24 @@ export default function HomePage() {
     },
   ]
 
-  const testimonials = [
+  const mailPath = [
     {
-      name: 'Claire Whitmore',
-      title: 'Operations director',
-      quote:
-        'We needed encryption and verified sourcing without another vendor reselling our addresses. FirstClassMail.xyz gave us both—and a third party we actually trust to manage the thread.',
+      step: 'Step 1',
+      title: 'Users',
+      icon: User,
+      body: 'Senders and recipients use the client portal or API over TLS. Payloads are encrypted for transit so browsers, Wi‑Fi, and intermediaries along the path cannot read message content in the clear.',
     },
     {
-      name: 'Daniel Okonkwo',
-      title: 'Marketing lead',
-      quote:
-        'Our team was tired of list brokers and unclear provenance. Here, messages are encrypted, sourcing is verified, and nothing gets sold downstream. It is the professional baseline we were missing.',
+      step: 'Step 2',
+      title: 'FirstClassMail.xyz',
+      icon: Server,
+      body: 'Our servers terminate secure sessions, authenticate accounts, apply verified-sourcing rules, and queue routing. We sit in the middle as the controlled intermediary—threads and addresses are not sold to data brokers.',
+    },
+    {
+      step: 'Step 3',
+      title: 'Business office mail',
+      icon: Building2,
+      body: 'Outbound delivery connects to the recipient organization’s mail infrastructure—their office mail server or an approved endpoint—over encrypted channels, so staff receive messages inside their normal environment without exposing personal contact paths to public lists.',
     },
   ]
 
@@ -433,8 +396,8 @@ export default function HomePage() {
                 What FirstClassMail.xyz delivers.
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
-                Three pillars—encryption, verified sourcing, and privacy-first handling—define the platform. Below, three
-                operational stations show how messages move securely from intake to release.
+                Three pillars—encryption, verified sourcing, and privacy-first handling—define the platform. After the pillars,
+                see how traffic moves from users through our servers to each business office’s mail system.
               </p>
             </div>
 
@@ -462,43 +425,36 @@ export default function HomePage() {
 
             <div className="mx-auto mt-20 max-w-5xl border-t border-neutral-200 pt-20 md:mt-24 md:pt-24">
               <div className="mx-auto max-w-2xl text-center">
-                <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Processing stations</p>
-                <h3 className="mt-4 font-serif text-2xl text-neutral-900 md:text-3xl">Intake, verify, release</h3>
+                <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Message path</p>
+                <h3 className="mt-4 font-serif text-2xl text-neutral-900 md:text-3xl">From users to our servers to the office</h3>
                 <p className="mt-4 text-neutral-600">
-                  Three aligned stations cover secure intake, identity verification, and private delivery—so every handoff stays
-                  controlled and auditable.
+                  Mail does not hop blindly across the open internet to random inboxes. It flows in three controlled segments: your
+                  client, FirstClassMail.xyz, and the business office’s own mail server—each step encrypted and governed by policy.
                 </p>
               </div>
-              <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-6 lg:gap-10">
-                {[
-                  { title: 'Intake', sub: 'Encrypted channels for new conversations and replies', icon: Inbox, station: 'Station 1' },
-                  { title: 'Verify', sub: 'Match senders and recipients with verified sourcing', icon: Mail, station: 'Station 2' },
-                  { title: 'Release', sub: 'Deliver messages without broker access or unnecessary exposure', icon: Send, station: 'Station 3' },
-                ].map((step, i) => (
-                  <motion.div
-                    key={step.title}
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.06 }}
-                    className="flex h-full justify-center"
-                  >
-                    <TiltCard className="flex h-full min-h-[300px] w-full max-w-md">
-                      <div className="flex h-full flex-col p-8 text-center md:p-10">
-                        <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-neutral-100">
-                          <step.icon className="h-5 w-5 text-neutral-700" strokeWidth={1.25} />
-                        </div>
-                        <div className="mt-6 flex flex-1 flex-col items-center">
-                          <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500">{step.station}</p>
-                          <div className="mt-4 h-px w-10 bg-neutral-200" aria-hidden />
-                          <h4 className="mt-4 font-serif text-2xl font-medium tracking-tight text-neutral-900">{step.title}</h4>
-                          <p className="mt-4 max-w-[280px] text-pretty text-sm leading-[1.75] text-neutral-600 sm:max-w-none">
-                            {step.sub}
-                          </p>
-                        </div>
+              <div className="mt-14 flex flex-col items-stretch gap-10 lg:flex-row lg:items-stretch lg:justify-center lg:gap-4">
+                {mailPath.map((segment, i) => (
+                  <Fragment key={segment.title}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.06 }}
+                      className="flex w-full flex-1 flex-col rounded-3xl border border-neutral-200 bg-white p-8 text-center shadow-sm md:p-9 lg:min-w-0 lg:max-w-sm lg:text-left xl:max-w-none"
+                    >
+                      <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-neutral-100 lg:mx-0">
+                        <segment.icon className="h-5 w-5 text-neutral-700" strokeWidth={1.25} />
                       </div>
-                    </TiltCard>
-                  </motion.div>
+                      <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500">{segment.step}</p>
+                      <h4 className="mt-3 font-serif text-xl font-medium text-neutral-900 md:text-2xl">{segment.title}</h4>
+                      <p className="mt-4 text-sm leading-[1.75] text-neutral-600">{segment.body}</p>
+                    </motion.div>
+                    {i < mailPath.length - 1 && (
+                      <div className="flex shrink-0 items-center justify-center py-0 lg:w-10 lg:py-0" aria-hidden>
+                        <ArrowRight className="h-5 w-5 text-neutral-300 rotate-90 lg:rotate-0" strokeWidth={1.25} />
+                      </div>
+                    )}
+                  </Fragment>
                 ))}
               </div>
             </div>
@@ -506,38 +462,108 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-b border-neutral-200 bg-white" aria-labelledby="voices-heading">
+      <section className="border-b border-neutral-200 bg-white" aria-labelledby="demo-heading">
         <div className="flex min-h-[85svh] flex-col justify-center py-20 md:py-28">
           <div className="shell">
             <div className="mx-auto max-w-3xl text-center">
-              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Testimonials</p>
-              <h2 id="voices-heading" className="mt-5 font-serif text-[clamp(1.75rem,4vw,3rem)] font-medium text-neutral-900">
-                Voices from the hall
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Product preview</p>
+              <h2
+                id="demo-heading"
+                className="mt-5 font-serif text-[clamp(1.75rem,4vw,3rem)] font-medium text-neutral-900"
+              >
+                How the client portal behaves
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-neutral-600">
-                Teams choose FirstClassMail.xyz when encryption, verified sourcing, and zero broker resale are non-negotiable—private,
-                professional communication without sacrificing clarity.
+                A simplified, static mock-up of the real UI: mailboxes, a verified thread, encrypted traffic indicators, and a
+                compose strip—so you can see how correspondence is organized before you sign in.
               </p>
             </div>
-            <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
-              {testimonials.map((t, i) => (
-                <motion.div
-                  key={t.name}
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <blockquote className="flex min-h-[320px] flex-col rounded-3xl border border-neutral-200 bg-neutral-50 p-10 shadow-sm md:min-h-[340px] lg:p-12">
-                    <p className="font-serif text-lg leading-[1.75] text-neutral-700 md:text-xl">&ldquo;{t.quote}&rdquo;</p>
-                    <footer className="mt-auto border-t border-neutral-200 pt-10">
-                      <cite className="not-italic text-base font-semibold text-neutral-900">{t.name}</cite>
-                      <p className="mt-2 text-sm text-neutral-500">{t.title}</p>
-                    </footer>
-                  </blockquote>
-                </motion.div>
-              ))}
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45 }}
+              className="mx-auto mt-14 max-w-4xl"
+            >
+              <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-50 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.12)]">
+                <div className="flex items-center justify-between gap-4 border-b border-neutral-200 bg-white px-4 py-3 sm:px-5">
+                  <div className="flex min-w-0 items-center gap-3">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-neutral-200 bg-neutral-50">
+                      <Mail className="h-4 w-4 text-neutral-800" strokeWidth={1.25} />
+                    </div>
+                    <div className="min-w-0 text-left">
+                      <p className="truncate font-serif text-sm text-neutral-900">Client portal</p>
+                      <p className="truncate font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Preview</p>
+                    </div>
+                  </div>
+                  <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
+                    <span className="rounded-full bg-emerald-50 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-emerald-800">
+                      TLS
+                    </span>
+                    <span className="rounded-full bg-neutral-100 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-neutral-700">
+                      Verified thread
+                    </span>
+                  </div>
+                </div>
+                <div className="flex flex-col md:flex-row md:min-h-[280px]">
+                  <nav
+                    className="flex w-full border-b border-neutral-200 bg-white md:w-52 md:shrink-0 md:border-b-0 md:border-r"
+                    aria-label="Example mailbox navigation"
+                  >
+                    <div className="flex w-full gap-1 p-3 md:flex-col md:gap-0">
+                      <p className="hidden pb-2 font-mono text-[9px] uppercase tracking-widest text-neutral-400 md:block">Mailboxes</p>
+                      <div className="flex flex-1 rounded-lg bg-neutral-100 px-3 py-2.5 text-left text-sm font-medium text-neutral-900 md:flex-none">
+                        <Inbox className="mr-2 h-4 w-4 shrink-0 opacity-70" strokeWidth={1.25} aria-hidden />
+                        Inbox
+                      </div>
+                      <div className="flex flex-1 items-center rounded-lg px-3 py-2.5 text-left text-sm text-neutral-500 md:flex-none">
+                        <Send className="mr-2 h-4 w-4 shrink-0 opacity-70" strokeWidth={1.25} aria-hidden />
+                        Sent
+                      </div>
+                    </div>
+                  </nav>
+                  <div className="flex min-w-0 flex-1 flex-col bg-white p-4 sm:p-6">
+                    <div className="border-b border-neutral-100 pb-4 text-left">
+                      <p className="font-serif text-lg text-neutral-900">Riverside Legal</p>
+                      <p className="mt-1 text-xs text-neutral-500">Recipient verified · Routed to office mail server</p>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        <span className="inline-flex items-center gap-1 rounded-md border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-[10px] text-neutral-600">
+                          <Shield className="h-3 w-3 text-neutral-500" strokeWidth={1.5} aria-hidden />
+                          End-to-end policy
+                        </span>
+                        <span className="inline-flex items-center gap-1 rounded-md border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-[10px] text-neutral-600">
+                          <CheckCircle className="h-3 w-3 text-emerald-600" strokeWidth={1.5} aria-hidden />
+                          Sourcing checked
+                        </span>
+                      </div>
+                    </div>
+                    <div className="mt-4 flex flex-1 flex-col gap-3 text-left">
+                      <div className="rounded-xl bg-neutral-50 p-3 text-sm text-neutral-700">
+                        <p className="mb-1.5 font-mono text-[10px] uppercase tracking-wider text-neutral-400">You · encrypted</p>
+                        <p className="leading-relaxed">Following up on the filing timeline we discussed last week.</p>
+                      </div>
+                      <div className="rounded-xl border border-neutral-200 p-3 text-sm text-neutral-700">
+                        <p className="mb-1.5 font-mono text-[10px] uppercase tracking-wider text-neutral-400">
+                          Office · delivered
+                        </p>
+                        <p className="leading-relaxed">We can confirm receipt on our side. Next steps are in the attachment.</p>
+                      </div>
+                    </div>
+                    <div className="mt-6 flex items-end gap-2 rounded-2xl border border-dashed border-neutral-200 bg-neutral-50/80 p-3">
+                      <div className="min-h-[44px] flex-1 rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm text-neutral-400">
+                        Write a reply…
+                      </div>
+                      <span className="btn btn-primary pointer-events-none shrink-0 px-5 py-2.5 text-[10px] uppercase tracking-widest opacity-90">
+                        Send
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p id="demo-note" className="mt-6 text-center text-xs leading-relaxed text-neutral-500">
+                Illustrative only—live portal screens and labels may differ slightly after sign-in.
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>
