@@ -26,9 +26,9 @@ export default function MailboxPage() {
                   Professional mailbox operations, not just an inbox.
                 </h1>
                 <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
-                  The Mailbox layer on FirstClassMail handles intake, triage, and controlled delivery as one governed system.
-                  Teams can separate inbound streams, maintain clear audit context, and route messages without exposing personal
-                  addresses or losing policy continuity.
+                  Mailbox is the core of FirstClassMail: intake, triage, and controlled delivery in one governed system. It sits
+                  alongside Wallet for balances and settlement and Calendar for time-bound touchpoints—same identity, same audit
+                  trail, without exposing personal addresses or breaking policy continuity.
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">
                   <Link href="/portal" className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
@@ -36,10 +36,10 @@ export default function MailboxPage() {
                     <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
                   </Link>
                   <Link
-                    href="/security"
+                    href="/wallet"
                     className="inline-flex items-center rounded-full border border-neutral-200 px-6 py-3 text-sm text-neutral-700 transition hover:border-neutral-400"
                   >
-                    Review security model
+                    Wallet overview
                   </Link>
                 </div>
               </motion.div>
@@ -106,14 +106,15 @@ export default function MailboxPage() {
             <div className="mx-auto flex max-w-3xl flex-col items-center rounded-[2rem] border border-neutral-200 bg-white px-8 py-12 text-center shadow-sm md:px-14">
               <h2 className="font-serif text-2xl text-neutral-900 md:text-3xl">Run mailbox operations inside one system</h2>
               <p className="mt-5 text-neutral-600">
-                Use dedicated mailbox routes with verified sourcing and policy gates instead of ad-hoc forwarding chains.
+                Use dedicated mailbox routes with verified sourcing and policy gates instead of ad-hoc forwarding chains. Pair with
+                Calendar for scheduling context and Wallet when correspondence has a financial dimension.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-5">
                 <Link href="/portal" className="btn btn-primary px-10 py-3.5 text-xs uppercase tracking-[0.2em]">
                   Open portal
                 </Link>
-                <Link href="/appointments" className="rounded-full px-6 py-3 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900">
-                  See appointments
+                <Link href="/calendar" className="rounded-full px-6 py-3 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900">
+                  Calendar overview
                 </Link>
               </div>
             </div>

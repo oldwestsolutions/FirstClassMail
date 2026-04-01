@@ -31,13 +31,13 @@ export function MarketingFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/security" className="transition hover:text-neutral-900">
-                  Security
+                <Link href="/wallet" className="transition hover:text-neutral-900">
+                  Wallet
                 </Link>
               </li>
               <li>
-                <Link href="/appointments" className="transition hover:text-neutral-900">
-                  Appointments
+                <Link href="/calendar" className="transition hover:text-neutral-900">
+                  Calendar
                 </Link>
               </li>
             </ul>

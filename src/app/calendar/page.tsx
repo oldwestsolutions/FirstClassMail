@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, Lock, Shield, Fingerprint, EyeOff } from 'lucide-react'
+import { ArrowRight, CalendarClock, ClipboardCheck, Bell, FileText } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
 
-export default function SecurityPage() {
+export default function CalendarPage() {
   return (
     <div className="min-h-screen bg-white text-neutral-600">
       <MarketingHeader />
@@ -13,7 +13,7 @@ export default function SecurityPage() {
       <main>
         <section className="border-b border-neutral-200 bg-gradient-to-b from-neutral-50 to-white py-16 md:py-24 lg:py-28">
           <div className="shell">
-            <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
+            <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-10">
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -21,14 +21,14 @@ export default function SecurityPage() {
                 transition={{ duration: 0.45 }}
                 className="lg:col-span-7"
               >
-                <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Security</p>
+                <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Calendar</p>
                 <h1 className="mt-5 font-serif text-4xl font-medium leading-[1.1] text-neutral-900 md:text-5xl lg:text-[3.25rem]">
-                  Security by architecture, not by disclaimer.
+                  Scheduling and correspondence in one professional lane.
                 </h1>
                 <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
-                  FirstClassMail combines encrypted transmission, verified sourcing, and controlled intermediary handling into
-                  one cohesive security model. The goal is practical: preserve confidentiality, reduce impersonation risk, and keep
-                  professional communication out of data brokerage loops.
+                  Calendar on FirstClassMail treats time-bound touchpoints as first-class mail: invitations, confirmations,
+                  reminders, and follow-ups stay inside verified threads with full retention—so scheduling does not fragment
+                  across personal inboxes, SMS, and ad hoc tools.
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">
                   <Link href="/portal" className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
@@ -39,7 +39,7 @@ export default function SecurityPage() {
                     href="/mailbox"
                     className="inline-flex items-center rounded-full border border-neutral-200 px-6 py-3 text-sm text-neutral-700 transition hover:border-neutral-400"
                   >
-                    Review mailbox operations
+                    Mailbox workflows
                   </Link>
                 </div>
               </motion.div>
@@ -52,10 +52,10 @@ export default function SecurityPage() {
                 className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-5"
               >
                 {[
-                  { icon: Lock, title: 'Encrypted channels', body: 'TLS and secure transport from sender to platform edge.' },
-                  { icon: Fingerprint, title: 'Verified sourcing', body: 'Identity and intent checks before sensitive threads open.' },
-                  { icon: Shield, title: 'Policy governance', body: 'Controlled intermediary routing, not open forwarding sprawl.' },
-                  { icon: EyeOff, title: 'Exposure minimization', body: 'Reduce unnecessary contact-path visibility by design.' },
+                  { icon: CalendarClock, title: 'Scheduling notices', body: 'Send invitations with verified thread context and clear time windows.' },
+                  { icon: ClipboardCheck, title: 'Confirmation chain', body: 'Track accept, decline, and reschedule in one retained record.' },
+                  { icon: Bell, title: 'Reminder discipline', body: 'Coordinate reminders without leaking personal channels.' },
+                  { icon: FileText, title: 'Supporting material', body: 'Attach prep notes, forms, and outcomes beside the calendar event.' },
                 ].map((item) => (
                   <div key={item.title} className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
                     <item.icon className="h-5 w-5 text-neutral-800" strokeWidth={1.25} />
@@ -71,18 +71,17 @@ export default function SecurityPage() {
         <section className="border-b border-neutral-200 bg-white py-20 md:py-28">
           <div className="shell">
             <div className="mx-auto max-w-3xl text-center">
-              <h2 className="font-serif text-3xl text-neutral-900 md:text-4xl">Four security layers in practice</h2>
+              <h2 className="font-serif text-3xl text-neutral-900 md:text-4xl">Calendar protocol flow</h2>
               <p className="mt-6 text-lg leading-relaxed text-neutral-600">
-                Controls are layered so no single failure mode defines outcome quality.
+                From first outreach to post-event follow-up, each stage keeps participants aligned and the record complete.
               </p>
             </div>
 
-            <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
               {[
-                ['Transport layer', 'Protect data in motion across clients, networks, and platform ingress points.'],
-                ['Identity layer', 'Establish relationship confidence with verification workflows before routing release.'],
-                ['Governance layer', 'Enforce intermediary policy controls for handling, retention, and delivery decisions.'],
-                ['Exposure layer', 'Limit visible contact metadata and avoid resale pathways by commercial design.'],
+                ['Pre-event', 'Share availability, intake requirements, and verification context before confirmation.'],
+                ['Live coordination', 'Handle changes, location updates, and preparation notes in a governed thread.'],
+                ['Post-event', 'Deliver summaries, billing context, and next steps through the same channel.'],
               ].map(([title, body], i) => (
                 <motion.article
                   key={title}
@@ -103,23 +102,22 @@ export default function SecurityPage() {
         <section className="bg-neutral-50 py-16 md:py-20">
           <div className="shell">
             <div className="mx-auto flex max-w-3xl flex-col items-center rounded-[2rem] border border-neutral-200 bg-white px-8 py-12 text-center shadow-sm md:px-14">
-              <h2 className="font-serif text-2xl text-neutral-900 md:text-3xl">Security that supports operations</h2>
+              <h2 className="font-serif text-2xl text-neutral-900 md:text-3xl">Standardize time-bound communication</h2>
               <p className="mt-5 text-neutral-600">
-                Use secure defaults without adding workflow friction for legal, operations, and client-facing teams.
+                Keep calendar-driven correspondence private, consistent, and auditable across teams and external parties.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-5">
                 <Link href="/portal" className="btn btn-primary px-10 py-3.5 text-xs uppercase tracking-[0.2em]">
                   Open portal
                 </Link>
-                <Link href="/calendar" className="rounded-full px-6 py-3 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900">
-                  View calendar
+                <Link href="/wallet" className="rounded-full px-6 py-3 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900">
+                  Wallet & settlement
                 </Link>
               </div>
             </div>
           </div>
         </section>
       </main>
-
     </div>
   )
 }

@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, CalendarClock, ClipboardCheck, Bell, FileText } from 'lucide-react'
+import { ArrowRight, Wallet, Coins, RefreshCw, Shield, LayoutPanelLeft } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
 
-export default function AppointmentsPage() {
+export default function WalletPage() {
   return (
     <div className="min-h-screen bg-white text-neutral-600">
       <MarketingHeader />
@@ -21,14 +21,14 @@ export default function AppointmentsPage() {
                 transition={{ duration: 0.45 }}
                 className="lg:col-span-7"
               >
-                <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Appointments</p>
+                <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Wallet</p>
                 <h1 className="mt-5 font-serif text-4xl font-medium leading-[1.1] text-neutral-900 md:text-5xl lg:text-[3.25rem]">
-                  Appointment communication with enterprise discipline.
+                  Money lives beside the mail—not in a separate app.
                 </h1>
                 <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
-                  Appointments often fail at the communication layer: unclear confirmations, fragmented follow-ups, and missing
-                  records. FirstClassMail centralizes appointment threads so notices, confirmations, and supporting documents
-                  remain auditable, private, and professionally routed.
+                  The Wallet product embeds balances, settlement, and programmable actions directly in the FirstClassMail
+                  experience. USDC-ready flows support mailbox subscriptions, business settlement, and revenue distribution
+                  without pushing users through unrelated banking UIs or disconnected crypto wallets.
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">
                   <Link href="/portal" className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
@@ -36,10 +36,10 @@ export default function AppointmentsPage() {
                     <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
                   </Link>
                   <Link
-                    href="/mailbox"
+                    href="/blockchain"
                     className="inline-flex items-center rounded-full border border-neutral-200 px-6 py-3 text-sm text-neutral-700 transition hover:border-neutral-400"
                   >
-                    Mailbox workflows
+                    Blockchain & settlement
                   </Link>
                 </div>
               </motion.div>
@@ -52,10 +52,10 @@ export default function AppointmentsPage() {
                 className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-5"
               >
                 {[
-                  { icon: CalendarClock, title: 'Scheduling notices', body: 'Issue clear appointment invitations with verified thread context.' },
-                  { icon: ClipboardCheck, title: 'Confirmation chain', body: 'Track accept/decline updates in a single professional thread.' },
-                  { icon: Bell, title: 'Reminder control', body: 'Coordinate reminder cadence without spamming personal channels.' },
-                  { icon: FileText, title: 'Supporting docs', body: 'Attach forms, prep notes, and outcomes in one retained record.' },
+                  { icon: Wallet, title: 'Embedded surface', body: 'Full-width wallet context inside the mailbox account—not a bolt-on iframe.' },
+                  { icon: Coins, title: 'USDC-native operations', body: 'Stablecoin-first flows for subscriptions and fees with predictable settlement.' },
+                  { icon: RefreshCw, title: 'Programmable movement', body: 'Automate top-ups, splits, and payouts tied to mail and policy events.' },
+                  { icon: Shield, title: 'Governed access', body: 'Wallet actions respect the same verification and routing posture as threads.' },
                 ].map((item) => (
                   <div key={item.title} className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
                     <item.icon className="h-5 w-5 text-neutral-800" strokeWidth={1.25} />
@@ -71,17 +71,27 @@ export default function AppointmentsPage() {
         <section className="border-b border-neutral-200 bg-white py-20 md:py-28">
           <div className="shell">
             <div className="mx-auto max-w-3xl text-center">
-              <h2 className="font-serif text-3xl text-neutral-900 md:text-4xl">Appointment protocol flow</h2>
+              <h2 className="font-serif text-3xl text-neutral-900 md:text-4xl">Wallet in the product stack</h2>
               <p className="mt-6 text-lg leading-relaxed text-neutral-600">
-                From first outreach to final follow-up, each stage keeps participants aligned and records complete.
+                Wallet is the financial control plane for the same identities and threads you already trust—aligned with Mailbox
+                for routing and Calendar for time-bound obligations where applicable.
               </p>
             </div>
 
             <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
               {[
-                ['Pre-appointment', 'Send scheduling options, intake requirements, and verification context before confirmation.'],
-                ['Live coordination', 'Share updates, location changes, and preparation notes in a governed thread.'],
-                ['Post-appointment', 'Deliver summaries, next steps, and supporting documents through the same channel.'],
+                [
+                  'Mailbox linkage',
+                  'Pay or renew mailbox tiers from embedded balances; no card-on-file sprawl when stablecoin is the rail.',
+                ],
+                [
+                  'Business settlement',
+                  'Offices and professional firms settle correspondence or intake fees with finality suited to regulated workflows.',
+                ],
+                [
+                  'Immersive layout',
+                  'Dedicated wallet sections use the same typography and density as mail—finance stays contextual, not theatrical.',
+                ],
               ].map(([title, body], i) => (
                 <motion.article
                   key={title}
@@ -102,23 +112,24 @@ export default function AppointmentsPage() {
         <section className="bg-neutral-50 py-16 md:py-20">
           <div className="shell">
             <div className="mx-auto flex max-w-3xl flex-col items-center rounded-[2rem] border border-neutral-200 bg-white px-8 py-12 text-center shadow-sm md:px-14">
-              <h2 className="font-serif text-2xl text-neutral-900 md:text-3xl">Standardize appointment communication</h2>
+              <LayoutPanelLeft className="h-8 w-8 text-neutral-400" strokeWidth={1.25} aria-hidden />
+              <h2 className="mt-5 font-serif text-2xl text-neutral-900 md:text-3xl">Connect mail, time, and funds</h2>
               <p className="mt-5 text-neutral-600">
-                Keep appointment records private, consistent, and auditable across internal teams and external parties.
+                Pair Wallet with Mailbox for operational mail and Calendar for scheduled touchpoints—one identity, one ledger
+                posture, one audit story.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-5">
-                <Link href="/portal" className="btn btn-primary px-10 py-3.5 text-xs uppercase tracking-[0.2em]">
-                  Open portal
+                <Link href="/mailbox" className="btn btn-primary px-10 py-3.5 text-xs uppercase tracking-[0.2em]">
+                  Mailbox overview
                 </Link>
-                <Link href="/security" className="rounded-full px-6 py-3 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900">
-                  Security details
+                <Link href="/calendar" className="rounded-full px-6 py-3 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900">
+                  Calendar overview
                 </Link>
               </div>
             </div>
           </div>
         </section>
       </main>
-
     </div>
   )
 }
