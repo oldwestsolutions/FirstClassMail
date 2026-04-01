@@ -44,6 +44,11 @@ export function MarketingFooter() {
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Product</p>
             <ul className="mt-5 space-y-3 text-sm text-neutral-600">
               <li>
+                <Link href="/calendar" className="transition hover:text-neutral-900">
+                  Calendar
+                </Link>
+              </li>
+              <li>
                 <Link href="/mailbox" className="transition hover:text-neutral-900">
                   Mailbox
                 </Link>
@@ -51,11 +56,6 @@ export function MarketingFooter() {
               <li>
                 <Link href="/wallet" className="transition hover:text-neutral-900">
                   Wallet
-                </Link>
-              </li>
-              <li>
-                <Link href="/calendar" className="transition hover:text-neutral-900">
-                  Calendar
                 </Link>
               </li>
             </ul>
