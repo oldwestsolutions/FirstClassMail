@@ -94,19 +94,19 @@ export default function HomePage() {
   const mailPath = [
     {
       step: 'Step 1',
-      title: 'Mail Sorting Through Automation',
+      title: 'Automation',
       illustration: 'users',
       body: 'Use automated intake and sorting to classify inbound messages by policy, priority, and destination.',
     },
     {
       step: 'Step 2',
-      title: 'Enforcement Mechanisms',
+      title: 'Enforcement',
       illustration: 'platform',
       body: 'Configure and enforce email authentication standards before messages are released or forwarded.',
     },
     {
       step: 'Step 3',
-      title: 'Storage & Archiving',
+      title: 'Storage',
       illustration: 'office',
       body: 'Retain controlled records and archive communication history for continuity, audit, and retrieval.',
     },
@@ -327,7 +327,7 @@ export default function HomePage() {
                 id="practice-heading"
                 className="mt-5 font-serif text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight text-neutral-900"
               >
-                What FirstClassMail delivers.
+                FirstClassMail Delivers
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
                 Three pillars—encryption, verified sourcing, and privacy-first handling—define the platform. After the pillars,
@@ -400,16 +400,17 @@ export default function HomePage() {
         <div className="flex min-h-[85svh] flex-col justify-center py-20 md:py-28">
           <div className="shell">
             <div className="mx-auto max-w-3xl text-center">
-              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Product preview</p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Client Portal</p>
               <h2
                 id="demo-heading"
                 className="mt-5 font-serif text-[clamp(1.75rem,4vw,3rem)] font-medium text-neutral-900"
               >
-                How the client portal behaves
+                Mail Box Protocol
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-neutral-600">
-                A simplified, static mock-up of the real UI: mailboxes, a verified thread, encrypted traffic indicators, and a
-                compose strip—so you can see how correspondence is organized before you sign in.
+                The operational layout reflects how professional mail is triaged: verified threads, transport posture, outbound
+                status, and composition within policy—presented as the standard workflow teams use to review and release
+                correspondence.
               </p>
             </div>
             <motion.div

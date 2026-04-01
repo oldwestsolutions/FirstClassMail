@@ -281,7 +281,7 @@ function PortalSentViewMock() {
   )
 }
 
-/** Product preview: thread + sent mocks side by side — section copy lives in page */
+/** Client portal demo: thread + sent mocks side by side — section copy lives in page */
 export function PortalProductDemo() {
   return (
     <div className="mx-auto w-full max-w-6xl">
@@ -295,9 +295,6 @@ export function PortalProductDemo() {
           <PortalSentViewMock />
         </div>
       </div>
-      <p id="demo-note" className="mt-8 text-center text-xs leading-relaxed text-neutral-500">
-        Illustrative only—live portal screens and labels may differ slightly after sign-in.
-      </p>
     </div>
   )
 }

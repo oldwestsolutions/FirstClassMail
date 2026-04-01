@@ -61,13 +61,14 @@ export default function PlatformPage() {
         <section className="border-b border-neutral-200 bg-neutral-50 py-20 md:py-28">
           <div className="shell">
             <div className="mx-auto max-w-3xl text-center">
-              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Product preview</p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Client Portal</p>
               <h2 className="mt-5 font-serif text-[clamp(1.75rem,4vw,2.75rem)] font-medium text-neutral-900">
-                How the client portal behaves
+                Mail Box Protocol
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-600">
-                A simplified, static mock-up of the real UI: mailboxes, a verified thread, encrypted traffic indicators, and a
-                compose strip—so you can see how correspondence is organized before you sign in.
+                The operational layout reflects how professional mail is triaged: verified threads, transport posture, outbound
+                status, and composition within policy—presented as the standard workflow teams use to review and release
+                correspondence.
               </p>
             </div>
             <motion.div

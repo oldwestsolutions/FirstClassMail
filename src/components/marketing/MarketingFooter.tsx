@@ -47,7 +47,9 @@ export function MarketingFooter() {
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Solutions</p>
             <ul className="mt-5 space-y-3 text-sm text-neutral-600">
               <li>
-                <span className="text-neutral-400">Identity Management — soon</span>
+                <Link href="/blockchain" className="transition hover:text-neutral-900">
+                  Blockchain
+                </Link>
               </li>
               <li>
                 <Link href="/edocuments" className="transition hover:text-neutral-900">
@@ -55,9 +57,7 @@ export function MarketingFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/blockchain" className="transition hover:text-neutral-900">
-                  Blockchain
-                </Link>
+                <span className="text-neutral-400">Identity Management — soon</span>
               </li>
             </ul>
           </div>
@@ -77,29 +77,11 @@ export function MarketingFooter() {
                   Dashboard
                 </Link>
               </li>
-            </ul>
-          </div>
-
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Resources</p>
-            <ul className="mt-5 space-y-3 text-sm text-neutral-600">
               <li>
-                <Link href="/practice" className="inline-flex items-center gap-2 transition hover:text-neutral-900">
-                  <BookOpen className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
-                  Documentation
-                </Link>
-              </li>
-              <li>
-                <a href="/#contact" className="inline-flex items-center gap-2 transition hover:text-neutral-900">
-                  <LifeBuoy className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
-                  Help center
-                </a>
-              </li>
-              <li>
-                <span className="inline-flex items-center gap-2 text-neutral-400">
+                <Link href="/security" className="inline-flex items-center gap-2 transition hover:text-neutral-900">
                   <Shield className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
                   Security overview
-                </span>
+                </Link>
               </li>
             </ul>
           </div>
@@ -121,16 +103,27 @@ export function MarketingFooter() {
                   Legal
                 </Link>
               </li>
-              <li>
-                <Link href="/#contact" className="transition hover:text-neutral-900">
-                  Contact
-                </Link>
-              </li>
             </ul>
           </div>
 
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Resources</p>
+            <ul className="mt-5 space-y-3 text-sm text-neutral-600">
+              <li>
+                <Link href="/practice" className="inline-flex items-center gap-2 transition hover:text-neutral-900">
+                  <BookOpen className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
+                  Documentation
+                </Link>
+              </li>
+              <li>
+                <a href="/#contact" className="inline-flex items-center gap-2 transition hover:text-neutral-900">
+                  <LifeBuoy className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
+                  Help center
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-
       </div>
     </footer>
   )
