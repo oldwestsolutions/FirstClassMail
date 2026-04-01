@@ -23,6 +23,27 @@ export function MarketingFooter() {
           </div>
 
           <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Platform</p>
+            <ul className="mt-5 space-y-3 text-sm text-neutral-600">
+              <li>
+                <Link href="/probabilistically-checkable-proofs" className="transition hover:text-neutral-900">
+                  Probabilistically Checkable Proofs
+                </Link>
+              </li>
+              <li>
+                <Link href="/fully-homomorphic-encryption" className="transition hover:text-neutral-900">
+                  Fully Homomorphic Encryption
+                </Link>
+              </li>
+              <li>
+                <Link href="/zero-knowledge-systems" className="transition hover:text-neutral-900">
+                  Zero Knowledge Systems
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Product</p>
             <ul className="mt-5 space-y-3 text-sm text-neutral-600">
               <li>
@@ -58,27 +79,6 @@ export function MarketingFooter() {
               </li>
               <li>
                 <span className="text-neutral-400">Identity Management — soon</span>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Platform</p>
-            <ul className="mt-5 space-y-3 text-sm text-neutral-600">
-              <li>
-                <Link href="/probabilistically-checkable-proofs" className="transition hover:text-neutral-900">
-                  Probabilistically Checkable Proofs
-                </Link>
-              </li>
-              <li>
-                <Link href="/fully-homomorphic-encryption" className="transition hover:text-neutral-900">
-                  Fully Homomorphic Encryption
-                </Link>
-              </li>
-              <li>
-                <Link href="/zero-knowledge-systems" className="transition hover:text-neutral-900">
-                  Zero Knowledge Systems
-                </Link>
               </li>
             </ul>
           </div>
