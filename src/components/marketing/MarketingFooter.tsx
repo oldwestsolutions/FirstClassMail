@@ -47,13 +47,13 @@ export function MarketingFooter() {
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Solutions</p>
             <ul className="mt-5 space-y-3 text-sm text-neutral-600">
               <li>
-                <span className="text-neutral-400">Enterprise onboarding — soon</span>
+                <span className="text-neutral-400">Identity Management — soon</span>
               </li>
               <li>
-                <span className="text-neutral-400">Industry templates — soon</span>
+                <span className="text-neutral-400">eDocuments — soon</span>
               </li>
               <li>
-                <span className="text-neutral-400">Dedicated support plans — soon</span>
+                <span className="text-neutral-400">Payments — soon</span>
               </li>
             </ul>
           </div>
