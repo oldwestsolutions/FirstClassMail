@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { Analytics } from '@vercel/analytics/react'
 import { LegalBar } from '@/components/marketing/LegalBar'
+import { PageTransition } from '@/components/PageTransition'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-body' })
 const display = Cormorant_Garamond({
@@ -88,7 +89,9 @@ export default function RootLayout({
       <body className={`${inter.variable} ${display.variable} font-sans`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <AuthProvider>
-          {children}
+          <div className="flex min-h-screen flex-col">
+            <PageTransition>{children}</PageTransition>
+          </div>
           <Toaster position="top-right" />
         </AuthProvider>
         <LegalBar />

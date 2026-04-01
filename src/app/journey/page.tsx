@@ -11,6 +11,9 @@ import {
   Filter,
   ShieldCheck,
   Archive,
+  EyeOff,
+  UserCheck,
+  Shield,
 } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
 import { MarketingFooter } from '@/components/marketing/MarketingFooter'
@@ -108,9 +111,11 @@ export default function JourneyPage() {
               </h1>
               <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
                 Each stage exists to keep communication private, authentic, and professionally managed—from the first encrypted
-                byte to confirmed receipt. Below, the <strong className="font-medium text-neutral-800">message path</strong>{' '}
-                details how automation, enforcement, and storage work on platform infrastructure; then the four protocol phases
-                summarize the same commitments from a product perspective.
+                byte to confirmed receipt. The next section explains <strong className="font-medium text-neutral-800">zero knowledge</strong>{' '}
+                as a design lens for the path: proving eligibility and policy without oversharing credentials. Then the{' '}
+                <strong className="font-medium text-neutral-800">message path</strong> details how automation, enforcement, and
+                storage work on platform infrastructure; the four protocol phases summarize the same commitments from a product
+                perspective.
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-4">
                 <Link href="/portal" className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
@@ -141,8 +146,74 @@ export default function JourneyPage() {
           </div>
         </div>
 
+        {/* Zero knowledge — full page */}
+        <section id="zero-knowledge" className={`${sectionShell} bg-neutral-50`} aria-labelledby="heading-zk-journey">
+          <div className="shell">
+            <div className="mx-auto max-w-3xl">
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Design lens</p>
+              <h2 id="heading-zk-journey" className="mt-4 font-serif text-3xl text-neutral-900 md:text-4xl lg:text-[2.75rem]">
+                Zero knowledge on the path
+              </h2>
+              <p className="mt-8 text-lg leading-relaxed text-neutral-700">
+                In cryptography, <em className="not-italic text-neutral-800">zero knowledge</em> means a protocol can convince a
+                verifier that a statement is true while revealing nothing beyond that fact. In practice, zero-knowledge{' '}
+                <em className="not-italic text-neutral-800">proofs</em> let a prover demonstrate a claim without handing over the
+                full witness—exactly the posture you want when a hop on the mail path must show “allowed to send,” “member of this
+                matter,” or “policy satisfied” without publishing directories, graphs, or message bodies.
+              </p>
+              <p className="mt-6 leading-relaxed text-neutral-600">
+                The Journey is not only TLS and DMARC; it is also <em className="not-italic text-neutral-700">who may know what</em>{' '}
+                at each segment. Zero-knowledge thinking aligns with segmented routing: client, platform, office—with encryption and
+                policy at boundaries—so traffic is not an open relay and credentials are not sprayed across the public internet. For
+                deeper treatment of encryption and verifier-efficient attestations alongside correspondence, see{' '}
+                <Link href="/correspondence" className="font-medium text-neutral-900 underline-offset-4 hover:underline">
+                  Correspondence
+                </Link>
+                .
+              </p>
+              <p className="mt-6 leading-relaxed text-neutral-600">
+                Production use depends on proof system choice, circuit design, trusted setup or transparent alternatives, and
+                verifier latency. FirstClassMail treats these as engineering and governance decisions alongside the protocol
+                stages—not as a substitute for transport security, intermediary policy, or retention.
+              </p>
+            </div>
+            <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
+              {[
+                {
+                  icon: EyeOff,
+                  title: 'Statement, not payload',
+                  body: 'Proofs can carry validity of authorization or policy match while keeping plaintext and unnecessary attributes out of the transcript.',
+                },
+                {
+                  icon: UserCheck,
+                  title: 'Verified sourcing',
+                  body: 'Demonstrate permission to engage or reach an office without exposing how your directory was built.',
+                },
+                {
+                  icon: Shield,
+                  title: 'Composable checks',
+                  body: 'Batch or chain proofs so jurisdiction, role, or matter checks stack with bounded leakage and clearer audit semantics.',
+                },
+              ].map((item, i) => (
+                <motion.article
+                  key={item.title}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.06 }}
+                  className="rounded-2xl border border-neutral-200 bg-white p-7 shadow-sm"
+                >
+                  <item.icon className="h-5 w-5 text-neutral-800" strokeWidth={1.25} />
+                  <h3 className="mt-4 font-serif text-xl text-neutral-900">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-neutral-600">{item.body}</p>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Message path — full-page sections */}
-        <section className={`${sectionShell} bg-neutral-50`}>
+        <section className={`${sectionShell} bg-white`}>
           <div className="shell">
             <div className="mx-auto max-w-3xl text-center">
               <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Message path</p>
@@ -162,7 +233,7 @@ export default function JourneyPage() {
         {pathSteps.map((step, i) => (
           <section
             key={step.title}
-            className={`${sectionShell} ${i % 2 === 0 ? 'bg-white' : 'bg-neutral-50'}`}
+            className={`${sectionShell} ${i % 2 === 1 ? 'bg-white' : 'bg-neutral-50'}`}
             aria-labelledby={`path-step-${i}`}
           >
             <div className="shell">

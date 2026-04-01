@@ -14,8 +14,6 @@ import {
   CheckCircle2,
   Layers,
   Cpu,
-  Binary,
-  Workflow,
 } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
 import { MarketingFooter } from '@/components/marketing/MarketingFooter'
@@ -39,10 +37,12 @@ export default function CorrespondencePage() {
                 </h1>
                 <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
                   Correspondence on FirstClassMail is not a feed optimized for advertising—it is a controlled channel for
-                  professional communication. Encryption, verified sourcing, and a refusal to monetize your contact graph are
-                  foundational, not optional add-ons. The long-form sections below connect that product posture to three
-                  cryptographic ideas—zero-knowledge proofs, checkable proofs, and homomorphic encryption—so technical and
-                  compliance stakeholders share a common vocabulary.
+                  professional communication. Verified sourcing and a refusal to monetize your contact graph are foundational.
+                  The sections below go deeper on two ideas that sit beside that posture:{' '}
+                  <strong className="font-medium text-neutral-800">checkable proofs</strong>—how integrity and policy outcomes can
+                  be validated with bounded work—and <strong className="font-medium text-neutral-800">encryption</strong>—how
+                  confidentiality is maintained on the wire, under access control, and in how ciphertext relates to what operators
+                  can honestly claim about a message.
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">
                   <Link href="/portal" className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
@@ -140,68 +140,6 @@ export default function CorrespondencePage() {
           </div>
         </section>
 
-        {/* Zero Knowledge — full page */}
-        <section id="zero-knowledge" className={`${sectionFull} bg-neutral-50`} aria-labelledby="heading-zk">
-          <div className="shell">
-            <div className="mx-auto max-w-3xl">
-              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Cryptographic foundation</p>
-              <h2 id="heading-zk" className="mt-4 font-serif text-3xl text-neutral-900 md:text-4xl lg:text-[2.75rem]">
-                Zero knowledge
-              </h2>
-              <p className="mt-8 text-lg leading-relaxed text-neutral-700">
-                In cryptography, <em className="not-italic text-neutral-800">zero knowledge</em> is a guarantee: a protocol can
-                convince someone that a statement is true while revealing nothing beyond that fact. In practice, zero-knowledge{' '}
-                <em className="not-italic text-neutral-800">proofs</em> are the usual mechanism—a prover convinces a verifier
-                without transmitting the witness. For professional mail, that maps to attestations: show you may open a thread,
-                satisfy policy, or reach an office—without publishing full credentials, graphs, or message bodies.
-              </p>
-              <p className="mt-6 leading-relaxed text-neutral-600">
-                This is not a promise that every screen in the product is implemented as a zk-SNARK today. It is a design
-                orientation: when eligibility, role, or matter context must be demonstrated, the preferred direction is
-                proof-backed statements with minimal leakage—aligned with TLS, intermediary policy, and retention—not a
-                substitute for them.
-              </p>
-            </div>
-            <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
-              {[
-                {
-                  icon: EyeOff,
-                  title: 'Statement, not payload',
-                  body: 'Zero-knowledge proofs carry validity of a claim—authorization, policy match, membership—while keeping plaintext and unnecessary attributes out of the transcript.',
-                },
-                {
-                  icon: UserCheck,
-                  title: 'Verified sourcing',
-                  body: 'Eligibility proofs support verified sourcing: demonstrate permission to engage without exposing how your directory or graph was constructed.',
-                },
-                {
-                  icon: Shield,
-                  title: 'Composable checks',
-                  body: 'Proofs can be batched or chained so organizations stack jurisdiction, role, or matter checks with bounded leakage and clearer audit semantics.',
-                },
-              ].map((item, i) => (
-                <motion.article
-                  key={item.title}
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                  className="rounded-2xl border border-neutral-200 bg-white p-7 shadow-sm"
-                >
-                  <item.icon className="h-5 w-5 text-neutral-800" strokeWidth={1.25} />
-                  <h3 className="mt-4 font-serif text-xl text-neutral-900">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-neutral-600">{item.body}</p>
-                </motion.article>
-              ))}
-            </div>
-            <p className="mx-auto mt-12 max-w-2xl text-center text-sm leading-relaxed text-neutral-600">
-              Production use depends on proof system choice, circuit design, trusted setup or transparent alternatives, and verifier
-              latency. FirstClassMail treats these as engineering and governance decisions alongside the baseline correspondence
-              model—not marketing labels layered on top of it.
-            </p>
-          </div>
-        </section>
-
         {/* Checkable proofs — full page */}
         <section id="checkable-proofs" className={`${sectionFull} bg-white`} aria-labelledby="heading-pcp">
           <div className="shell">
@@ -211,17 +149,22 @@ export default function CorrespondencePage() {
                 Checkable proofs
               </h2>
               <p className="mt-8 text-lg leading-relaxed text-neutral-700">
-                Checkable proofs, in this sense, mean verifier-efficient proofs—most famously the probabilistically checkable proof
-                (PCP) model: a verifier reads only a tiny random fragment yet gains high confidence that a statement holds, without
-                replaying an entire computation. That pattern underpins modern succinct arguments and scalable integrity: complex
-                claims can be validated with bounded work, which matters when platforms must audit mail and policy outcomes at
-                scale.
+                <strong className="font-medium text-neutral-800">Checkable proofs</strong> mean verifier-efficient proofs—most
+                famously the probabilistically checkable proof (PCP) model: a verifier reads only a tiny random fragment yet gains
+                high confidence that a statement holds, without replaying an entire computation. That pattern underpins modern
+                succinct arguments and scalable integrity: complex claims can be validated with bounded work, which matters when
+                platforms must audit mail and policy outcomes at scale.
               </p>
               <p className="mt-6 leading-relaxed text-neutral-600">
-                For operators, the intuition is auditability without naively re-running every rule on every byte for every
-                request. The correspondence product already emphasizes verifiable sourcing and policy-governed delivery; “checkable
-                proof” thinking is the bridge between that product language and the research literature on PCPs, SNARKs, and layered
-                verification pipelines.
+                For correspondence, checkable proofs pair naturally with <strong className="font-medium text-neutral-800">encryption</strong>:
+                ciphertexts protect content on the path and in storage, while proofs can attest that routing, retention, or release
+                rules were applied consistently—without asking auditors to replay every hop by hand. The next section spells out the
+                encryption side; together they describe how confidentiality and demonstrable integrity coexist.
+              </p>
+              <p className="mt-6 leading-relaxed text-neutral-600">
+                For operators, the intuition is auditability without naively re-running every rule on every byte for every request.
+                Verifiable sourcing and policy-governed delivery are product commitments; “checkable proof” thinking is the bridge to
+                PCPs, SNARKs, and layered verification pipelines when you need engineering precision.
               </p>
             </div>
             <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
@@ -264,43 +207,49 @@ export default function CorrespondencePage() {
           </div>
         </section>
 
-        {/* Homomorphic encryption — full page */}
-        <section id="homomorphic-encryption" className={`${sectionFull} bg-neutral-50`} aria-labelledby="heading-fhe">
+        {/* Encryption — full page */}
+        <section id="encryption" className={`${sectionFull} bg-neutral-50`} aria-labelledby="heading-enc">
           <div className="shell">
             <div className="mx-auto max-w-3xl">
               <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Cryptographic foundation</p>
-              <h2 id="heading-fhe" className="mt-4 font-serif text-3xl text-neutral-900 md:text-4xl lg:text-[2.75rem]">
-                Homomorphic encryption
+              <h2 id="heading-enc" className="mt-4 font-serif text-3xl text-neutral-900 md:text-4xl lg:text-[2.75rem]">
+                Encryption
               </h2>
               <p className="mt-8 text-lg leading-relaxed text-neutral-700">
-                Homomorphic encryption lets ciphertexts be combined and transformed so that decryption recovers the result of a
-                computation—as if it had been done on plaintext. The fully homomorphic (FHE) setting supports arbitrary circuits;
-                leveled or partial schemes often trade expressiveness for performance. For correspondence platforms, the promise is
-                policy checks, analytics, or workflow steps that stay bound to encrypted mail: less pressure to “decrypt to analyze,”
-                when engineering and key-management assumptions support it.
+                <strong className="font-medium text-neutral-800">Encryption</strong> is the workhorse of confidential correspondence:
+                modern transport security between clients and the platform edge, disciplined handling of data at rest, and clear
+                boundaries on who can decrypt what and when. Intermediaries on the network see protected payloads, not message bodies
+                in the clear; storage and backups inherit access rules instead of treating mail as casually readable infrastructure
+                data.
               </p>
               <p className="mt-6 leading-relaxed text-neutral-600">
-                Adoption depends on performance budgets, regulatory posture, and threat models. FirstClassMail’s baseline remains
-                strong transport security and verified sourcing; advanced homomorphic layers are evaluated against those operational
-                realities rather than treated as a universal replacement for disciplined access control.
+                Encryption answers “who can read this?” Checkable proofs (above) complement that by supporting claims about{' '}
+                <em className="not-italic text-neutral-700">what was done</em> to ciphertext under policy—routing, retention,
+                release—without expanding the circle of people who must see plaintext to believe the story. Advanced schemes such as
+                homomorphic encryption extend the same theme: compute on ciphertext when performance and key governance allow,
+                reducing pressure to decrypt solely for analysis.
+              </p>
+              <p className="mt-6 leading-relaxed text-neutral-600">
+                FirstClassMail’s baseline is strong TLS, access-controlled storage, and verified sourcing; roadmaps weigh additional
+                layers against operational cost, regulatory posture, and threat models—not as a substitute for those fundamentals.
               </p>
             </div>
             <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
               {[
                 {
                   icon: Lock,
-                  title: 'Compute without exposure',
-                  body: 'Homomorphic operations enable rich programs on ciphertexts; cost and latency remain the practical constraint—especially for full FHE.',
+                  title: 'Transit & sessions',
+                  body: 'TLS and session hygiene protect bytes from the browser or app to governed endpoints; the path is not treated as an open relay.',
                 },
                 {
-                  icon: Binary,
-                  title: 'Keys and lifecycle',
-                  body: 'Bootstrapping, key rotation, and hybrid designs (homomorphic layers plus traditional TLS) are first-order concerns for serious deployment.',
+                  icon: FileKey,
+                  title: 'At rest & access',
+                  body: 'Stored ciphertext and keys follow least-privilege: operational access is bounded, logged, and aligned to retention—not casual analytics.',
                 },
                 {
-                  icon: Workflow,
-                  title: 'Where it helps mail',
-                  body: 'Batch triage, retention scoring, or compliance tagging can in principle run under encryption—reducing plaintext exposure in operator pipelines.',
+                  icon: Server,
+                  title: 'Infrastructure boundary',
+                  body: 'Mail is processed on policy-governed systems; encryption posture and proof-friendly audit hooks are design inputs together.',
                 },
               ].map((item, i) => (
                 <motion.article
@@ -320,6 +269,12 @@ export default function CorrespondencePage() {
             <div className="mx-auto mt-10 flex flex-wrap justify-center gap-4 text-sm">
               <Link href="/security" className="font-medium text-neutral-900 underline-offset-4 hover:underline">
                 Security overview
+              </Link>
+              <span className="text-neutral-300" aria-hidden>
+                ·
+              </span>
+              <Link href="/journey" className="font-medium text-neutral-900 underline-offset-4 hover:underline">
+                The Journey — zero knowledge
               </Link>
               <span className="text-neutral-300" aria-hidden>
                 ·
