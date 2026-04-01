@@ -44,16 +44,12 @@ function IllustrationHoverCard({
           <PortalMockMini preset={preset} />
         </motion.div>
       </div>
-      <div className="relative z-10 mt-8 flex flex-col items-center">
-        <h3 className="max-w-[18ch] bg-gradient-to-b from-neutral-900 via-neutral-800 to-neutral-600 bg-clip-text font-serif text-[1.4rem] font-semibold leading-tight tracking-[-0.035em] text-transparent sm:text-[1.65rem]">
+      <div className="relative z-10 mt-7 flex flex-col items-center px-0.5">
+        <h3 className="max-w-[20ch] text-center font-serif text-[1.25rem] font-medium leading-snug tracking-[-0.02em] text-neutral-900 sm:text-[1.375rem]">
           {title}
         </h3>
-        <span
-          className="mt-3.5 block h-[2px] w-14 rounded-full bg-gradient-to-r from-transparent via-neutral-400/75 to-transparent"
-          aria-hidden
-        />
-        <div className="max-h-0 overflow-hidden opacity-0 transition-[max-height,opacity,padding] duration-300 ease-out [@media(hover:hover)]:group-hover:max-h-[13rem] [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-hover:pt-5 group-focus-visible:max-h-[13rem] group-focus-visible:opacity-100 group-focus-visible:pt-5">
-          <p className="text-sm leading-relaxed text-neutral-600">{body}</p>
+        <div className="max-h-0 overflow-hidden opacity-0 transition-[max-height,opacity,padding] duration-300 ease-out [@media(hover:hover)]:group-hover:max-h-[13rem] [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-hover:pt-4 group-focus-visible:max-h-[13rem] group-focus-visible:opacity-100 group-focus-visible:pt-4">
+          <p className="text-[0.8125rem] leading-relaxed text-neutral-600 sm:text-sm">{body}</p>
         </div>
       </div>
     </>
@@ -62,14 +58,14 @@ function IllustrationHoverCard({
   if (mode === 'pillar' && pillar) {
     return (
       <div
-        className={`flex min-h-full flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-sm ${pillar.border} border-l-[5px]`}
+        className={`flex min-h-full flex-col overflow-hidden rounded-2xl border border-neutral-200/90 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-8px_rgba(0,0,0,0.08)] ${pillar.border} border-l-[4px]`}
       >
-        <div className={`h-1.5 w-full shrink-0 ${pillar.bar}`} aria-hidden />
+        <div className={`h-1 w-full shrink-0 ${pillar.bar}`} aria-hidden />
         <div
           role="group"
           tabIndex={0}
           aria-describedby={`card-desc-${slug}`}
-          className="group relative flex flex-1 flex-col items-center p-8 text-center transition-shadow duration-300 hover:bg-neutral-50/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 md:p-10"
+          className="group relative flex flex-1 flex-col items-center bg-gradient-to-b from-white to-neutral-50/40 p-7 text-center transition-colors duration-300 [@media(hover:hover)]:hover:to-neutral-50/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 md:p-9"
         >
           {inner}
         </div>
@@ -82,7 +78,7 @@ function IllustrationHoverCard({
       role="group"
       tabIndex={0}
       aria-describedby={`card-desc-${slug}`}
-      className="group relative flex flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-white p-8 text-center shadow-sm ring-1 ring-neutral-100 transition-shadow duration-300 hover:border-neutral-300 hover:shadow-md hover:ring-neutral-200/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 md:p-9 [@media(hover:hover)]:hover:shadow-md"
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-neutral-200/90 bg-gradient-to-b from-white to-neutral-50/30 p-7 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_28px_-10px_rgba(0,0,0,0.07)] transition-[border-color,box-shadow,background-color] duration-300 [@media(hover:hover)]:hover:border-neutral-300/90 [@media(hover:hover)]:hover:to-neutral-50/60 [@media(hover:hover)]:hover:shadow-[0_4px_32px_-12px_rgba(0,0,0,0.1)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 md:p-8"
     >
       {inner}
     </div>
@@ -446,7 +442,7 @@ export default function HomePage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.06 }}
-                      className="flex w-full flex-1 flex-col rounded-3xl border border-neutral-200 bg-white p-8 text-center shadow-sm md:p-9 lg:min-w-0 lg:max-w-sm lg:text-left xl:max-w-none"
+                      className="flex w-full flex-1 flex-col rounded-2xl border border-neutral-200/90 bg-gradient-to-b from-white to-neutral-50/35 p-8 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-8px_rgba(0,0,0,0.08)] transition-[border-color,box-shadow] duration-300 hover:border-neutral-300/90 hover:shadow-[0_4px_28px_-10px_rgba(0,0,0,0.1)] md:p-9 lg:min-w-0 lg:max-w-sm lg:text-left xl:max-w-none"
                     >
                       <div className="mx-auto shrink-0 lg:mx-0">
                         <motion.div
@@ -506,7 +502,7 @@ export default function HomePage() {
 
       <section id="contact" className="border-b border-neutral-200 bg-neutral-50">
         <div className="shell py-20 md:py-28">
-          <div className="mx-auto max-w-3xl rounded-[2rem] border border-neutral-200 bg-white px-8 py-14 text-center shadow-sm md:px-14 md:py-16">
+          <div className="mx-auto max-w-3xl rounded-2xl border border-neutral-200/90 bg-gradient-to-b from-white to-neutral-50/40 px-8 py-14 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_40px_-12px_rgba(0,0,0,0.08)] md:px-14 md:py-16">
             <h2 className="font-serif text-3xl text-neutral-900 md:text-4xl">Start secure messaging.</h2>
             <p className="mx-auto mt-6 max-w-lg leading-relaxed text-neutral-600">
               Open the client portal to create your account, send and receive over encrypted channels, and use verified sourcing
