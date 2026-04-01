@@ -1,7 +1,7 @@
 {
   "name": "firstclassmail",
   "version": "1.0.1",
-  "description": "Internet mail handling—collection, sorting, holding, and delivery—in the tradition of the post",
+  "description": "FirstClassMail.xyz — encrypted messaging, verified sourcing, and privacy-first communication without data broker resale.",
   "private": true,
   "scripts": {
     "dev": "next dev",

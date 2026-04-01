@@ -121,23 +121,23 @@ export default function HomePage() {
   const journey = [
     {
       step: '01',
-      title: 'Collection',
-      text: 'Someone leaves a note at the window—a form, a reply, a campaign. Each piece is dated and addressed before it goes anywhere.',
+      title: 'Encrypted transmission',
+      text: 'Every message is protected with modern encryption in transit and at rest, so content is not exposed to eavesdropping or casual interception.',
     },
     {
       step: '02',
-      title: 'Sorting',
-      text: 'Like letters under a clerk’s hand, messages are read for the essentials: who it is for, what it concerns, where it should go next.',
+      title: 'Verified sourcing',
+      text: 'Connections are built on verified identity and intent—you reach exactly who you are looking for, with authenticity you can rely on.',
     },
     {
       step: '03',
-      title: 'Holding',
-      text: 'When the mail is heavy, it waits in the back room—orderly stacks, nothing lost—until the route is ready to carry it out.',
+      title: 'Third-party management',
+      text: 'FirstClassMail.xyz acts as a professional intermediary: threads are handled through a neutral, controlled channel instead of leaking personal contact paths.',
     },
     {
       step: '04',
-      title: 'Delivery',
-      text: 'Carriers take each item to its destination: an inbox, a team, a system that asked for it. Proof of arrival closes the loop.',
+      title: 'Private delivery',
+      text: 'Recipients receive communications without unnecessary exposure of personal details, reducing doxxing risk and keeping your footprint minimal.',
     },
   ]
 
@@ -146,22 +146,22 @@ export default function HomePage() {
       accent: 'bg-rgb-red',
       border: 'border-l-rgb-red',
       icon: FileInput,
-      title: 'What people send',
-      body: 'Inquiries from your site, responses to campaigns, notes meant for a particular desk—the same variety as paper, only it travels as data.',
+      title: 'Encrypted message transmission',
+      body: 'All communication is securely encrypted end to end across our infrastructure, so conversations stay confidential and protected from unauthorized access.',
     },
     {
       accent: 'bg-rgb-green',
       border: 'border-l-rgb-green',
       icon: Warehouse,
-      title: 'Where it waits',
-      body: 'When volume surges, nothing is thrown away. Items sit in line, in order, until the path ahead is clear—just as a post office holds sacks until the truck leaves.',
+      title: 'Verified sourcing',
+      body: 'Users connect with confidence: identities are verified so you know you are speaking with the intended party—not an impersonator or wrong contact.',
     },
     {
       accent: 'bg-rgb-blue',
       border: 'border-l-rgb-blue',
       icon: Send,
-      title: 'How it reaches the reader',
-      body: 'Addressed mail finds the right box. Marketing and transactional notes follow the same discipline: one message, one recipient, one receipt.',
+      title: 'Privacy and simplicity',
+      body: 'No doxxing-by-default, no selling of email addresses or message data to brokers. A professional third party manages communications so you stay in control.',
     },
   ]
 
@@ -170,13 +170,13 @@ export default function HomePage() {
       name: 'Claire Whitmore',
       title: 'Operations director',
       quote:
-        'We stopped thinking about “integrations” and started thinking about mail: who sent it, where it sat, when it arrived. That clarity changed how we work.',
+        'We needed encryption and verified sourcing without another vendor reselling our addresses. FirstClassMail.xyz gave us both—and a third party we actually trust to manage the thread.',
     },
     {
       name: 'Daniel Okonkwo',
       title: 'Marketing lead',
       quote:
-        'Our sends used to collide with quiet hours and rate limits. Now they behave like scheduled post—batched, paced, and delivered when the reader is there.',
+        'Our team was tired of list brokers and unclear provenance. Here, messages are encrypted, sourcing is verified, and nothing gets sold downstream. It is the professional baseline we were missing.',
     },
   ]
 
@@ -216,7 +216,7 @@ export default function HomePage() {
               </div>
               <nav className="flex flex-col gap-1 p-5">
                 {[
-                  ['Correspondence', '#correspondence'],
+                  ['Trust & privacy', '#correspondence'],
                   ['The journey', '#journey'],
                   ['Practice', '#practice'],
                   ['Contact', '#contact'],
@@ -258,13 +258,13 @@ export default function HomePage() {
               <div>
                 <span className="font-serif text-lg tracking-wide text-neutral-900 md:text-xl">FirstClass Mail</span>
                 <p className="hidden font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500 sm:block">
-                  Digital post
+                  Secure messaging
                 </p>
               </div>
             </Link>
             <div className="hidden items-center gap-8 md:flex lg:gap-10">
               <Link href="#correspondence" className="text-sm text-neutral-600 transition hover:text-neutral-900">
-                Correspondence
+                Trust &amp; privacy
               </Link>
               <Link href="#journey" className="text-sm text-neutral-600 transition hover:text-neutral-900">
                 The journey
@@ -298,14 +298,16 @@ export default function HomePage() {
             <div className="grid grid-cols-12 gap-x-6 gap-y-12 lg:gap-x-10 lg:gap-y-16">
               <div className="col-span-12 flex flex-col justify-end lg:col-span-7 lg:row-span-1">
                 <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.4em] text-neutral-500">
-                  Internet correspondence
+                  FirstClassMail.xyz
                 </p>
                 <h1 className="mb-8 max-w-[22ch] font-serif text-4xl font-medium leading-[1.08] text-neutral-900 md:text-5xl lg:text-[3.5rem] xl:text-6xl">
-                  The way mail has always worked—now over the network.
+                  Encrypted messaging, verified connections, privacy by design.
                 </h1>
                 <p className="max-w-xl text-base leading-[1.75] text-neutral-600 md:text-lg">
-                  Paper or wire, the idea is unchanged: a message is written, addressed, handled with care, and brought to the
-                  right door. FirstClass Mail carries that sequence for everything you collect and send online.
+                  FirstClassMail.xyz provides secure, encrypted messaging so every conversation stays private. Connect directly with
+                  exactly who you are looking for—verified sourcing ensures trust and authenticity. Reduce doxxing risk, avoid
+                  email resale to data brokers, and rely on a professional third party to manage communications with simplicity,
+                  safety, and reliability.
                 </p>
                 <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center">
                   <Link href="/portal" className="btn btn-primary px-9 py-3.5 text-xs uppercase tracking-[0.2em]">
@@ -316,7 +318,7 @@ export default function HomePage() {
                     href="#journey"
                     className="text-center text-sm text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline sm:text-left"
                   >
-                    Read how delivery works
+                    How protection works
                   </Link>
                 </div>
               </div>
@@ -336,23 +338,32 @@ export default function HomePage() {
         <div className="shell py-20 md:py-28">
           <div className="grid grid-cols-12 gap-x-6 gap-y-10 lg:gap-x-10">
             <div className="col-span-12 lg:col-span-5 lg:col-start-1">
-              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Correspondence</p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Trust &amp; privacy</p>
               <h2 className="mt-5 font-serif text-3xl leading-tight text-neutral-900 md:text-4xl lg:text-[2.75rem]">
-                Not a metaphor—an office you never see.
+                Confidentiality without compromise.
               </h2>
             </div>
             <div className="col-span-12 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:self-end">
               <p className="leading-[1.8] text-neutral-600 lg:text-[1.05rem]">
-                In the physical world, mail moves through rooms you do not visit: counters, sorting tables, holding areas,
-                outgoing carts. On the internet, the same roles exist—only the rooms are machines. Someone still decides what is
-                legitimate, what waits, and what goes out next.
+                When you use FirstClassMail.xyz, you are not handing your email address or message content to list brokers. The
+                service is built for encrypted transmission, verified sourcing, and a professional third party that manages
+                communications—so you can focus on the conversation, not on exposure or resale.
               </p>
             </div>
             <div className="col-span-12 mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-8 lg:grid-cols-3 lg:gap-6">
               {[
-                ['Inquiry', 'A visitor leaves a card—structured fields, plain language, a return path.'],
-                ['Announcement', 'A note to many recipients, each addressed in turn, none treated as bulk without intent.'],
-                ['Reply', 'An answer routed back along the thread it came from—continuity, not noise.'],
+                [
+                  'Encryption first',
+                  'TLS and strong encryption protect messages in transit; storage follows rigorous security practices so content stays private.',
+                ],
+                [
+                  'Verified parties',
+                  'Know you are connecting with the right person. Verified sourcing reduces impersonation and mistaken identity.',
+                ],
+                [
+                  'No data brokerage',
+                  'We do not sell email addresses or message data to brokers. Your contact graph is not our product.',
+                ],
               ].map(([title, body]) => (
                 <div
                   key={title}
@@ -380,11 +391,11 @@ export default function HomePage() {
                 id="journey-heading"
                 className="mt-5 font-serif text-[clamp(1.75rem,4vw,3rem)] font-medium leading-[1.15] text-neutral-900"
               >
-                From hand to hand, in four beats.
+                From encryption to verified delivery—in four steps.
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
-                Four symmetrical stages—each with a clear role—mirror how physical mail is received, classified, queued, and
-                released. The same discipline applies to every message you route online.
+                Each stage exists to keep communication private, authentic, and professionally managed—from the first encrypted
+                byte to confirmed receipt—without exposing you to unnecessary risk.
               </p>
             </div>
 
@@ -419,11 +430,11 @@ export default function HomePage() {
                 id="practice-heading"
                 className="mt-5 font-serif text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight text-neutral-900"
               >
-                What FirstClass Mail holds for you.
+                What FirstClassMail.xyz delivers.
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
-                Three capabilities cover ingestion, queueing, and delivery; three stations show how work moves through the
-                house—aligned, evenly weighted, and easy to scan.
+                Three pillars—encryption, verified sourcing, and privacy-first handling—define the platform. Below, three
+                operational stations show how messages move securely from intake to release.
               </p>
             </div>
 
@@ -452,17 +463,17 @@ export default function HomePage() {
             <div className="mx-auto mt-20 max-w-5xl border-t border-neutral-200 pt-20 md:mt-24 md:pt-24">
               <div className="mx-auto max-w-2xl text-center">
                 <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Processing stations</p>
-                <h3 className="mt-4 font-serif text-2xl text-neutral-900 md:text-3xl">Collect, sort, release</h3>
+                <h3 className="mt-4 font-serif text-2xl text-neutral-900 md:text-3xl">Intake, verify, release</h3>
                 <p className="mt-4 text-neutral-600">
-                  Three equal stations—same footprint, same clarity—map to how items enter, are classified, and leave for the
-                  reader.
+                  Three aligned stations cover secure intake, identity verification, and private delivery—so every handoff stays
+                  controlled and auditable.
                 </p>
               </div>
               <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-6 lg:gap-10">
                 {[
-                  { title: 'Collect', sub: 'Windows for new mail', icon: Inbox, station: 'Station 1' },
-                  { title: 'Sort', sub: 'Rules that read the address block', icon: Mail, station: 'Station 2' },
-                  { title: 'Release', sub: 'When the route is open', icon: Send, station: 'Station 3' },
+                  { title: 'Intake', sub: 'Encrypted channels for new conversations and replies', icon: Inbox, station: 'Station 1' },
+                  { title: 'Verify', sub: 'Match senders and recipients with verified sourcing', icon: Mail, station: 'Station 2' },
+                  { title: 'Release', sub: 'Deliver messages without broker access or unnecessary exposure', icon: Send, station: 'Station 3' },
                 ].map((step, i) => (
                   <motion.div
                     key={step.title}
@@ -497,8 +508,8 @@ export default function HomePage() {
                 Voices from the hall
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-neutral-600">
-                Operators and marketers describe the same outcome: mail they can reason about—provenance, queue time, and
-                arrival—without retraining the organization.
+                Teams choose FirstClassMail.xyz when encryption, verified sourcing, and zero broker resale are non-negotiable—private,
+                professional communication without sacrificing clarity.
               </p>
             </div>
             <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
@@ -527,9 +538,10 @@ export default function HomePage() {
       <section id="contact" className="border-b border-neutral-200 bg-neutral-50">
         <div className="shell py-20 md:py-28">
           <div className="mx-auto max-w-3xl rounded-[2rem] border border-neutral-200 bg-white px-8 py-14 text-center shadow-sm md:px-14 md:py-16">
-            <h2 className="font-serif text-3xl text-neutral-900 md:text-4xl">Begin your file.</h2>
+            <h2 className="font-serif text-3xl text-neutral-900 md:text-4xl">Start secure messaging.</h2>
             <p className="mx-auto mt-6 max-w-lg leading-relaxed text-neutral-600">
-              The portal is where you open accounts, watch the queue, and confirm that what you sent arrived as intended.
+              Open the client portal to create your account, send and receive over encrypted channels, and use verified sourcing
+              for every connection—managed end to end by FirstClassMail.xyz.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
               <Link href="/portal" className="btn btn-primary px-11 py-3.5 text-xs uppercase tracking-[0.2em]">
@@ -539,7 +551,7 @@ export default function HomePage() {
                 href="#correspondence"
                 className="rounded-full px-6 py-3 text-sm text-neutral-600 transition hover:bg-neutral-100 hover:text-neutral-900"
               >
-                Back to correspondence
+                Back to trust &amp; privacy
               </Link>
             </div>
           </div>
@@ -557,8 +569,9 @@ export default function HomePage() {
                 <span className="font-serif text-xl text-neutral-900">FirstClass Mail</span>
               </div>
               <p className="mt-6 max-w-sm text-sm leading-[1.85] text-neutral-600">
-                Digital handling for messages that deserve the same care as paper: addressing, sorting, holding, and proof of
-                delivery—over the internet.
+                FirstClassMail.xyz delivers encrypted message transmission, verified sourcing, and privacy-first handling. We do not
+                sell email addresses or message data to brokers—a professional third party manages communications for security and
+                simplicity.
               </p>
               <p className="mt-6 flex items-start gap-2.5 text-sm text-neutral-700">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.5} aria-hidden />
@@ -571,7 +584,7 @@ export default function HomePage() {
               <ul className="mt-5 space-y-3 text-sm text-neutral-600">
                 <li>
                   <Link href="#correspondence" className="transition hover:text-neutral-900">
-                    Correspondence
+                    Trust &amp; privacy
                   </Link>
                 </li>
                 <li>
@@ -671,10 +684,10 @@ export default function HomePage() {
           </div>
 
           <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-neutral-200 pt-10 text-xs text-neutral-500 md:flex-row md:items-center">
-            <p>&copy; {new Date().getFullYear()} FirstClass Mail. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} FirstClassMail.xyz. All rights reserved.</p>
             <p className="flex items-center gap-2">
               <CheckCircle className="h-3.5 w-3.5 text-neutral-400" strokeWidth={1.25} aria-hidden />
-              Messages encrypted in transit
+              TLS encryption · verified sourcing · no broker resale
             </p>
           </div>
         </div>
