@@ -20,21 +20,44 @@ function IllustrationHoverCard({
   preset,
   mode = 'simple',
   pillar,
+  expanded,
 }: {
   title: string
   body: string
   preset: string
   mode?: 'simple' | 'pillar'
   pillar?: { border: string; bar: string }
+  /** When set, description open state is controlled (exclusive Practice pillars). */
+  expanded?: boolean
 }) {
   const slug = `${preset}-${title}`.replace(/\s+/g, '-').toLowerCase()
+  const controlled = expanded !== undefined
+
+  const descriptionEl = (
+    <div
+      className={
+        controlled
+          ? `w-full overflow-hidden text-left transition-[max-height,opacity,padding] duration-300 ease-out sm:text-center ${
+              expanded ? 'max-h-[14rem] opacity-100 pt-4' : 'max-h-0 opacity-0'
+            }`
+          : 'max-h-0 w-full overflow-hidden opacity-0 transition-[max-height,opacity,padding] duration-300 ease-out [@media(hover:hover)]:group-hover:max-h-[14rem] [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-hover:pt-4 group-focus-visible:max-h-[14rem] group-focus-visible:opacity-100 group-focus-visible:pt-4 sm:text-center'
+      }
+    >
+      <p className="text-[0.8125rem] leading-relaxed text-neutral-600 sm:text-sm">{body}</p>
+    </div>
+  )
 
   const inner = (
     <>
       <p id={`card-desc-${slug}`} className="sr-only">
         {body}
       </p>
-      <div className="relative mx-auto w-full max-w-[248px]">
+      <div className="relative z-10 w-full shrink-0 px-0.5 pb-1 text-center">
+        <h3 className="mx-auto max-w-[20ch] font-serif text-[1.25rem] font-medium leading-snug tracking-[-0.02em] text-neutral-900 sm:text-[1.375rem]">
+          {title}
+        </h3>
+      </div>
+      <div className="relative mx-auto mt-5 w-full max-w-[248px] shrink-0">
         <motion.div
           aria-hidden
           className="will-change-transform"
@@ -44,14 +67,7 @@ function IllustrationHoverCard({
           <PortalMockMini preset={preset} />
         </motion.div>
       </div>
-      <div className="relative z-10 mt-7 flex flex-col items-center px-0.5">
-        <h3 className="max-w-[20ch] text-center font-serif text-[1.25rem] font-medium leading-snug tracking-[-0.02em] text-neutral-900 sm:text-[1.375rem]">
-          {title}
-        </h3>
-        <div className="max-h-0 overflow-hidden opacity-0 transition-[max-height,opacity,padding] duration-300 ease-out [@media(hover:hover)]:group-hover:max-h-[13rem] [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-hover:pt-4 group-focus-visible:max-h-[13rem] group-focus-visible:opacity-100 group-focus-visible:pt-4">
-          <p className="text-[0.8125rem] leading-relaxed text-neutral-600 sm:text-sm">{body}</p>
-        </div>
-      </div>
+      <div className="relative z-10 mt-5 flex w-full min-h-0 flex-col items-stretch px-0.5">{descriptionEl}</div>
     </>
   )
 
@@ -65,7 +81,10 @@ function IllustrationHoverCard({
           role="group"
           tabIndex={0}
           aria-describedby={`card-desc-${slug}`}
-          className="group relative flex flex-1 flex-col items-center bg-gradient-to-b from-white to-neutral-50/40 p-7 text-center transition-colors duration-300 [@media(hover:hover)]:hover:to-neutral-50/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 md:p-9"
+          aria-expanded={controlled ? expanded : undefined}
+          className={`relative flex flex-1 flex-col items-center bg-gradient-to-b from-white to-neutral-50/40 p-7 text-center transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 md:p-9 ${
+            controlled && expanded ? 'to-neutral-50/75' : ''
+          } [@media(hover:hover)]:hover:to-neutral-50/80`}
         >
           {inner}
         </div>
@@ -108,8 +127,18 @@ function IsoBlock({ className, delay = 0 }: { className: string; delay?: number 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [headerHidden, setHeaderHidden] = useState(false)
+  const [openPillarTitle, setOpenPillarTitle] = useState<string | null>(null)
+  const pillarGridRef = useRef<HTMLDivElement>(null)
   const lastScrollY = useRef(0)
   const ticking = useRef(false)
+
+  const clearPillarIfFocusLeft = () => {
+    requestAnimationFrame(() => {
+      const active = document.activeElement
+      if (pillarGridRef.current?.contains(active)) return
+      setOpenPillarTitle(null)
+    })
+  }
 
   useEffect(() => {
     lastScrollY.current = typeof window !== 'undefined' ? window.scrollY : 0
@@ -405,7 +434,11 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="mx-auto mt-16 grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-3 md:gap-6 lg:gap-8">
+            <div
+              ref={pillarGridRef}
+              className="mx-auto mt-16 grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-3 md:gap-6 lg:gap-8"
+              onMouseLeave={() => setOpenPillarTitle(null)}
+            >
               {pillars.map((p, i) => (
                 <motion.div
                   key={p.title}
@@ -413,6 +446,9 @@ export default function HomePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.07 }}
+                  onMouseEnter={() => setOpenPillarTitle(p.title)}
+                  onFocusCapture={() => setOpenPillarTitle(p.title)}
+                  onBlurCapture={clearPillarIfFocusLeft}
                 >
                   <IllustrationHoverCard
                     mode="pillar"
@@ -420,6 +456,7 @@ export default function HomePage() {
                     body={p.body}
                     preset={p.illustration}
                     pillar={{ border: p.border, bar: p.accent }}
+                    expanded={openPillarTitle === p.title}
                   />
                 </motion.div>
               ))}
