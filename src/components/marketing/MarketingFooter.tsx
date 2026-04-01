@@ -13,6 +13,9 @@ export function MarketingFooter() {
               </div>
               <span className="font-serif text-xl text-neutral-900">FirstClassMail</span>
             </Link>
+            <p className="mt-5 max-w-sm text-sm leading-[1.85] text-neutral-600">
+              Encrypted correspondence, verified sourcing, and privacy-first handling for professional teams.
+            </p>
             <p className="mt-6 flex items-start gap-2.5 text-sm text-neutral-700">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.5} aria-hidden />
               <span>Post, Texas</span>
