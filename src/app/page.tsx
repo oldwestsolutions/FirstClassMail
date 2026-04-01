@@ -36,7 +36,6 @@ function IsoBlock({ className, delay = 0 }: { className: string; delay?: number 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [headerHidden, setHeaderHidden] = useState(false)
-  const [activeJourney, setActiveJourney] = useState<number | null>(null)
   const lastScrollY = useRef(0)
   const ticking = useRef(false)
 
@@ -67,25 +66,6 @@ export default function HomePage() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const journey = [
-    {
-      title: 'Encrypted transmission',
-      text: 'Every message is protected with modern encryption in transit and at rest, so content is not exposed to eavesdropping or casual interception.',
-    },
-    {
-      title: 'Verified sourcing',
-      text: 'Connections are built on verified identity and intent—you reach exactly who you are looking for, with authenticity you can rely on.',
-    },
-    {
-      title: 'Third-party management',
-      text: 'FirstClassMail.xyz acts as a professional intermediary: threads are handled through a neutral, controlled channel instead of leaking personal contact paths.',
-    },
-    {
-      title: 'Private delivery',
-      text: 'Recipients receive communications without unnecessary exposure of personal details, reducing doxxing risk and keeping your footprint minimal.',
-    },
-  ]
-
   const pillars = [
     {
       accent: 'bg-rgb-red',
@@ -115,19 +95,19 @@ export default function HomePage() {
       step: 'Step 1',
       title: 'Users',
       illustration: 'users',
-      body: 'Senders and recipients use the client portal or API over TLS. Payloads are encrypted for transit so browsers, Wi‑Fi, and intermediaries along the path cannot read message content in the clear.',
+      body: 'Users send and receive through the client portal or API over TLS. Payloads stay encrypted in transit.',
     },
     {
       step: 'Step 2',
       title: 'FirstClassMail.xyz',
       illustration: 'platform',
-      body: 'Our servers terminate secure sessions, authenticate accounts, apply verified-sourcing rules, and queue routing. We sit in the middle as the controlled intermediary—threads and addresses are not sold to data brokers.',
+      body: 'Our servers terminate secure sessions, verify identity rules, and route traffic as a controlled intermediary.',
     },
     {
       step: 'Step 3',
       title: 'Business office mail',
       illustration: 'office',
-      body: 'Outbound delivery connects to the recipient organization’s mail infrastructure—their office mail server or an approved endpoint—over encrypted channels, so staff receive messages inside their normal environment without exposing personal contact paths to public lists.',
+      body: 'Outbound delivery reaches the business office server over encrypted channels, without exposing personal paths.',
     },
   ] as const
 
@@ -337,55 +317,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section
-        id="journey"
-        className="relative border-b border-neutral-200 bg-white"
-        aria-labelledby="journey-heading"
-      >
-        <div className="flex min-h-[100svh] flex-col justify-center py-20 md:py-28">
-          <div className="shell">
-            <div className="mx-auto max-w-3xl text-center">
-              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">The Journey</p>
-              <h2
-                id="journey-heading"
-                className="mt-5 font-serif text-[clamp(1.75rem,4vw,3rem)] font-medium leading-[1.15] text-neutral-900"
-              >
-                From encryption to verified delivery—in four steps.
-              </h2>
-              <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
-                Each stage exists to keep communication private, authentic, and professionally managed—from the first encrypted
-                byte to confirmed receipt—without exposing you to unnecessary risk.
-              </p>
-            </div>
-
-            <div className="mx-auto mt-16 grid max-w-7xl grid-cols-1 items-stretch gap-6 sm:grid-cols-2 sm:gap-8 xl:grid-cols-4 xl:gap-6">
-              {journey.map((step, i) => (
-                <motion.article
-                  key={step.title}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.45, delay: i * 0.08 }}
-                  className="flex h-full min-h-[280px] flex-col rounded-3xl border border-neutral-200 bg-neutral-50 p-8 text-center shadow-sm lg:min-h-[300px] lg:p-9"
-                >
-                  <div className="flex min-h-[124px] w-full shrink-0 items-start justify-center">
-                    <PortalMockMini preset={`journey-${i + 1}`} />
-                  </div>
-                  <h3 className="mt-6 shrink-0 font-serif text-xl text-neutral-900 md:text-2xl">{step.title}</h3>
-                  <button
-                    type="button"
-                    onClick={() => setActiveJourney(i)}
-                    className="mt-5 inline-flex items-center justify-center rounded-full border border-neutral-200 px-4 py-2 text-xs font-medium uppercase tracking-[0.15em] text-neutral-600 transition hover:border-neutral-400 hover:text-neutral-900"
-                  >
-                    View details
-                  </button>
-                </motion.article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="practice" className="border-b border-neutral-200 bg-neutral-50" aria-labelledby="practice-heading">
         <div className="flex min-h-[100svh] flex-col justify-center py-20 md:py-28">
           <div className="shell">
@@ -434,7 +365,7 @@ export default function HomePage() {
                   client, FirstClassMail.xyz, and the business office’s own mail server—each step encrypted and governed by policy.
                 </p>
               </div>
-              <div className="mt-14 flex flex-col items-stretch gap-10 lg:flex-row lg:items-stretch lg:justify-center lg:gap-4">
+              <div className="mt-14 flex flex-col items-stretch gap-8 lg:flex-row lg:items-stretch lg:justify-center lg:gap-4">
                 {mailPath.map((segment, i) => (
                   <Fragment key={segment.title}>
                     <motion.div
@@ -449,7 +380,7 @@ export default function HomePage() {
                       </div>
                       <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500">{segment.step}</p>
                       <h4 className="mt-3 font-serif text-xl font-medium text-neutral-900 md:text-2xl">{segment.title}</h4>
-                      <p className="mt-4 text-sm leading-[1.75] text-neutral-600">{segment.body}</p>
+                      <p className="mt-4 min-h-[84px] text-sm leading-[1.65] text-neutral-600">{segment.body}</p>
                     </motion.div>
                     {i < mailPath.length - 1 && (
                       <div className="flex shrink-0 items-center justify-center py-0 lg:w-10 lg:py-0" aria-hidden>
@@ -515,44 +446,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      <AnimatePresence>
-        {activeJourney !== null && (
-          <>
-            <motion.button
-              type="button"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[70] bg-neutral-900/40"
-              onClick={() => setActiveJourney(null)}
-              aria-label="Close details modal"
-            />
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 12 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-x-4 top-1/2 z-[80] mx-auto w-full max-w-2xl -translate-y-1/2 rounded-3xl border border-neutral-200 bg-white p-7 shadow-2xl md:p-9"
-              role="dialog"
-              aria-modal="true"
-            >
-              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-neutral-500">The Journey</p>
-              <h3 className="mt-3 font-serif text-2xl text-neutral-900 md:text-3xl">{journey[activeJourney].title}</h3>
-              <p className="mt-5 text-sm leading-[1.85] text-neutral-600 md:text-base">{journey[activeJourney].text}</p>
-              <div className="mt-8 flex justify-end">
-                <button
-                  type="button"
-                  onClick={() => setActiveJourney(null)}
-                  className="rounded-full border border-neutral-200 px-5 py-2 text-sm text-neutral-700 transition hover:border-neutral-400 hover:text-neutral-900"
-                >
-                  Close
-                </button>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
 
       <MarketingFooter />
     </div>
