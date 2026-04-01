@@ -250,7 +250,7 @@ export default function HomePage() {
                     href="/journey"
                     className="text-center text-sm text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline sm:text-left"
                   >
-                    Mail Protocol
+                    Maessaging Protocol
                   </Link>
                 </div>
               </div>
@@ -441,7 +441,7 @@ export default function HomePage() {
                 href="/correspondence"
                 className="rounded-full px-6 py-3 text-sm text-neutral-600 transition hover:bg-neutral-100 hover:text-neutral-900"
               >
-                Correspondence overview
+                Correspondence
               </Link>
             </div>
           </div>

@@ -108,6 +108,11 @@ export function MarketingFooter() {
                 <span className="text-neutral-400">Careers — soon</span>
               </li>
               <li>
+                  <Link href="/legal" className="transition hover:text-neutral-900">
+                    Legal
+                  </Link>
+                </li>
+                <li>
                 <Link href="/#contact" className="transition hover:text-neutral-900">
                   Contact
                 </Link>
@@ -116,16 +121,16 @@ export function MarketingFooter() {
           </div>
 
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Legal</p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Solutions</p>
             <ul className="mt-5 space-y-3 text-sm text-neutral-600">
               <li>
-                <span className="text-neutral-400">Privacy policy — soon</span>
+                  <span className="text-neutral-400">Enterprise onboarding — soon</span>
               </li>
               <li>
-                <span className="text-neutral-400">Terms of service — soon</span>
+                  <span className="text-neutral-400">Industry templates — soon</span>
               </li>
               <li>
-                <span className="text-neutral-400">Cookie policy — soon</span>
+                  <span className="text-neutral-400">Dedicated support plans — soon</span>
               </li>
             </ul>
           </div>
