@@ -1,7 +1,7 @@
 {
   "name": "firstclassmail",
   "version": "1.0.1",
-  "description": "Virtual mailboxes, mail exchange servers, and web forms platform",
+  "description": "SaaS inbound mail: webforms, lead routing, marketing email buffering, and delivery",
   "private": true,
   "scripts": {
     "dev": "next dev",
