@@ -3,15 +3,16 @@
 import Link from 'next/link'
 import { Fragment } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, ChevronRight, FileInput, Warehouse, Send, User, Server, Building2 } from 'lucide-react'
+import { ArrowRight, ChevronRight } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
 import { MarketingFooter } from '@/components/marketing/MarketingFooter'
+import { PathIllustration, PillarIllustration } from '@/components/PracticeIllustrations'
 
 const pillars = [
   {
     accent: 'bg-rgb-red',
     border: 'border-l-rgb-red',
-    icon: FileInput,
+    illustration: 'encrypted',
     title: 'Encrypted message transmission',
     body: 'All communication is securely encrypted end to end across our infrastructure, so conversations stay confidential and protected from unauthorized access.',
     extended:
@@ -20,7 +21,7 @@ const pillars = [
   {
     accent: 'bg-rgb-green',
     border: 'border-l-rgb-green',
-    icon: Warehouse,
+    illustration: 'verified',
     title: 'Verified sourcing',
     body: 'Users connect with confidence: identities are verified so you know you are speaking with the intended party—not an impersonator or wrong contact.',
     extended:
@@ -29,7 +30,7 @@ const pillars = [
   {
     accent: 'bg-rgb-blue',
     border: 'border-l-rgb-blue',
-    icon: Send,
+    illustration: 'privacy',
     title: 'Privacy and simplicity',
     body: 'No doxxing-by-default, no selling of email addresses or message data to brokers. A professional third party manages communications so you stay in control.',
     extended:
@@ -40,17 +41,17 @@ const pillars = [
 const mailPath = [
   {
     title: 'Users',
-    icon: User,
+    illustration: 'users',
     body: 'Senders and recipients use the client portal or API over TLS. Payloads are encrypted for transit so browsers, Wi‑Fi, and intermediaries along the path cannot read message content in the clear.',
   },
   {
     title: 'FirstClassMail.xyz',
-    icon: Server,
+    illustration: 'platform',
     body: 'Our servers terminate secure sessions, authenticate accounts, apply verified-sourcing rules, and queue routing. We sit in the middle as the controlled intermediary—threads and addresses are not sold to data brokers.',
   },
   {
     title: 'Business office mail',
-    icon: Building2,
+    illustration: 'office',
     body: 'Outbound delivery connects to the recipient organization’s mail infrastructure—their office mail server or an approved endpoint—over encrypted channels, so staff receive messages inside their normal environment without exposing personal contact paths to public lists.',
   },
 ] as const
@@ -83,7 +84,7 @@ export default function PracticePage() {
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:col-span-6">
                 {pillars.map((p) => (
                   <div key={p.title} className={`rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm ${p.border} border-l-[4px]`}>
-                    <p.icon className="h-5 w-5 text-neutral-900" strokeWidth={1.25} />
+                    <PillarIllustration variant={p.illustration} />
                     <p className="mt-4 font-serif text-base text-neutral-900">{p.title}</p>
                   </div>
                 ))}
@@ -113,8 +114,8 @@ export default function PracticePage() {
                 >
                   <div className={`h-1.5 w-full ${p.accent}`} aria-hidden />
                   <div className="flex flex-1 flex-col p-8 md:p-10">
-                    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-neutral-200 bg-white">
-                      <p.icon className="h-6 w-6 text-neutral-900" strokeWidth={1.25} />
+                    <div className="mx-auto">
+                      <PillarIllustration variant={p.illustration} />
                     </div>
                     <h3 className="mt-8 text-center font-serif text-xl text-neutral-900 md:text-2xl">{p.title}</h3>
                     <p className="mt-5 text-center text-sm leading-[1.85] text-neutral-700">{p.body}</p>
@@ -149,8 +150,8 @@ export default function PracticePage() {
                     transition={{ delay: i * 0.06 }}
                     className="flex w-full flex-1 flex-col rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm md:p-9 lg:min-w-0 lg:max-w-md lg:text-left"
                   >
-                    <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-neutral-100 lg:mx-0">
-                      <segment.icon className="h-5 w-5 text-neutral-700" strokeWidth={1.25} />
+                    <div className="mx-auto shrink-0 lg:mx-0">
+                      <PathIllustration variant={segment.illustration} />
                     </div>
                     <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500">Segment {i + 1}</p>
                     <h3 className="mt-3 font-serif text-xl font-medium text-neutral-900 md:text-2xl">{segment.title}</h3>
