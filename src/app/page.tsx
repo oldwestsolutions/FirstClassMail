@@ -15,8 +15,11 @@ import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 import { PathIllustration } from '@/components/PracticeIllustrations'
 
 /** Smooth luxury-style easing (slow-out) */
-const luxeIn = [0.16, 1, 0.3, 1] as const
-const luxeOut = [0.4, 0, 0.2, 1] as const
+const luxeOut = [0.45, 0, 0.2, 1] as const
+
+/** Gentle spring — avoids abrupt “snap” vs stiff tweens */
+const overlaySpring = { type: 'spring' as const, stiffness: 220, damping: 34, mass: 0.85 }
+const overlayExit = { duration: 0.32, ease: luxeOut }
 
 function IllustrationHoverCard({
   title,
@@ -38,49 +41,30 @@ function IllustrationHoverCard({
 
   const overlay = (
     <motion.div
-      className="absolute inset-0 z-20 flex flex-col items-center justify-center overflow-hidden p-3 sm:p-4"
+      className={`absolute inset-0 z-20 flex flex-col items-center justify-center overflow-hidden p-3 sm:p-4 ${isActive ? 'pointer-events-auto' : 'pointer-events-none'}`}
       initial={false}
-      animate={
-        isActive
-          ? { opacity: 1, pointerEvents: 'auto' }
-          : { opacity: 0, pointerEvents: 'none' }
-      }
-      transition={{
-        opacity: {
-          duration: isActive ? 0.52 : 0.36,
-          delay: isActive ? 0 : 0.06,
-          ease: isActive ? luxeIn : luxeOut,
-        },
-      }}
+      animate={{ opacity: isActive ? 1 : 0 }}
+      transition={isActive ? overlaySpring : overlayExit}
+      style={{ willChange: 'opacity' }}
       aria-hidden={!isActive}
     >
       <motion.div
         aria-hidden
         className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/78 to-neutral-100/40 backdrop-blur-[8px]"
         initial={false}
-        animate={isActive ? { opacity: 1 } : { opacity: 0 }}
-        transition={{
-          duration: isActive ? 0.5 : 0.32,
-          delay: isActive ? 0 : 0.1,
-          ease: isActive ? luxeIn : luxeOut,
-        }}
+        animate={{ opacity: isActive ? 1 : 0 }}
+        transition={isActive ? overlaySpring : overlayExit}
       />
       <motion.div
-        className="pointer-events-auto relative z-10 max-h-[88%] w-full max-w-[17rem] overflow-y-auto rounded-xl border border-neutral-200/80 bg-white/98 p-4 text-left shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12),0_4px_16px_-4px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.05] sm:max-w-none sm:p-5"
+        className="relative z-10 max-h-[88%] w-full max-w-[17rem] overflow-y-auto rounded-xl border border-neutral-200/80 bg-white/98 p-4 text-left shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12),0_4px_16px_-4px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.05] sm:max-w-none sm:p-5"
         initial={false}
         animate={
           isActive
             ? { opacity: 1, y: 0, scale: 1 }
-            : { opacity: 0, y: 20, scale: 0.94 }
+            : { opacity: 0, y: 10, scale: 0.985 }
         }
-        transition={{
-          duration: isActive ? 0.62 : 0.36,
-          delay: isActive ? 0.08 : 0,
-          ease: isActive ? luxeIn : luxeOut,
-          opacity: { duration: isActive ? 0.58 : 0.32, ease: isActive ? luxeIn : luxeOut },
-          y: { duration: isActive ? 0.62 : 0.36, ease: isActive ? luxeIn : luxeOut },
-          scale: { duration: isActive ? 0.62 : 0.38, ease: isActive ? luxeIn : luxeOut },
-        }}
+        transition={isActive ? overlaySpring : { opacity: overlayExit, y: overlayExit, scale: overlayExit }}
+        style={{ willChange: 'transform, opacity' }}
       >
         <p className="text-[0.8125rem] leading-relaxed text-neutral-700 sm:text-sm">{body}</p>
       </motion.div>
@@ -102,8 +86,13 @@ function IllustrationHoverCard({
           <motion.div
             aria-hidden
             className="will-change-transform"
-            animate={{ y: [0, -5, 0] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+            initial={false}
+            animate={isActive ? { y: 0 } : { y: [0, -4, 0] }}
+            transition={
+              isActive
+                ? { y: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } }
+                : { y: { duration: 6, repeat: Infinity, ease: 'easeInOut' } }
+            }
           >
             <PortalMockMini preset={preset} compactHeader />
           </motion.div>
@@ -124,8 +113,8 @@ function IllustrationHoverCard({
           tabIndex={0}
           aria-describedby={`card-desc-${slug}`}
           aria-expanded={isActive}
-          className={`relative flex flex-col items-center bg-gradient-to-b from-white to-neutral-50/40 px-5 py-5 text-center transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 sm:px-6 sm:py-6 ${
-            isActive ? 'to-neutral-50/80' : ''
+          className={`relative flex flex-col items-center bg-gradient-to-b from-white px-5 py-5 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 sm:px-6 sm:py-6 ${
+            isActive ? 'to-neutral-50/80' : 'to-neutral-50/40'
           }`}
         >
           {inner}
