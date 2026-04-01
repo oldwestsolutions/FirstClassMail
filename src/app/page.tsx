@@ -483,13 +483,20 @@ export default function HomePage() {
                     transition={{ delay: i * 0.06 }}
                     className="flex h-full justify-center"
                   >
-                    <TiltCard className="flex h-full min-h-[280px] w-full max-w-md flex-col p-8 text-center md:p-10">
-                      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-neutral-100">
-                        <step.icon className="h-5 w-5 text-neutral-700" strokeWidth={1.25} />
+                    <TiltCard className="flex h-full min-h-[300px] w-full max-w-md">
+                      <div className="flex h-full flex-col p-8 text-center md:p-10">
+                        <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-neutral-100">
+                          <step.icon className="h-5 w-5 text-neutral-700" strokeWidth={1.25} />
+                        </div>
+                        <div className="mt-6 flex flex-1 flex-col items-center">
+                          <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500">{step.station}</p>
+                          <div className="mt-4 h-px w-10 bg-neutral-200" aria-hidden />
+                          <h4 className="mt-4 font-serif text-2xl font-medium tracking-tight text-neutral-900">{step.title}</h4>
+                          <p className="mt-4 max-w-[280px] text-pretty text-sm leading-[1.75] text-neutral-600 sm:max-w-none">
+                            {step.sub}
+                          </p>
+                        </div>
                       </div>
-                      <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500">{step.station}</p>
-                      <h4 className="mt-3 font-serif text-xl text-neutral-900">{step.title}</h4>
-                      <p className="mt-4 text-sm leading-relaxed text-neutral-600">{step.sub}</p>
                     </TiltCard>
                   </motion.div>
                 ))}
