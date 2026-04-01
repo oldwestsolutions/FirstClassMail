@@ -14,6 +14,10 @@ import { PortalMockMini, PortalProductDemo } from '@/components/PortalMock'
 import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 import { PathIllustration } from '@/components/PracticeIllustrations'
 
+/** Smooth luxury-style easing (slow-out) */
+const luxeIn = [0.16, 1, 0.3, 1] as const
+const luxeOut = [0.4, 0, 0.2, 1] as const
+
 function IllustrationHoverCard({
   title,
   body,
@@ -33,17 +37,54 @@ function IllustrationHoverCard({
   const slug = `${preset}-${title}`.replace(/\s+/g, '-').toLowerCase()
 
   const overlay = (
-    <div
-      className={`absolute inset-0 z-20 flex flex-col items-center justify-center p-3 transition-opacity duration-300 ease-out sm:p-4 ${
-        isActive ? 'opacity-100' : 'pointer-events-none invisible opacity-0'
-      }`}
+    <motion.div
+      className="absolute inset-0 z-20 flex flex-col items-center justify-center overflow-hidden p-3 sm:p-4"
+      initial={false}
+      animate={
+        isActive
+          ? { opacity: 1, pointerEvents: 'auto' }
+          : { opacity: 0, pointerEvents: 'none' }
+      }
+      transition={{
+        opacity: {
+          duration: isActive ? 0.52 : 0.36,
+          delay: isActive ? 0 : 0.06,
+          ease: isActive ? luxeIn : luxeOut,
+        },
+      }}
       aria-hidden={!isActive}
     >
-      <div className="absolute inset-0 bg-white/80 backdrop-blur-[4px]" aria-hidden />
-      <div className="pointer-events-auto relative z-10 max-h-[88%] w-full max-w-[17rem] overflow-y-auto rounded-xl border border-neutral-200/90 bg-white p-4 text-left shadow-lg ring-1 ring-black/[0.06] sm:max-w-none sm:p-5">
+      <motion.div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/78 to-neutral-100/40 backdrop-blur-[8px]"
+        initial={false}
+        animate={isActive ? { opacity: 1 } : { opacity: 0 }}
+        transition={{
+          duration: isActive ? 0.5 : 0.32,
+          delay: isActive ? 0 : 0.1,
+          ease: isActive ? luxeIn : luxeOut,
+        }}
+      />
+      <motion.div
+        className="pointer-events-auto relative z-10 max-h-[88%] w-full max-w-[17rem] overflow-y-auto rounded-xl border border-neutral-200/80 bg-white/98 p-4 text-left shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12),0_4px_16px_-4px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.05] sm:max-w-none sm:p-5"
+        initial={false}
+        animate={
+          isActive
+            ? { opacity: 1, y: 0, scale: 1 }
+            : { opacity: 0, y: 20, scale: 0.94 }
+        }
+        transition={{
+          duration: isActive ? 0.62 : 0.36,
+          delay: isActive ? 0.08 : 0,
+          ease: isActive ? luxeIn : luxeOut,
+          opacity: { duration: isActive ? 0.58 : 0.32, ease: isActive ? luxeIn : luxeOut },
+          y: { duration: isActive ? 0.62 : 0.36, ease: isActive ? luxeIn : luxeOut },
+          scale: { duration: isActive ? 0.62 : 0.38, ease: isActive ? luxeIn : luxeOut },
+        }}
+      >
         <p className="text-[0.8125rem] leading-relaxed text-neutral-700 sm:text-sm">{body}</p>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 
   const inner = (
