@@ -31,11 +31,6 @@ export function MarketingFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/zero-knowledge-proofs" className="transition hover:text-neutral-900">
-                  Zero Knowledge
-                </Link>
-              </li>
-              <li>
                 <Link href="/fully-homomorphic-encryption" className="transition hover:text-neutral-900">
                   Encryption
                 </Link>
@@ -44,8 +39,13 @@ export function MarketingFooter() {
           </div>
 
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Product</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Products</p>
             <ul className="mt-5 space-y-3 text-sm text-neutral-600">
+              <li>
+                <Link href="/zero-knowledge-proofs" className="transition hover:text-neutral-900">
+                  Zero Knowledge
+                </Link>
+              </li>
               <li>
                 <Link href="/calendar" className="transition hover:text-neutral-900">
                   Calendar
