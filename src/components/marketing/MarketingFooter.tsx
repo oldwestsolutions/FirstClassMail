@@ -31,13 +31,13 @@ export function MarketingFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/fully-homomorphic-encryption" className="transition hover:text-neutral-900">
-                  Homomorphic Encryption
+                <Link href="/zero-knowledge-proofs" className="transition hover:text-neutral-900">
+                  Zero Knowledge
                 </Link>
               </li>
               <li>
-                <Link href="/zero-knowledge-proofs" className="transition hover:text-neutral-900">
-                  Zero Knowledge
+                <Link href="/fully-homomorphic-encryption" className="transition hover:text-neutral-900">
+                  Encryption
                 </Link>
               </li>
             </ul>
