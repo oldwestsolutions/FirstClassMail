@@ -17,7 +17,14 @@ const shell =
   'overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 shadow-sm'
 
 /** Smaller mock-ups for Correspondence / Journey cards — same chrome as product preview */
-export function PortalMockMini({ preset }: { preset: string }) {
+export function PortalMockMini({
+  preset,
+  compactHeader,
+}: {
+  preset: string
+  /** When true, header shows "Preview" instead of repeating the product name (use with card title above). */
+  compactHeader?: boolean
+}) {
   const base = `${shell} w-full max-w-[248px] text-left`
 
   switch (preset) {
@@ -91,7 +98,7 @@ export function PortalMockMini({ preset }: { preset: string }) {
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <FileText className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
-              Forms
+              {compactHeader ? <span className="text-neutral-400">Preview</span> : 'Forms'}
             </span>
             <span className="shrink-0 rounded bg-emerald-50 px-1.5 py-0.5 font-mono text-[7px] text-emerald-800">TLS</span>
           </div>
@@ -111,7 +118,9 @@ export function PortalMockMini({ preset }: { preset: string }) {
       return (
         <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
-            <span className="font-mono text-[8px] font-medium tracking-wide text-neutral-600">eDocuments</span>
+            <span className="font-mono text-[8px] font-medium tracking-wide text-neutral-600">
+              {compactHeader ? <span className="font-mono text-[7px] uppercase tracking-widest text-neutral-400">Preview</span> : 'eDocuments'}
+            </span>
             <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">PDF</span>
           </div>
           <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
@@ -134,7 +143,7 @@ export function PortalMockMini({ preset }: { preset: string }) {
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <Mail className="h-3 w-3 shrink-0 text-neutral-700" strokeWidth={1.25} />
-              Stamps
+              {compactHeader ? <span className="text-neutral-400">Preview</span> : 'Stamps'}
             </span>
             <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">Out</span>
           </div>
@@ -153,7 +162,7 @@ export function PortalMockMini({ preset }: { preset: string }) {
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <Inbox className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
-              Mailbox
+              {compactHeader ? <span className="text-neutral-400">Preview</span> : 'Mailbox'}
             </span>
             <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">Inbox</span>
           </div>
@@ -175,7 +184,7 @@ export function PortalMockMini({ preset }: { preset: string }) {
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <Wallet className="h-3 w-3 shrink-0 text-neutral-700" strokeWidth={1.25} />
-              Wallet
+              {compactHeader ? <span className="text-neutral-400">Preview</span> : 'Wallet'}
             </span>
             <span className="shrink-0 rounded bg-emerald-50 px-1.5 py-0.5 font-mono text-[7px] text-emerald-800">USDC</span>
           </div>
@@ -194,7 +203,7 @@ export function PortalMockMini({ preset }: { preset: string }) {
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <CalendarClock className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
-              Calendar
+              {compactHeader ? <span className="text-neutral-400">Preview</span> : 'Calendar'}
             </span>
             <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">Week</span>
           </div>

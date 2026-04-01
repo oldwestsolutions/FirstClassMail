@@ -20,30 +20,29 @@ function IllustrationHoverCard({
   preset,
   mode = 'simple',
   pillar,
-  expanded,
+  isActive,
 }: {
   title: string
   body: string
   preset: string
   mode?: 'simple' | 'pillar'
   pillar?: { border: string; bar: string }
-  /** When set, description open state is controlled (exclusive Practice pillars). */
-  expanded?: boolean
+  /** Overlay visible; parent grid ensures one card active at a time. */
+  isActive: boolean
 }) {
   const slug = `${preset}-${title}`.replace(/\s+/g, '-').toLowerCase()
-  const controlled = expanded !== undefined
 
-  const descriptionEl = (
+  const overlay = (
     <div
-      className={
-        controlled
-          ? `w-full overflow-hidden text-left transition-[max-height,opacity,padding] duration-300 ease-out sm:text-center ${
-              expanded ? 'max-h-[14rem] opacity-100 pt-4' : 'max-h-0 opacity-0'
-            }`
-          : 'max-h-0 w-full overflow-hidden opacity-0 transition-[max-height,opacity,padding] duration-300 ease-out [@media(hover:hover)]:group-hover:max-h-[14rem] [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-hover:pt-4 group-focus-visible:max-h-[14rem] group-focus-visible:opacity-100 group-focus-visible:pt-4 sm:text-center'
-      }
+      className={`absolute inset-0 z-20 flex flex-col items-center justify-center p-4 transition-opacity duration-300 ease-out sm:p-5 ${
+        isActive ? 'opacity-100' : 'pointer-events-none invisible opacity-0'
+      }`}
+      aria-hidden={!isActive}
     >
-      <p className="text-[0.8125rem] leading-relaxed text-neutral-600 sm:text-sm">{body}</p>
+      <div className="absolute inset-0 bg-white/80 backdrop-blur-[4px]" aria-hidden />
+      <div className="pointer-events-auto relative z-10 max-h-[88%] w-full max-w-[17rem] overflow-y-auto rounded-xl border border-neutral-200/90 bg-white p-4 text-left shadow-lg ring-1 ring-black/[0.06] sm:max-w-none sm:p-5">
+        <p className="text-[0.8125rem] leading-relaxed text-neutral-700 sm:text-sm">{body}</p>
+      </div>
     </div>
   )
 
@@ -52,22 +51,24 @@ function IllustrationHoverCard({
       <p id={`card-desc-${slug}`} className="sr-only">
         {body}
       </p>
-      <div className="relative z-10 w-full shrink-0 px-0.5 pb-1 text-center">
-        <h3 className="mx-auto max-w-[20ch] font-serif text-[1.25rem] font-medium leading-snug tracking-[-0.02em] text-neutral-900 sm:text-[1.375rem]">
-          {title}
-        </h3>
+      <div className="relative z-0 flex w-full flex-1 flex-col items-center">
+        <div className="w-full shrink-0 px-0.5 pb-1 text-center">
+          <h3 className="mx-auto max-w-[20ch] font-serif text-[1.25rem] font-medium leading-snug tracking-[-0.02em] text-neutral-900 sm:text-[1.375rem]">
+            {title}
+          </h3>
+        </div>
+        <div className="relative mx-auto mt-5 w-full max-w-[248px] shrink-0">
+          <motion.div
+            aria-hidden
+            className="will-change-transform"
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <PortalMockMini preset={preset} compactHeader />
+          </motion.div>
+        </div>
       </div>
-      <div className="relative mx-auto mt-5 w-full max-w-[248px] shrink-0">
-        <motion.div
-          aria-hidden
-          className="will-change-transform"
-          animate={{ y: [0, -5, 0] }}
-          transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <PortalMockMini preset={preset} />
-        </motion.div>
-      </div>
-      <div className="relative z-10 mt-5 flex w-full min-h-0 flex-col items-stretch px-0.5">{descriptionEl}</div>
+      {overlay}
     </>
   )
 
@@ -81,10 +82,10 @@ function IllustrationHoverCard({
           role="group"
           tabIndex={0}
           aria-describedby={`card-desc-${slug}`}
-          aria-expanded={controlled ? expanded : undefined}
-          className={`relative flex flex-1 flex-col items-center bg-gradient-to-b from-white to-neutral-50/40 p-7 text-center transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 md:p-9 ${
-            controlled && expanded ? 'to-neutral-50/75' : ''
-          } [@media(hover:hover)]:hover:to-neutral-50/80`}
+          aria-expanded={isActive}
+          className={`relative flex min-h-[300px] flex-1 flex-col items-center bg-gradient-to-b from-white to-neutral-50/40 p-7 text-center transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 md:min-h-[320px] md:p-9 ${
+            isActive ? 'to-neutral-50/80' : ''
+          }`}
         >
           {inner}
         </div>
@@ -97,7 +98,8 @@ function IllustrationHoverCard({
       role="group"
       tabIndex={0}
       aria-describedby={`card-desc-${slug}`}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-neutral-200/90 bg-gradient-to-b from-white to-neutral-50/30 p-7 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_28px_-10px_rgba(0,0,0,0.07)] transition-[border-color,box-shadow,background-color] duration-300 [@media(hover:hover)]:hover:border-neutral-300/90 [@media(hover:hover)]:hover:to-neutral-50/60 [@media(hover:hover)]:hover:shadow-[0_4px_32px_-12px_rgba(0,0,0,0.1)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 md:p-8"
+      aria-expanded={isActive}
+      className="relative flex min-h-[300px] flex-col overflow-hidden rounded-2xl border border-neutral-200/90 bg-gradient-to-b from-white to-neutral-50/30 p-7 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_28px_-10px_rgba(0,0,0,0.07)] transition-[border-color,box-shadow] duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 md:min-h-[320px] md:p-8 [@media(hover:hover)]:hover:border-neutral-300/90 [@media(hover:hover)]:hover:shadow-[0_4px_32px_-12px_rgba(0,0,0,0.1)]"
     >
       {inner}
     </div>
@@ -128,7 +130,9 @@ export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [headerHidden, setHeaderHidden] = useState(false)
   const [openPillarTitle, setOpenPillarTitle] = useState<string | null>(null)
+  const [openCorrespondencePreset, setOpenCorrespondencePreset] = useState<string | null>(null)
   const pillarGridRef = useRef<HTMLDivElement>(null)
+  const correspondenceGridRef = useRef<HTMLDivElement>(null)
   const lastScrollY = useRef(0)
   const ticking = useRef(false)
 
@@ -137,6 +141,14 @@ export default function HomePage() {
       const active = document.activeElement
       if (pillarGridRef.current?.contains(active)) return
       setOpenPillarTitle(null)
+    })
+  }
+
+  const clearCorrespondenceIfFocusLeft = () => {
+    requestAnimationFrame(() => {
+      const active = document.activeElement
+      if (correspondenceGridRef.current?.contains(active)) return
+      setOpenCorrespondencePreset(null)
     })
   }
 
@@ -382,7 +394,11 @@ export default function HomePage() {
                 communications—so you can focus on the conversation, not on exposure or resale.
               </p>
             </div>
-            <div className="col-span-12 mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-8 lg:grid-cols-3 lg:gap-6">
+            <div
+              ref={correspondenceGridRef}
+              className="col-span-12 mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-8 lg:grid-cols-3 lg:gap-6"
+              onMouseLeave={() => setOpenCorrespondencePreset(null)}
+            >
               {(
                 [
                   [
@@ -408,8 +424,16 @@ export default function HomePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.06 }}
+                  onMouseEnter={() => setOpenCorrespondencePreset(preset)}
+                  onFocusCapture={() => setOpenCorrespondencePreset(preset)}
+                  onBlurCapture={clearCorrespondenceIfFocusLeft}
                 >
-                  <IllustrationHoverCard title={title} body={body} preset={preset} />
+                  <IllustrationHoverCard
+                    title={title}
+                    body={body}
+                    preset={preset}
+                    isActive={openCorrespondencePreset === preset}
+                  />
                 </motion.div>
               ))}
             </div>
@@ -456,7 +480,7 @@ export default function HomePage() {
                     body={p.body}
                     preset={p.illustration}
                     pillar={{ border: p.border, bar: p.accent }}
-                    expanded={openPillarTitle === p.title}
+                    isActive={openPillarTitle === p.title}
                   />
                 </motion.div>
               ))}
