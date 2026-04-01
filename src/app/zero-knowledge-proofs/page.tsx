@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, EyeOff, UserCheck, Shield } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
 
-export default function ZkPage() {
+export default function ZeroKnowledgeProofsPage() {
   return (
     <div className="min-h-screen bg-white text-neutral-600">
       <MarketingHeader />
@@ -16,13 +16,13 @@ export default function ZkPage() {
             <div className="mx-auto max-w-3xl">
               <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Platform</p>
               <h1 className="mt-5 font-serif text-4xl font-medium leading-[1.1] text-neutral-900 md:text-5xl lg:text-[3.15rem]">
-                Zero Knowledge Systems
+                Zero Knowledge Proofs
               </h1>
               <p className="mt-8 text-lg leading-relaxed text-neutral-600">
-                Zero-knowledge (ZK) systems let one party prove to another that a statement is true—without conveying anything
-                beyond the validity of that statement. In professional mail, that maps cleanly to verified sourcing: demonstrate
-                eligibility, membership, or policy compliance while revealing only what the conversation truly requires. ZK is the
-                mathematical backbone of selective disclosure and modern identity workflows.
+                A zero-knowledge proof is a cryptographic object: a prover convinces a verifier that a statement holds—without
+                transmitting the witness that makes it true. For professional mail, proofs replace raw credential dumps with
+                attestations: “this sender is in good standing,” “this thread satisfies policy,” or “this party is the intended
+                recipient”—each check backed by a proof obligation, not by exposing full identity graphs or message bodies.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link href="/security" className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
@@ -46,18 +46,18 @@ export default function ZkPage() {
               {[
                 {
                   icon: EyeOff,
-                  title: 'Minimal leakage',
-                  body: 'Proofs can attest “this sender is authorized” or “this thread meets policy” without broadcasting raw credentials or full message content.',
+                  title: 'Statement, not payload',
+                  body: 'Proofs carry validity of a claim—authorization, policy match, membership—while leaving plaintext and unnecessary attributes out of the transcript.',
                 },
                 {
                   icon: UserCheck,
                   title: 'Verified sourcing',
-                  body: 'ZK-style credentials align with proving relationships and intent—core to reducing impersonation without oversharing contact graphs.',
+                  body: 'Eligibility and relationship proofs support verified sourcing: show you may open a thread or reach an office without publishing how the graph was built.',
                 },
                 {
                   icon: Shield,
-                  title: 'Composable trust',
-                  body: 'Recursive and aggregated proofs let organizations layer checks (jurisdiction, role, matter) without multiplying plaintext exposure.',
+                  title: 'Composable proofs',
+                  body: 'Proofs can be batched or chained so organizations stack checks (role, jurisdiction, matter) with bounded leakage and clearer audit semantics.',
                 },
               ].map((item, i) => (
                 <motion.article
@@ -81,9 +81,9 @@ export default function ZkPage() {
           <div className="shell">
             <div className="mx-auto max-w-2xl text-center">
               <p className="text-sm leading-relaxed text-neutral-600">
-                ZK rollouts hinge on circuit design, trusted setup or transparent alternatives, and latency budgets. FirstClassMail
-                treats these as roadmap decisions alongside encryption in transit and intermediary governance—not as a substitute
-                for them.
+                Deploying ZK proofs in production depends on proof system choice, circuit design, trusted setup or transparent
+                alternatives, and verifier latency. FirstClassMail treats these as engineering and governance decisions alongside TLS,
+                intermediary policy, and retention—not as a replacement for them.
               </p>
               <Link href="/fully-homomorphic-encryption" className="mt-8 inline-block text-sm font-medium text-neutral-900 underline-offset-4 hover:underline">
                 Related: Fully Homomorphic Encryption

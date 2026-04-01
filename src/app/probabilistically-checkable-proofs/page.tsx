@@ -84,8 +84,8 @@ export default function PcpPage() {
                 This page orients teams on cryptographic building blocks. Roadmaps evolve with research and deployment constraints;
                 consult your security and compliance stakeholders before relying on any single proof system in production.
               </p>
-              <Link href="/zero-knowledge-systems" className="mt-8 inline-block text-sm font-medium text-neutral-900 underline-offset-4 hover:underline">
-                Next: Zero Knowledge Systems
+              <Link href="/zero-knowledge-proofs" className="mt-8 inline-block text-sm font-medium text-neutral-900 underline-offset-4 hover:underline">
+                Next: Zero Knowledge Proofs
               </Link>
             </div>
           </div>

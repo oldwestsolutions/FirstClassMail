@@ -3,6 +3,7 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/appointments', destination: '/calendar', permanent: true },
+      { source: '/zero-knowledge-systems', destination: '/zero-knowledge-proofs', permanent: true },
     ]
   },
   typescript: {

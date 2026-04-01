@@ -36,8 +36,8 @@ export function MarketingFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/zero-knowledge-systems" className="transition hover:text-neutral-900">
-                  Zero Knowledge Systems
+                <Link href="/zero-knowledge-proofs" className="transition hover:text-neutral-900">
+                  Zero Knowledge Proofs
                 </Link>
               </li>
             </ul>
