@@ -77,22 +77,18 @@ export default function HomePage() {
 
   const journey = [
     {
-      step: '01',
       title: 'Encrypted transmission',
       text: 'Every message is protected with modern encryption in transit and at rest, so content is not exposed to eavesdropping or casual interception.',
     },
     {
-      step: '02',
       title: 'Verified sourcing',
       text: 'Connections are built on verified identity and intent—you reach exactly who you are looking for, with authenticity you can rely on.',
     },
     {
-      step: '03',
       title: 'Third-party management',
       text: 'FirstClassMail.xyz acts as a professional intermediary: threads are handled through a neutral, controlled channel instead of leaking personal contact paths.',
     },
     {
-      step: '04',
       title: 'Private delivery',
       text: 'Recipients receive communications without unnecessary exposure of personal details, reducing doxxing risk and keeping your footprint minimal.',
     },
@@ -370,24 +366,23 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="mx-auto mt-16 grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 xl:grid-cols-4 xl:gap-6">
+            <div className="mx-auto mt-16 grid max-w-7xl grid-cols-1 items-stretch gap-6 sm:grid-cols-2 sm:gap-8 xl:grid-cols-4 xl:gap-6">
               {journey.map((step, i) => (
                 <motion.article
-                  key={step.step}
+                  key={step.title}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 0.45, delay: i * 0.08 }}
-                  className="flex min-h-[300px] flex-col rounded-3xl border border-neutral-200 bg-neutral-50 p-8 text-center shadow-sm lg:min-h-[320px] lg:p-10"
+                  className="flex h-full min-h-[280px] flex-col rounded-3xl border border-neutral-200 bg-neutral-50 p-8 text-center shadow-sm lg:min-h-[300px] lg:p-9"
                 >
-                  <div className="flex justify-center">
+                  <div className="flex min-h-[124px] w-full shrink-0 items-start justify-center">
                     <PortalMockMini preset={`journey-${i + 1}`} />
                   </div>
-                  <div className="mx-auto mt-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-neutral-200 bg-white font-mono text-sm font-medium text-neutral-900 shadow-sm">
-                    {step.step}
-                  </div>
-                  <h3 className="mt-6 font-serif text-xl text-neutral-900 md:text-2xl">{step.title}</h3>
-                  <p className="mt-5 flex-1 text-left text-sm leading-[1.85] text-neutral-600 md:text-[0.95rem]">{step.text}</p>
+                  <h3 className="mt-6 shrink-0 font-serif text-xl text-neutral-900 md:text-2xl">{step.title}</h3>
+                  <p className="mt-5 flex-1 text-balance text-left text-sm leading-[1.85] text-neutral-600 md:text-[0.95rem]">
+                    {step.text}
+                  </p>
                 </motion.article>
               ))}
             </div>
