@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import {
   Mail,
   ArrowRight,
+  KeyRound,
   CheckCircle,
   Shield,
 } from 'lucide-react'
@@ -241,9 +242,9 @@ export default function HomePage() {
                   safety, and reliability.
                 </p>
                 <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center">
-                  <Link href="/portal" className="btn btn-primary px-9 py-3.5 text-xs uppercase tracking-[0.2em]">
-                    Open portal
-                    <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
+                  <Link href="/signup" className="btn btn-primary px-9 py-3.5 text-xs uppercase tracking-[0.2em]">
+                    Create Account
+                    <KeyRound className="ml-2 h-4 w-4" strokeWidth={1.5} />
                   </Link>
                   <Link
                     href="/journey"
@@ -303,7 +304,7 @@ export default function HomePage() {
               ).map(([title, body, preset]) => (
                 <div
                   key={title}
-                  className="flex flex-col rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm transition hover:border-neutral-300 md:p-9"
+                  className="relative flex flex-col rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm ring-1 ring-neutral-100 transition hover:border-neutral-300 hover:ring-neutral-200 md:p-9"
                 >
                   <div className="flex justify-center md:justify-start">
                     <PortalMockMini preset={preset} />
