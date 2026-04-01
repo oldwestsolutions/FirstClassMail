@@ -1,6 +1,6 @@
 'use client'
 
-import { CheckCircle, Inbox, Mail, Send, Shield } from 'lucide-react'
+import { CalendarClock, CheckCircle, Inbox, Mail, Send, Shield, Wallet } from 'lucide-react'
 
 const shell =
   'overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 shadow-sm'
@@ -59,6 +59,72 @@ export function PortalMockMini({ preset }: { preset: string }) {
               No broker resale
             </span>
             <p className="mt-2 text-[9px] leading-snug text-neutral-600">Addresses stay off marketing lists</p>
+          </div>
+        </div>
+      )
+    case 'mailbox':
+      return (
+        <div className={base} aria-hidden>
+          <div className="flex items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5 py-2">
+            <span className="flex items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
+              <Inbox className="h-3 w-3 text-neutral-600" strokeWidth={1.25} />
+              Mailbox
+            </span>
+            <span className="rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">Inbox</span>
+          </div>
+          <div className="min-h-[76px] space-y-1.5 p-2.5">
+            <div className="h-2 rounded bg-neutral-200/80" />
+            <div className="h-2 w-4/5 rounded bg-neutral-200/80" />
+            <div className="rounded-md border border-neutral-200 bg-white px-2 py-1.5 font-mono text-[8px] leading-tight text-neutral-600">
+              <span className="text-neutral-400">Route · </span>
+              Verified office thread
+            </div>
+          </div>
+        </div>
+      )
+    case 'wallet':
+      return (
+        <div className={base} aria-hidden>
+          <div className="flex items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5 py-2">
+            <span className="flex items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
+              <Wallet className="h-3 w-3 text-neutral-700" strokeWidth={1.25} />
+              Wallet
+            </span>
+            <span className="rounded bg-emerald-50 px-1.5 py-0.5 font-mono text-[7px] text-emerald-800">USDC</span>
+          </div>
+          <div className="min-h-[76px] space-y-2 p-2.5">
+            <div className="flex items-baseline justify-between rounded-md border border-neutral-200 bg-white px-2 py-1.5">
+              <span className="font-mono text-[8px] text-neutral-400">Balance</span>
+              <span className="font-mono text-[10px] text-neutral-800">124.00</span>
+            </div>
+            <p className="font-mono text-[8px] leading-tight text-neutral-500">Mailbox subscription · settled on-chain</p>
+          </div>
+        </div>
+      )
+    case 'calendar':
+      return (
+        <div className={base} aria-hidden>
+          <div className="flex items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5 py-2">
+            <span className="flex items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
+              <CalendarClock className="h-3 w-3 text-neutral-600" strokeWidth={1.25} />
+              Calendar
+            </span>
+            <span className="rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">Week</span>
+          </div>
+          <div className="min-h-[76px] p-2.5">
+            <div className="flex justify-between gap-0.5 font-mono text-[7px] text-neutral-400">
+              {['M', 'T', 'W', 'T', 'F'].map((d, i) => (
+                <span
+                  key={i}
+                  className={`flex h-5 w-5 items-center justify-center rounded ${i === 2 ? 'bg-neutral-900 text-white' : 'bg-neutral-100 text-neutral-500'}`}
+                >
+                  {d}
+                </span>
+              ))}
+            </div>
+            <div className="mt-2 rounded-md border border-emerald-100 bg-emerald-50/80 px-2 py-1.5 font-mono text-[8px] text-emerald-900">
+              Thu 2:00 · Confirmed in thread
+            </div>
           </div>
         </div>
       )

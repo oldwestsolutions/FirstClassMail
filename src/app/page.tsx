@@ -272,33 +272,33 @@ export default function HomePage() {
             <div className="col-span-12 lg:col-span-5 lg:col-start-1">
               <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Correspondence</p>
               <h2 className="mt-5 font-serif text-3xl leading-tight text-neutral-900 md:text-4xl lg:text-[2.75rem]">
-                Confidentiality without compromise.
+                Mailbox, wallet, and calendar together.
               </h2>
             </div>
             <div className="col-span-12 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:self-end">
               <p className="leading-[1.8] text-neutral-600 lg:text-[1.05rem]">
-                When you use FirstClassMail, you are not handing your email address or message content to list brokers. The
-                service is built for encrypted transmission, verified sourcing, and a professional third party that manages
-                communications—so you can focus on the conversation, not on exposure or resale.
+                FirstClassMail is not only encrypted threads—it is three product surfaces in one stack: governed mail, embedded
+                balances for fees and subscriptions, and scheduling that stays inside verified correspondence instead of leaking to
+                personal calendars and ad hoc tools.
               </p>
             </div>
             <div className="col-span-12 mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-8 lg:grid-cols-3 lg:gap-6">
               {(
                 [
                   [
-                    'Encryption first',
-                    'TLS and strong encryption protect messages in transit; storage follows rigorous security practices so content stays private.',
-                    'encryption',
+                    'Mailbox',
+                    'Structured intake, policy triage, and controlled delivery—so inbound and outbound mail stays auditable without exposing personal addresses to list brokers.',
+                    'mailbox',
                   ],
                   [
-                    'Verified parties',
-                    'Know you are connecting with the right person. Verified sourcing reduces impersonation and mistaken identity.',
-                    'verified',
+                    'Wallet',
+                    'USDC-ready balances and settlement beside the thread: pay for mailbox tiers, share revenue, or settle office fees without juggling a separate banking or crypto stack.',
+                    'wallet',
                   ],
                   [
-                    'No data brokerage',
-                    'We do not sell email addresses or message data to brokers. Your contact graph is not our product.',
-                    'no-brokerage',
+                    'Calendar',
+                    'Invitations, confirmations, and reminders live in the same verified channel as your mail—so scheduling does not fragment across SMS, consumer calendars, and stray inboxes.',
+                    'calendar',
                   ],
                 ] as const
               ).map(([title, body, preset]) => (
