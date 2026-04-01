@@ -1,6 +1,6 @@
 'use client'
 
-import { Ban, CalendarClock, CheckCircle, FileText, Inbox, Mail, Megaphone, Send, Shield, Wallet } from 'lucide-react'
+import { CalendarClock, CheckCircle, FileText, Inbox, Mail, Send, Shield, Wallet } from 'lucide-react'
 
 const shell =
   'overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 shadow-sm'
@@ -76,47 +76,65 @@ export function PortalMockMini({ preset }: { preset: string }) {
           </div>
         </div>
       )
-    case 'webform':
+    case 'forms':
       return (
         <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <FileText className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
-              Web form
+              Forms
             </span>
             <span className="shrink-0 rounded bg-emerald-50 px-1.5 py-0.5 font-mono text-[7px] text-emerald-800">TLS</span>
           </div>
           <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
             <div className="space-y-1.5">
               <div className="h-1.5 rounded bg-neutral-200/90" />
-              <div className="h-1.5 w-11/12 rounded bg-neutral-200/90" />
+              <div className="h-1.5 w-[92%] rounded bg-neutral-200/90" />
               <div className="h-1.5 w-3/4 rounded bg-neutral-200/90" />
             </div>
             <div className="rounded-md border border-neutral-200 bg-white px-2 py-1.5 text-left font-mono text-[8px] leading-snug text-neutral-600">
-              Submit → verified thread
+              Replies · one thread
             </div>
           </div>
         </div>
       )
-    case 'spam-ads':
+    case 'edocuments':
+      return (
+        <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
+          <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
+            <span className="font-mono text-[8px] font-medium tracking-wide text-neutral-600">eDocuments</span>
+            <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">PDF</span>
+          </div>
+          <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-1.5 rounded border border-neutral-200 bg-white px-1.5 py-1">
+                <div className="h-6 w-5 shrink-0 rounded-sm bg-neutral-200/80" />
+                <div className="min-w-0 flex-1 space-y-1">
+                  <div className="h-1.5 w-full rounded bg-neutral-200/90" />
+                  <div className="h-1.5 w-2/3 rounded bg-neutral-200/80" />
+                </div>
+              </div>
+            </div>
+            <p className="text-left font-mono text-[8px] leading-snug text-neutral-500">Kept with the thread</p>
+          </div>
+        </div>
+      )
+    case 'stamps':
       return (
         <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
-              <Ban className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
-              Spam guard
+              <Mail className="h-3 w-3 shrink-0 text-neutral-700" strokeWidth={1.25} />
+              Stamps
             </span>
-            <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">On</span>
+            <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">Out</span>
           </div>
           <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
-            <div className="rounded-md border border-neutral-200 bg-white px-2 py-1.5 text-left font-mono text-[8px] text-neutral-600">
-              <span className="text-neutral-400">Filtered · </span>
-              Junk & bulk held
+            <div className="rounded-md border border-dashed border-neutral-300 bg-white px-2 py-2 text-center">
+              <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.15em] text-neutral-700">First-Class</p>
+              <p className="mt-0.5 font-mono text-[7px] text-neutral-400">Postmark · applied</p>
             </div>
-            <div className="flex items-center gap-1.5 rounded-md border border-amber-100 bg-amber-50/80 px-2 py-1.5 text-left font-mono text-[8px] text-amber-950">
-              <Megaphone className="h-2.5 w-2.5 shrink-0 opacity-80" strokeWidth={1.5} aria-hidden />
-              Ad share · wallet rail
-            </div>
+            <p className="text-left font-mono text-[8px] leading-snug text-neutral-500">Shows on send</p>
           </div>
         </div>
       )

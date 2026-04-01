@@ -286,19 +286,19 @@ export default function HomePage() {
               {(
                 [
                   [
-                    'Web forms',
-                    'Publish contact and intake forms that submit over TLS into verified threads—structured fields, bot resistance, and submissions that are not resold as marketing leads.',
-                    'webform',
+                    'Forms',
+                    'Build simple forms that land in your secure mail—clear questions, private replies, and answers kept together in one thread instead of scattered across inboxes.',
+                    'forms',
                   ],
                   [
-                    'Verified parties',
-                    'Know you are connecting with the right person. Verified sourcing reduces impersonation and mistaken identity.',
-                    'verified',
+                    'eDocuments',
+                    'Share PDFs and document packets inside the conversation so files stay with the thread—easy to open, easy to follow, without losing track of what belongs where.',
+                    'edocuments',
                   ],
                   [
-                    'Spam & ad sharing',
-                    'Aggressive junk and abuse filtering keeps noise out of priority mail; where ads are part of the surface, revenue can be shared to wallets with explicit rules—without monetizing your graph through list brokers.',
-                    'spam-ads',
+                    'Stamps',
+                    'Apply stamps to outbound mail so class and sending intent stay visible in the thread—consistent, lightweight, and built into how you send.',
+                    'stamps',
                   ],
                 ] as const
               ).map(([title, body, preset]) => (
