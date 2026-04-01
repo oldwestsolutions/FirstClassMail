@@ -223,16 +223,16 @@ export default function HomePage() {
       </motion.header>
 
       <div className="bg-white text-neutral-900">
-        <div className="h-[5.75rem] bg-white sm:h-[6.5rem]" aria-hidden />
+        <div className="h-[4rem] bg-white sm:h-[5rem]" aria-hidden />
 
         <header className="border-b border-neutral-200 bg-white">
-          <div className="shell py-16 md:py-24 lg:py-28">
-            <div className="grid grid-cols-12 gap-x-6 gap-y-12 lg:gap-x-10 lg:gap-y-16">
-              <div className="col-span-12 flex flex-col justify-end lg:col-span-7 lg:row-span-1">
-                <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.4em] text-neutral-500">
+          <div className="shell py-12 md:py-20 lg:py-24">
+            <div className="grid grid-cols-12 gap-x-6 gap-y-10 lg:gap-x-10 lg:gap-y-12">
+              <div className="col-span-12 flex flex-col justify-start lg:col-span-7 lg:row-span-1">
+                <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.4em] text-neutral-500">
                   FirstClassMail
                 </p>
-                <h1 className="mb-8 max-w-[22ch] font-serif text-4xl font-medium leading-[1.08] text-neutral-900 md:text-5xl lg:text-[3.5rem] xl:text-6xl">
+                <h1 className="mb-6 max-w-[22ch] font-serif text-4xl font-medium leading-[1.08] text-neutral-900 md:text-5xl lg:text-[3.5rem] xl:text-6xl">
                   Encrypted messaging, verified connections, privacy by design.
                 </h1>
                 <p className="max-w-xl text-base leading-[1.75] text-neutral-600 md:text-lg">
@@ -254,8 +254,8 @@ export default function HomePage() {
                   </Link>
                 </div>
               </div>
-              <div className="col-span-12 flex items-end justify-center gap-5 sm:gap-8 lg:col-span-5 lg:justify-end">
-                <div className="surface-panel flex flex-wrap items-center justify-center gap-5 rounded-[2rem] p-8 sm:gap-8 sm:p-10">
+              <div className="col-span-12 flex items-start justify-center gap-5 sm:gap-8 lg:col-span-5 lg:justify-end lg:pt-1">
+                <div className="surface-panel flex flex-wrap items-center justify-center gap-5 rounded-[2rem] p-7 sm:gap-8 sm:p-9">
                   <IsoBlock className="bg-rgb-red" delay={0} />
                   <IsoBlock className="bg-rgb-green" delay={2} />
                   <IsoBlock className="bg-rgb-blue" delay={4} />

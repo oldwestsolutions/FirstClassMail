@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mail, MapPin, LayoutDashboard, FileText, BookOpen, LifeBuoy, Shield, Building2, CheckCircle } from 'lucide-react'
+import { Mail, MapPin, LayoutDashboard, FileText, BookOpen, LifeBuoy, Shield, Building2 } from 'lucide-react'
 
 export function MarketingFooter() {
   return (
@@ -50,10 +50,14 @@ export function MarketingFooter() {
                 <span className="text-neutral-400">Identity Management — soon</span>
               </li>
               <li>
-                <span className="text-neutral-400">eDocuments — soon</span>
+                <Link href="/edocuments" className="transition hover:text-neutral-900">
+                  eDocuments
+                </Link>
               </li>
               <li>
-                <span className="text-neutral-400">Payments — soon</span>
+                <Link href="/blockchain" className="transition hover:text-neutral-900">
+                  Blockchain
+                </Link>
               </li>
             </ul>
           </div>
@@ -113,11 +117,11 @@ export function MarketingFooter() {
                 <span className="text-neutral-400">Careers — soon</span>
               </li>
               <li>
-                  <Link href="/legal" className="transition hover:text-neutral-900">
-                    Legal
-                  </Link>
-                </li>
-                <li>
+                <Link href="/legal" className="transition hover:text-neutral-900">
+                  Legal
+                </Link>
+              </li>
+              <li>
                 <Link href="/#contact" className="transition hover:text-neutral-900">
                   Contact
                 </Link>
@@ -127,13 +131,6 @@ export function MarketingFooter() {
 
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-neutral-200 pt-10 text-xs text-neutral-500 md:flex-row md:items-center">
-          <p>&copy; {new Date().getFullYear()} Old West Solutions. All rights reserved.</p>
-          <p className="flex items-center gap-2">
-            <CheckCircle className="h-3.5 w-3.5 text-neutral-400" strokeWidth={1.25} aria-hidden />
-            256-Bit Encryption · Verified Sourcing · No Broker Resale
-          </p>
-        </div>
       </div>
     </footer>
   )
