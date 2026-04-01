@@ -34,7 +34,7 @@ function IllustrationHoverCard({
 
   const overlay = (
     <div
-      className={`absolute inset-0 z-20 flex flex-col items-center justify-center p-4 transition-opacity duration-300 ease-out sm:p-5 ${
+      className={`absolute inset-0 z-20 flex flex-col items-center justify-center p-3 transition-opacity duration-300 ease-out sm:p-4 ${
         isActive ? 'opacity-100' : 'pointer-events-none invisible opacity-0'
       }`}
       aria-hidden={!isActive}
@@ -51,13 +51,13 @@ function IllustrationHoverCard({
       <p id={`card-desc-${slug}`} className="sr-only">
         {body}
       </p>
-      <div className="relative z-0 flex w-full flex-1 flex-col items-center">
-        <div className="w-full shrink-0 px-0.5 pb-1 text-center">
-          <h3 className="mx-auto max-w-[20ch] font-serif text-[1.25rem] font-medium leading-snug tracking-[-0.02em] text-neutral-900 sm:text-[1.375rem]">
+      <div className="relative z-0 flex w-full flex-col items-center">
+        <div className="w-full shrink-0 px-0.5 text-center">
+          <h3 className="mx-auto max-w-[20ch] font-serif text-[1.125rem] font-medium leading-tight tracking-[-0.02em] text-neutral-900 sm:text-[1.25rem]">
             {title}
           </h3>
         </div>
-        <div className="relative mx-auto mt-5 w-full max-w-[248px] shrink-0">
+        <div className="relative mx-auto mt-3 w-full max-w-[220px] shrink-0 sm:max-w-[236px]">
           <motion.div
             aria-hidden
             className="will-change-transform"
@@ -83,7 +83,7 @@ function IllustrationHoverCard({
           tabIndex={0}
           aria-describedby={`card-desc-${slug}`}
           aria-expanded={isActive}
-          className={`relative flex min-h-[300px] flex-1 flex-col items-center bg-gradient-to-b from-white to-neutral-50/40 p-7 text-center transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 md:min-h-[320px] md:p-9 ${
+          className={`relative flex flex-col items-center bg-gradient-to-b from-white to-neutral-50/40 px-5 py-5 text-center transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 sm:px-6 sm:py-6 ${
             isActive ? 'to-neutral-50/80' : ''
           }`}
         >
@@ -99,7 +99,7 @@ function IllustrationHoverCard({
       tabIndex={0}
       aria-describedby={`card-desc-${slug}`}
       aria-expanded={isActive}
-      className="relative flex min-h-[300px] flex-col overflow-hidden rounded-2xl border border-neutral-200/90 bg-gradient-to-b from-white to-neutral-50/30 p-7 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_28px_-10px_rgba(0,0,0,0.07)] transition-[border-color,box-shadow] duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 md:min-h-[320px] md:p-8 [@media(hover:hover)]:hover:border-neutral-300/90 [@media(hover:hover)]:hover:shadow-[0_4px_32px_-12px_rgba(0,0,0,0.1)]"
+      className="relative flex flex-col overflow-hidden rounded-2xl border border-neutral-200/90 bg-gradient-to-b from-white to-neutral-50/30 px-5 py-5 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_28px_-10px_rgba(0,0,0,0.07)] transition-[border-color,box-shadow] duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 sm:px-6 sm:py-6 [@media(hover:hover)]:hover:border-neutral-300/90 [@media(hover:hover)]:hover:shadow-[0_4px_32px_-12px_rgba(0,0,0,0.1)]"
     >
       {inner}
     </div>

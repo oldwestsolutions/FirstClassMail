@@ -26,11 +26,15 @@ export function PortalMockMini({
   compactHeader?: boolean
 }) {
   const base = `${shell} w-full max-w-[248px] text-left`
+  const outerMin = compactHeader ? 'min-h-[118px]' : 'min-h-[132px]'
+  const innerMin = compactHeader ? 'min-h-[76px]' : 'min-h-[92px]'
+  const innerPad = compactHeader ? 'p-2' : 'p-2.5'
+  const innerGap = compactHeader ? 'gap-1.5' : 'gap-2'
 
   switch (preset) {
     case 'encryption':
       return (
-        <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
+        <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <Mail className="h-3 w-3 shrink-0 text-neutral-700" strokeWidth={1.25} />
@@ -40,7 +44,7 @@ export function PortalMockMini({
               TLS
             </span>
           </div>
-          <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
+          <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
             <div className="rounded-md bg-white p-2 text-[9px] leading-snug text-neutral-600 ring-1 ring-neutral-100">
               <p className="font-mono text-[7px] uppercase tracking-wider text-neutral-400">In transit</p>
               <p className="mt-1 text-neutral-700">Payload encrypted; unreadable on the wire</p>
@@ -53,14 +57,14 @@ export function PortalMockMini({
       )
     case 'verified':
       return (
-        <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
+        <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="font-mono text-[7px] uppercase tracking-widest text-neutral-500">Sourcing</span>
             <span className="shrink-0 rounded-full bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] uppercase tracking-wider text-neutral-700">
               Verified
             </span>
           </div>
-          <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
+          <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
             <div>
               <p className="font-serif text-[11px] leading-tight text-neutral-900">Riverside Legal</p>
               <p className="mt-1.5 flex items-center gap-1 text-[8px] text-emerald-700">
@@ -74,7 +78,7 @@ export function PortalMockMini({
       )
     case 'no-brokerage':
       return (
-        <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
+        <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <Shield className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
@@ -84,7 +88,7 @@ export function PortalMockMini({
               Private
             </span>
           </div>
-          <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
+          <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
             <span className="inline-block w-fit rounded-md border border-neutral-200 bg-white px-2 py-1 font-mono text-[8px] text-neutral-700">
               No broker resale
             </span>
@@ -94,7 +98,7 @@ export function PortalMockMini({
       )
     case 'forms':
       return (
-        <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
+        <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <FileText className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
@@ -102,7 +106,7 @@ export function PortalMockMini({
             </span>
             <span className="shrink-0 rounded bg-emerald-50 px-1.5 py-0.5 font-mono text-[7px] text-emerald-800">TLS</span>
           </div>
-          <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
+          <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
             <div className="space-y-1.5">
               <div className="h-1.5 rounded bg-neutral-200/90" />
               <div className="h-1.5 w-[92%] rounded bg-neutral-200/90" />
@@ -116,14 +120,14 @@ export function PortalMockMini({
       )
     case 'edocuments':
       return (
-        <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
+        <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="font-mono text-[8px] font-medium tracking-wide text-neutral-600">
               {compactHeader ? <span className="font-mono text-[7px] uppercase tracking-widest text-neutral-400">Preview</span> : 'eDocuments'}
             </span>
             <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">PDF</span>
           </div>
-          <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
+          <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
             <div className="space-y-1.5">
               <div className="flex items-center gap-1.5 rounded border border-neutral-200 bg-white px-1.5 py-1">
                 <div className="h-6 w-5 shrink-0 rounded-sm bg-neutral-200/80" />
@@ -139,7 +143,7 @@ export function PortalMockMini({
       )
     case 'stamps':
       return (
-        <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
+        <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <Mail className="h-3 w-3 shrink-0 text-neutral-700" strokeWidth={1.25} />
@@ -147,7 +151,7 @@ export function PortalMockMini({
             </span>
             <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">Out</span>
           </div>
-          <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
+          <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
             <div className="rounded-md border border-dashed border-neutral-300 bg-white px-2 py-2 text-center">
               <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.15em] text-neutral-700">First-Class</p>
               <p className="mt-0.5 font-mono text-[7px] text-neutral-400">Postmark · applied</p>
@@ -158,7 +162,7 @@ export function PortalMockMini({
       )
     case 'mailbox':
       return (
-        <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
+        <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <Inbox className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
@@ -166,7 +170,7 @@ export function PortalMockMini({
             </span>
             <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">Inbox</span>
           </div>
-          <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
+          <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
             <div className="space-y-1.5">
               <div className="h-2 rounded bg-neutral-200/80" />
               <div className="h-2 w-4/5 rounded bg-neutral-200/80" />
@@ -180,7 +184,7 @@ export function PortalMockMini({
       )
     case 'wallet':
       return (
-        <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
+        <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <Wallet className="h-3 w-3 shrink-0 text-neutral-700" strokeWidth={1.25} />
@@ -188,7 +192,7 @@ export function PortalMockMini({
             </span>
             <span className="shrink-0 rounded bg-emerald-50 px-1.5 py-0.5 font-mono text-[7px] text-emerald-800">USDC</span>
           </div>
-          <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
+          <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
             <div className="flex items-baseline justify-between rounded-md border border-neutral-200 bg-white px-2 py-1.5">
               <span className="font-mono text-[8px] text-neutral-400">Balance</span>
               <span className="font-mono text-[10px] tabular-nums text-neutral-800">124.00</span>
@@ -199,7 +203,7 @@ export function PortalMockMini({
       )
     case 'calendar':
       return (
-        <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
+        <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <CalendarClock className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
@@ -207,7 +211,7 @@ export function PortalMockMini({
             </span>
             <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">Week</span>
           </div>
-          <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
+          <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
             <div className="flex justify-between gap-0.5 font-mono text-[7px] text-neutral-400">
               {['M', 'T', 'W', 'T', 'F'].map((d, i) => (
                 <span
