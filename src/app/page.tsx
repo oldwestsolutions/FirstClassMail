@@ -216,7 +216,7 @@ export default function HomePage() {
               </div>
               <nav className="flex flex-col gap-1 p-5">
                 {[
-                  ['Trust & privacy', '#correspondence'],
+                  ['Correspondence', '#correspondence'],
                   ['The journey', '#journey'],
                   ['Practice', '#practice'],
                   ['Contact', '#contact'],
@@ -264,7 +264,7 @@ export default function HomePage() {
             </Link>
             <div className="hidden items-center gap-8 md:flex lg:gap-10">
               <Link href="#correspondence" className="text-sm text-neutral-600 transition hover:text-neutral-900">
-                Trust &amp; privacy
+                Correspondence
               </Link>
               <Link href="#journey" className="text-sm text-neutral-600 transition hover:text-neutral-900">
                 The journey
@@ -338,7 +338,7 @@ export default function HomePage() {
         <div className="shell py-20 md:py-28">
           <div className="grid grid-cols-12 gap-x-6 gap-y-10 lg:gap-x-10">
             <div className="col-span-12 lg:col-span-5 lg:col-start-1">
-              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Trust &amp; privacy</p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Correspondence</p>
               <h2 className="mt-5 font-serif text-3xl leading-tight text-neutral-900 md:text-4xl lg:text-[2.75rem]">
                 Confidentiality without compromise.
               </h2>
@@ -425,7 +425,7 @@ export default function HomePage() {
         <div className="flex min-h-[100svh] flex-col justify-center py-20 md:py-28">
           <div className="shell">
             <div className="mx-auto max-w-3xl text-center">
-              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">In practice</p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Practice</p>
               <h2
                 id="practice-heading"
                 className="mt-5 font-serif text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight text-neutral-900"
@@ -551,7 +551,7 @@ export default function HomePage() {
                 href="#correspondence"
                 className="rounded-full px-6 py-3 text-sm text-neutral-600 transition hover:bg-neutral-100 hover:text-neutral-900"
               >
-                Back to trust &amp; privacy
+                Back to Correspondence
               </Link>
             </div>
           </div>
@@ -584,7 +584,7 @@ export default function HomePage() {
               <ul className="mt-5 space-y-3 text-sm text-neutral-600">
                 <li>
                   <Link href="#correspondence" className="transition hover:text-neutral-900">
-                    Trust &amp; privacy
+                    Correspondence
                   </Link>
                 </li>
                 <li>
@@ -594,7 +594,7 @@ export default function HomePage() {
                 </li>
                 <li>
                   <Link href="#practice" className="transition hover:text-neutral-900">
-                    In practice
+                    Practice
                   </Link>
                 </li>
                 <li>
