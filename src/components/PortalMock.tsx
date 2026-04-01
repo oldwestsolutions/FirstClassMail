@@ -1,11 +1,20 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import { CalendarClock, CheckCircle, FileText, Inbox, Mail, Send, Shield, Wallet } from 'lucide-react'
+
+const demoEase = [0.22, 1, 0.36, 1] as const
+
+const breathe = {
+  boxShadow: [
+    '0 12px 40px -14px rgba(0,0,0,0.12)',
+    '0 16px 48px -14px rgba(16,185,129,0.07)',
+    '0 12px 40px -14px rgba(0,0,0,0.12)',
+  ],
+}
 
 const shell =
   'overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 shadow-sm'
-
-const panelShadow = 'shadow-[0_12px_40px_-14px_rgba(0,0,0,0.12)]'
 
 /** Smaller mock-ups for Correspondence / Journey cards — same chrome as product preview */
 export function PortalMockMini({ preset }: { preset: string }) {
@@ -271,27 +280,46 @@ export function PortalMockMini({ preset }: { preset: string }) {
 
 function PortalThreadViewMock() {
   return (
-    <div className={`${shell} ${panelShadow}`}>
+    <motion.div
+      className={`${shell} flex h-full min-h-[280px] flex-col`}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-48px' }}
+      transition={{ duration: 0.5, ease: demoEase }}
+      animate={breathe}
+    >
       <div className="flex items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5 py-2 sm:px-3">
         <div className="flex min-w-0 items-center gap-2">
-          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-neutral-50">
+          <motion.div
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-neutral-50"
+            animate={{ scale: [1, 1.04, 1] }}
+            transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+          >
             <Mail className="h-3.5 w-3.5 text-neutral-800" strokeWidth={1.25} />
-          </div>
+          </motion.div>
           <div className="min-w-0 text-left">
             <p className="truncate font-serif text-xs text-neutral-900">Client portal</p>
             <p className="truncate font-mono text-[9px] uppercase tracking-[0.2em] text-neutral-400">Preview</p>
           </div>
         </div>
         <div className="flex shrink-0 flex-wrap items-center justify-end gap-1.5">
-          <span className="rounded-full bg-emerald-50 px-2 py-0.5 font-mono text-[8px] uppercase tracking-wider text-emerald-800">
+          <motion.span
+            className="rounded-full bg-emerald-50 px-2 py-0.5 font-mono text-[8px] uppercase tracking-wider text-emerald-800"
+            animate={{ opacity: [0.88, 1, 0.88] }}
+            transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
+          >
             TLS
-          </span>
-          <span className="rounded-full bg-neutral-100 px-2 py-0.5 font-mono text-[8px] uppercase tracking-wider text-neutral-700">
+          </motion.span>
+          <motion.span
+            className="rounded-full bg-neutral-100 px-2 py-0.5 font-mono text-[8px] uppercase tracking-wider text-neutral-700"
+            animate={{ opacity: [0.9, 1, 0.9] }}
+            transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut', delay: 0.35 }}
+          >
             Verified thread
-          </span>
+          </motion.span>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row sm:min-h-[200px]">
+      <div className="flex min-h-0 flex-1 flex-col sm:flex-row sm:min-h-[200px]">
         <nav
           className="flex w-full border-b border-neutral-200 bg-white sm:w-[7.25rem] sm:shrink-0 sm:border-b-0 sm:border-r"
           aria-label="Thread view mailbox navigation"
@@ -324,52 +352,97 @@ function PortalThreadViewMock() {
             </div>
           </div>
           <div className="mt-2.5 flex flex-1 flex-col gap-2 text-left">
-            <div className="rounded-lg bg-neutral-50 p-2 text-[11px] text-neutral-700 sm:p-2.5 sm:text-xs">
-              <p className="mb-1 font-mono text-[8px] uppercase tracking-wider text-neutral-400 sm:text-[9px]">You · encrypted</p>
-              <p className="leading-relaxed">Following up on the filing timeline we discussed last week.</p>
-            </div>
-            <div className="rounded-lg border border-neutral-200 p-2 text-[11px] text-neutral-700 sm:p-2.5 sm:text-xs">
-              <p className="mb-1 font-mono text-[8px] uppercase tracking-wider text-neutral-400 sm:text-[9px]">Office · delivered</p>
-              <p className="leading-relaxed">We can confirm receipt on our side. Next steps are in the attachment.</p>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, ease: demoEase }}
+            >
+              <motion.div
+                className="rounded-lg bg-neutral-50 p-2 text-[11px] text-neutral-700 sm:p-2.5 sm:text-xs"
+                animate={{ y: [0, -2, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <p className="mb-1 font-mono text-[8px] uppercase tracking-wider text-neutral-400 sm:text-[9px]">You · encrypted</p>
+                <p className="leading-relaxed">Following up on the filing timeline we discussed last week.</p>
+              </motion.div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, ease: demoEase, delay: 0.06 }}
+            >
+              <motion.div
+                className="rounded-lg border border-neutral-200 p-2 text-[11px] text-neutral-700 sm:p-2.5 sm:text-xs"
+                animate={{ y: [0, -2, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut', delay: 0.45 }}
+              >
+                <p className="mb-1 font-mono text-[8px] uppercase tracking-wider text-neutral-400 sm:text-[9px]">Office · delivered</p>
+                <p className="leading-relaxed">We can confirm receipt on our side. Next steps are in the attachment.</p>
+              </motion.div>
+            </motion.div>
           </div>
-          <div className="mt-3 flex items-end gap-2 rounded-xl border border-dashed border-neutral-200 bg-neutral-50/80 p-2">
+          <motion.div
+            className="mt-3 flex items-end gap-2 rounded-xl border border-dashed border-neutral-200 bg-neutral-50/80 p-2"
+            animate={{ borderColor: ['rgba(229,229,229,1)', 'rgba(167,243,208,0.55)', 'rgba(229,229,229,1)'] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          >
             <div className="min-h-[34px] flex-1 rounded-lg border border-neutral-200 bg-white px-2 py-1.5 text-[11px] text-neutral-400 sm:min-h-[36px] sm:px-2.5 sm:py-2 sm:text-xs">
               Write a reply…
             </div>
             <span className="btn btn-primary pointer-events-none shrink-0 px-2.5 py-2 text-[8px] uppercase tracking-widest opacity-90 sm:px-3 sm:text-[9px]">
               Send
             </span>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
 function PortalSentViewMock() {
   return (
-    <div className={`${shell} ${panelShadow}`}>
+    <motion.div
+      className={`${shell} flex h-full min-h-[280px] flex-col`}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-48px' }}
+      transition={{ duration: 0.5, ease: demoEase, delay: 0.08 }}
+      animate={breathe}
+    >
       <div className="flex items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5 py-2 sm:px-3">
         <div className="flex min-w-0 items-center gap-2">
-          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-neutral-50">
+          <motion.div
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-neutral-50"
+            animate={{ scale: [1, 1.04, 1] }}
+            transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+          >
             <Mail className="h-3.5 w-3.5 text-neutral-800" strokeWidth={1.25} />
-          </div>
+          </motion.div>
           <div className="min-w-0 text-left">
             <p className="truncate font-serif text-xs text-neutral-900">Client portal</p>
             <p className="truncate font-mono text-[9px] uppercase tracking-[0.2em] text-neutral-400">Preview</p>
           </div>
         </div>
         <div className="flex shrink-0 flex-wrap items-center justify-end gap-1.5">
-          <span className="rounded-full bg-emerald-50 px-2 py-0.5 font-mono text-[8px] uppercase tracking-wider text-emerald-800">
+          <motion.span
+            className="rounded-full bg-emerald-50 px-2 py-0.5 font-mono text-[8px] uppercase tracking-wider text-emerald-800"
+            animate={{ opacity: [0.88, 1, 0.88] }}
+            transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
+          >
             TLS
-          </span>
-          <span className="rounded-full bg-neutral-100 px-2 py-0.5 font-mono text-[8px] uppercase tracking-wider text-neutral-700">
+          </motion.span>
+          <motion.span
+            className="rounded-full bg-neutral-100 px-2 py-0.5 font-mono text-[8px] uppercase tracking-wider text-neutral-700"
+            animate={{ opacity: [0.9, 1, 0.9] }}
+            transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut', delay: 0.35 }}
+          >
             Outbound
-          </span>
+          </motion.span>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row sm:min-h-[200px]">
+      <div className="flex min-h-0 flex-1 flex-col sm:flex-row sm:min-h-[200px]">
         <nav
           className="flex w-full border-b border-neutral-200 bg-white sm:w-[7.25rem] sm:shrink-0 sm:border-b-0 sm:border-r"
           aria-label="Sent view mailbox navigation"
@@ -402,26 +475,52 @@ function PortalSentViewMock() {
             </div>
           </div>
           <div className="mt-2.5 flex flex-1 flex-col gap-2 text-left">
-            <div className="rounded-lg border border-neutral-200 bg-white p-2 text-[11px] text-neutral-700 sm:p-2.5 sm:text-xs">
-              <p className="mb-1 font-mono text-[8px] uppercase tracking-wider text-neutral-400 sm:text-[9px]">You · sent</p>
-              <p className="leading-relaxed">Please find the revised engagement letter attached for countersignature.</p>
-            </div>
-            <div className="rounded-lg bg-neutral-50 p-2 text-[11px] text-neutral-600 sm:p-2.5 sm:text-xs">
-              <p className="mb-1 font-mono text-[8px] uppercase tracking-wider text-neutral-400 sm:text-[9px]">Status</p>
-              <p className="leading-relaxed">Delivered to verified office mail server · no broker handoff</p>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, ease: demoEase }}
+            >
+              <motion.div
+                className="rounded-lg border border-neutral-200 bg-white p-2 text-[11px] text-neutral-700 sm:p-2.5 sm:text-xs"
+                animate={{ y: [0, -2, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <p className="mb-1 font-mono text-[8px] uppercase tracking-wider text-neutral-400 sm:text-[9px]">You · sent</p>
+                <p className="leading-relaxed">Please find the revised engagement letter attached for countersignature.</p>
+              </motion.div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, ease: demoEase, delay: 0.06 }}
+            >
+              <motion.div
+                className="rounded-lg bg-neutral-50 p-2 text-[11px] text-neutral-600 sm:p-2.5 sm:text-xs"
+                animate={{ y: [0, -2, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut', delay: 0.45 }}
+              >
+                <p className="mb-1 font-mono text-[8px] uppercase tracking-wider text-neutral-400 sm:text-[9px]">Status</p>
+                <p className="leading-relaxed">Delivered to verified office mail server · direct to endpoint</p>
+              </motion.div>
+            </motion.div>
           </div>
-          <div className="mt-3 flex items-end gap-2 rounded-xl border border-dashed border-neutral-200 bg-neutral-50/80 p-2">
+          <motion.div
+            className="mt-3 flex items-end gap-2 rounded-xl border border-dashed border-neutral-200 bg-neutral-50/80 p-2"
+            animate={{ borderColor: ['rgba(229,229,229,1)', 'rgba(167,243,208,0.55)', 'rgba(229,229,229,1)'] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.15 }}
+          >
             <div className="min-h-[34px] flex-1 rounded-lg border border-neutral-200 bg-white px-2 py-1.5 text-[11px] text-neutral-400 sm:min-h-[36px] sm:px-2.5 sm:py-2 sm:text-xs">
               New message…
             </div>
             <span className="btn btn-primary pointer-events-none shrink-0 px-2.5 py-2 text-[8px] uppercase tracking-widest opacity-90 sm:px-3 sm:text-[9px]">
               Send
             </span>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -429,14 +528,22 @@ function PortalSentViewMock() {
 export function PortalProductDemo() {
   return (
     <div className="mx-auto w-full max-w-6xl">
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-6 xl:gap-8">
-        <div className="min-w-0">
-          <p className="mb-3 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Thread view</p>
-          <PortalThreadViewMock />
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-stretch lg:gap-6 xl:gap-8">
+        <div className="flex min-h-0 min-w-0 flex-col lg:h-full">
+          <p className="mb-3 h-8 shrink-0 text-center font-mono text-[10px] uppercase leading-8 tracking-[0.2em] text-neutral-500">
+            Thread view
+          </p>
+          <div className="min-h-0 flex-1">
+            <PortalThreadViewMock />
+          </div>
         </div>
-        <div className="min-w-0">
-          <p className="mb-3 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Sent view</p>
-          <PortalSentViewMock />
+        <div className="flex min-h-0 min-w-0 flex-col lg:h-full">
+          <p className="mb-3 h-8 shrink-0 text-center font-mono text-[10px] uppercase leading-8 tracking-[0.2em] text-neutral-500">
+            Sent view
+          </p>
+          <div className="min-h-0 flex-1">
+            <PortalSentViewMock />
+          </div>
         </div>
       </div>
     </div>

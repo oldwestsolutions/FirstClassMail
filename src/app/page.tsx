@@ -14,6 +14,81 @@ import { PortalMockMini, PortalProductDemo } from '@/components/PortalMock'
 import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 import { PathIllustration } from '@/components/PracticeIllustrations'
 
+function IllustrationHoverCard({
+  title,
+  body,
+  preset,
+  mode = 'simple',
+  pillar,
+}: {
+  title: string
+  body: string
+  preset: string
+  mode?: 'simple' | 'pillar'
+  pillar?: { border: string; bar: string }
+}) {
+  const slug = `${preset}-${title}`.replace(/\s+/g, '-').toLowerCase()
+
+  const inner = (
+    <>
+      <p id={`card-desc-${slug}`} className="sr-only">
+        {body}
+      </p>
+      <div className="relative mx-auto w-full max-w-[248px]">
+        <motion.div
+          aria-hidden
+          className="will-change-transform"
+          animate={{ y: [0, -5, 0] }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <PortalMockMini preset={preset} />
+        </motion.div>
+      </div>
+      <div className="relative z-10 mt-8 flex flex-col items-center">
+        <h3 className="max-w-[18ch] bg-gradient-to-b from-neutral-900 via-neutral-800 to-neutral-600 bg-clip-text font-serif text-[1.4rem] font-semibold leading-tight tracking-[-0.035em] text-transparent sm:text-[1.65rem]">
+          {title}
+        </h3>
+        <span
+          className="mt-3.5 block h-[2px] w-14 rounded-full bg-gradient-to-r from-transparent via-neutral-400/75 to-transparent"
+          aria-hidden
+        />
+        <div className="max-h-0 overflow-hidden opacity-0 transition-[max-height,opacity,padding] duration-300 ease-out [@media(hover:hover)]:group-hover:max-h-[13rem] [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-hover:pt-5 group-focus-visible:max-h-[13rem] group-focus-visible:opacity-100 group-focus-visible:pt-5">
+          <p className="text-sm leading-relaxed text-neutral-600">{body}</p>
+        </div>
+      </div>
+    </>
+  )
+
+  if (mode === 'pillar' && pillar) {
+    return (
+      <div
+        className={`flex min-h-full flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-sm ${pillar.border} border-l-[5px]`}
+      >
+        <div className={`h-1.5 w-full shrink-0 ${pillar.bar}`} aria-hidden />
+        <div
+          role="group"
+          tabIndex={0}
+          aria-describedby={`card-desc-${slug}`}
+          className="group relative flex flex-1 flex-col items-center p-8 text-center transition-shadow duration-300 hover:bg-neutral-50/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 md:p-10"
+        >
+          {inner}
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div
+      role="group"
+      tabIndex={0}
+      aria-describedby={`card-desc-${slug}`}
+      className="group relative flex flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-white p-8 text-center shadow-sm ring-1 ring-neutral-100 transition-shadow duration-300 hover:border-neutral-300 hover:shadow-md hover:ring-neutral-200/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 md:p-9 [@media(hover:hover)]:hover:shadow-md"
+    >
+      {inner}
+    </div>
+  )
+}
+
 function IsoBlock({ className, delay = 0 }: { className: string; delay?: number }) {
   return (
     <motion.div
@@ -73,21 +148,21 @@ export default function HomePage() {
       border: 'border-l-rgb-red',
       illustration: 'mailbox',
       title: 'Mailbox',
-      body: 'Structured intake, policy triage, and controlled delivery—so inbound and outbound mail stays auditable without exposing personal addresses to list brokers.',
+      body: 'Structured intake, policy triage, and controlled delivery—inbound and outbound mail stays auditable in one place.',
     },
     {
       accent: 'bg-rgb-green',
       border: 'border-l-rgb-green',
       illustration: 'wallet',
       title: 'Wallet',
-      body: 'USDC-ready balances and settlement beside the thread: pay for mailbox tiers, share revenue, or settle office fees without juggling a separate banking or crypto stack.',
+      body: 'USDC-ready balances and settlement beside the thread: pay for tiers, share value, or settle fees without a separate app stack.',
     },
     {
       accent: 'bg-rgb-blue',
       border: 'border-l-rgb-blue',
       illustration: 'calendar',
       title: 'Calendar',
-      body: 'Invitations, confirmations, and reminders live in the same verified channel as your mail—so scheduling does not fragment across SMS, consumer calendars, and stray inboxes.',
+      body: 'Invitations, confirmations, and reminders stay in the same verified channel as your mail—scheduling stays with the conversation.',
     },
   ] as const
 
@@ -301,17 +376,16 @@ export default function HomePage() {
                     'stamps',
                   ],
                 ] as const
-              ).map(([title, body, preset]) => (
-                <div
+              ).map(([title, body, preset], i) => (
+                <motion.div
                   key={title}
-                  className="relative flex flex-col items-center rounded-3xl border border-neutral-200 bg-white p-8 text-center shadow-sm ring-1 ring-neutral-100 transition hover:border-neutral-300 hover:ring-neutral-200 md:p-9"
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.06 }}
                 >
-                  <div className="w-full max-w-[248px]">
-                    <PortalMockMini preset={preset} />
-                  </div>
-                  <h3 className="mt-6 w-full max-w-[20rem] font-serif text-xl text-neutral-900">{title}</h3>
-                  <p className="mt-5 w-full max-w-[20rem] text-sm leading-relaxed text-neutral-600">{body}</p>
-                </div>
+                  <IllustrationHoverCard title={title} body={body} preset={preset} />
+                </motion.div>
               ))}
             </div>
           </div>
@@ -343,16 +417,14 @@ export default function HomePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.07 }}
-                  className={`flex min-h-full flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-sm ${p.border} border-l-[5px]`}
                 >
-                  <div className={`h-1.5 w-full shrink-0 ${p.accent}`} aria-hidden />
-                  <div className="flex flex-1 flex-col items-center p-8 text-center md:p-10">
-                    <div className="w-full max-w-[248px]">
-                      <PortalMockMini preset={p.illustration} />
-                    </div>
-                    <h3 className="mt-8 w-full max-w-[20rem] font-serif text-xl text-neutral-900 md:text-2xl">{p.title}</h3>
-                    <p className="mt-5 w-full max-w-[20rem] flex-1 text-sm leading-[1.85] text-neutral-600">{p.body}</p>
-                  </div>
+                  <IllustrationHoverCard
+                    mode="pillar"
+                    title={p.title}
+                    body={p.body}
+                    preset={p.illustration}
+                    pillar={{ border: p.border, bar: p.accent }}
+                  />
                 </motion.div>
               ))}
             </div>
@@ -377,7 +449,13 @@ export default function HomePage() {
                       className="flex w-full flex-1 flex-col rounded-3xl border border-neutral-200 bg-white p-8 text-center shadow-sm md:p-9 lg:min-w-0 lg:max-w-sm lg:text-left xl:max-w-none"
                     >
                       <div className="mx-auto shrink-0 lg:mx-0">
-                        <PathIllustration variant={segment.illustration} />
+                        <motion.div
+                          aria-hidden
+                          animate={{ y: [0, -5, 0] }}
+                          transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.12 }}
+                        >
+                          <PathIllustration variant={segment.illustration} />
+                        </motion.div>
                       </div>
                       <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500">{segment.step}</p>
                       <h4 className="mt-3 font-serif text-xl font-medium text-neutral-900 md:text-2xl">{segment.title}</h4>
