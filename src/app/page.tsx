@@ -28,6 +28,7 @@ function IllustrationHoverCard({
   mode = 'simple',
   pillar,
   isActive,
+  href,
 }: {
   title: string
   body: string
@@ -36,6 +37,8 @@ function IllustrationHoverCard({
   pillar?: { border: string; bar: string }
   /** Overlay visible; parent grid ensures one card active at a time. */
   isActive: boolean
+  /** When set (Correspondence cards), entire card links to the feature page. */
+  href?: string
 }) {
   const slug = `${preset}-${title}`.replace(/\s+/g, '-').toLowerCase()
 
@@ -123,13 +126,29 @@ function IllustrationHoverCard({
     )
   }
 
+  const simpleClassName =
+    'relative flex flex-col overflow-hidden rounded-2xl border border-neutral-200/90 bg-gradient-to-b from-white to-neutral-50/30 px-5 py-5 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_28px_-10px_rgba(0,0,0,0.07)] transition-[border-color,box-shadow] duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 sm:px-6 sm:py-6 [@media(hover:hover)]:hover:border-neutral-300/90 [@media(hover:hover)]:hover:shadow-[0_4px_32px_-12px_rgba(0,0,0,0.1)]'
+
+  if (href) {
+    return (
+      <Link
+        href={href}
+        className={`${simpleClassName} block cursor-pointer`}
+        aria-describedby={`card-desc-${slug}`}
+        aria-expanded={isActive}
+      >
+        {inner}
+      </Link>
+    )
+  }
+
   return (
     <div
       role="group"
       tabIndex={0}
       aria-describedby={`card-desc-${slug}`}
       aria-expanded={isActive}
-      className="relative flex flex-col overflow-hidden rounded-2xl border border-neutral-200/90 bg-gradient-to-b from-white to-neutral-50/30 px-5 py-5 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_28px_-10px_rgba(0,0,0,0.07)] transition-[border-color,box-shadow] duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 sm:px-6 sm:py-6 [@media(hover:hover)]:hover:border-neutral-300/90 [@media(hover:hover)]:hover:shadow-[0_4px_32px_-12px_rgba(0,0,0,0.1)]"
+      className={simpleClassName}
     >
       {inner}
     </div>
@@ -378,10 +397,9 @@ export default function HomePage() {
                   Encrypted messaging, verified connections, privacy by design.
                 </h1>
                 <p className="max-w-xl text-base leading-[1.75] text-neutral-600 md:text-lg">
-                  FirstClassMail provides secure, encrypted messaging so every conversation stays private. Connect directly with
-                  exactly who you are looking for—verified sourcing ensures trust and authenticity. Reduce doxxing risk, avoid
-                  email resale to data brokers, and rely on a professional third party to manage communications with simplicity,
-                  safety, and reliability.
+                  FirstClassMail is built for professional correspondence: TLS-backed transport, identity checks before threads
+                  open, and routing through a neutral intermediary. The objective is predictable delivery and governance—not
+                  exposing personal endpoints to the open web or uncontrolled resale of mailbox data.
                 </p>
                 <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center">
                   <Link href="/signup" className="btn btn-primary px-9 py-3.5 text-xs uppercase tracking-[0.2em]">
@@ -419,9 +437,9 @@ export default function HomePage() {
             </div>
             <div className="col-span-12 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:self-end">
               <p className="leading-[1.8] text-neutral-600 lg:text-[1.05rem]">
-                When you use FirstClassMail, you are not handing your email address or message content to list brokers. The
-                service is built for encrypted transmission, verified sourcing, and a professional third party that manages
-                communications—so you can focus on the conversation, not on exposure or resale.
+                Addressing and message content remain inside the platform’s control plane: encrypted transit, verified sourcing,
+                and intermediary handling replace ad hoc disclosure to list vendors or ungoverned marketing resale. Operations
+                teams retain audit-friendly mail without treating every thread as a data product.
               </p>
             </div>
             <div
@@ -433,21 +451,24 @@ export default function HomePage() {
                 [
                   [
                     'Forms',
-                    'Build simple forms that land in your secure mail—clear questions, private replies, and answers kept together in one thread instead of scattered across inboxes.',
+                    'Structured intake over TLS: submissions land in verified threads with clear field history and replies kept in one place instead of scattered across inboxes.',
                     'forms',
+                    '/forms',
                   ],
                   [
                     'eDocuments',
-                    'Share PDFs and document packets inside the conversation so files stay with the thread—easy to open, easy to follow, without losing track of what belongs where.',
+                    'PDFs and packets stay bound to the thread for provenance, retrieval, and policy—without parallel file silos or ad hoc attachment chains.',
                     'edocuments',
+                    '/edocuments',
                   ],
                   [
                     'Stamps',
-                    'Apply stamps to outbound mail so class and sending intent stay visible in the thread—consistent, lightweight, and built into how you send.',
+                    'Outbound class and intent are visible on the message: lightweight postmarks applied at send time so routing and handling stay explicit in the thread.',
                     'stamps',
+                    '/stamps',
                   ],
                 ] as const
-              ).map(([title, body, preset], i) => (
+              ).map(([title, body, preset, href], i) => (
                 <motion.div
                   key={title}
                   initial={{ opacity: 0, y: 12 }}
@@ -462,6 +483,7 @@ export default function HomePage() {
                     title={title}
                     body={body}
                     preset={preset}
+                    href={href}
                     isActive={openCorrespondencePreset === preset}
                   />
                 </motion.div>
@@ -483,8 +505,9 @@ export default function HomePage() {
                 FirstClassMail Delivers
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
-                Mailbox, wallet, and calendar are the core surfaces teams use every day. After these, see how traffic moves from
-                users through our servers to each business office’s mail system.
+                Mailbox, wallet, and calendar are the primary day-to-day surfaces. The diagram that follows shows how sessions
+                move from the client through FirstClassMail to each office’s own mail endpoint—authenticated, routed, and released
+                under policy rather than across an unmanaged internet path.
               </p>
             </div>
 
@@ -521,8 +544,9 @@ export default function HomePage() {
                 <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Message path</p>
                 <h3 className="mt-4 font-serif text-2xl text-neutral-900 md:text-3xl">From users to our servers to the office</h3>
                 <p className="mt-4 text-neutral-600">
-                  Mail does not hop blindly across the open internet to random inboxes. It flows in three controlled segments: your
-                  client, FirstClassMail, and the business office’s own mail server—each step encrypted and governed by policy.
+                  The path is deliberately segmented: client, platform, and office mail server. Each hop applies encryption and
+                  policy at the boundary; traffic is not treated as an open relay across the public internet to arbitrary
+                  inboxes.
                 </p>
               </div>
               <div className="mt-14 flex flex-col items-stretch gap-8 lg:flex-row lg:items-stretch lg:justify-center lg:gap-4">
@@ -533,9 +557,9 @@ export default function HomePage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.06 }}
-                      className="flex w-full flex-1 flex-col rounded-2xl border border-neutral-200/90 bg-gradient-to-b from-white to-neutral-50/35 p-8 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-8px_rgba(0,0,0,0.08)] transition-[border-color,box-shadow] duration-300 hover:border-neutral-300/90 hover:shadow-[0_4px_28px_-10px_rgba(0,0,0,0.1)] md:p-9 lg:min-w-0 lg:max-w-sm xl:max-w-none"
+                      className="flex w-full flex-1 flex-col rounded-2xl border border-neutral-200/90 bg-gradient-to-b from-white to-neutral-50/35 p-8 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-8px_rgba(0,0,0,0.08)] transition-[border-color,box-shadow] duration-300 hover:border-neutral-300/90 hover:shadow-[0_4px_28px_-10px_rgba(0,0,0,0.1)] md:p-9 lg:min-w-0 lg:max-w-sm lg:items-start lg:text-left xl:max-w-none"
                     >
-                      <div className="mx-auto shrink-0">
+                      <div className="mx-auto w-full shrink-0 lg:mx-0">
                         <motion.div
                           aria-hidden
                           animate={{ y: [0, -5, 0] }}
@@ -544,11 +568,11 @@ export default function HomePage() {
                           <PathIllustration variant={segment.illustration} />
                         </motion.div>
                       </div>
-                      <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500">{segment.step}</p>
-                      <h4 className="mt-3 w-full text-center font-serif text-xl font-medium text-neutral-900 md:text-2xl">
+                      <p className="mt-6 w-full font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500">{segment.step}</p>
+                      <h4 className="mt-3 w-full text-center font-serif text-xl font-medium text-neutral-900 md:text-2xl lg:max-w-none lg:self-stretch">
                         {segment.title}
                       </h4>
-                      <p className="mt-4 min-h-[84px] text-center text-sm leading-[1.65] text-neutral-600">{segment.body}</p>
+                      <p className="mt-4 min-h-[84px] w-full text-sm leading-[1.65] text-neutral-600">{segment.body}</p>
                     </motion.div>
                     {i < mailPath.length - 1 && (
                       <div className="flex shrink-0 items-center justify-center py-0 lg:w-10 lg:py-0" aria-hidden>
@@ -598,9 +622,8 @@ export default function HomePage() {
           <div className="mx-auto max-w-3xl rounded-2xl border border-neutral-200/90 bg-gradient-to-b from-white to-neutral-50/40 px-8 py-14 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_40px_-12px_rgba(0,0,0,0.08)] md:px-14 md:py-16">
             <h2 className="font-serif text-3xl text-neutral-900 md:text-4xl">Enterprise Mail Carrier</h2>
             <p className="mx-auto mt-6 max-w-lg leading-relaxed text-neutral-600">
-              Bring your teams onto mail that is encrypted in transit, matched to verified recipients, and handled through a
-              neutral intermediary—so routing, policy, and continuity stay consistent across offices. Open the portal to create an
-              account and run correspondence with FirstClassMail end to end.
+              Encrypted transit, verified recipients, and intermediary routing in one stack. Open the portal to provision accounts
+              and run mail on FirstClassMail.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
               <Link href="/portal" className="btn btn-primary px-11 py-3.5 text-xs uppercase tracking-[0.2em]">
