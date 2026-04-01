@@ -12,7 +12,7 @@ import {
 import Link from 'next/link'
 import { PortalMockMini, PortalProductDemo } from '@/components/PortalMock'
 import { MarketingFooter } from '@/components/marketing/MarketingFooter'
-import { PathIllustration, PillarIllustration } from '@/components/PracticeIllustrations'
+import { PathIllustration } from '@/components/PracticeIllustrations'
 
 function IsoBlock({ className, delay = 0 }: { className: string; delay?: number }) {
   return (
@@ -71,23 +71,23 @@ export default function HomePage() {
     {
       accent: 'bg-rgb-red',
       border: 'border-l-rgb-red',
-      illustration: 'encrypted',
-      title: 'Encrypted message transmission',
-      body: 'All communication is securely encrypted end to end across our infrastructure, so conversations stay confidential and protected from unauthorized access.',
+      illustration: 'mailbox',
+      title: 'Mailbox',
+      body: 'Structured intake, policy triage, and controlled delivery—so inbound and outbound mail stays auditable without exposing personal addresses to list brokers.',
     },
     {
       accent: 'bg-rgb-green',
       border: 'border-l-rgb-green',
-      illustration: 'verified',
-      title: 'Verified sourcing',
-      body: 'Users connect with confidence: identities are verified so you know you are speaking with the intended party—not an impersonator or wrong contact.',
+      illustration: 'wallet',
+      title: 'Wallet',
+      body: 'USDC-ready balances and settlement beside the thread: pay for mailbox tiers, share revenue, or settle office fees without juggling a separate banking or crypto stack.',
     },
     {
       accent: 'bg-rgb-blue',
       border: 'border-l-rgb-blue',
-      illustration: 'privacy',
-      title: 'Privacy and simplicity',
-      body: 'No doxxing-by-default, no selling of email addresses or message data to brokers. A professional third party manages communications so you stay in control.',
+      illustration: 'calendar',
+      title: 'Calendar',
+      body: 'Invitations, confirmations, and reminders live in the same verified channel as your mail—so scheduling does not fragment across SMS, consumer calendars, and stray inboxes.',
     },
   ] as const
 
@@ -272,33 +272,33 @@ export default function HomePage() {
             <div className="col-span-12 lg:col-span-5 lg:col-start-1">
               <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Correspondence</p>
               <h2 className="mt-5 font-serif text-3xl leading-tight text-neutral-900 md:text-4xl lg:text-[2.75rem]">
-                Mailbox, wallet, and calendar together.
+                Confidentiality without compromise.
               </h2>
             </div>
             <div className="col-span-12 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:self-end">
               <p className="leading-[1.8] text-neutral-600 lg:text-[1.05rem]">
-                FirstClassMail is not only encrypted threads—it is three product surfaces in one stack: governed mail, embedded
-                balances for fees and subscriptions, and scheduling that stays inside verified correspondence instead of leaking to
-                personal calendars and ad hoc tools.
+                When you use FirstClassMail, you are not handing your email address or message content to list brokers. The
+                service is built for encrypted transmission, verified sourcing, and a professional third party that manages
+                communications—so you can focus on the conversation, not on exposure or resale.
               </p>
             </div>
             <div className="col-span-12 mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-8 lg:grid-cols-3 lg:gap-6">
               {(
                 [
                   [
-                    'Mailbox',
-                    'Structured intake, policy triage, and controlled delivery—so inbound and outbound mail stays auditable without exposing personal addresses to list brokers.',
-                    'mailbox',
+                    'Encryption first',
+                    'TLS and strong encryption protect messages in transit; storage follows rigorous security practices so content stays private.',
+                    'encryption',
                   ],
                   [
-                    'Wallet',
-                    'USDC-ready balances and settlement beside the thread: pay for mailbox tiers, share revenue, or settle office fees without juggling a separate banking or crypto stack.',
-                    'wallet',
+                    'Verified parties',
+                    'Know you are connecting with the right person. Verified sourcing reduces impersonation and mistaken identity.',
+                    'verified',
                   ],
                   [
-                    'Calendar',
-                    'Invitations, confirmations, and reminders live in the same verified channel as your mail—so scheduling does not fragment across SMS, consumer calendars, and stray inboxes.',
-                    'calendar',
+                    'No data brokerage',
+                    'We do not sell email addresses or message data to brokers. Your contact graph is not our product.',
+                    'no-brokerage',
                   ],
                 ] as const
               ).map(([title, body, preset]) => (
@@ -330,8 +330,8 @@ export default function HomePage() {
                 FirstClassMail Delivers
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
-                Three pillars—encryption, verified sourcing, and privacy-first handling—define the platform. After the pillars,
-                see how traffic moves from users through our servers to each business office’s mail system.
+                Mailbox, wallet, and calendar are the core surfaces teams use every day. After these, see how traffic moves from
+                users through our servers to each business office’s mail system.
               </p>
             </div>
 
@@ -347,8 +347,8 @@ export default function HomePage() {
                 >
                   <div className={`h-1.5 w-full shrink-0 ${p.accent}`} aria-hidden />
                   <div className="flex flex-1 flex-col p-8 text-center md:p-10">
-                    <div className="mx-auto">
-                      <PillarIllustration variant={p.illustration} />
+                    <div className="mx-auto flex w-full justify-center md:justify-start">
+                      <PortalMockMini preset={p.illustration} />
                     </div>
                     <h3 className="mt-8 font-serif text-xl text-neutral-900 md:text-2xl">{p.title}</h3>
                     <p className="mt-5 flex-1 text-left text-sm leading-[1.85] text-neutral-600">{p.body}</p>
