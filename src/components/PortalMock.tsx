@@ -14,51 +14,65 @@ export function PortalMockMini({ preset }: { preset: string }) {
   switch (preset) {
     case 'encryption':
       return (
-        <div className={base} aria-hidden>
-          <div className="flex items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5 py-2">
-            <Mail className="h-3 w-3 text-neutral-700" strokeWidth={1.25} />
-            <span className="rounded-full bg-emerald-50 px-1.5 py-0.5 font-mono text-[7px] uppercase tracking-wider text-emerald-800">
+        <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
+          <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
+            <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
+              <Mail className="h-3 w-3 shrink-0 text-neutral-700" strokeWidth={1.25} />
+              Transmission
+            </span>
+            <span className="shrink-0 rounded-full bg-emerald-50 px-1.5 py-0.5 font-mono text-[7px] uppercase tracking-wider text-emerald-800">
               TLS
             </span>
           </div>
-          <div className="space-y-1.5 p-2.5">
-            <div className="rounded-md bg-white p-2 text-[9px] leading-tight text-neutral-600 ring-1 ring-neutral-100">
+          <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
+            <div className="rounded-md bg-white p-2 text-[9px] leading-snug text-neutral-600 ring-1 ring-neutral-100">
               <p className="font-mono text-[7px] uppercase tracking-wider text-neutral-400">In transit</p>
-              <p className="mt-0.5 text-neutral-700">Payload encrypted; unreadable on the wire</p>
+              <p className="mt-1 text-neutral-700">Payload encrypted; unreadable on the wire</p>
+            </div>
+            <div className="rounded-md border border-neutral-200 bg-white px-2 py-1.5 text-left font-mono text-[8px] leading-snug text-neutral-600">
+              Encrypted payload
             </div>
           </div>
         </div>
       )
     case 'verified':
       return (
-        <div className={base} aria-hidden>
-          <div className="flex items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5 py-2">
-            <span className="font-mono text-[7px] uppercase tracking-widest text-neutral-400">Thread</span>
-            <span className="rounded-full bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] uppercase tracking-wider text-neutral-700">
+        <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
+          <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
+            <span className="font-mono text-[7px] uppercase tracking-widest text-neutral-500">Sourcing</span>
+            <span className="shrink-0 rounded-full bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] uppercase tracking-wider text-neutral-700">
               Verified
             </span>
           </div>
-          <div className="p-2.5">
-            <p className="font-serif text-[11px] text-neutral-900">Riverside Legal</p>
-            <p className="mt-1 flex items-center gap-1 text-[8px] text-emerald-700">
-              <CheckCircle className="h-2.5 w-2.5" strokeWidth={1.5} />
-              Identity matched
-            </p>
+          <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
+            <div>
+              <p className="font-serif text-[11px] leading-tight text-neutral-900">Riverside Legal</p>
+              <p className="mt-1.5 flex items-center gap-1 text-[8px] text-emerald-700">
+                <CheckCircle className="h-2.5 w-2.5 shrink-0" strokeWidth={1.5} />
+                Identity match confirmed
+              </p>
+            </div>
+            <p className="text-left font-mono text-[8px] leading-snug text-neutral-500">Intended recipient</p>
           </div>
         </div>
       )
     case 'no-brokerage':
       return (
-        <div className={base} aria-hidden>
-          <div className="flex items-center gap-2 border-b border-neutral-200 bg-white px-2.5 py-2">
-            <Shield className="h-3 w-3 text-neutral-600" strokeWidth={1.25} />
-            <span className="font-mono text-[7px] uppercase tracking-widest text-neutral-500">Policy</span>
+        <div className={`${base} flex min-h-[132px] flex-col`} aria-hidden>
+          <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
+            <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
+              <Shield className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
+              Policy
+            </span>
+            <span className="shrink-0 rounded-full bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] uppercase tracking-wider text-neutral-700">
+              Private
+            </span>
           </div>
-          <div className="p-2.5">
-            <span className="inline-block rounded-md border border-neutral-200 bg-white px-2 py-1 font-mono text-[8px] text-neutral-700">
+          <div className="flex min-h-[92px] flex-1 flex-col justify-between gap-2 p-2.5">
+            <span className="inline-block w-fit rounded-md border border-neutral-200 bg-white px-2 py-1 font-mono text-[8px] text-neutral-700">
               No broker resale
             </span>
-            <p className="mt-2 text-[9px] leading-snug text-neutral-600">Addresses stay off marketing lists</p>
+            <p className="text-left text-[9px] leading-snug text-neutral-600">Addresses stay off marketing lists</p>
           </div>
         </div>
       )

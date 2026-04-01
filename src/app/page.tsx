@@ -304,13 +304,13 @@ export default function HomePage() {
               ).map(([title, body, preset]) => (
                 <div
                   key={title}
-                  className="relative flex flex-col rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm ring-1 ring-neutral-100 transition hover:border-neutral-300 hover:ring-neutral-200 md:p-9"
+                  className="relative flex flex-col items-center rounded-3xl border border-neutral-200 bg-white p-8 text-center shadow-sm ring-1 ring-neutral-100 transition hover:border-neutral-300 hover:ring-neutral-200 md:p-9"
                 >
-                  <div className="flex justify-center md:justify-start">
+                  <div className="w-full max-w-[248px]">
                     <PortalMockMini preset={preset} />
                   </div>
-                  <h3 className="mt-6 font-serif text-xl text-neutral-900">{title}</h3>
-                  <p className="mt-5 text-sm leading-relaxed text-neutral-600">{body}</p>
+                  <h3 className="mt-6 w-full max-w-[20rem] font-serif text-xl text-neutral-900">{title}</h3>
+                  <p className="mt-5 w-full max-w-[20rem] text-sm leading-relaxed text-neutral-600">{body}</p>
                 </div>
               ))}
             </div>
