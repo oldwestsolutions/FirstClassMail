@@ -254,7 +254,7 @@ export default function HomePage() {
                   </Link>
                 </div>
               </div>
-              <div className="col-span-12 flex items-start justify-center gap-5 sm:gap-8 lg:col-span-5 lg:justify-end lg:pt-1">
+              <div className="col-span-12 flex items-center justify-center gap-5 sm:gap-8 lg:col-span-5 lg:items-end lg:justify-end lg:self-stretch lg:pb-3">
                 <div className="surface-panel flex flex-wrap items-center justify-center gap-5 rounded-[2rem] p-7 sm:gap-8 sm:p-9">
                   <IsoBlock className="bg-rgb-red" delay={0} />
                   <IsoBlock className="bg-rgb-green" delay={2} />
