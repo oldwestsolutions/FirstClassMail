@@ -50,13 +50,13 @@ function IllustrationHoverCard({
     >
       <motion.div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/78 to-neutral-100/40 backdrop-blur-[8px]"
+        className="absolute inset-0 bg-gradient-to-b from-white via-white to-neutral-50/95 backdrop-blur-md"
         initial={false}
         animate={{ opacity: isActive ? 1 : 0 }}
         transition={isActive ? overlaySpring : overlayExit}
       />
       <motion.div
-        className="relative z-10 max-h-[88%] w-full max-w-[17rem] overflow-y-auto rounded-xl border border-neutral-200/80 bg-white/98 p-4 text-left shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12),0_4px_16px_-4px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.05] sm:max-w-none sm:p-5"
+        className="relative z-10 max-h-[88%] w-full max-w-[17rem] overflow-y-auto rounded-xl border border-neutral-200/90 bg-white p-4 text-left shadow-[0_12px_40px_-8px_rgba(0,0,0,0.14),0_4px_16px_-4px_rgba(0,0,0,0.07)] ring-1 ring-black/[0.06] sm:max-w-none sm:p-5"
         initial={false}
         animate={
           isActive
@@ -105,9 +105,9 @@ function IllustrationHoverCard({
   if (mode === 'pillar' && pillar) {
     return (
       <div
-        className={`flex min-h-full flex-col overflow-hidden rounded-2xl border border-neutral-200/90 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-8px_rgba(0,0,0,0.08)] ${pillar.border} border-l-[4px]`}
+        className={`flex min-h-full flex-col overflow-hidden rounded-2xl border border-neutral-200/85 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_10px_32px_-10px_rgba(0,0,0,0.07),inset_0_0_0_1px_rgba(255,255,255,0.6)] ${pillar.border} border-l-[1.5px]`}
       >
-        <div className={`h-1 w-full shrink-0 ${pillar.bar}`} aria-hidden />
+        <div className={`h-px w-full shrink-0 opacity-90 ${pillar.bar}`} aria-hidden />
         <div
           role="group"
           tabIndex={0}
@@ -211,22 +211,22 @@ export default function HomePage() {
 
   const pillars = [
     {
-      accent: 'bg-rgb-red',
-      border: 'border-l-rgb-red',
+      accent: 'bg-rgb-red/90',
+      border: 'border-l-rgb-red/88',
       illustration: 'mailbox',
       title: 'Mailbox',
       body: 'Structured intake, policy triage, and controlled delivery—inbound and outbound mail stays auditable in one place.',
     },
     {
-      accent: 'bg-rgb-green',
-      border: 'border-l-rgb-green',
+      accent: 'bg-rgb-green/90',
+      border: 'border-l-rgb-green/88',
       illustration: 'wallet',
       title: 'Wallet',
       body: 'USDC-ready balances and settlement beside the thread: pay for tiers, share value, or settle fees without a separate app stack.',
     },
     {
-      accent: 'bg-rgb-blue',
-      border: 'border-l-rgb-blue',
+      accent: 'bg-rgb-blue/90',
+      border: 'border-l-rgb-blue/88',
       illustration: 'calendar',
       title: 'Calendar',
       body: 'Invitations, confirmations, and reminders stay in the same verified channel as your mail—scheduling stays with the conversation.',
@@ -533,9 +533,9 @@ export default function HomePage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.06 }}
-                      className="flex w-full flex-1 flex-col rounded-2xl border border-neutral-200/90 bg-gradient-to-b from-white to-neutral-50/35 p-8 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-8px_rgba(0,0,0,0.08)] transition-[border-color,box-shadow] duration-300 hover:border-neutral-300/90 hover:shadow-[0_4px_28px_-10px_rgba(0,0,0,0.1)] md:p-9 lg:min-w-0 lg:max-w-sm lg:text-left xl:max-w-none"
+                      className="flex w-full flex-1 flex-col rounded-2xl border border-neutral-200/90 bg-gradient-to-b from-white to-neutral-50/35 p-8 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-8px_rgba(0,0,0,0.08)] transition-[border-color,box-shadow] duration-300 hover:border-neutral-300/90 hover:shadow-[0_4px_28px_-10px_rgba(0,0,0,0.1)] md:p-9 lg:min-w-0 lg:max-w-sm xl:max-w-none"
                     >
-                      <div className="mx-auto shrink-0 lg:mx-0">
+                      <div className="mx-auto shrink-0">
                         <motion.div
                           aria-hidden
                           animate={{ y: [0, -5, 0] }}
@@ -545,8 +545,10 @@ export default function HomePage() {
                         </motion.div>
                       </div>
                       <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500">{segment.step}</p>
-                      <h4 className="mt-3 font-serif text-xl font-medium text-neutral-900 md:text-2xl">{segment.title}</h4>
-                      <p className="mt-4 min-h-[84px] text-sm leading-[1.65] text-neutral-600">{segment.body}</p>
+                      <h4 className="mt-3 w-full text-center font-serif text-xl font-medium text-neutral-900 md:text-2xl">
+                        {segment.title}
+                      </h4>
+                      <p className="mt-4 min-h-[84px] text-center text-sm leading-[1.65] text-neutral-600">{segment.body}</p>
                     </motion.div>
                     {i < mailPath.length - 1 && (
                       <div className="flex shrink-0 items-center justify-center py-0 lg:w-10 lg:py-0" aria-hidden>
@@ -594,10 +596,11 @@ export default function HomePage() {
       <section id="contact" className="border-b border-neutral-200 bg-neutral-50">
         <div className="shell py-20 md:py-28">
           <div className="mx-auto max-w-3xl rounded-2xl border border-neutral-200/90 bg-gradient-to-b from-white to-neutral-50/40 px-8 py-14 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_40px_-12px_rgba(0,0,0,0.08)] md:px-14 md:py-16">
-            <h2 className="font-serif text-3xl text-neutral-900 md:text-4xl">Start secure messaging.</h2>
+            <h2 className="font-serif text-3xl text-neutral-900 md:text-4xl">Enterprise Mail Carrier</h2>
             <p className="mx-auto mt-6 max-w-lg leading-relaxed text-neutral-600">
-              Open the client portal to create your account, send and receive over encrypted channels, and use verified sourcing
-              for every connection—managed end to end by FirstClassMail.
+              Bring your teams onto mail that is encrypted in transit, matched to verified recipients, and handled through a
+              neutral intermediary—so routing, policy, and continuity stay consistent across offices. Open the portal to create an
+              account and run correspondence with FirstClassMail end to end.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
               <Link href="/portal" className="btn btn-primary px-11 py-3.5 text-xs uppercase tracking-[0.2em]">
