@@ -2,15 +2,7 @@
 
 import { useState } from 'react'
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import {
-  Mail,
-  ArrowRight,
-  CheckCircle,
-  Inbox,
-  Send,
-  FileInput,
-  Warehouse,
-} from 'lucide-react'
+import { Mail, ArrowRight, CheckCircle, Inbox, Send, FileInput, Warehouse } from 'lucide-react'
 import Link from 'next/link'
 
 function TiltCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
@@ -36,7 +28,7 @@ function TiltCard({ children, className = '' }: { children: React.ReactNode; cla
       }}
     >
       <motion.div
-        className="h-full border border-neutral-800 bg-black"
+        className="h-full overflow-hidden rounded-3xl border border-neutral-800/90 bg-neutral-950"
         style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
       >
         {children}
@@ -52,7 +44,7 @@ function IsoBlock({ className, delay = 0 }: { className: string; delay?: number 
       initial={false}
     >
       <motion.div
-        className={`absolute inset-0 border border-white/15 ${className}`}
+        className={`absolute inset-0 rounded-2xl border border-white/15 ${className}`}
         style={{ transformStyle: 'preserve-3d' }}
         animate={{
           rotateX: [14, 22, 14],
@@ -89,18 +81,21 @@ export default function HomePage() {
 
   const pillars = [
     {
+      accent: 'bg-rgb-red',
       border: 'border-l-rgb-red',
       icon: FileInput,
       title: 'What people send',
       body: 'Inquiries from your site, responses to campaigns, notes meant for a particular desk—the same variety as paper, only it travels as data.',
     },
     {
+      accent: 'bg-rgb-green',
       border: 'border-l-rgb-green',
       icon: Warehouse,
       title: 'Where it waits',
       body: 'When volume surges, nothing is thrown away. Items sit in line, in order, until the path ahead is clear—just as a post office holds sacks until the truck leaves.',
     },
     {
+      accent: 'bg-rgb-blue',
       border: 'border-l-rgb-blue',
       icon: Send,
       title: 'How it reaches the reader',
@@ -142,13 +137,13 @@ export default function HomePage() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.28 }}
-              className="fixed right-0 top-0 z-50 flex h-full w-[min(100%,20rem)] flex-col border-l border-neutral-800 bg-black"
+              className="fixed right-0 top-0 z-50 flex h-full w-[min(100%,22rem)] flex-col rounded-l-[2rem] border-l border-neutral-800 bg-neutral-950 shadow-2xl"
             >
-              <div className="flex items-center justify-between border-b border-neutral-800 p-5">
+              <div className="flex items-center justify-between border-b border-neutral-800/80 p-6">
                 <span className="font-serif text-lg text-white">Menu</span>
                 <button
                   type="button"
-                  className="rounded-sm p-2 text-neutral-500 hover:text-white"
+                  className="rounded-full p-2 text-neutral-500 transition hover:bg-neutral-900 hover:text-white"
                   onClick={() => setMobileMenuOpen(false)}
                   aria-label="Close"
                 >
@@ -157,7 +152,7 @@ export default function HomePage() {
                   </svg>
                 </button>
               </div>
-              <nav className="flex flex-col gap-1 p-4">
+              <nav className="flex flex-col gap-1 p-5">
                 {[
                   ['Correspondence', '#correspondence'],
                   ['The journey', '#journey'],
@@ -167,7 +162,7 @@ export default function HomePage() {
                   <Link
                     key={href}
                     href={href}
-                    className="rounded-sm px-4 py-3 text-sm text-neutral-400 transition hover:bg-neutral-950 hover:text-white"
+                    className="rounded-2xl px-4 py-3.5 text-sm text-neutral-400 transition hover:bg-neutral-900 hover:text-white"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {label}
@@ -186,173 +181,222 @@ export default function HomePage() {
         )}
       </AnimatePresence>
 
-      <nav className="sticky top-0 z-50 border-b border-neutral-900 bg-black">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:h-[4.5rem] lg:px-8">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center border border-neutral-700 bg-black">
-              <Mail className="h-4 w-4 text-white" strokeWidth={1.25} />
+      <div className="border-b border-neutral-900/80 bg-black pb-4 pt-4 sm:pt-6">
+        <div className="shell">
+          <nav className="flex h-14 items-center justify-between rounded-full border border-neutral-800/90 bg-neutral-950/90 px-4 shadow-sm backdrop-blur-md sm:h-[3.75rem] sm:px-6 lg:px-8">
+            <Link href="/" className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-700/80 bg-black">
+                <Mail className="h-4 w-4 text-white" strokeWidth={1.25} />
+              </div>
+              <div>
+                <span className="font-serif text-lg tracking-wide text-white md:text-xl">FirstClass Mail</span>
+                <p className="hidden font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500 sm:block">
+                  Digital post
+                </p>
+              </div>
+            </Link>
+            <div className="hidden items-center gap-8 lg:gap-10 md:flex">
+              <Link href="#correspondence" className="text-sm text-neutral-400 transition hover:text-white">
+                Correspondence
+              </Link>
+              <Link href="#journey" className="text-sm text-neutral-400 transition hover:text-white">
+                The journey
+              </Link>
+              <Link href="#practice" className="text-sm text-neutral-400 transition hover:text-white">
+                Practice
+              </Link>
+              <Link href="/portal" className="btn btn-primary px-6 py-2.5 text-xs uppercase tracking-widest">
+                Portal
+              </Link>
             </div>
-            <div>
-              <span className="font-serif text-lg tracking-wide text-white md:text-xl">FirstClass Mail</span>
-              <p className="hidden font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500 sm:block">
-                Digital post
-              </p>
-            </div>
-          </Link>
-          <div className="hidden items-center gap-10 md:flex">
-            <Link href="#correspondence" className="text-sm text-neutral-400 transition hover:text-white">
-              Correspondence
-            </Link>
-            <Link href="#journey" className="text-sm text-neutral-400 transition hover:text-white">
-              The journey
-            </Link>
-            <Link href="#practice" className="text-sm text-neutral-400 transition hover:text-white">
-              Practice
-            </Link>
-            <Link href="/portal" className="btn btn-primary px-5 py-2 text-xs uppercase tracking-widest">
-              Portal
-            </Link>
-          </div>
-          <button
-            type="button"
-            className="p-2 text-neutral-400 hover:text-white md:hidden"
-            onClick={() => setMobileMenuOpen(true)}
-            aria-label="Open menu"
-          >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.25} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+            <button
+              type="button"
+              className="rounded-full p-2.5 text-neutral-400 transition hover:bg-neutral-900 hover:text-white md:hidden"
+              onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open menu"
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.25} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </nav>
         </div>
-      </nav>
+      </div>
 
-      <header className="border-b border-neutral-900">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:py-28 lg:px-8">
-          <div className="grid items-end gap-16 lg:grid-cols-[1fr_auto] lg:gap-12">
-            <div>
+      <header className="border-b border-neutral-900/80">
+        <div className="shell py-16 md:py-24 lg:py-28">
+          <div className="grid grid-cols-12 gap-x-6 gap-y-12 lg:gap-x-10 lg:gap-y-16">
+            <div className="col-span-12 flex flex-col justify-end lg:col-span-7 lg:row-span-1">
               <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.4em] text-neutral-500">Internet correspondence</p>
-              <h1 className="mb-8 max-w-xl font-serif text-4xl font-medium leading-[1.1] text-white md:text-5xl lg:text-6xl">
+              <h1 className="mb-8 max-w-[22ch] font-serif text-4xl font-medium leading-[1.08] text-white md:text-5xl lg:text-[3.5rem] xl:text-6xl">
                 The way mail has always worked—now over the network.
               </h1>
-              <p className="max-w-md text-base leading-relaxed text-neutral-500 md:text-lg">
-                Paper or wire, the idea is unchanged: a message is written, addressed, handled with care, and brought to the right
-                door. FirstClass Mail carries that sequence for everything you collect and send online.
+              <p className="max-w-xl text-base leading-[1.75] text-neutral-500 md:text-lg">
+                Paper or wire, the idea is unchanged: a message is written, addressed, handled with care, and brought to the
+                right door. FirstClass Mail carries that sequence for everything you collect and send online.
               </p>
               <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <Link href="/portal" className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
+                <Link href="/portal" className="btn btn-primary px-9 py-3.5 text-xs uppercase tracking-[0.2em]">
                   Open portal
                   <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
                 </Link>
                 <Link
                   href="#journey"
-                  className="text-center text-sm text-neutral-500 underline-offset-4 hover:text-white hover:underline sm:text-left"
+                  className="text-center text-sm text-neutral-500 underline-offset-4 transition hover:text-white hover:underline sm:text-left"
                 >
                   Read how delivery works
                 </Link>
               </div>
             </div>
-            <div className="flex justify-center gap-6 lg:justify-end lg:pb-2">
-              <IsoBlock className="bg-rgb-red" delay={0} />
-              <IsoBlock className="bg-rgb-green" delay={2} />
-              <IsoBlock className="bg-rgb-blue" delay={4} />
+            <div className="col-span-12 flex items-end justify-center gap-5 sm:gap-8 lg:col-span-5 lg:justify-end">
+              <div className="surface-panel flex flex-wrap items-center justify-center gap-5 rounded-[2rem] p-8 sm:gap-8 sm:p-10">
+                <IsoBlock className="bg-rgb-red" delay={0} />
+                <IsoBlock className="bg-rgb-green" delay={2} />
+                <IsoBlock className="bg-rgb-blue" delay={4} />
+              </div>
             </div>
           </div>
         </div>
       </header>
 
-      <section id="correspondence" className="border-b border-neutral-900">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:py-24 lg:px-8">
-          <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-600">Correspondence</p>
-          <h2 className="mt-4 max-w-2xl font-serif text-3xl text-white md:text-4xl">Not a metaphor—an office you never see.</h2>
-          <p className="mt-6 max-w-2xl text-neutral-500 leading-relaxed">
-            In the physical world, mail moves through rooms you do not visit: counters, sorting tables, holding areas, outgoing
-            carts. On the internet, the same roles exist—only the rooms are machines. Someone still decides what is legitimate,
-            what waits, and what goes out next.
-          </p>
-          <div className="mt-16 grid gap-px bg-neutral-900 md:grid-cols-3">
-            {[
-              ['Inquiry', 'A visitor leaves a card—structured fields, plain language, a return path.'],
-              ['Announcement', 'A note to many recipients, each addressed in turn, none treated as bulk without intent.'],
-              ['Reply', 'An answer routed back along the thread it came from—continuity, not noise.'],
-            ].map(([title, body]) => (
-              <div key={title} className="bg-black p-8 md:p-10">
-                <h3 className="font-serif text-xl text-white">{title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-neutral-500">{body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="journey" className="border-b border-neutral-900">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:py-24 lg:px-8">
-          <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-600">The journey</p>
-          <h2 className="mt-4 max-w-xl font-serif text-3xl text-white md:text-4xl">From hand to hand, in four beats.</h2>
-          <div className="mt-16 space-y-12">
-            {journey.map((step, i) => (
-              <div key={step.title} className="flex flex-col gap-6 border-b border-neutral-900 pb-12 last:border-0 last:pb-0 md:flex-row md:items-start md:gap-16">
-                <span className="font-mono text-xs text-neutral-600">{String(i + 1).padStart(2, '0')}</span>
-                <div className="md:max-w-lg">
-                  <h3 className="font-serif text-2xl text-white">{step.title}</h3>
-                  <p className="mt-4 text-neutral-500 leading-relaxed">{step.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="practice" className="border-b border-neutral-900">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:py-24 lg:px-8">
-          <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-600">In practice</p>
-          <h2 className="mt-4 max-w-xl font-serif text-3xl text-white md:text-4xl">What FirstClass Mail holds for you.</h2>
-          <div className="mt-16 grid gap-8 md:grid-cols-3 md:gap-6">
-            {pillars.map((p) => (
-              <div key={p.title} className={`border border-neutral-800 border-l-4 ${p.border} bg-black p-8`}>
-                <p.icon className="h-5 w-5 text-white" strokeWidth={1.25} />
-                <h3 className="mt-6 font-serif text-xl text-white">{p.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-neutral-500">{p.body}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mx-auto mt-20 max-w-4xl">
-            <div className="grid gap-6 md:grid-cols-3">
+      <section id="correspondence" className="border-b border-neutral-900/80 bg-neutral-950">
+        <div className="shell py-20 md:py-28">
+          <div className="grid grid-cols-12 gap-x-6 gap-y-10 lg:gap-x-10">
+            <div className="col-span-12 lg:col-span-5 lg:col-start-1">
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-600">Correspondence</p>
+              <h2 className="mt-5 font-serif text-3xl leading-tight text-white md:text-4xl lg:text-[2.75rem]">
+                Not a metaphor—an office you never see.
+              </h2>
+            </div>
+            <div className="col-span-12 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:self-end">
+              <p className="text-neutral-500 leading-[1.8] lg:text-[1.05rem]">
+                In the physical world, mail moves through rooms you do not visit: counters, sorting tables, holding areas,
+                outgoing carts. On the internet, the same roles exist—only the rooms are machines. Someone still decides what is
+                legitimate, what waits, and what goes out next.
+              </p>
+            </div>
+            <div className="col-span-12 mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-8 lg:grid-cols-3 lg:gap-6">
               {[
-                { title: 'Collect', sub: 'Windows for new mail', icon: Inbox },
-                { title: 'Sort', sub: 'Rules that read the address block', icon: Mail },
-                { title: 'Release', sub: 'When the route is open', icon: Send },
-              ].map((step, i) => (
-                <motion.div
-                  key={step.title}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
+                ['Inquiry', 'A visitor leaves a card—structured fields, plain language, a return path.'],
+                ['Announcement', 'A note to many recipients, each addressed in turn, none treated as bulk without intent.'],
+                ['Reply', 'An answer routed back along the thread it came from—continuity, not noise.'],
+              ].map(([title, body]) => (
+                <div
+                  key={title}
+                  className="flex flex-col rounded-3xl border border-neutral-800/80 bg-black p-8 transition hover:border-neutral-700 md:p-9"
                 >
-                  <TiltCard className="p-8">
-                    <step.icon className="h-5 w-5 text-neutral-400" strokeWidth={1.25} />
-                    <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-600">Station {i + 1}</p>
-                    <h3 className="mt-2 font-serif text-lg text-white">{step.title}</h3>
-                    <p className="mt-3 text-sm text-neutral-500">{step.sub}</p>
-                  </TiltCard>
-                </motion.div>
+                  <h3 className="font-serif text-xl text-white">{title}</h3>
+                  <p className="mt-5 text-sm leading-relaxed text-neutral-500">{body}</p>
+                </div>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-neutral-900">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:py-24 lg:px-8">
-          <h2 className="text-center font-serif text-2xl text-white md:text-3xl">Voices from the hall</h2>
-          <div className="mt-16 grid gap-px bg-neutral-900 md:grid-cols-2">
+      <section id="journey" className="border-b border-neutral-900/80">
+        <div className="shell py-20 md:py-28">
+          <div className="grid grid-cols-12 gap-x-6 lg:gap-x-12">
+            <div className="col-span-12 lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-600">The journey</p>
+              <h2 className="mt-5 max-w-[14ch] font-serif text-3xl leading-tight text-white md:text-4xl">
+                From hand to hand, in four beats.
+              </h2>
+              <div className="mt-10 hidden h-px w-16 rounded-full bg-neutral-800 lg:block" aria-hidden />
+            </div>
+            <div className="col-span-12 mt-12 grid gap-5 lg:col-span-8 lg:mt-0 lg:gap-6">
+              {journey.map((step, i) => (
+                <article
+                  key={step.title}
+                  className="grid grid-cols-12 gap-4 rounded-[1.75rem] border border-neutral-800/80 bg-neutral-950/50 p-6 sm:p-8 md:gap-6 md:p-10"
+                >
+                  <div className="col-span-12 flex items-start sm:col-span-2 md:col-span-2">
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-neutral-800 bg-black font-mono text-xs text-neutral-500">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                  <div className="col-span-12 sm:col-span-10 md:col-span-10">
+                    <h3 className="font-serif text-2xl text-white">{step.title}</h3>
+                    <p className="mt-4 text-neutral-500 leading-[1.8]">{step.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="practice" className="border-b border-neutral-900/80 bg-neutral-950">
+        <div className="shell py-20 md:py-28">
+          <div className="grid grid-cols-12">
+            <div className="col-span-12 max-w-3xl">
+              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-600">In practice</p>
+              <h2 className="mt-5 font-serif text-3xl text-white md:text-4xl">What FirstClass Mail holds for you.</h2>
+            </div>
+          </div>
+
+          <div className="mt-14 grid grid-cols-12 gap-5 lg:mt-20 lg:gap-6">
+            {pillars.map((p) => (
+              <div
+                key={p.title}
+                className={`col-span-12 flex flex-col overflow-hidden rounded-3xl border border-neutral-800/90 bg-black md:col-span-6 lg:col-span-4 ${p.border} border-l-[5px]`}
+              >
+                <div className={`h-1.5 w-full ${p.accent}`} aria-hidden />
+                <div className="flex flex-1 flex-col p-8 md:p-9">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-neutral-800 bg-neutral-950">
+                    <p.icon className="h-5 w-5 text-white" strokeWidth={1.25} />
+                  </div>
+                  <h3 className="mt-8 font-serif text-xl text-white">{p.title}</h3>
+                  <p className="mt-4 flex-1 text-sm leading-relaxed text-neutral-500">{p.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 grid grid-cols-12 lg:mt-24">
+            <div className="col-span-12">
+              <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6 lg:gap-8">
+                {[
+                  { title: 'Collect', sub: 'Windows for new mail', icon: Inbox },
+                  { title: 'Sort', sub: 'Rules that read the address block', icon: Mail },
+                  { title: 'Release', sub: 'When the route is open', icon: Send },
+                ].map((step, i) => (
+                  <motion.div
+                    key={step.title}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.06 }}
+                  >
+                    <TiltCard className="p-8 md:p-9">
+                      <step.icon className="h-5 w-5 text-neutral-400" strokeWidth={1.25} />
+                      <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-600">Station {i + 1}</p>
+                      <h3 className="mt-3 font-serif text-xl text-white">{step.title}</h3>
+                      <p className="mt-3 text-sm leading-relaxed text-neutral-500">{step.sub}</p>
+                    </TiltCard>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-neutral-900/80">
+        <div className="shell py-20 md:py-28">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="font-serif text-3xl text-white md:text-4xl">Voices from the hall</h2>
+          </div>
+          <div className="mt-14 grid grid-cols-12 gap-5 lg:mt-16 lg:gap-8">
             {testimonials.map((t) => (
-              <blockquote key={t.name} className="bg-black p-10 md:p-12">
-                <p className="font-serif text-lg leading-relaxed text-neutral-400">&ldquo;{t.quote}&rdquo;</p>
-                <footer className="mt-8 border-t border-neutral-900 pt-8">
+              <blockquote
+                key={t.name}
+                className="col-span-12 flex flex-col rounded-[1.75rem] border border-neutral-800/80 bg-neutral-950 p-9 md:col-span-6 md:p-10 lg:p-12"
+              >
+                <p className="font-serif text-lg leading-relaxed text-neutral-400 md:text-xl">&ldquo;{t.quote}&rdquo;</p>
+                <footer className="mt-auto border-t border-neutral-800/80 pt-8">
                   <cite className="not-italic font-medium text-white">{t.name}</cite>
-                  <p className="mt-1 text-sm text-neutral-600">{t.title}</p>
+                  <p className="mt-1.5 text-sm text-neutral-600">{t.title}</p>
                 </footer>
               </blockquote>
             ))}
@@ -360,73 +404,72 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="contact" className="border-b border-neutral-900 bg-neutral-950">
-        <div className="mx-auto max-w-6xl px-5 py-20 text-center md:py-24 lg:px-8">
-          <h2 className="font-serif text-3xl text-white md:text-4xl">Begin your file.</h2>
-          <p className="mx-auto mt-6 max-w-lg text-neutral-500">
-            The portal is where you open accounts, watch the queue, and confirm that what you sent arrived as intended.
-          </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link href="/portal" className="btn btn-primary px-10 py-3 text-xs uppercase tracking-[0.2em]">
-              Enter portal
-            </Link>
-            <Link href="#correspondence" className="text-sm text-neutral-500 hover:text-white">
-              Back to correspondence
-            </Link>
+      <section id="contact" className="border-b border-neutral-900/80 bg-neutral-950">
+        <div className="shell py-20 md:py-28">
+          <div className="mx-auto max-w-3xl rounded-[2rem] border border-neutral-800/90 bg-black px-8 py-14 text-center md:px-14 md:py-16">
+            <h2 className="font-serif text-3xl text-white md:text-4xl">Begin your file.</h2>
+            <p className="mx-auto mt-6 max-w-lg text-neutral-500 leading-relaxed">
+              The portal is where you open accounts, watch the queue, and confirm that what you sent arrived as intended.
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
+              <Link href="/portal" className="btn btn-primary px-11 py-3.5 text-xs uppercase tracking-[0.2em]">
+                Enter portal
+              </Link>
+              <Link
+                href="#correspondence"
+                className="rounded-full px-6 py-3 text-sm text-neutral-500 transition hover:bg-neutral-900 hover:text-white"
+              >
+                Back to correspondence
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <footer className="bg-black py-16">
-        <div className="mx-auto max-w-6xl px-5 lg:px-8">
-          <div className="flex flex-col gap-12 md:flex-row md:justify-between">
-            <div className="max-w-sm">
+      <footer className="bg-black py-16 md:py-20">
+        <div className="shell">
+          <div className="grid grid-cols-12 gap-10 lg:gap-12">
+            <div className="col-span-12 md:col-span-6 lg:col-span-5">
               <div className="flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center border border-neutral-700">
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-neutral-700/80">
                   <Mail className="h-4 w-4 text-white" strokeWidth={1.25} />
                 </div>
-                <span className="font-serif text-lg text-white">FirstClass Mail</span>
+                <span className="font-serif text-xl text-white">FirstClass Mail</span>
               </div>
-              <p className="mt-6 text-sm leading-relaxed text-neutral-600">
+              <p className="mt-8 max-w-md text-sm leading-[1.8] text-neutral-600">
                 Digital handling for messages that deserve the same care as paper: addressing, sorting, holding, and proof of
                 delivery—over the internet.
               </p>
             </div>
-            <div className="flex gap-16 text-sm text-neutral-600">
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-700">Explore</p>
-                <ul className="mt-4 space-y-3">
-                  <li>
-                    <Link href="#journey" className="hover:text-white">
-                      The journey
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#practice" className="hover:text-white">
-                      In practice
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/portal" className="hover:text-white">
-                      Portal
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-700">Legal</p>
-                <ul className="mt-4 space-y-3">
-                  <li>
-                    <span className="text-neutral-700">Privacy — soon</span>
-                  </li>
-                  <li>
-                    <span className="text-neutral-700">Terms — soon</span>
-                  </li>
-                </ul>
-              </div>
+            <div className="col-span-6 md:col-span-3 lg:col-span-3 lg:col-start-8">
+              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-700">Explore</p>
+              <ul className="mt-5 space-y-3 text-sm text-neutral-600">
+                <li>
+                  <Link href="#journey" className="transition hover:text-white">
+                    The journey
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#practice" className="transition hover:text-white">
+                    In practice
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/portal" className="transition hover:text-white">
+                    Portal
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="col-span-6 md:col-span-3 lg:col-span-2">
+              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-700">Legal</p>
+              <ul className="mt-5 space-y-3 text-sm text-neutral-700">
+                <li>Privacy — soon</li>
+                <li>Terms — soon</li>
+              </ul>
             </div>
           </div>
-          <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-neutral-900 pt-8 text-xs text-neutral-700 md:flex-row md:items-center">
+          <div className="mt-14 flex flex-col items-start justify-between gap-4 rounded-2xl border border-neutral-900/80 bg-neutral-950/50 px-6 py-6 text-xs text-neutral-700 md:flex-row md:items-center md:px-8">
             <p>&copy; {new Date().getFullYear()} FirstClass Mail. All rights reserved.</p>
             <p className="flex items-center gap-2">
               <CheckCircle className="h-3.5 w-3.5 text-neutral-600" strokeWidth={1.25} />

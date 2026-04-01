@@ -22,8 +22,13 @@
 }
 
 @layer components {
+  /* Editorial width + consistent horizontal rhythm */
+  .shell {
+    @apply mx-auto w-full max-w-[1320px] px-5 sm:px-8 lg:px-12;
+  }
+
   .btn {
-    @apply inline-flex items-center justify-center rounded-sm text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:opacity-50 disabled:pointer-events-none;
+    @apply inline-flex items-center justify-center rounded-full text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:opacity-50 disabled:pointer-events-none;
     @apply min-h-[44px] min-w-[44px];
   }
 
@@ -32,7 +37,7 @@
   }
 
   .btn-secondary {
-    @apply bg-black text-white border border-neutral-600 hover:border-white;
+    @apply bg-black text-white border border-neutral-600 hover:border-white rounded-full;
   }
 
   .btn-accent {
@@ -40,12 +45,16 @@
   }
 
   .card {
-    @apply rounded-sm border border-neutral-800 bg-black text-neutral-200 transition-colors duration-200;
+    @apply rounded-3xl border border-neutral-800/90 bg-neutral-950 text-neutral-200 transition-colors duration-200;
   }
 
   .input {
-    @apply flex h-11 w-full rounded-sm border border-neutral-700 bg-black px-4 py-3 text-sm text-neutral-100 file:border-0 file:bg-transparent placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:cursor-not-allowed disabled:opacity-50;
+    @apply flex h-11 w-full rounded-2xl border border-neutral-700 bg-black px-4 py-3 text-sm text-neutral-100 file:border-0 file:bg-transparent placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:cursor-not-allowed disabled:opacity-50;
     @apply min-h-[44px];
+  }
+
+  .surface-panel {
+    @apply rounded-[1.75rem] border border-neutral-800/80 bg-neutral-950/80;
   }
 
   .legal-section {
