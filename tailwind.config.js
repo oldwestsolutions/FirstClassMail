@@ -59,26 +59,28 @@ module.exports = {
         },
         steel: {
           black: '#000000',
-          surface: '#0c0c0e',
-          elevated: '#141416',
-          line: '#27272a',
+          surface: '#0a0a0a',
+          elevated: '#0a0a0a',
+          line: '#262626',
           gold: '#FFB612',
           goldMuted: '#c48a00',
-        }
+        },
+        /* Solid RGB — 3D decorative elements only */
+        rgb: {
+          red: '#B91C1C',
+          green: '#15803D',
+          blue: '#1D4ED8',
+        },
       },
       fontFamily: {
-        serif: ['var(--font-display)', 'Space Grotesk', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-display)', 'Cormorant Garamond', 'Georgia', 'serif'],
         sans: ['var(--font-body)', 'Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.3s ease-out',
-        'bounce-subtle': 'bounceSubtle 2s infinite',
-        'grid-drift': 'gridDrift 20s linear infinite',
-        'float-slow': 'floatSlow 8s ease-in-out infinite',
-        'glow-pulse': 'glowPulse 4s ease-in-out infinite',
-        'spin-slow': 'spinSlow 24s linear infinite',
+        'float-3d': 'float3d 14s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -89,25 +91,9 @@ module.exports = {
           '0%': { transform: 'translateY(10px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
-        bounceSubtle: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-5px)' },
-        },
-        gridDrift: {
-          '0%': { backgroundPosition: '0 0' },
-          '100%': { backgroundPosition: '48px 48px' },
-        },
-        floatSlow: {
-          '0%, 100%': { transform: 'translateY(0) rotateX(0deg)' },
-          '50%': { transform: 'translateY(-12px) rotateX(2deg)' },
-        },
-        glowPulse: {
-          '0%, 100%': { opacity: '0.45', filter: 'blur(48px)' },
-          '50%': { opacity: '0.75', filter: 'blur(56px)' },
-        },
-        spinSlow: {
-          '0%': { transform: 'rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg)' },
+        float3d: {
+          '0%, 100%': { transform: 'perspective(900px) rotateX(8deg) rotateY(-12deg) translateY(0)' },
+          '50%': { transform: 'perspective(900px) rotateX(14deg) rotateY(8deg) translateY(-6px)' },
         },
       }
     },

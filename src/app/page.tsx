@@ -4,45 +4,31 @@ import { useState } from 'react'
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import {
   Mail,
-  Server,
-  FormInput,
-  Shield,
-  Zap,
-  Layers,
   ArrowRight,
-  Users,
-  BarChart3,
   CheckCircle,
-  Radio,
   Inbox,
-  Network,
+  Send,
+  FileInput,
+  Warehouse,
 } from 'lucide-react'
 import Link from 'next/link'
 
-function TiltCard({
-  children,
-  className = '',
-}: {
-  children: React.ReactNode
-  className?: string
-}) {
+function TiltCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   const x = useMotionValue(0)
   const y = useMotionValue(0)
-  const springX = useSpring(x, { stiffness: 300, damping: 28 })
-  const springY = useSpring(y, { stiffness: 300, damping: 28 })
-  const rotateX = useTransform(springY, [-0.5, 0.5], ['7deg', '-7deg'])
-  const rotateY = useTransform(springX, [-0.5, 0.5], ['-7deg', '7deg'])
+  const springX = useSpring(x, { stiffness: 280, damping: 30 })
+  const springY = useSpring(y, { stiffness: 280, damping: 30 })
+  const rotateX = useTransform(springY, [-0.5, 0.5], ['5deg', '-5deg'])
+  const rotateY = useTransform(springX, [-0.5, 0.5], ['-5deg', '5deg'])
 
   return (
     <motion.div
       className={`relative ${className}`}
-      style={{ perspective: 1200, transformStyle: 'preserve-3d' }}
+      style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
       onMouseMove={(e) => {
         const r = e.currentTarget.getBoundingClientRect()
-        const px = (e.clientX - r.left) / r.width - 0.5
-        const py = (e.clientY - r.top) / r.height - 0.5
-        x.set(px)
-        y.set(py)
+        x.set((e.clientX - r.left) / r.width - 0.5)
+        y.set((e.clientY - r.top) / r.height - 0.5)
       }}
       onMouseLeave={() => {
         x.set(0)
@@ -50,7 +36,7 @@ function TiltCard({
       }}
     >
       <motion.div
-        className="h-full rounded-xl border border-zinc-800/80 bg-zinc-900/50 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,182,18,0.08)] backdrop-blur-md"
+        className="h-full border border-neutral-800 bg-black"
         style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
       >
         {children}
@@ -59,76 +45,86 @@ function TiltCard({
   )
 }
 
+function IsoBlock({ className, delay = 0 }: { className: string; delay?: number }) {
+  return (
+    <motion.div
+      className="relative h-[5.5rem] w-[5.5rem] sm:h-24 sm:w-24 [perspective:900px]"
+      initial={false}
+    >
+      <motion.div
+        className={`absolute inset-0 border border-white/15 ${className}`}
+        style={{ transformStyle: 'preserve-3d' }}
+        animate={{
+          rotateX: [14, 22, 14],
+          rotateY: [-18, -10, -18],
+          y: [0, -4, 0],
+        }}
+        transition={{ duration: 14 + delay, repeat: Infinity, ease: 'easeInOut', delay }}
+      />
+    </motion.div>
+  )
+}
+
 export default function HomePage() {
-  const [activeFeature, setActiveFeature] = useState(0)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const features = [
+  const journey = [
     {
-      icon: FormInput,
-      title: 'Webforms & inbound endpoints',
-      description:
-        'Drop-in forms and HTTP endpoints that turn traffic into structured messages—validated, deduped, and ready for your stack.',
-      benefits: ['Embeddable forms', 'Schema validation', 'Spam resistance', 'Webhook-friendly'],
+      title: 'Collection',
+      text: 'Someone leaves a note at the window—a form, a reply, a campaign. Each piece is dated and addressed before it goes anywhere.',
     },
     {
-      icon: Users,
-      title: 'Lead capture & routing',
-      description:
-        'Route leads to teams, CRM hooks, or Slack—rules, scoring, and ownership so nothing sits in a dead inbox.',
-      benefits: ['Rules & filters', 'CRM / API handoff', 'Team routing', 'Audit trail'],
+      title: 'Sorting',
+      text: 'Like letters under a clerk’s hand, messages are read for the essentials: who it is for, what it concerns, where it should go next.',
     },
     {
-      icon: Layers,
-      title: 'Email buffering & delivery',
-      description:
-        'Queue marketing and transactional mail with retries, backoff, and visibility—your server smooths spikes so recipients see consistent delivery.',
-      benefits: ['Buffered queue', 'Retries & DLQ', 'Throughput control', 'Delivery metrics'],
+      title: 'Holding',
+      text: 'When the mail is heavy, it waits in the back room—orderly stacks, nothing lost—until the route is ready to carry it out.',
+    },
+    {
+      title: 'Delivery',
+      text: 'Carriers take each item to its destination: an inbox, a team, a system that asked for it. Proof of arrival closes the loop.',
     },
   ]
 
-  const pipeline = [
+  const pillars = [
     {
-      icon: Network,
-      title: 'Edge ingress',
-      text: 'TLS-terminated intake, rate limits, and payload checks before anything hits your queue.',
+      border: 'border-l-rgb-red',
+      icon: FileInput,
+      title: 'What people send',
+      body: 'Inquiries from your site, responses to campaigns, notes meant for a particular desk—the same variety as paper, only it travels as data.',
     },
     {
-      icon: Inbox,
-      title: 'Normalize & enrich',
-      text: 'Normalize fields, attach metadata, and fan out to CRM, email, or custom workers.',
+      border: 'border-l-rgb-green',
+      icon: Warehouse,
+      title: 'Where it waits',
+      body: 'When volume surges, nothing is thrown away. Items sit in line, in order, until the path ahead is clear—just as a post office holds sacks until the truck leaves.',
     },
     {
-      icon: BarChart3,
-      title: 'Observe & act',
-      text: 'Dashboards for volume, failures, and lead quality—alerts when pipelines drift.',
+      border: 'border-l-rgb-blue',
+      icon: Send,
+      title: 'How it reaches the reader',
+      body: 'Addressed mail finds the right box. Marketing and transactional notes follow the same discipline: one message, one recipient, one receipt.',
     },
-  ]
-
-  const stats = [
-    { label: 'Messages staged / day', value: '2M+' },
-    { label: 'Webforms live', value: '18k+' },
-    { label: 'Queues monitored', value: '12k+' },
-    { label: 'Platform uptime', value: '99.99%' },
   ]
 
   const testimonials = [
     {
-      name: 'Jordan Ellis',
-      title: 'Growth lead, B2B SaaS',
+      name: 'Claire Whitmore',
+      title: 'Operations director',
       quote:
-        'We replaced a pile of Zapier glue with FirstClass Mail—forms land in one queue, we buffer bursts, and the team finally trusts lead SLAs.',
+        'We stopped thinking about “integrations” and started thinking about mail: who sent it, where it sat, when it arrived. That clarity changed how we work.',
     },
     {
-      name: 'Priya Nandakumar',
-      title: 'Head of Marketing Ops',
+      name: 'Daniel Okonkwo',
+      title: 'Marketing lead',
       quote:
-        'Campaign emails used to trip ISP limits. Buffering and pacing through their server keeps our domain warm and replies flowing.',
+        'Our sends used to collide with quiet hours and rate limits. Now they behave like scheduled post—batched, paced, and delivered when the reader is there.',
     },
   ]
 
   return (
-    <div className="min-h-screen bg-steel-black text-zinc-100">
+    <div className="min-h-screen bg-black text-neutral-300">
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
@@ -137,7 +133,7 @@ export default function HomePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm"
+              className="fixed inset-0 z-40 bg-black/80"
               onClick={() => setMobileMenuOpen(false)}
               aria-label="Close menu"
             />
@@ -146,32 +142,32 @@ export default function HomePage() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.28 }}
-              className="fixed right-0 top-0 z-50 flex h-full w-[min(100%,20rem)] flex-col border-l border-zinc-800 bg-zinc-950 shadow-2xl"
+              className="fixed right-0 top-0 z-50 flex h-full w-[min(100%,20rem)] flex-col border-l border-neutral-800 bg-black"
             >
-              <div className="flex items-center justify-between border-b border-zinc-800 p-4">
-                <span className="font-serif font-bold text-white">Menu</span>
+              <div className="flex items-center justify-between border-b border-neutral-800 p-5">
+                <span className="font-serif text-lg text-white">Menu</span>
                 <button
                   type="button"
-                  className="rounded-lg p-2 text-zinc-400 hover:bg-zinc-900 hover:text-gold-400"
+                  className="rounded-sm p-2 text-neutral-500 hover:text-white"
                   onClick={() => setMobileMenuOpen(false)}
                   aria-label="Close"
                 >
                   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>
               <nav className="flex flex-col gap-1 p-4">
                 {[
-                  ['Product', '#product'],
-                  ['Pipeline', '#pipeline'],
-                  ['About', '#about'],
+                  ['Correspondence', '#correspondence'],
+                  ['The journey', '#journey'],
+                  ['Practice', '#practice'],
                   ['Contact', '#contact'],
                 ].map(([label, href]) => (
                   <Link
                     key={href}
                     href={href}
-                    className="rounded-lg px-4 py-3 text-zinc-300 transition hover:bg-zinc-900 hover:text-gold-400"
+                    className="rounded-sm px-4 py-3 text-sm text-neutral-400 transition hover:bg-neutral-950 hover:text-white"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {label}
@@ -179,7 +175,7 @@ export default function HomePage() {
                 ))}
                 <Link
                   href="/portal"
-                  className="btn btn-accent mt-4 justify-center py-3"
+                  className="btn btn-primary mt-6 justify-center"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Client portal
@@ -190,404 +186,252 @@ export default function HomePage() {
         )}
       </AnimatePresence>
 
-      <nav className="sticky top-0 z-50 border-b border-zinc-800/80 bg-black/60 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 md:h-20">
+      <nav className="sticky top-0 z-50 border-b border-neutral-900 bg-black">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:h-[4.5rem] lg:px-8">
           <Link href="/" className="flex items-center gap-3">
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-lg border border-gold-500/40 bg-gradient-to-br from-zinc-900 to-black shadow-[0_0_24px_-4px_rgba(255,182,18,0.35)]">
-              <Mail className="h-5 w-5 text-gold-400" />
+            <div className="flex h-9 w-9 items-center justify-center border border-neutral-700 bg-black">
+              <Mail className="h-4 w-4 text-white" strokeWidth={1.25} />
             </div>
             <div>
-              <span className="font-serif text-lg font-bold tracking-tight text-white md:text-xl">
-                FirstClass Mail
-              </span>
-              <p className="-mt-0.5 hidden text-[11px] font-mono uppercase tracking-widest text-gold-500/90 sm:block">
-                Inbound mail & SaaS
+              <span className="font-serif text-lg tracking-wide text-white md:text-xl">FirstClass Mail</span>
+              <p className="hidden font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500 sm:block">
+                Digital post
               </p>
             </div>
           </Link>
-          <div className="hidden items-center gap-8 md:flex">
-            <Link href="#product" className="text-sm font-medium text-zinc-300 transition hover:text-gold-400">
-              Product
+          <div className="hidden items-center gap-10 md:flex">
+            <Link href="#correspondence" className="text-sm text-neutral-400 transition hover:text-white">
+              Correspondence
             </Link>
-            <Link href="#pipeline" className="text-sm font-medium text-zinc-300 transition hover:text-gold-400">
-              Pipeline
+            <Link href="#journey" className="text-sm text-neutral-400 transition hover:text-white">
+              The journey
             </Link>
-            <Link href="#about" className="text-sm font-medium text-zinc-300 transition hover:text-gold-400">
-              About
+            <Link href="#practice" className="text-sm text-neutral-400 transition hover:text-white">
+              Practice
             </Link>
-            <Link href="/portal" className="btn btn-accent px-5 py-2.5 text-sm">
-              Client portal
+            <Link href="/portal" className="btn btn-primary px-5 py-2 text-xs uppercase tracking-widest">
+              Portal
             </Link>
           </div>
           <button
             type="button"
-            className="rounded-lg p-2 text-zinc-300 transition hover:bg-zinc-900 hover:text-gold-400 md:hidden"
+            className="p-2 text-neutral-400 hover:text-white md:hidden"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Open menu"
           >
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.25} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
       </nav>
 
-      <section className="hero-web3 hero-gradient relative px-4 pb-20 pt-12 sm:px-6 md:pb-28 md:pt-16 lg:px-8">
-        <div className="hero-grid" aria-hidden />
-        <div className="hero-glow" aria-hidden />
-        <motion.div
-          className="pointer-events-none absolute right-[10%] top-32 hidden h-64 w-64 rounded-full border border-gold-500/20 md:block"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 48, repeat: Infinity, ease: 'linear' }}
-        />
-        <motion.div
-          className="pointer-events-none absolute left-[5%] top-48 h-40 w-40 rounded-2xl border border-gold-500/15 bg-gold-500/5 blur-sm"
-          style={{ rotateX: 12, rotateY: -8 }}
-          animate={{ y: [0, -16, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        />
-
-        <div className="relative mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-center"
-          >
-            <div className="mb-6 flex justify-center">
-              <span className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-zinc-900/80 px-4 py-2 font-mono text-xs font-medium uppercase tracking-[0.2em] text-gold-400 shadow-[0_0_32px_-8px_rgba(255,182,18,0.4)]">
-                <Zap className="h-3.5 w-3.5" />
-                SaaS mail fabric
-              </span>
-            </div>
-            <h1 className="mb-6 font-serif text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-              Webforms, leads & mail
-              <br />
-              <span className="text-gradient">over the internet</span>
-            </h1>
-            <p className="mx-auto mb-10 max-w-3xl text-base leading-relaxed text-zinc-400 md:text-xl">
-              FirstClass Mail is server infrastructure for inbound messages: capture leads from webforms, buffer marketing and
-              transactional email, and fan out to your CRM, data warehouse, or inbox—with observability built for operators.
-            </p>
-            <div className="flex flex-col justify-center gap-4 sm:flex-row sm:gap-5">
-              <Link href="/portal" className="btn btn-accent px-8 py-3.5 text-base">
-                Open client portal
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Link href="#product" className="btn btn-secondary px-8 py-3.5 text-base">
-                Explore the stack
-              </Link>
-            </div>
-          </motion.div>
-
-          <div className="mx-auto mt-16 grid max-w-5xl gap-6 md:grid-cols-3">
-            {[
-              { title: 'Ingress', sub: 'Forms · POST · JSON' },
-              { title: 'Buffer', sub: 'Queues · pacing · retries' },
-              { title: 'Deliver', sub: 'Email · APIs · webhooks' },
-            ].map((step, i) => (
-              <motion.div
-                key={step.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15 + i * 0.1 }}
-              >
-                <TiltCard className="p-6 md:p-8">
-                  <div className="font-mono text-[10px] uppercase tracking-widest text-gold-500/80">Layer {i + 1}</div>
-                  <h3 className="mt-2 font-serif text-xl font-semibold text-white">{step.title}</h3>
-                  <p className="mt-2 text-sm text-zinc-400">{step.sub}</p>
-                </TiltCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-zinc-800 bg-zinc-950/80 py-14 md:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 text-center md:mb-14">
-            <h2 className="font-serif text-2xl font-bold text-white md:text-4xl">Throughput you can read on a dashboard</h2>
-            <p className="mx-auto mt-3 max-w-2xl text-zinc-400">
-              Built for teams that treat inbound mail like a product—measurable, reroutable, and safe at scale.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.45, delay: index * 0.06 }}
-                className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 text-center shadow-inner md:p-8"
-              >
-                <div className="font-serif text-2xl font-bold text-gold-400 md:text-4xl">{stat.value}</div>
-                <div className="mt-1 text-xs font-medium text-zinc-500 md:text-sm">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="product" className="mesh-gradient border-t border-zinc-800 py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center md:mb-16">
-            <h2 className="font-serif text-2xl font-bold text-white md:text-4xl">Everything before the inbox</h2>
-            <p className="mx-auto mt-4 max-w-3xl text-lg text-zinc-400">
-              Webforms and APIs on the front, marketing and transactional mail on the wire—buffered through a SaaS control plane
-              so your team ships campaigns without melting SMTP limits.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: index * 0.08 }}
-                className={`cursor-pointer rounded-xl border p-6 transition-all duration-300 md:p-10 ${
-                  activeFeature === index
-                    ? 'border-gold-500/50 bg-zinc-900/70 shadow-[0_0_40px_-12px_rgba(255,182,18,0.35)]'
-                    : 'border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 hover:shadow-lg'
-                }`}
-                onClick={() => setActiveFeature(index)}
-                onKeyDown={(e) => e.key === 'Enter' && setActiveFeature(index)}
-                role="button"
-                tabIndex={0}
-              >
-                <div className="mb-5 flex flex-col items-start gap-4 md:flex-row md:items-center">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-gold-500/25 bg-black/40 shadow-[inset_0_1px_0_0_rgba(255,182,18,0.15)]">
-                    <feature.icon className="h-7 w-7 text-gold-400" />
-                  </div>
-                  <h3 className="font-serif text-xl font-bold text-white md:text-2xl">{feature.title}</h3>
-                </div>
-                <p className="mb-6 leading-relaxed text-zinc-400">{feature.description}</p>
-                <ul className="space-y-3">
-                  {feature.benefits.map((benefit) => (
-                    <li key={benefit} className="flex items-center text-zinc-300">
-                      <CheckCircle className="mr-3 h-5 w-5 shrink-0 text-gold-500" />
-                      <span className="text-sm font-medium">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="pipeline" className="border-t border-zinc-800 bg-black py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 flex flex-col gap-4 text-center md:mb-16">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-gold-500/90">Pipeline</span>
-            <h2 className="font-serif text-2xl font-bold text-white md:text-4xl">How messages move through the server</h2>
-            <p className="mx-auto max-w-2xl text-zinc-400">
-              A single SaaS plane for ingress, normalization, and delivery—so marketing and product teams share one source of
-              truth.
-            </p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-3">
-            {pipeline.map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-gradient-to-b from-zinc-900/80 to-black p-8"
-              >
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gold-500/10 text-gold-400">
-                  <item.icon className="h-6 w-6" />
-                </div>
-                <h3 className="font-serif text-xl font-semibold text-white">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-zinc-400">{item.text}</p>
-                <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-gold-500/10 blur-2xl" />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="about" className="border-t border-zinc-800 bg-zinc-950 py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 text-center md:mb-14">
-            <h2 className="font-serif text-2xl font-bold text-white md:text-3xl">Operators, not postage</h2>
-            <p className="mx-auto mt-3 max-w-2xl text-zinc-400">
-              Compliance-minded defaults for data handling, encryption in transit, and tenant isolation—so your pipeline stays
-              auditable while you iterate on growth experiments.
-            </p>
-          </div>
-          <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
-            <div className="flex gap-4 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-              <Shield className="h-10 w-10 shrink-0 text-gold-500" />
-              <div>
-                <h3 className="font-serif font-semibold text-white">Security & tenancy</h3>
-                <p className="mt-2 text-sm text-zinc-400">
-                  Keys, tokens, and per-tenant queues—least privilege for every form and mail stream you run.
-                </p>
+      <header className="border-b border-neutral-900">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:py-28 lg:px-8">
+          <div className="grid items-end gap-16 lg:grid-cols-[1fr_auto] lg:gap-12">
+            <div>
+              <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.4em] text-neutral-500">Internet correspondence</p>
+              <h1 className="mb-8 max-w-xl font-serif text-4xl font-medium leading-[1.1] text-white md:text-5xl lg:text-6xl">
+                The way mail has always worked—now over the network.
+              </h1>
+              <p className="max-w-md text-base leading-relaxed text-neutral-500 md:text-lg">
+                Paper or wire, the idea is unchanged: a message is written, addressed, handled with care, and brought to the right
+                door. FirstClass Mail carries that sequence for everything you collect and send online.
+              </p>
+              <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center">
+                <Link href="/portal" className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
+                  Open portal
+                  <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
+                </Link>
+                <Link
+                  href="#journey"
+                  className="text-center text-sm text-neutral-500 underline-offset-4 hover:text-white hover:underline sm:text-left"
+                >
+                  Read how delivery works
+                </Link>
               </div>
             </div>
-            <div className="flex gap-4 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-              <Server className="h-10 w-10 shrink-0 text-gold-500" />
-              <div>
-                <h3 className="font-serif font-semibold text-white">SaaS operations</h3>
-                <p className="mt-2 text-sm text-zinc-400">
-                  Multi-region-friendly architecture with the knobs operators expect—limits, alerts, and replay.
-                </p>
-              </div>
+            <div className="flex justify-center gap-6 lg:justify-end lg:pb-2">
+              <IsoBlock className="bg-rgb-red" delay={0} />
+              <IsoBlock className="bg-rgb-green" delay={2} />
+              <IsoBlock className="bg-rgb-blue" delay={4} />
             </div>
           </div>
         </div>
-      </section>
+      </header>
 
-      <section className="border-t border-zinc-800 bg-black py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 text-center md:mb-12">
-            <h2 className="font-serif text-2xl font-bold text-white md:text-3xl">Teams shipping with buffered mail</h2>
-            <p className="mt-3 text-zinc-400">From growth teams to platform engineers—one ingress plane for the internet&apos;s messages.</p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-2">
-            {testimonials.map((t, index) => (
-              <motion.div
-                key={t.name}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08 }}
-                className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8"
-              >
-                <div className="mb-6 flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gold-500/30 bg-black font-semibold text-gold-400">
-                    {t.name
-                      .split(' ')
-                      .map((n) => n[0])
-                      .join('')}
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-white">{t.name}</h4>
-                    <p className="text-sm text-zinc-500">{t.title}</p>
-                  </div>
-                </div>
-                <blockquote className="leading-relaxed text-zinc-400">&ldquo;{t.quote}&rdquo;</blockquote>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" className="relative overflow-hidden border-t border-gold-500/20 bg-gradient-to-br from-zinc-950 via-black to-zinc-950 py-16 md:py-24">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,182,18,0.12),transparent_55%)]" />
-        <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <Radio className="mx-auto mb-4 h-10 w-10 text-gold-500" />
-          <h2 className="font-serif text-2xl font-bold text-white md:text-4xl">Ready to route your internet mail?</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-zinc-400">
-            Spin up webforms, connect your SMTP and marketing tools, and let the server buffer delivery while you scale.
+      <section id="correspondence" className="border-b border-neutral-900">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:py-24 lg:px-8">
+          <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-600">Correspondence</p>
+          <h2 className="mt-4 max-w-2xl font-serif text-3xl text-white md:text-4xl">Not a metaphor—an office you never see.</h2>
+          <p className="mt-6 max-w-2xl text-neutral-500 leading-relaxed">
+            In the physical world, mail moves through rooms you do not visit: counters, sorting tables, holding areas, outgoing
+            carts. On the internet, the same roles exist—only the rooms are machines. Someone still decides what is legitimate,
+            what waits, and what goes out next.
           </p>
-          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <Link href="/portal" className="btn btn-accent px-10 py-4 text-base">
-              Client portal
-              <ArrowRight className="ml-2 h-5 w-5" />
+          <div className="mt-16 grid gap-px bg-neutral-900 md:grid-cols-3">
+            {[
+              ['Inquiry', 'A visitor leaves a card—structured fields, plain language, a return path.'],
+              ['Announcement', 'A note to many recipients, each addressed in turn, none treated as bulk without intent.'],
+              ['Reply', 'An answer routed back along the thread it came from—continuity, not noise.'],
+            ].map(([title, body]) => (
+              <div key={title} className="bg-black p-8 md:p-10">
+                <h3 className="font-serif text-xl text-white">{title}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-neutral-500">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="journey" className="border-b border-neutral-900">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:py-24 lg:px-8">
+          <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-600">The journey</p>
+          <h2 className="mt-4 max-w-xl font-serif text-3xl text-white md:text-4xl">From hand to hand, in four beats.</h2>
+          <div className="mt-16 space-y-12">
+            {journey.map((step, i) => (
+              <div key={step.title} className="flex flex-col gap-6 border-b border-neutral-900 pb-12 last:border-0 last:pb-0 md:flex-row md:items-start md:gap-16">
+                <span className="font-mono text-xs text-neutral-600">{String(i + 1).padStart(2, '0')}</span>
+                <div className="md:max-w-lg">
+                  <h3 className="font-serif text-2xl text-white">{step.title}</h3>
+                  <p className="mt-4 text-neutral-500 leading-relaxed">{step.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="practice" className="border-b border-neutral-900">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:py-24 lg:px-8">
+          <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-600">In practice</p>
+          <h2 className="mt-4 max-w-xl font-serif text-3xl text-white md:text-4xl">What FirstClass Mail holds for you.</h2>
+          <div className="mt-16 grid gap-8 md:grid-cols-3 md:gap-6">
+            {pillars.map((p) => (
+              <div key={p.title} className={`border border-neutral-800 border-l-4 ${p.border} bg-black p-8`}>
+                <p.icon className="h-5 w-5 text-white" strokeWidth={1.25} />
+                <h3 className="mt-6 font-serif text-xl text-white">{p.title}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-neutral-500">{p.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mx-auto mt-20 max-w-4xl">
+            <div className="grid gap-6 md:grid-cols-3">
+              {[
+                { title: 'Collect', sub: 'Windows for new mail', icon: Inbox },
+                { title: 'Sort', sub: 'Rules that read the address block', icon: Mail },
+                { title: 'Release', sub: 'When the route is open', icon: Send },
+              ].map((step, i) => (
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.06 }}
+                >
+                  <TiltCard className="p-8">
+                    <step.icon className="h-5 w-5 text-neutral-400" strokeWidth={1.25} />
+                    <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-600">Station {i + 1}</p>
+                    <h3 className="mt-2 font-serif text-lg text-white">{step.title}</h3>
+                    <p className="mt-3 text-sm text-neutral-500">{step.sub}</p>
+                  </TiltCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-neutral-900">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:py-24 lg:px-8">
+          <h2 className="text-center font-serif text-2xl text-white md:text-3xl">Voices from the hall</h2>
+          <div className="mt-16 grid gap-px bg-neutral-900 md:grid-cols-2">
+            {testimonials.map((t) => (
+              <blockquote key={t.name} className="bg-black p-10 md:p-12">
+                <p className="font-serif text-lg leading-relaxed text-neutral-400">&ldquo;{t.quote}&rdquo;</p>
+                <footer className="mt-8 border-t border-neutral-900 pt-8">
+                  <cite className="not-italic font-medium text-white">{t.name}</cite>
+                  <p className="mt-1 text-sm text-neutral-600">{t.title}</p>
+                </footer>
+              </blockquote>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="border-b border-neutral-900 bg-neutral-950">
+        <div className="mx-auto max-w-6xl px-5 py-20 text-center md:py-24 lg:px-8">
+          <h2 className="font-serif text-3xl text-white md:text-4xl">Begin your file.</h2>
+          <p className="mx-auto mt-6 max-w-lg text-neutral-500">
+            The portal is where you open accounts, watch the queue, and confirm that what you sent arrived as intended.
+          </p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link href="/portal" className="btn btn-primary px-10 py-3 text-xs uppercase tracking-[0.2em]">
+              Enter portal
             </Link>
-            <Link href="#product" className="btn btn-secondary px-10 py-4 text-base">
-              View product
+            <Link href="#correspondence" className="text-sm text-neutral-500 hover:text-white">
+              Back to correspondence
             </Link>
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-zinc-800 bg-black py-12 text-white md:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
-            <div className="lg:col-span-1">
-              <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-gold-500/40 bg-zinc-900">
-                  <Mail className="h-5 w-5 text-gold-400" />
+      <footer className="bg-black py-16">
+        <div className="mx-auto max-w-6xl px-5 lg:px-8">
+          <div className="flex flex-col gap-12 md:flex-row md:justify-between">
+            <div className="max-w-sm">
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center border border-neutral-700">
+                  <Mail className="h-4 w-4 text-white" strokeWidth={1.25} />
                 </div>
-                <div>
-                  <span className="font-serif text-lg font-bold">FirstClass Mail</span>
-                  <p className="text-xs text-zinc-500">Inbound SaaS mail</p>
-                </div>
+                <span className="font-serif text-lg text-white">FirstClass Mail</span>
               </div>
-              <p className="text-sm leading-relaxed text-zinc-500">
-                Server infrastructure for webforms, lead capture, marketing and transactional email buffering, and delivery
-                observability—messages over the internet, orchestrated for you.
+              <p className="mt-6 text-sm leading-relaxed text-neutral-600">
+                Digital handling for messages that deserve the same care as paper: addressing, sorting, holding, and proof of
+                delivery—over the internet.
               </p>
             </div>
-            <div>
-              <h3 className="mb-4 font-serif text-sm font-semibold uppercase tracking-wider text-zinc-400">Product</h3>
-              <ul className="space-y-2 text-sm text-zinc-500">
-                <li>
-                  <Link href="#product" className="transition hover:text-gold-400">
-                    Webforms & API
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#product" className="transition hover:text-gold-400">
-                    Lead routing
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#product" className="transition hover:text-gold-400">
-                    Email buffering
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#pipeline" className="transition hover:text-gold-400">
-                    Delivery & webhooks
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-4 font-serif text-sm font-semibold uppercase tracking-wider text-zinc-400">Support</h3>
-              <ul className="space-y-2 text-sm text-zinc-500">
-                <li>
-                  <Link href="#contact" className="transition hover:text-gold-400">
-                    Contact
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/portal" className="transition hover:text-gold-400">
-                    Client portal
-                  </Link>
-                </li>
-                <li>
-                  <span className="cursor-default">Status &amp; docs — soon</span>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-4 font-serif text-sm font-semibold uppercase tracking-wider text-zinc-400">Legal</h3>
-              <ul className="space-y-2 text-sm text-zinc-500">
-                <li>
-                  <Link href="#about" className="transition hover:text-gold-400">
-                    Security overview
-                  </Link>
-                </li>
-                <li>
-                  <span className="cursor-default">Privacy — soon</span>
-                </li>
-                <li>
-                  <span className="cursor-default">Terms — soon</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-10 border-t border-zinc-800 pt-8">
-            <div className="flex flex-col items-center justify-between gap-4 text-sm text-zinc-600 md:flex-row">
-              <p>&copy; {new Date().getFullYear()} FirstClass Mail. All rights reserved.</p>
-              <div className="flex flex-wrap items-center justify-center gap-6">
-                <span className="flex items-center gap-2">
-                  <Shield className="h-4 w-4 text-gold-600/80" />
-                  Encryption in transit
-                </span>
-                <span className="flex items-center gap-2">
-                  <Server className="h-4 w-4 text-gold-600/80" />
-                  Tenant-isolated queues
-                </span>
+            <div className="flex gap-16 text-sm text-neutral-600">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-700">Explore</p>
+                <ul className="mt-4 space-y-3">
+                  <li>
+                    <Link href="#journey" className="hover:text-white">
+                      The journey
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#practice" className="hover:text-white">
+                      In practice
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/portal" className="hover:text-white">
+                      Portal
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-700">Legal</p>
+                <ul className="mt-4 space-y-3">
+                  <li>
+                    <span className="text-neutral-700">Privacy — soon</span>
+                  </li>
+                  <li>
+                    <span className="text-neutral-700">Terms — soon</span>
+                  </li>
+                </ul>
               </div>
             </div>
+          </div>
+          <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-neutral-900 pt-8 text-xs text-neutral-700 md:flex-row md:items-center">
+            <p>&copy; {new Date().getFullYear()} FirstClass Mail. All rights reserved.</p>
+            <p className="flex items-center gap-2">
+              <CheckCircle className="h-3.5 w-3.5 text-neutral-600" strokeWidth={1.25} />
+              Messages encrypted in transit
+            </p>
           </div>
         </div>
       </footer>

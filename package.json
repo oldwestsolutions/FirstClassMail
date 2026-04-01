@@ -1,7 +1,7 @@
 {
   "name": "firstclassmail",
   "version": "1.0.1",
-  "description": "SaaS inbound mail: webforms, lead routing, marketing email buffering, and delivery",
+  "description": "Internet mail handling—collection, sorting, holding, and delivery—in the tradition of the post",
   "private": true,
   "scripts": {
     "dev": "next dev",
