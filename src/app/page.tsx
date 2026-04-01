@@ -72,7 +72,7 @@ function IsoBlock({ className, delay = 0 }: { className: string; delay?: number 
       initial={false}
     >
       <motion.div
-        className={`absolute inset-0 rounded-2xl border border-neutral-900/15 ${className}`}
+        className={`absolute inset-0 rounded-2xl border border-black/10 ${className}`}
         style={{ transformStyle: 'preserve-3d' }}
         animate={{
           rotateX: [14, 22, 14],
@@ -143,22 +143,22 @@ export default function HomePage() {
 
   const pillars = [
     {
-      accent: 'bg-white',
-      border: 'border-l-white',
+      accent: 'bg-rgb-red',
+      border: 'border-l-rgb-red',
       icon: FileInput,
       title: 'What people send',
       body: 'Inquiries from your site, responses to campaigns, notes meant for a particular desk—the same variety as paper, only it travels as data.',
     },
     {
-      accent: 'bg-neutral-500',
-      border: 'border-l-neutral-500',
+      accent: 'bg-rgb-green',
+      border: 'border-l-rgb-green',
       icon: Warehouse,
       title: 'Where it waits',
       body: 'When volume surges, nothing is thrown away. Items sit in line, in order, until the path ahead is clear—just as a post office holds sacks until the truck leaves.',
     },
     {
-      accent: 'bg-neutral-800',
-      border: 'border-l-neutral-800',
+      accent: 'bg-rgb-blue',
+      border: 'border-l-rgb-blue',
       icon: Send,
       title: 'How it reaches the reader',
       body: 'Addressed mail finds the right box. Marketing and transactional notes follow the same discipline: one message, one recipient, one receipt.',
@@ -244,32 +244,32 @@ export default function HomePage() {
       </AnimatePresence>
 
       <motion.header
-        className="fixed left-0 right-0 top-0 z-50 border-b border-neutral-900 bg-black pb-4 pt-4 sm:pt-6"
+        className="fixed left-0 right-0 top-0 z-50 border-b border-transparent bg-white/80 pb-4 pt-4 backdrop-blur-md sm:pt-6"
         initial={false}
         animate={{ y: headerHidden ? '-100%' : '0%' }}
         transition={{ type: 'tween', duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="shell">
-          <nav className="flex h-14 items-center justify-between rounded-full border border-neutral-800 bg-neutral-950 px-4 shadow-lg shadow-black/40 sm:h-[3.75rem] sm:px-6 lg:px-8">
+          <nav className="flex h-14 items-center justify-between rounded-full border border-neutral-200/90 bg-white/95 px-4 shadow-sm sm:h-[3.75rem] sm:px-6 lg:px-8">
             <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-700 bg-black">
-                <Mail className="h-4 w-4 text-white" strokeWidth={1.25} />
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-200 bg-neutral-50">
+                <Mail className="h-4 w-4 text-neutral-900" strokeWidth={1.25} />
               </div>
               <div>
-                <span className="font-serif text-lg tracking-wide text-white md:text-xl">FirstClass Mail</span>
+                <span className="font-serif text-lg tracking-wide text-neutral-900 md:text-xl">FirstClass Mail</span>
                 <p className="hidden font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500 sm:block">
                   Digital post
                 </p>
               </div>
             </Link>
             <div className="hidden items-center gap-8 md:flex lg:gap-10">
-              <Link href="#correspondence" className="text-sm text-neutral-400 transition hover:text-white">
+              <Link href="#correspondence" className="text-sm text-neutral-600 transition hover:text-neutral-900">
                 Correspondence
               </Link>
-              <Link href="#journey" className="text-sm text-neutral-400 transition hover:text-white">
+              <Link href="#journey" className="text-sm text-neutral-600 transition hover:text-neutral-900">
                 The journey
               </Link>
-              <Link href="#practice" className="text-sm text-neutral-400 transition hover:text-white">
+              <Link href="#practice" className="text-sm text-neutral-600 transition hover:text-neutral-900">
                 Practice
               </Link>
               <Link href="/portal" className="btn btn-primary px-6 py-2.5 text-xs uppercase tracking-widest">
@@ -278,7 +278,7 @@ export default function HomePage() {
             </div>
             <button
               type="button"
-              className="rounded-full p-2.5 text-neutral-400 transition hover:bg-neutral-800 hover:text-white md:hidden"
+              className="rounded-full p-2.5 text-neutral-600 transition hover:bg-neutral-100 hover:text-neutral-900 md:hidden"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open menu"
             >
@@ -290,7 +290,6 @@ export default function HomePage() {
         </div>
       </motion.header>
 
-      {/* Hero: white (only the fixed nav above is black) */}
       <div className="bg-white text-neutral-900">
         <div className="h-[5.75rem] bg-white sm:h-[6.5rem]" aria-hidden />
 
@@ -322,10 +321,10 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="col-span-12 flex items-end justify-center gap-5 sm:gap-8 lg:col-span-5 lg:justify-end">
-                <div className="flex flex-wrap items-center justify-center gap-5 rounded-[2rem] border border-neutral-200 bg-neutral-50 p-8 sm:gap-8 sm:p-10">
-                  <IsoBlock className="bg-neutral-900" delay={0} />
-                  <IsoBlock className="bg-neutral-600" delay={2} />
-                  <IsoBlock className="bg-neutral-400" delay={4} />
+                <div className="surface-panel flex flex-wrap items-center justify-center gap-5 rounded-[2rem] p-8 sm:gap-8 sm:p-10">
+                  <IsoBlock className="bg-rgb-red" delay={0} />
+                  <IsoBlock className="bg-rgb-green" delay={2} />
+                  <IsoBlock className="bg-rgb-blue" delay={4} />
                 </div>
               </div>
             </div>
@@ -333,17 +332,17 @@ export default function HomePage() {
         </header>
       </div>
 
-      <section id="correspondence" className="border-b border-neutral-800 bg-black text-neutral-300">
+      <section id="correspondence" className="border-b border-neutral-200 bg-neutral-50">
         <div className="shell py-20 md:py-28">
           <div className="grid grid-cols-12 gap-x-6 gap-y-10 lg:gap-x-10">
             <div className="col-span-12 lg:col-span-5 lg:col-start-1">
               <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Correspondence</p>
-              <h2 className="mt-5 font-serif text-3xl leading-tight text-white md:text-4xl lg:text-[2.75rem]">
+              <h2 className="mt-5 font-serif text-3xl leading-tight text-neutral-900 md:text-4xl lg:text-[2.75rem]">
                 Not a metaphor—an office you never see.
               </h2>
             </div>
             <div className="col-span-12 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:self-end">
-              <p className="leading-[1.8] text-neutral-400 lg:text-[1.05rem]">
+              <p className="leading-[1.8] text-neutral-600 lg:text-[1.05rem]">
                 In the physical world, mail moves through rooms you do not visit: counters, sorting tables, holding areas,
                 outgoing carts. On the internet, the same roles exist—only the rooms are machines. Someone still decides what is
                 legitimate, what waits, and what goes out next.
@@ -357,10 +356,10 @@ export default function HomePage() {
               ].map(([title, body]) => (
                 <div
                   key={title}
-                  className="flex flex-col rounded-3xl border border-neutral-800 bg-neutral-950 p-8 transition hover:border-neutral-700 md:p-9"
+                  className="flex flex-col rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm transition hover:border-neutral-300 md:p-9"
                 >
-                  <h3 className="font-serif text-xl text-white">{title}</h3>
-                  <p className="mt-5 text-sm leading-relaxed text-neutral-400">{body}</p>
+                  <h3 className="font-serif text-xl text-neutral-900">{title}</h3>
+                  <p className="mt-5 text-sm leading-relaxed text-neutral-600">{body}</p>
                 </div>
               ))}
             </div>
@@ -411,18 +410,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="practice" className="border-b border-neutral-800 bg-black text-neutral-300" aria-labelledby="practice-heading">
+      <section id="practice" className="border-b border-neutral-200 bg-neutral-50" aria-labelledby="practice-heading">
         <div className="flex min-h-[100svh] flex-col justify-center py-20 md:py-28">
           <div className="shell">
             <div className="mx-auto max-w-3xl text-center">
               <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">In practice</p>
               <h2
                 id="practice-heading"
-                className="mt-5 font-serif text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight text-white"
+                className="mt-5 font-serif text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight text-neutral-900"
               >
                 What FirstClass Mail holds for you.
               </h2>
-              <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-400 md:text-lg">
+              <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
                 Three capabilities cover ingestion, queueing, and delivery; three stations show how work moves through the
                 house—aligned, evenly weighted, and easy to scan.
               </p>
@@ -436,25 +435,25 @@ export default function HomePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.07 }}
-                  className={`flex min-h-full flex-col overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-950 shadow-sm ${p.border} border-l-[5px]`}
+                  className={`flex min-h-full flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-sm ${p.border} border-l-[5px]`}
                 >
                   <div className={`h-1.5 w-full shrink-0 ${p.accent}`} aria-hidden />
                   <div className="flex flex-1 flex-col p-8 text-center md:p-10">
-                    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-neutral-800 bg-black">
-                      <p.icon className="h-6 w-6 text-white" strokeWidth={1.25} />
+                    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-neutral-200 bg-neutral-50">
+                      <p.icon className="h-6 w-6 text-neutral-900" strokeWidth={1.25} />
                     </div>
-                    <h3 className="mt-8 font-serif text-xl text-white md:text-2xl">{p.title}</h3>
-                    <p className="mt-5 flex-1 text-left text-sm leading-[1.85] text-neutral-400">{p.body}</p>
+                    <h3 className="mt-8 font-serif text-xl text-neutral-900 md:text-2xl">{p.title}</h3>
+                    <p className="mt-5 flex-1 text-left text-sm leading-[1.85] text-neutral-600">{p.body}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
 
-            <div className="mx-auto mt-20 max-w-5xl border-t border-neutral-800 pt-20 md:mt-24 md:pt-24">
+            <div className="mx-auto mt-20 max-w-5xl border-t border-neutral-200 pt-20 md:mt-24 md:pt-24">
               <div className="mx-auto max-w-2xl text-center">
                 <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Processing stations</p>
-                <h3 className="mt-4 font-serif text-2xl text-white md:text-3xl">Collect, sort, release</h3>
-                <p className="mt-4 text-neutral-400">
+                <h3 className="mt-4 font-serif text-2xl text-neutral-900 md:text-3xl">Collect, sort, release</h3>
+                <p className="mt-4 text-neutral-600">
                   Three equal stations—same footprint, same clarity—map to how items enter, are classified, and leave for the
                   reader.
                 </p>
@@ -473,13 +472,13 @@ export default function HomePage() {
                     transition={{ delay: i * 0.06 }}
                     className="flex h-full justify-center"
                   >
-                    <TiltCard variant="dark" className="flex h-full min-h-[280px] w-full max-w-md flex-col p-8 text-center md:p-10">
-                      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-neutral-900">
-                        <step.icon className="h-5 w-5 text-white" strokeWidth={1.25} />
+                    <TiltCard className="flex h-full min-h-[280px] w-full max-w-md flex-col p-8 text-center md:p-10">
+                      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-neutral-100">
+                        <step.icon className="h-5 w-5 text-neutral-700" strokeWidth={1.25} />
                       </div>
                       <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500">{step.station}</p>
-                      <h4 className="mt-3 font-serif text-xl text-white">{step.title}</h4>
-                      <p className="mt-4 text-sm leading-relaxed text-neutral-400">{step.sub}</p>
+                      <h4 className="mt-3 font-serif text-xl text-neutral-900">{step.title}</h4>
+                      <p className="mt-4 text-sm leading-relaxed text-neutral-600">{step.sub}</p>
                     </TiltCard>
                   </motion.div>
                 ))}
@@ -512,7 +511,7 @@ export default function HomePage() {
                   transition={{ delay: i * 0.1 }}
                 >
                   <blockquote className="flex min-h-[320px] flex-col rounded-3xl border border-neutral-200 bg-neutral-50 p-10 shadow-sm md:min-h-[340px] lg:p-12">
-                    <p className="font-serif text-lg leading-[1.75] text-neutral-800 md:text-xl">&ldquo;{t.quote}&rdquo;</p>
+                    <p className="font-serif text-lg leading-[1.75] text-neutral-700 md:text-xl">&ldquo;{t.quote}&rdquo;</p>
                     <footer className="mt-auto border-t border-neutral-200 pt-10">
                       <cite className="not-italic text-base font-semibold text-neutral-900">{t.name}</cite>
                       <p className="mt-2 text-sm text-neutral-500">{t.title}</p>
@@ -525,23 +524,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="contact" className="border-b border-neutral-800 bg-black text-neutral-300">
+      <section id="contact" className="border-b border-neutral-200 bg-neutral-50">
         <div className="shell py-20 md:py-28">
-          <div className="mx-auto max-w-3xl rounded-[2rem] border border-neutral-800 bg-neutral-950 px-8 py-14 text-center md:px-14 md:py-16">
-            <h2 className="font-serif text-3xl text-white md:text-4xl">Begin your file.</h2>
-            <p className="mx-auto mt-6 max-w-lg leading-relaxed text-neutral-400">
+          <div className="mx-auto max-w-3xl rounded-[2rem] border border-neutral-200 bg-white px-8 py-14 text-center shadow-sm md:px-14 md:py-16">
+            <h2 className="font-serif text-3xl text-neutral-900 md:text-4xl">Begin your file.</h2>
+            <p className="mx-auto mt-6 max-w-lg leading-relaxed text-neutral-600">
               The portal is where you open accounts, watch the queue, and confirm that what you sent arrived as intended.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
-              <Link
-                href="/portal"
-                className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-white px-11 py-3.5 text-xs font-medium uppercase tracking-[0.2em] text-black transition hover:bg-neutral-200"
-              >
+              <Link href="/portal" className="btn btn-primary px-11 py-3.5 text-xs uppercase tracking-[0.2em]">
                 Enter portal
               </Link>
               <Link
                 href="#correspondence"
-                className="rounded-full px-6 py-3 text-sm text-neutral-400 transition hover:text-white"
+                className="rounded-full px-6 py-3 text-sm text-neutral-600 transition hover:bg-neutral-100 hover:text-neutral-900"
               >
                 Back to correspondence
               </Link>
@@ -550,7 +546,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="border-t border-neutral-200 bg-white">
+      <footer className="border-t border-neutral-200 bg-neutral-50">
         <div className="shell py-16 md:py-24">
           <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-3 lg:grid-cols-7 lg:gap-x-8 xl:gap-x-10">
             <div className="col-span-2 md:col-span-3 lg:col-span-2">
