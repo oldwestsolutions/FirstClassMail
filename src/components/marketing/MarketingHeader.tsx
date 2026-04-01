@@ -94,7 +94,7 @@ export function MarketingHeader() {
               <div>
                 <span className="font-serif text-lg tracking-wide text-neutral-900 md:text-xl">FirstClass Mail</span>
                 <p className="hidden font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500 sm:block">
-                  Secure messaging
+                  Encrypted Transit
                 </p>
               </div>
             </Link>

@@ -128,10 +128,10 @@ export function MarketingFooter() {
         </div>
 
         <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-neutral-200 pt-10 text-xs text-neutral-500 md:flex-row md:items-center">
-          <p>&copy; {new Date().getFullYear()} FirstClassMail.xyz. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Old West Solutions. All rights reserved.</p>
           <p className="flex items-center gap-2">
             <CheckCircle className="h-3.5 w-3.5 text-neutral-400" strokeWidth={1.25} aria-hidden />
-            TLS encryption · verified sourcing · no broker resale
+            256-Bit Encryption · Verified Sourcing · No Broker Resale
           </p>
         </div>
       </div>
