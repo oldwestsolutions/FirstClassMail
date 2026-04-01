@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, CalendarClock, ClipboardCheck, Bell, FileText } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
-import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 
 export default function AppointmentsPage() {
   return (
@@ -120,7 +119,6 @@ export default function AppointmentsPage() {
         </section>
       </main>
 
-      <MarketingFooter />
     </div>
   )
 }

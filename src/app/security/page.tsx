@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, Lock, Shield, Fingerprint, EyeOff } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
-import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 
 export default function SecurityPage() {
   return (
@@ -121,7 +120,6 @@ export default function SecurityPage() {
         </section>
       </main>
 
-      <MarketingFooter />
     </div>
   )
 }

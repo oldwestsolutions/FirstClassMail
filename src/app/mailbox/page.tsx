@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, Inbox, Archive, Filter, Clock } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
-import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 
 export default function MailboxPage() {
   return (
@@ -122,7 +121,6 @@ export default function MailboxPage() {
         </section>
       </main>
 
-      <MarketingFooter />
     </div>
   )
 }

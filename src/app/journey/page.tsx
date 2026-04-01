@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, Radio, Fingerprint, Building2, Inbox } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
-import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 import { PortalMockMini } from '@/components/PortalMock'
 
 const stages = [
@@ -166,7 +165,6 @@ export default function JourneyPage() {
         </section>
       </main>
 
-      <MarketingFooter />
     </div>
   )
 }

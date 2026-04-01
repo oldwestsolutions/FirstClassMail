@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, Inbox, LayoutDashboard, Shield, Send, Mail } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
-import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 import { PortalProductDemo } from '@/components/PortalMock'
 
 export default function PlatformPage() {
@@ -149,7 +148,6 @@ export default function PlatformPage() {
         </section>
       </main>
 
-      <MarketingFooter />
     </div>
   )
 }

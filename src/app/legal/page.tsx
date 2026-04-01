@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
-import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 
 export default function LegalPage() {
   return (
@@ -62,7 +61,6 @@ export default function LegalPage() {
         </section>
       </main>
 
-      <MarketingFooter />
     </div>
   )
 }

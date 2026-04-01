@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, Lock, Shield, UserCheck, Ban, FileKey, EyeOff, Server } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
-import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 import { PortalMockMini } from '@/components/PortalMock'
 
 export default function CorrespondencePage() {
@@ -238,7 +237,6 @@ export default function CorrespondencePage() {
         </section>
       </main>
 
-      <MarketingFooter />
     </div>
   )
 }

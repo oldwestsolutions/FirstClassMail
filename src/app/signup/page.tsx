@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { ArrowRight, Building2, User } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
-import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 
 type AccountType = 'individual' | 'business'
 
@@ -235,7 +234,6 @@ export default function SignupPage() {
         </section>
       </main>
 
-      <MarketingFooter />
     </div>
   )
 }

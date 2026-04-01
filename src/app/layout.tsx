@@ -4,6 +4,7 @@ import './globals.css'
 import { Toaster } from 'react-hot-toast'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { Analytics } from '@vercel/analytics/react'
+import { LegalBar } from '@/components/marketing/LegalBar'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-body' })
 const display = Cormorant_Garamond({
@@ -90,6 +91,7 @@ export default function RootLayout({
           {children}
           <Toaster position="top-right" />
         </AuthProvider>
+        <LegalBar />
         <Analytics />
       </body>
     </html>

@@ -5,7 +5,6 @@ import { Fragment } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, ChevronRight } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
-import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 import { PathIllustration, PillarIllustration } from '@/components/PracticeIllustrations'
 
 const pillars = [
@@ -203,7 +202,6 @@ export default function PracticePage() {
         </section>
       </main>
 
-      <MarketingFooter />
     </div>
   )
 }
