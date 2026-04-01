@@ -24,7 +24,7 @@ const sections = [
       'Where advertising is part of the product surface, revenue can be split automatically and pushed to user wallets as small, frequent transfers.',
     points: [
       'Micropayment-friendly settlement so shares do not batch only at month-end.',
-      'Uses a programmable payments network built for high-throughput, low-value transfers between counterparties.',
+      'Can route through a programmable payments network built for high-throughput, low-value transfers—the same class of infrastructure often labeled CPN in integration docs.',
       'Keeps participants aligned: value flows to wallets as engagement generates yield, not only to platform accounts.',
     ],
   },
