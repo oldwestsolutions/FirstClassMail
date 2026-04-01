@@ -45,7 +45,7 @@ const mailPath = [
     body: 'Senders and recipients use the client portal or API over TLS. Payloads are encrypted for transit so browsers, Wi‑Fi, and intermediaries along the path cannot read message content in the clear.',
   },
   {
-    title: 'FirstClassMail.xyz',
+    title: 'FirstClassMail',
     illustration: 'platform',
     body: 'Our servers terminate secure sessions, authenticate accounts, apply verified-sourcing rules, and queue routing. We sit in the middle as the controlled intermediary—threads and addresses are not sold to data brokers.',
   },
@@ -136,7 +136,7 @@ export default function PracticePage() {
               <h2 className="mt-4 font-serif text-3xl text-neutral-900 md:text-4xl">From users to our servers to the office</h2>
               <p className="mt-6 text-lg leading-relaxed text-neutral-600">
                 Mail does not hop blindly across the open internet to random inboxes. It flows in three controlled segments: your
-                client, FirstClassMail.xyz, and the business office’s own mail server—each step encrypted and governed by policy.
+                client, FirstClassMail, and the business office’s own mail server—each step encrypted and governed by policy.
               </p>
             </div>
 

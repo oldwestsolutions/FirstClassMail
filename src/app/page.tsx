@@ -94,21 +94,21 @@ export default function HomePage() {
   const mailPath = [
     {
       step: 'Step 1',
-      title: 'Users',
+      title: 'Mail Sorting Through Automation',
       illustration: 'users',
-      body: 'Users send and receive through the client portal or API over TLS. Payloads stay encrypted in transit.',
+      body: 'Use automated intake and sorting to classify inbound messages by policy, priority, and destination.',
     },
     {
       step: 'Step 2',
-      title: 'FirstClassMail.xyz',
+      title: 'Enforcement Mechanisms',
       illustration: 'platform',
-      body: 'Our servers terminate secure sessions, verify identity rules, and route traffic as a controlled intermediary.',
+      body: 'Configure and enforce email authentication standards before messages are released or forwarded.',
     },
     {
       step: 'Step 3',
-      title: 'Business office mail',
+      title: 'Storage & Archiving',
       illustration: 'office',
-      body: 'Outbound delivery reaches the business office server over encrypted channels, without exposing personal paths.',
+      body: 'Retain controlled records and archive communication history for continuity, audit, and retrieval.',
     },
   ] as const
 
@@ -230,13 +230,13 @@ export default function HomePage() {
             <div className="grid grid-cols-12 gap-x-6 gap-y-12 lg:gap-x-10 lg:gap-y-16">
               <div className="col-span-12 flex flex-col justify-end lg:col-span-7 lg:row-span-1">
                 <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.4em] text-neutral-500">
-                  FirstClassMail.xyz
+                  FirstClassMail
                 </p>
                 <h1 className="mb-8 max-w-[22ch] font-serif text-4xl font-medium leading-[1.08] text-neutral-900 md:text-5xl lg:text-[3.5rem] xl:text-6xl">
                   Encrypted messaging, verified connections, privacy by design.
                 </h1>
                 <p className="max-w-xl text-base leading-[1.75] text-neutral-600 md:text-lg">
-                  FirstClassMail.xyz provides secure, encrypted messaging so every conversation stays private. Connect directly with
+                  FirstClassMail provides secure, encrypted messaging so every conversation stays private. Connect directly with
                   exactly who you are looking for—verified sourcing ensures trust and authenticity. Reduce doxxing risk, avoid
                   email resale to data brokers, and rely on a professional third party to manage communications with simplicity,
                   safety, and reliability.
@@ -277,7 +277,7 @@ export default function HomePage() {
             </div>
             <div className="col-span-12 lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:self-end">
               <p className="leading-[1.8] text-neutral-600 lg:text-[1.05rem]">
-                When you use FirstClassMail.xyz, you are not handing your email address or message content to list brokers. The
+                When you use FirstClassMail, you are not handing your email address or message content to list brokers. The
                 service is built for encrypted transmission, verified sourcing, and a professional third party that manages
                 communications—so you can focus on the conversation, not on exposure or resale.
               </p>
@@ -327,7 +327,7 @@ export default function HomePage() {
                 id="practice-heading"
                 className="mt-5 font-serif text-[clamp(1.75rem,4vw,3rem)] font-medium leading-tight text-neutral-900"
               >
-                What FirstClassMail.xyz delivers.
+                What FirstClassMail delivers.
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
                 Three pillars—encryption, verified sourcing, and privacy-first handling—define the platform. After the pillars,
@@ -363,7 +363,7 @@ export default function HomePage() {
                 <h3 className="mt-4 font-serif text-2xl text-neutral-900 md:text-3xl">From users to our servers to the office</h3>
                 <p className="mt-4 text-neutral-600">
                   Mail does not hop blindly across the open internet to random inboxes. It flows in three controlled segments: your
-                  client, FirstClassMail.xyz, and the business office’s own mail server—each step encrypted and governed by policy.
+                  client, FirstClassMail, and the business office’s own mail server—each step encrypted and governed by policy.
                 </p>
               </div>
               <div className="mt-14 flex flex-col items-stretch gap-8 lg:flex-row lg:items-stretch lg:justify-center lg:gap-4">
@@ -431,7 +431,7 @@ export default function HomePage() {
             <h2 className="font-serif text-3xl text-neutral-900 md:text-4xl">Start secure messaging.</h2>
             <p className="mx-auto mt-6 max-w-lg leading-relaxed text-neutral-600">
               Open the client portal to create your account, send and receive over encrypted channels, and use verified sourcing
-              for every connection—managed end to end by FirstClassMail.xyz.
+              for every connection—managed end to end by FirstClassMail.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
               <Link href="/portal" className="btn btn-primary px-11 py-3.5 text-xs uppercase tracking-[0.2em]">

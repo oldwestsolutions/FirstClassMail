@@ -14,7 +14,7 @@ export function MarketingFooter() {
               <span className="font-serif text-xl text-neutral-900">FirstClass Mail</span>
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-[1.85] text-neutral-600">
-              FirstClassMail.xyz delivers encrypted message transmission, verified sourcing, and privacy-first handling.
+              FirstClassMail delivers encrypted message transmission, verified sourcing, and privacy-first handling.
             </p>
             <p className="mt-6 flex items-start gap-2.5 text-sm text-neutral-700">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.5} aria-hidden />

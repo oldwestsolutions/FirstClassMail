@@ -22,7 +22,7 @@ export default function CorrespondencePage() {
                   Confidentiality engineered into every layer.
                 </h1>
                 <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
-                  Correspondence on FirstClassMail.xyz is not a feed optimized for advertising—it is a controlled channel for
+                  Correspondence on FirstClassMail is not a feed optimized for advertising—it is a controlled channel for
                   professional communication. Encryption, verified sourcing, and a refusal to monetize your contact graph are
                   foundational, not optional add-ons.
                 </p>

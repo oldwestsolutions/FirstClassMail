@@ -26,7 +26,7 @@ const stages = [
   },
   {
     title: 'Third-party management',
-    lead: 'FirstClassMail.xyz acts as a professional intermediary: threads are handled through a neutral, controlled channel instead of leaking personal contact paths.',
+    lead: 'FirstClassMail acts as a professional intermediary: threads are handled through a neutral, controlled channel instead of leaking personal contact paths.',
     detail:
       'The platform sits between participants by design. That position is how correspondence stays governable—routing, retention, and release follow rules instead of ad-hoc forwarding chains.',
     preset: 'journey-3',

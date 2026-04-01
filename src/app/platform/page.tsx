@@ -132,7 +132,7 @@ export default function PlatformPage() {
                     routing rules, and organization-specific endpoints—still under TLS, still without selling your contact graph.
                   </p>
                   <p>
-                    If you are evaluating FirstClassMail.xyz for a team, pair this page with{' '}
+                    If you are evaluating FirstClassMail for a team, pair this page with{' '}
                     <Link href="/correspondence" className="text-neutral-900 underline underline-offset-4 hover:no-underline">
                       Correspondence
                     </Link>{' '}

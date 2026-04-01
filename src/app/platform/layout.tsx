@@ -3,9 +3,9 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Client Portal',
   description:
-    'How the FirstClassMail.xyz client portal organizes mailboxes, verified threads, TLS indicators, and outbound delivery—before you sign in.',
+    'How the FirstClassMail client portal organizes mailboxes, verified threads, TLS indicators, and outbound delivery—before you sign in.',
   openGraph: {
-    title: 'Client Portal | FirstClassMail.xyz',
+    title: 'Client Portal | FirstClassMail',
     description: 'Product overview of the secure client portal: thread view, sent view, and professional workflows.',
   },
 }

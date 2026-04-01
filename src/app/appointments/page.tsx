@@ -28,7 +28,7 @@ export default function AppointmentsPage() {
                 </h1>
                 <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
                   Appointments often fail at the communication layer: unclear confirmations, fragmented follow-ups, and missing
-                  records. FirstClassMail.xyz centralizes appointment threads so notices, confirmations, and supporting documents
+                  records. FirstClassMail centralizes appointment threads so notices, confirmations, and supporting documents
                   remain auditable, private, and professionally routed.
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">

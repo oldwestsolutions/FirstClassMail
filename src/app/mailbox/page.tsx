@@ -27,7 +27,7 @@ export default function MailboxPage() {
                   Professional mailbox operations, not just an inbox.
                 </h1>
                 <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
-                  The Mailbox layer on FirstClassMail.xyz handles intake, triage, and controlled delivery as one governed system.
+                  The Mailbox layer on FirstClassMail handles intake, triage, and controlled delivery as one governed system.
                   Teams can separate inbound streams, maintain clear audit context, and route messages without exposing personal
                   addresses or losing policy continuity.
                 </p>

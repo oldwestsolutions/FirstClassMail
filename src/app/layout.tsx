@@ -15,13 +15,13 @@ const display = Cormorant_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL('https://firstclassmail.xyz'),
   title: {
-    default: 'FirstClassMail.xyz — Encrypted Messaging & Verified Connections',
-    template: '%s | FirstClassMail.xyz',
+    default: 'FirstClassMail — Encrypted Messaging & Verified Connections',
+    template: '%s | FirstClassMail',
   },
   description:
-    'FirstClassMail.xyz offers encrypted message transmission, verified sourcing so you reach exactly who you intend, and privacy-first handling—no doxxing risk, no selling emails to brokers, with a professional third party managing communications.',
+    'FirstClassMail offers encrypted message transmission, verified sourcing so you reach exactly who you intend, and privacy-first handling—no doxxing risk, no selling emails to brokers, with a professional third party managing communications.',
   keywords: [
-    'FirstClassMail.xyz',
+    'FirstClassMail',
     'encrypted messaging',
     'secure email',
     'verified identity',
@@ -32,19 +32,19 @@ export const metadata: Metadata = {
     'third-party message management',
     'professional communication',
   ],
-  authors: [{ name: 'FirstClassMail.xyz' }],
+  authors: [{ name: 'FirstClassMail' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://firstclassmail.xyz',
-    siteName: 'FirstClassMail.xyz',
-    title: 'FirstClassMail.xyz — Encrypted Messaging & Verified Connections',
+    siteName: 'FirstClassMail',
+    title: 'FirstClassMail — Encrypted Messaging & Verified Connections',
     description:
       'Secure, encrypted messaging with verified sourcing. No email resale to brokers—private, professional communication managed end to end.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FirstClassMail.xyz — Encrypted Messaging & Verified Connections',
+    title: 'FirstClassMail — Encrypted Messaging & Verified Connections',
     description:
       'Encrypted transmission, verified sourcing, and privacy-first messaging. No data broker sales—trusted third-party handling.',
   },
@@ -66,13 +66,13 @@ export const viewport = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'FirstClassMail.xyz',
+  name: 'FirstClassMail',
   url: 'https://firstclassmail.xyz',
   description:
     'Encrypted message transmission, verified sourcing, and privacy-first messaging. No selling of email addresses or data to brokers—professional third-party management.',
   publisher: {
     '@type': 'Organization',
-    name: 'FirstClassMail.xyz',
+    name: 'FirstClassMail',
     url: 'https://firstclassmail.xyz',
   },
 }

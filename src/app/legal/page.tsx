@@ -22,7 +22,7 @@ export default function LegalPage() {
             >
               <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Legal</p>
               <h1 className="mt-5 font-serif text-4xl font-medium leading-[1.1] text-neutral-900 md:text-5xl">
-                Policy center for FirstClassMail.xyz
+                Policy center for FirstClassMail
               </h1>
               <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-neutral-600">
                 This page tracks legal documents and policy releases for professional communication on the platform.

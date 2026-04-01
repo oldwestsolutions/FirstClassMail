@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Legal',
-  description: 'Legal resources and policy timeline for FirstClassMail.xyz.',
+  description: 'Legal resources and policy timeline for FirstClassMail.',
   openGraph: {
-    title: 'Legal | FirstClassMail.xyz',
-    description: 'Legal resources and policy timeline for FirstClassMail.xyz.',
+    title: 'Legal | FirstClassMail',
+    description: 'Legal resources and policy timeline for FirstClassMail.',
   },
 }
 

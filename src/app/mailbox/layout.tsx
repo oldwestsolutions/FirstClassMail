@@ -3,11 +3,11 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Mailbox',
   description:
-    'Mailbox capabilities on FirstClassMail.xyz: intake, organization, retention controls, and verified delivery handling for professional communication.',
+    'Mailbox capabilities on FirstClassMail: intake, organization, retention controls, and verified delivery handling for professional communication.',
   openGraph: {
-    title: 'Mailbox | FirstClassMail.xyz',
+    title: 'Mailbox | FirstClassMail',
     description:
-      'A detailed guide to mailbox operations, routing controls, and workflow management on FirstClassMail.xyz.',
+      'A detailed guide to mailbox operations, routing controls, and workflow management on FirstClassMail.',
   },
 }
 

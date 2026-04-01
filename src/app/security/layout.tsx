@@ -3,11 +3,11 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Security',
   description:
-    'Security posture of FirstClassMail.xyz: encrypted transmission, verification controls, intermediary governance, and private delivery boundaries.',
+    'Security posture of FirstClassMail: encrypted transmission, verification controls, intermediary governance, and private delivery boundaries.',
   openGraph: {
-    title: 'Security | FirstClassMail.xyz',
+    title: 'Security | FirstClassMail',
     description:
-      'Detailed security and governance model for professional communication on FirstClassMail.xyz.',
+      'Detailed security and governance model for professional communication on FirstClassMail.',
   },
 }
 

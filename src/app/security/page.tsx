@@ -27,7 +27,7 @@ export default function SecurityPage() {
                   Security by architecture, not by disclaimer.
                 </h1>
                 <p className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
-                  FirstClassMail.xyz combines encrypted transmission, verified sourcing, and controlled intermediary handling into
+                  FirstClassMail combines encrypted transmission, verified sourcing, and controlled intermediary handling into
                   one cohesive security model. The goal is practical: preserve confidentiality, reduce impersonation risk, and keep
                   professional communication out of data brokerage loops.
                 </p>
