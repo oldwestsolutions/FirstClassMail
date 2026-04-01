@@ -494,7 +494,7 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45 }}
-              className="mx-auto mt-14 max-w-2xl"
+              className="mx-auto mt-14 max-w-6xl"
             >
               <PortalProductDemo />
             </motion.div>
