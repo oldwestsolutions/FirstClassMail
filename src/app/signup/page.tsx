@@ -3,6 +3,7 @@
 import { FormEvent, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
 import { ArrowRight, Building2, User } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
 import { MarketingFooter } from '@/components/marketing/MarketingFooter'
@@ -68,7 +69,13 @@ export default function SignupPage() {
         <section className="border-b border-neutral-200 bg-gradient-to-b from-neutral-50 to-white py-16 md:py-24 lg:py-28">
           <div className="shell">
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-12">
-              <div className="lg:col-span-5">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="lg:col-span-5"
+              >
                 <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-neutral-500">Create Account</p>
                 <h1 className="mt-5 font-serif text-4xl font-medium leading-[1.1] text-neutral-900 md:text-5xl">
                   Start secure messaging with the right account profile.
@@ -91,9 +98,15 @@ export default function SignupPage() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="lg:col-span-7">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: 0.05 }}
+                className="lg:col-span-7"
+              >
                 <div className="rounded-[2rem] border border-neutral-200 bg-white p-7 shadow-sm ring-1 ring-neutral-100 md:p-10">
                   <div className="grid grid-cols-2 gap-2 rounded-2xl border border-neutral-200 bg-neutral-50 p-1.5">
                     <button
@@ -216,7 +229,7 @@ export default function SignupPage() {
                     </div>
                   </form>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>

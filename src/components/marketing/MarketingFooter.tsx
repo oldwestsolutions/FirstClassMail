@@ -4,8 +4,8 @@ import { Mail, MapPin, LayoutDashboard, FileText, BookOpen, LifeBuoy, Shield, Bu
 export function MarketingFooter() {
   return (
     <footer className="border-t border-neutral-200 bg-neutral-50">
-      <div className="shell py-16 md:py-24">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-3 lg:grid-cols-7 lg:gap-x-8 xl:gap-x-10">
+      <div className="shell py-14 md:py-24">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 md:gap-x-8 md:gap-y-12 lg:grid-cols-7 lg:gap-x-8 xl:gap-x-10">
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
             <Link href="/" className="flex items-center gap-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-neutral-200 bg-white shadow-sm">
@@ -14,9 +14,7 @@ export function MarketingFooter() {
               <span className="font-serif text-xl text-neutral-900">FirstClass Mail</span>
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-[1.85] text-neutral-600">
-              FirstClassMail.xyz delivers encrypted message transmission, verified sourcing, and privacy-first handling. We do not
-              sell email addresses or message data to brokers—a professional third party manages communications for security and
-              simplicity.
+              FirstClassMail.xyz delivers encrypted message transmission, verified sourcing, and privacy-first handling. We do not sell email addresses or message data to brokers—a professional third party manages communications for security and simplicity.
             </p>
             <p className="mt-6 flex items-start gap-2.5 text-sm text-neutral-700">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.5} aria-hidden />

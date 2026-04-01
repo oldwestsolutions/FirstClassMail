@@ -5,6 +5,11 @@
 @tailwind utilities;
 
 @layer base {
+  html,
+  body {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
   * {
     @apply border-neutral-800;
   }
@@ -24,7 +29,7 @@
 @layer components {
   /* Editorial width + consistent horizontal rhythm */
   .shell {
-    @apply mx-auto w-full max-w-[1320px] px-5 sm:px-8 lg:px-12;
+    @apply mx-auto w-full max-w-[1320px] px-4 sm:px-6 md:px-8 lg:px-12;
   }
 
   .btn {

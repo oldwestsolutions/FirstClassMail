@@ -50,7 +50,7 @@ export function MarketingHeader() {
                   </svg>
                 </button>
               </div>
-              <nav className="flex flex-col gap-1 p-5">
+              <nav className="flex flex-col gap-1 p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
                 {nav.map(({ href, label }) => (
                   <Link
                     key={href}
@@ -84,7 +84,7 @@ export function MarketingHeader() {
         )}
       </AnimatePresence>
 
-      <header className="sticky top-0 z-50 border-b border-neutral-200/80 bg-white/95 pb-4 pt-4 backdrop-blur-md sm:pt-6">
+      <header className="sticky top-0 z-50 border-b border-neutral-200/80 bg-white/95 pb-4 pt-[max(1rem,env(safe-area-inset-top))] backdrop-blur-md sm:pt-6">
         <div className="shell">
           <nav className="flex h-14 items-center justify-between rounded-full border border-neutral-200/90 bg-white/95 px-4 shadow-sm sm:h-[3.75rem] sm:px-6 lg:px-8">
             <Link href="/" className="flex items-center gap-3">
