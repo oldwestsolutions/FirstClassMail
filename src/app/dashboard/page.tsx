@@ -45,7 +45,7 @@ export default function DashboardPage() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
               <Mail className="h-8 w-8 text-primary-600" />
-              <span className="text-xl font-bold text-gray-900">FirstClass Mail</span>
+              <span className="text-xl font-bold text-gray-900">FirstClassMail</span>
             </div>
             <div className="flex items-center space-x-4">
               <button className="btn btn-secondary px-4 py-2">

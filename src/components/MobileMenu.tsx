@@ -47,7 +47,7 @@ export default function MobileMenu({ isOpen, onClose, activeTab, onTabChange }: 
                     <Mail className="h-4 w-4 text-white" />
                   </div>
                   <div>
-                    <span className="text-lg font-serif font-bold text-navy-900">FirstClass Mail</span>
+                    <span className="text-lg font-serif font-bold text-navy-900">FirstClassMail</span>
                     <p className="text-xs text-gray-600 -mt-1">Client Portal</p>
                   </div>
                 </div>

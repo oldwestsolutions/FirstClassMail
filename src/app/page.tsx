@@ -263,9 +263,9 @@ export default function HomePage() {
                 <Mail className="h-4 w-4 text-neutral-900" strokeWidth={1.25} />
               </div>
               <div>
-                <span className="font-serif text-lg tracking-wide text-neutral-900 md:text-xl">FirstClass Mail</span>
+                <span className="font-serif text-lg tracking-wide text-neutral-900 md:text-xl">FirstClassMail</span>
                 <p className="hidden font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500 sm:block">
-                  Encrypted Transit
+                  Postal Service
                 </p>
               </div>
             </Link>
