@@ -59,7 +59,7 @@ function IsoBlock({ className, delay = 0 }: { className: string; delay?: number 
       initial={false}
     >
       <motion.div
-        className={`absolute inset-0 rounded-2xl border border-black/10 ${className}`}
+        className={`absolute inset-0 rounded-2xl border border-white/15 ${className}`}
         style={{ transformStyle: 'preserve-3d' }}
         animate={{
           rotateX: [14, 22, 14],
@@ -231,32 +231,32 @@ export default function HomePage() {
       </AnimatePresence>
 
       <motion.header
-        className="fixed left-0 right-0 top-0 z-50 border-b border-transparent bg-white/80 pb-4 pt-4 backdrop-blur-md sm:pt-6"
+        className="fixed left-0 right-0 top-0 z-50 border-b border-neutral-900 bg-black pb-4 pt-4 sm:pt-6"
         initial={false}
         animate={{ y: headerHidden ? '-100%' : '0%' }}
         transition={{ type: 'tween', duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="shell">
-          <nav className="flex h-14 items-center justify-between rounded-full border border-neutral-200/90 bg-white/95 px-4 shadow-sm sm:h-[3.75rem] sm:px-6 lg:px-8">
+          <nav className="flex h-14 items-center justify-between rounded-full border border-neutral-800 bg-neutral-950 px-4 shadow-lg shadow-black/40 sm:h-[3.75rem] sm:px-6 lg:px-8">
             <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-200 bg-neutral-50">
-                <Mail className="h-4 w-4 text-neutral-900" strokeWidth={1.25} />
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-700 bg-black">
+                <Mail className="h-4 w-4 text-white" strokeWidth={1.25} />
               </div>
               <div>
-                <span className="font-serif text-lg tracking-wide text-neutral-900 md:text-xl">FirstClass Mail</span>
+                <span className="font-serif text-lg tracking-wide text-white md:text-xl">FirstClass Mail</span>
                 <p className="hidden font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500 sm:block">
                   Digital post
                 </p>
               </div>
             </Link>
             <div className="hidden items-center gap-8 md:flex lg:gap-10">
-              <Link href="#correspondence" className="text-sm text-neutral-600 transition hover:text-neutral-900">
+              <Link href="#correspondence" className="text-sm text-neutral-400 transition hover:text-white">
                 Correspondence
               </Link>
-              <Link href="#journey" className="text-sm text-neutral-600 transition hover:text-neutral-900">
+              <Link href="#journey" className="text-sm text-neutral-400 transition hover:text-white">
                 The journey
               </Link>
-              <Link href="#practice" className="text-sm text-neutral-600 transition hover:text-neutral-900">
+              <Link href="#practice" className="text-sm text-neutral-400 transition hover:text-white">
                 Practice
               </Link>
               <Link href="/portal" className="btn btn-primary px-6 py-2.5 text-xs uppercase tracking-widest">
@@ -265,7 +265,7 @@ export default function HomePage() {
             </div>
             <button
               type="button"
-              className="rounded-full p-2.5 text-neutral-600 transition hover:bg-neutral-100 hover:text-neutral-900 md:hidden"
+              className="rounded-full p-2.5 text-neutral-400 transition hover:bg-neutral-800 hover:text-white md:hidden"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open menu"
             >
@@ -277,44 +277,48 @@ export default function HomePage() {
         </div>
       </motion.header>
 
-      {/* Reserve space for fixed header so content is not covered */}
-      <div className="h-[5.75rem] sm:h-[6.5rem]" aria-hidden />
+      {/* Dark band: spacer + hero — matches black header */}
+      <div className="bg-neutral-950 text-neutral-300">
+        <div className="h-[5.75rem] bg-neutral-950 sm:h-[6.5rem]" aria-hidden />
 
-      <header className="border-b border-neutral-200">
-        <div className="shell py-16 md:py-24 lg:py-28">
-          <div className="grid grid-cols-12 gap-x-6 gap-y-12 lg:gap-x-10 lg:gap-y-16">
-            <div className="col-span-12 flex flex-col justify-end lg:col-span-7 lg:row-span-1">
-              <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.4em] text-neutral-500">Internet correspondence</p>
-              <h1 className="mb-8 max-w-[22ch] font-serif text-4xl font-medium leading-[1.08] text-neutral-900 md:text-5xl lg:text-[3.5rem] xl:text-6xl">
-                The way mail has always worked—now over the network.
-              </h1>
-              <p className="max-w-xl text-base leading-[1.75] text-neutral-600 md:text-lg">
-                Paper or wire, the idea is unchanged: a message is written, addressed, handled with care, and brought to the
-                right door. FirstClass Mail carries that sequence for everything you collect and send online.
-              </p>
-              <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <Link href="/portal" className="btn btn-primary px-9 py-3.5 text-xs uppercase tracking-[0.2em]">
-                  Open portal
-                  <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
-                </Link>
-                <Link
-                  href="#journey"
-                  className="text-center text-sm text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline sm:text-left"
-                >
-                  Read how delivery works
-                </Link>
+        <header className="border-b border-neutral-800 bg-neutral-950">
+          <div className="shell py-16 md:py-24 lg:py-28">
+            <div className="grid grid-cols-12 gap-x-6 gap-y-12 lg:gap-x-10 lg:gap-y-16">
+              <div className="col-span-12 flex flex-col justify-end lg:col-span-7 lg:row-span-1">
+                <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.4em] text-neutral-500">
+                  Internet correspondence
+                </p>
+                <h1 className="mb-8 max-w-[22ch] font-serif text-4xl font-medium leading-[1.08] text-white md:text-5xl lg:text-[3.5rem] xl:text-6xl">
+                  The way mail has always worked—now over the network.
+                </h1>
+                <p className="max-w-xl text-base leading-[1.75] text-neutral-400 md:text-lg">
+                  Paper or wire, the idea is unchanged: a message is written, addressed, handled with care, and brought to the
+                  right door. FirstClass Mail carries that sequence for everything you collect and send online.
+                </p>
+                <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center">
+                  <Link href="/portal" className="btn btn-primary px-9 py-3.5 text-xs uppercase tracking-[0.2em]">
+                    Open portal
+                    <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
+                  </Link>
+                  <Link
+                    href="#journey"
+                    className="text-center text-sm text-neutral-500 underline-offset-4 transition hover:text-white hover:underline sm:text-left"
+                  >
+                    Read how delivery works
+                  </Link>
+                </div>
               </div>
-            </div>
-            <div className="col-span-12 flex items-end justify-center gap-5 sm:gap-8 lg:col-span-5 lg:justify-end">
-              <div className="surface-panel flex flex-wrap items-center justify-center gap-5 rounded-[2rem] p-8 sm:gap-8 sm:p-10">
-                <IsoBlock className="bg-rgb-red" delay={0} />
-                <IsoBlock className="bg-rgb-green" delay={2} />
-                <IsoBlock className="bg-rgb-blue" delay={4} />
+              <div className="col-span-12 flex items-end justify-center gap-5 sm:gap-8 lg:col-span-5 lg:justify-end">
+                <div className="flex flex-wrap items-center justify-center gap-5 rounded-[2rem] border border-neutral-700/80 bg-neutral-900/70 p-8 sm:gap-8 sm:p-10">
+                  <IsoBlock className="bg-rgb-red" delay={0} />
+                  <IsoBlock className="bg-rgb-green" delay={2} />
+                  <IsoBlock className="bg-rgb-blue" delay={4} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
+      </div>
 
       <section id="correspondence" className="border-b border-neutral-200 bg-neutral-50">
         <div className="shell py-20 md:py-28">
