@@ -14,7 +14,7 @@ export function MarketingFooter() {
               <span className="font-serif text-xl text-neutral-900">FirstClass Mail</span>
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-[1.85] text-neutral-600">
-              FirstClassMail.xyz delivers encrypted message transmission, verified sourcing, and privacy-first handling. We do not sell email addresses or message data to brokers—a professional third party manages communications for security and simplicity.
+              FirstClassMail.xyz delivers encrypted message transmission, verified sourcing, and privacy-first handling.
             </p>
             <p className="mt-6 flex items-start gap-2.5 text-sm text-neutral-700">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.5} aria-hidden />
@@ -49,6 +49,21 @@ export function MarketingFooter() {
                 <Link href="/#contact" className="transition hover:text-neutral-900">
                   Contact
                 </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Solutions</p>
+            <ul className="mt-5 space-y-3 text-sm text-neutral-600">
+              <li>
+                <span className="text-neutral-400">Enterprise onboarding — soon</span>
+              </li>
+              <li>
+                <span className="text-neutral-400">Industry templates — soon</span>
+              </li>
+              <li>
+                <span className="text-neutral-400">Dedicated support plans — soon</span>
               </li>
             </ul>
           </div>
@@ -120,20 +135,6 @@ export function MarketingFooter() {
             </ul>
           </div>
 
-          <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Solutions</p>
-            <ul className="mt-5 space-y-3 text-sm text-neutral-600">
-              <li>
-                  <span className="text-neutral-400">Enterprise onboarding — soon</span>
-              </li>
-              <li>
-                  <span className="text-neutral-400">Industry templates — soon</span>
-              </li>
-              <li>
-                  <span className="text-neutral-400">Dedicated support plans — soon</span>
-              </li>
-            </ul>
-          </div>
         </div>
 
         <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-neutral-200 pt-10 text-xs text-neutral-500 md:flex-row md:items-center">
