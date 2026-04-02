@@ -26,6 +26,12 @@ import Link from 'next/link'
 import MobileMenu from '@/components/MobileMenu'
 import { useAuth } from '@/contexts/AuthContext'
 
+const portalInput =
+  'flex h-11 w-full min-h-[44px] rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 shadow-sm placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-50'
+const portalCard = 'rounded-3xl border border-neutral-200 bg-white text-neutral-900 shadow-sm'
+const portalShell =
+  'min-h-screen bg-neutral-50 text-neutral-900 [color-scheme:light] [&_h1]:!text-neutral-900 [&_h2]:!text-neutral-900 [&_h3]:!text-neutral-900'
+
 export default function ClientPortalPage() {
   const { user, isAuthenticated, login, logout, loading } = useAuth()
   const [activeTab, setActiveTab] = useState('dashboard')
@@ -109,10 +115,12 @@ export default function ClientPortalPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-navy-800 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+      <div className={`${portalShell} flex flex-col`}>
+        <div className="flex flex-1 items-center justify-center px-4">
+          <div className="text-center">
+            <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-2 border-neutral-200 border-t-neutral-800" />
+            <p className="text-neutral-600">Loading...</p>
+          </div>
         </div>
       </div>
     )
@@ -120,105 +128,119 @@ export default function ClientPortalPage() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="max-w-md w-full bg-white rounded-lg shadow-lg p-8"
-        >
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center w-16 h-16 bg-navy-800 rounded-sm mx-auto mb-4">
-              <Mail className="h-8 w-8 text-white" />
-            </div>
-            <h1 className="text-2xl font-serif font-bold text-navy-900 mb-2">Client Portal</h1>
-            <p className="text-gray-600">Sign in to access your virtual mailboxes</p>
-          </div>
-
-          <form onSubmit={handleLogin} className="space-y-4">
-            {loginError && (
-              <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
-                {loginError}
+      <div className={`${portalShell} flex min-h-screen flex-col`}>
+        <header className="sticky top-0 z-50 border-b border-neutral-200/80 bg-white/95 backdrop-blur-md">
+          <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            <Link href="/" className="flex items-center gap-3 text-neutral-900 transition hover:opacity-90">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-200 bg-neutral-50">
+                <Mail className="h-4 w-4" strokeWidth={1.25} />
               </div>
-            )}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-              <input
-                type="email"
-                className="input w-full"
-                placeholder="your@email.com"
-                value={loginForm.email}
-                onChange={(e) => setLoginForm({ ...loginForm, email: e.target.value })}
-                required
-              />
+              <div>
+                <span className="font-serif text-lg tracking-wide">FirstClassMail</span>
+                <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500">Client Portal</p>
+              </div>
+            </Link>
+          </div>
+        </header>
+        <div className="flex flex-1 items-center justify-center px-4 py-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`w-full max-w-md rounded-3xl border border-neutral-200 bg-white p-8 shadow-[0_20px_60px_-24px_rgba(0,0,0,0.12)]`}
+          >
+            <div className="mb-8 text-center">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-neutral-200 bg-neutral-50">
+                <Mail className="h-8 w-8 text-neutral-800" strokeWidth={1.25} />
+              </div>
+              <h1 className="font-serif text-2xl font-medium text-neutral-900">Sign in</h1>
+              <p className="mt-2 text-neutral-600">Access your virtual mailboxes</p>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
-              <input
-                type="password"
-                className="input w-full"
-                placeholder="••••••••"
-                value={loginForm.password}
-                onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              className="btn btn-primary w-full"
-            >
-              Sign In
-            </button>
-            <div className="text-center">
-              <Link href="#register" className="text-navy-600 hover:text-navy-800 text-sm">
-                Don't have an account? Sign up
-              </Link>
-            </div>
-          </form>
-        </motion.div>
+
+            <form onSubmit={handleLogin} className="space-y-4">
+              {loginError && (
+                <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{loginError}</div>
+              )}
+              <div>
+                <label className="mb-2 block text-sm font-medium text-neutral-700">Email</label>
+                <input
+                  type="email"
+                  className={portalInput}
+                  placeholder="your@email.com"
+                  value={loginForm.email}
+                  onChange={(e) => setLoginForm({ ...loginForm, email: e.target.value })}
+                  required
+                />
+              </div>
+              <div>
+                <label className="mb-2 block text-sm font-medium text-neutral-700">Password</label>
+                <input
+                  type="password"
+                  className={portalInput}
+                  placeholder="••••••••"
+                  value={loginForm.password}
+                  onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
+                  required
+                />
+              </div>
+              <button type="submit" className="btn btn-primary w-full border border-neutral-900 bg-neutral-900 text-white hover:bg-neutral-800">
+                Sign In
+              </button>
+              <div className="text-center">
+                <Link href="/signup" className="text-sm text-neutral-600 underline-offset-4 hover:text-neutral-900 hover:underline">
+                  Don&apos;t have an account? Sign up
+                </Link>
+              </div>
+            </form>
+          </motion.div>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className={portalShell}>
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="flex items-center justify-center w-8 h-8 bg-navy-800 rounded-sm">
-                <Mail className="h-4 w-4 text-white" />
+      <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/95 shadow-sm backdrop-blur-md">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
+            <Link href="/" className="flex items-center space-x-3 rounded-xl pr-2 transition hover:bg-neutral-100/80">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-200 bg-neutral-50">
+                <Mail className="h-4 w-4 text-neutral-900" strokeWidth={1.25} />
               </div>
               <div>
-                <span className="text-lg font-serif font-bold text-navy-900">FirstClassMail</span>
-                <p className="text-xs text-gray-600 -mt-1">Client Portal</p>
+                <span className="font-serif text-lg font-medium text-neutral-900">FirstClassMail</span>
+                <p className="-mt-0.5 text-xs text-neutral-500">Client Portal</p>
               </div>
-            </div>
+            </Link>
             
-            <div className="hidden md:flex items-center space-x-4">
-              <button className="relative p-2 text-gray-600 hover:text-navy-900">
+            <div className="hidden items-center space-x-4 md:flex">
+              <button type="button" className="relative p-2 text-neutral-600 hover:text-neutral-900">
                 <Bell className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                  3
+                </span>
               </button>
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-navy-100 rounded-full flex items-center justify-center">
-                  <User className="h-4 w-4 text-navy-800" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-200/80">
+                  <User className="h-4 w-4 text-neutral-800" />
                 </div>
-                <span className="text-sm font-medium text-gray-700">{user?.name}</span>
+                <span className="text-sm font-medium text-neutral-800">{user?.name}</span>
               </div>
               <button
+                type="button"
                 onClick={handleLogout}
-                className="btn btn-secondary text-sm"
+                className="inline-flex items-center rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm text-neutral-800 transition hover:border-neutral-400 hover:bg-neutral-50"
               >
-                <LogOut className="h-4 w-4 mr-2" />
+                <LogOut className="mr-2 h-4 w-4" />
                 Logout
               </button>
             </div>
 
             {/* Mobile menu button */}
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-md text-gray-600 hover:text-navy-900"
+              className="rounded-md p-2 text-neutral-600 hover:text-neutral-900 md:hidden"
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -243,10 +265,10 @@ export default function ClientPortalPage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`w-full flex items-center px-4 py-3 text-left rounded-lg transition-colors ${
+                  className={`flex w-full items-center rounded-lg px-4 py-3 text-left transition-colors ${
                     activeTab === tab.id
-                      ? 'bg-navy-100 text-navy-700 border border-navy-200'
-                      : 'text-gray-600 hover:bg-gray-100'
+                      ? 'border border-neutral-200 bg-neutral-100 text-neutral-900'
+                      : 'text-neutral-600 hover:bg-neutral-100'
                   }`}
                 >
                   <tab.icon className="h-5 w-5 mr-3" />
@@ -265,8 +287,8 @@ export default function ClientPortalPage() {
                 transition={{ duration: 0.5 }}
               >
                 <div className="flex justify-between items-center mb-6">
-                  <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-                  <button className="btn btn-primary">
+                  <h1 className="text-2xl font-bold text-neutral-900">Dashboard</h1>
+                  <button type="button" className="btn btn-primary border border-neutral-900 bg-neutral-900 text-white hover:bg-neutral-800">
                     <Plus className="h-4 w-4 mr-2" />
                     New Mailbox
                   </button>
@@ -280,7 +302,7 @@ export default function ClientPortalPage() {
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="card p-6"
+                      className={`${portalCard} p-6`}
                     >
                       <div className="flex items-center justify-between">
                         <div>
@@ -294,8 +316,8 @@ export default function ClientPortalPage() {
                 </div>
 
                 {/* Recent Mail */}
-                <div className="card p-6 mb-8">
-                  <h2 className="text-lg font-semibold text-gray-900 mb-4">Recent Mail</h2>
+                <div className={`${portalCard} mb-8 p-6`}>
+                  <h2 className="mb-4 text-lg font-semibold text-neutral-900">Recent Mail</h2>
                   <div className="space-y-4">
                     {recentMail.map((mail) => (
                       <div key={mail.id} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
@@ -332,7 +354,7 @@ export default function ClientPortalPage() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {mailboxes.map((mailbox) => (
-                    <div key={mailbox.id} className="card p-6">
+                    <div key={mailbox.id} className={`${portalCard} p-6`}>
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center space-x-3">
                           <Package className="h-8 w-8 text-navy-600" />
@@ -398,14 +420,14 @@ export default function ClientPortalPage() {
                   </div>
                 </div>
                 
-                <div className="card">
-                  <div className="p-4 border-b border-gray-200">
+                <div className={`${portalCard} overflow-hidden`}>
+                  <div className="border-b border-neutral-200 p-4">
                     <div className="flex items-center space-x-4">
                       <div className="flex-1">
                         <input
                           type="text"
                           placeholder="Search mail..."
-                          className="input w-full"
+                          className={portalInput}
                         />
                       </div>
                       <button className="btn btn-secondary">
@@ -455,27 +477,27 @@ export default function ClientPortalPage() {
                 <h1 className="text-2xl font-bold text-gray-900 mb-6">Settings</h1>
                 
                 <div className="space-y-6">
-                  <div className="card p-6">
-                    <h2 className="text-lg font-semibold text-gray-900 mb-4">Account Settings</h2>
+                  <div className={`${portalCard} p-6`}>
+                    <h2 className="mb-4 text-lg font-semibold text-neutral-900">Account Settings</h2>
                     <div className="space-y-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                        <input type="text" className="input w-full" defaultValue="John Smith" />
+                        <input type="text" className={portalInput} defaultValue="John Smith" />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                        <input type="email" className="input w-full" defaultValue="john@example.com" />
+                        <input type="email" className={portalInput} defaultValue="john@example.com" />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
-                        <input type="tel" className="input w-full" defaultValue="+1 (555) 123-4567" />
+                        <input type="tel" className={portalInput} defaultValue="+1 (555) 123-4567" />
                       </div>
                       <button className="btn btn-primary">Save Changes</button>
                     </div>
                   </div>
 
-                  <div className="card p-6">
-                    <h2 className="text-lg font-semibold text-gray-900 mb-4">Notification Preferences</h2>
+                  <div className={`${portalCard} p-6`}>
+                    <h2 className="mb-4 text-lg font-semibold text-neutral-900">Notification Preferences</h2>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <div>

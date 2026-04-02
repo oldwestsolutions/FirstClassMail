@@ -6,6 +6,20 @@ const nextConfig = {
       { source: '/zero-knowledge-systems', destination: '/zero-knowledge-proofs', permanent: true },
     ]
   },
+  async rewrites() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'campaign.firstclassmail.xyz' }],
+        destination: '/campaign/:path*',
+      },
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'admin.firstclassmail.xyz' }],
+        destination: '/admin/:path*',
+      },
+    ]
+  },
   typescript: {
     ignoreBuildErrors: false,
   },
