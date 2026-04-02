@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server'
-import { isAdminAppHost, isCampaignAppHost } from '@/lib/subdomainHosts'
+import { hostFromRequestHeaders, isAdminAppHost, isCampaignAppHost } from '@/lib/subdomainHosts'
 
 /**
  * Map campaign.* / admin.* (and localhost dev aliases) to internal `/campaign/*`, `/admin/*`
@@ -7,7 +7,7 @@ import { isAdminAppHost, isCampaignAppHost } from '@/lib/subdomainHosts'
  * Without this, `GET /` on a subdomain could hit the marketing `app/page.tsx`.
  */
 export function middleware(request: NextRequest) {
-  const host = request.headers.get('host') || ''
+  const host = hostFromRequestHeaders((name) => request.headers.get(name))
   const { pathname } = request.nextUrl
 
   if (pathname.startsWith('/_next') || pathname.startsWith('/api')) {
@@ -32,5 +32,10 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)'],
+  // Include `/` explicitly — the regex below does not match the index path on some Next versions,
+  // so subdomain roots would skip middleware and render `app/page.tsx` (marketing).
+  matcher: [
+    '/',
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
+  ],
 }

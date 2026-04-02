@@ -8,11 +8,17 @@ function hostnameFromEnv(url, fallback) {
   }
 }
 
+const mainApex = hostnameFromEnv(process.env.NEXT_PUBLIC_MAIN_SITE_URL, 'firstclassmail.xyz')
 const campaignRewriteHost = hostnameFromEnv(
   process.env.NEXT_PUBLIC_CAMPAIGN_URL,
-  'campaign.firstclassmail.xyz'
+  `campaign.${mainApex}`
 )
-const adminRewriteHost = hostnameFromEnv(process.env.NEXT_PUBLIC_ADMIN_URL, 'admin.firstclassmail.xyz')
+const adminRewriteHost = hostnameFromEnv(process.env.NEXT_PUBLIC_ADMIN_URL, `admin.${mainApex}`)
+
+/** Deduped hostnames so rewrites match even if env URLs disagree slightly from apex. */
+function uniqueHosts(...hosts) {
+  return [...new Set(hosts.filter(Boolean))]
+}
 
 const nextConfig = {
   async redirects() {
@@ -22,28 +28,34 @@ const nextConfig = {
     ]
   },
   async rewrites() {
-    return [
-      {
+    const campaignHosts = uniqueHosts(campaignRewriteHost, `campaign.${mainApex}`)
+    const adminHosts = uniqueHosts(adminRewriteHost, `admin.${mainApex}`)
+    const rules = []
+    for (const host of campaignHosts) {
+      rules.push({
         source: '/',
-        has: [{ type: 'host', value: campaignRewriteHost }],
+        has: [{ type: 'host', value: host }],
         destination: '/campaign',
-      },
-      {
+      })
+      rules.push({
         source: '/:path*',
-        has: [{ type: 'host', value: campaignRewriteHost }],
+        has: [{ type: 'host', value: host }],
         destination: '/campaign/:path*',
-      },
-      {
+      })
+    }
+    for (const host of adminHosts) {
+      rules.push({
         source: '/',
-        has: [{ type: 'host', value: adminRewriteHost }],
+        has: [{ type: 'host', value: host }],
         destination: '/admin',
-      },
-      {
+      })
+      rules.push({
         source: '/:path*',
-        has: [{ type: 'host', value: adminRewriteHost }],
+        has: [{ type: 'host', value: host }],
         destination: '/admin/:path*',
-      },
-    ]
+      })
+    }
+    return rules
   },
   typescript: {
     ignoreBuildErrors: false,

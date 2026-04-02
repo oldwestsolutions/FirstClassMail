@@ -1,9 +1,10 @@
 import { headers } from 'next/headers'
 import { AdminPathProvider } from '@/components/admin/AdminPathContext'
-import { isAdminAppHost } from '@/lib/subdomainHosts'
+import { hostFromRequestHeaders, isAdminAppHost } from '@/lib/subdomainHosts'
 
 export default async function AdminRouteLayout({ children }: { children: React.ReactNode }) {
-  const host = (await headers()).get('host') ?? ''
+  const h = await headers()
+  const host = hostFromRequestHeaders((name) => h.get(name))
   return (
     <AdminPathProvider shortPaths={isAdminAppHost(host)}>
       <div className="min-h-screen bg-[#070708] text-neutral-200 antialiased">{children}</div>
