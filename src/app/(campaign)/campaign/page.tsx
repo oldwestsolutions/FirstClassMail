@@ -2,9 +2,10 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Eye, EyeOff, Sparkles } from 'lucide-react'
+import { hrefForCampaignSegment, useCampaignPaths } from '@/components/campaign/CampaignPathContext'
+import { MAIN_SITE_ORIGIN } from '@/lib/publicUrls'
 
 const SESSION_KEY = 'fcm_campaign_session'
 
@@ -28,6 +29,7 @@ function CircleIcon() {
 
 export default function CampaignLoginPage() {
   const router = useRouter()
+  const { shortPaths } = useCampaignPaths()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [show, setShow] = useState(false)
@@ -41,7 +43,7 @@ export default function CampaignLoginPage() {
       localStorage.setItem(SESSION_KEY, '1')
       if (!remember) localStorage.removeItem('fcm_campaign_remember')
       setLoading(false)
-      router.push('/campaign/dashboard')
+      router.push(hrefForCampaignSegment(shortPaths, '/dashboard'))
     }, 1500)
   }
 
@@ -179,9 +181,9 @@ export default function CampaignLoginPage() {
 
           <p className="mt-8 text-center text-xs text-neutral-500">
             Need access? Contact your administrator ·{' '}
-            <Link href="/" className="text-teal-400/90 hover:underline">
+            <a href={MAIN_SITE_ORIGIN} className="text-teal-400/90 hover:underline">
               FirstClassMail home
-            </Link>
+            </a>
           </p>
         </div>
       </div>

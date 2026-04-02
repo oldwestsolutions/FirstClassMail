@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { CampaignSidebar } from '@/components/campaign/Sidebar'
 import { CampaignTopBar } from '@/components/campaign/TopBar'
+import { hrefForCampaignSegment, useCampaignPaths } from '@/components/campaign/CampaignPathContext'
 import { motion } from 'framer-motion'
 
 const SESSION_KEY = 'fcm_campaign_session'
@@ -11,19 +12,22 @@ const SESSION_KEY = 'fcm_campaign_session'
 export function CampaignShell({ title, children }: { title: string; children: React.ReactNode }) {
   const router = useRouter()
   const [ok, setOk] = useState(false)
+  const { shortPaths } = useCampaignPaths()
+
+  const loginPath = hrefForCampaignSegment(shortPaths, '/')
 
   useEffect(() => {
     if (typeof window === 'undefined') return
     if (localStorage.getItem(SESSION_KEY) !== '1') {
-      router.replace('/campaign')
+      router.replace(loginPath)
       return
     }
     setOk(true)
-  }, [router])
+  }, [router, loginPath])
 
   const onSignOut = () => {
     localStorage.removeItem(SESSION_KEY)
-    router.push('/campaign')
+    router.push(loginPath)
   }
 
   if (!ok) {

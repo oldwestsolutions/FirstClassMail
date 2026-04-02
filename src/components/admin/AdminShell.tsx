@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { AdminSidebar } from '@/components/admin/AdminSidebar'
 import { AdminTopBar } from '@/components/admin/AdminTopBar'
+import { hrefForAdminSegment, useAdminPaths } from '@/components/admin/AdminPathContext'
 import { motion } from 'framer-motion'
 
 const SESSION_KEY = 'fcm_admin_session'
@@ -11,19 +12,21 @@ const SESSION_KEY = 'fcm_admin_session'
 export function AdminShell({ title, children }: { title: string; children: React.ReactNode }) {
   const router = useRouter()
   const [ok, setOk] = useState(false)
+  const { shortPaths } = useAdminPaths()
+  const loginPath = hrefForAdminSegment(shortPaths, '/')
 
   useEffect(() => {
     if (typeof window === 'undefined') return
     if (localStorage.getItem(SESSION_KEY) !== '1') {
-      router.replace('/admin')
+      router.replace(loginPath)
       return
     }
     setOk(true)
-  }, [router])
+  }, [router, loginPath])
 
   const onSignOut = () => {
     localStorage.removeItem(SESSION_KEY)
-    router.push('/admin')
+    router.push(loginPath)
   }
 
   if (!ok) {

@@ -22,25 +22,27 @@ import {
 import { useState } from 'react'
 import { clsx } from 'clsx'
 import { motion, AnimatePresence } from 'framer-motion'
+import { hrefForAdminSegment, adminNavActive, useAdminPaths } from '@/components/admin/AdminPathContext'
 
 const items = [
-  { href: '/admin/dashboard', label: 'Overview', icon: LayoutDashboard },
-  { href: '/admin/server', label: 'Server Health', icon: Server },
-  { href: '/admin/platform', label: 'Platform Health', icon: Activity },
-  { href: '/admin/earnings', label: 'Earnings', icon: TrendingUp },
-  { href: '/admin/quality', label: 'Ad Quality', icon: Shield },
-  { href: '/admin/subscribers', label: 'Subscribers', icon: Users },
-  { href: '/admin/deliverability', label: 'Deliverability', icon: Send },
-  { href: '/admin/compliance', label: 'Compliance', icon: FileCheck },
-  { href: '/admin/carriers', label: 'Carriers', icon: Building2 },
-  { href: '/admin/payouts', label: 'Payouts', icon: Banknote },
-  { href: '/admin/intelligence', label: 'Intelligence', icon: Brain },
-  { href: '/admin/settings', label: 'Settings', icon: Settings },
+  { segment: '/dashboard', label: 'Overview', icon: LayoutDashboard },
+  { segment: '/server', label: 'Server Health', icon: Server },
+  { segment: '/platform', label: 'Platform Health', icon: Activity },
+  { segment: '/earnings', label: 'Earnings', icon: TrendingUp },
+  { segment: '/quality', label: 'Ad Quality', icon: Shield },
+  { segment: '/subscribers', label: 'Subscribers', icon: Users },
+  { segment: '/deliverability', label: 'Deliverability', icon: Send },
+  { segment: '/compliance', label: 'Compliance', icon: FileCheck },
+  { segment: '/carriers', label: 'Carriers', icon: Building2 },
+  { segment: '/payouts', label: 'Payouts', icon: Banknote },
+  { segment: '/intelligence', label: 'Intelligence', icon: Brain },
+  { segment: '/settings', label: 'Settings', icon: Settings },
 ] as const
 
 export function AdminSidebar({ onSignOut }: { onSignOut: () => void }) {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const { shortPaths } = useAdminPaths()
 
   const nav = (
     <>
@@ -54,11 +56,12 @@ export function AdminSidebar({ onSignOut }: { onSignOut: () => void }) {
         </div>
       </div>
       <nav className="flex flex-1 flex-col gap-1 overflow-y-auto">
-        {items.map(({ href, label, icon: Icon }) => {
-          const active = pathname === href
+        {items.map(({ segment, label, icon: Icon }) => {
+          const href = hrefForAdminSegment(shortPaths, segment)
+          const active = adminNavActive(pathname, shortPaths, segment)
           return (
             <Link
-              key={href}
+              key={segment}
               href={href}
               onClick={() => setOpen(false)}
               className={clsx(

@@ -1,4 +1,19 @@
 /** @type {import('next').NextConfig} */
+function hostnameFromEnv(url, fallback) {
+  if (!url || typeof url !== 'string') return fallback
+  try {
+    return new URL(url).hostname
+  } catch {
+    return fallback
+  }
+}
+
+const campaignRewriteHost = hostnameFromEnv(
+  process.env.NEXT_PUBLIC_CAMPAIGN_URL,
+  'campaign.firstclassmail.xyz'
+)
+const adminRewriteHost = hostnameFromEnv(process.env.NEXT_PUBLIC_ADMIN_URL, 'admin.firstclassmail.xyz')
+
 const nextConfig = {
   async redirects() {
     return [
@@ -10,12 +25,12 @@ const nextConfig = {
     return [
       {
         source: '/:path*',
-        has: [{ type: 'host', value: 'campaign.firstclassmail.xyz' }],
+        has: [{ type: 'host', value: campaignRewriteHost }],
         destination: '/campaign/:path*',
       },
       {
         source: '/:path*',
-        has: [{ type: 'host', value: 'admin.firstclassmail.xyz' }],
+        has: [{ type: 'host', value: adminRewriteHost }],
         destination: '/admin/:path*',
       },
     ]

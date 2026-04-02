@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Mail, ArrowRight } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { adminAbsoluteUrl, campaignAbsoluteUrl } from '@/lib/publicUrls'
 
 const nav = [
   { href: '/correspondence', label: 'Correspondence' },
@@ -110,6 +111,20 @@ export function MarketingHeader() {
                   {label}
                 </Link>
               ))}
+              <a
+                href={campaignAbsoluteUrl('/')}
+                className="hidden text-sm text-neutral-600 transition hover:text-neutral-900 md:inline"
+                rel="noopener noreferrer"
+              >
+                Campaign
+              </a>
+              <a
+                href={adminAbsoluteUrl('/')}
+                className="hidden text-sm text-neutral-600 transition hover:text-neutral-900 md:inline"
+                rel="noopener noreferrer"
+              >
+                Admin
+              </a>
               <Link href="/portal" className="btn btn-primary px-6 py-2.5 text-xs uppercase tracking-widest">
                 Open portal
               </Link>

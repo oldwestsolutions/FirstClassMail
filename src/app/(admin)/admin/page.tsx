@@ -2,14 +2,16 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Eye, EyeOff, Server } from 'lucide-react'
+import { hrefForAdminSegment, useAdminPaths } from '@/components/admin/AdminPathContext'
+import { MAIN_SITE_ORIGIN } from '@/lib/publicUrls'
 
 const SESSION_KEY = 'fcm_admin_session'
 
 export default function AdminLoginPage() {
   const router = useRouter()
+  const { shortPaths } = useAdminPaths()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [show, setShow] = useState(false)
@@ -21,7 +23,7 @@ export default function AdminLoginPage() {
     window.setTimeout(() => {
       localStorage.setItem(SESSION_KEY, '1')
       setLoading(false)
-      router.push('/admin/dashboard')
+      router.push(hrefForAdminSegment(shortPaths, '/dashboard'))
     }, 1500)
   }
 
@@ -91,9 +93,9 @@ export default function AdminLoginPage() {
             </button>
           </form>
           <p className="mt-8 text-center text-xs text-neutral-500">
-            <Link href="/" className="text-amber-400/90 hover:underline">
+            <a href={MAIN_SITE_ORIGIN} className="text-amber-400/90 hover:underline">
               Back to FirstClassMail
-            </Link>
+            </a>
           </p>
         </motion.div>
       </div>

@@ -20,23 +20,25 @@ import {
 import { useState } from 'react'
 import { clsx } from 'clsx'
 import { motion, AnimatePresence } from 'framer-motion'
+import { hrefForCampaignSegment, campaignNavActive, useCampaignPaths } from '@/components/campaign/CampaignPathContext'
 
 const items = [
-  { href: '/campaign/dashboard', label: 'Overview', icon: LayoutDashboard },
-  { href: '/campaign/analytics', label: 'Analytics', icon: BarChart3 },
-  { href: '/campaign/intelligence', label: 'Intelligence', icon: Brain },
-  { href: '/campaign/spending', label: 'Ad Spend', icon: DollarSign },
-  { href: '/campaign/wallet', label: 'Wallet', icon: Wallet },
-  { href: '/campaign/campaigns', label: 'Campaigns', icon: Megaphone },
-  { href: '/campaign/creatives', label: 'Creatives', icon: Image },
-  { href: '/campaign/inbox', label: 'Inbox', icon: Mail },
-  { href: '/campaign/contacts', label: 'Contacts', icon: BookUser },
-  { href: '/campaign/history', label: 'History', icon: Clock },
+  { segment: '/dashboard', label: 'Overview', icon: LayoutDashboard },
+  { segment: '/analytics', label: 'Analytics', icon: BarChart3 },
+  { segment: '/intelligence', label: 'Intelligence', icon: Brain },
+  { segment: '/spending', label: 'Ad Spend', icon: DollarSign },
+  { segment: '/wallet', label: 'Wallet', icon: Wallet },
+  { segment: '/campaigns', label: 'Campaigns', icon: Megaphone },
+  { segment: '/creatives', label: 'Creatives', icon: Image },
+  { segment: '/inbox', label: 'Inbox', icon: Mail },
+  { segment: '/contacts', label: 'Contacts', icon: BookUser },
+  { segment: '/history', label: 'History', icon: Clock },
 ] as const
 
 export function CampaignSidebar({ onSignOut }: { onSignOut: () => void }) {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const { shortPaths } = useCampaignPaths()
 
   const nav = (
     <>
@@ -50,11 +52,12 @@ export function CampaignSidebar({ onSignOut }: { onSignOut: () => void }) {
         </div>
       </div>
       <nav className="flex flex-1 flex-col gap-1">
-        {items.map(({ href, label, icon: Icon }) => {
-          const active = pathname === href || pathname.startsWith(href + '/')
+        {items.map(({ segment, label, icon: Icon }) => {
+          const href = hrefForCampaignSegment(shortPaths, segment)
+          const active = campaignNavActive(pathname, shortPaths, segment)
           return (
             <Link
-              key={href}
+              key={segment}
               href={href}
               onClick={() => setOpen(false)}
               className={clsx(

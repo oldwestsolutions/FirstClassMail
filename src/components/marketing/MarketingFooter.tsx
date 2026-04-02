@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Mail, MapPin, BookOpen, LifeBuoy, Shield, Building2 } from 'lucide-react'
+import { adminAbsoluteUrl, campaignAbsoluteUrl } from '@/lib/publicUrls'
 
 export function MarketingFooter() {
   return (
@@ -106,6 +107,16 @@ export function MarketingFooter() {
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Resources</p>
             <ul className="mt-5 space-y-3 text-sm text-neutral-600">
+              <li>
+                <a href={campaignAbsoluteUrl('/')} className="transition hover:text-neutral-900" rel="noopener noreferrer">
+                  Campaign app
+                </a>
+              </li>
+              <li>
+                <a href={adminAbsoluteUrl('/')} className="transition hover:text-neutral-900" rel="noopener noreferrer">
+                  Admin console
+                </a>
+              </li>
               <li>
                 <Link href="/practice" className="inline-flex items-center gap-2 transition hover:text-neutral-900">
                   <BookOpen className="h-3.5 w-3.5 opacity-70" strokeWidth={1.5} aria-hidden />
