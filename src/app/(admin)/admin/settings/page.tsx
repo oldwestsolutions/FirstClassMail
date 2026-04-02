@@ -7,7 +7,7 @@ export default function AdminSettingsPage() {
   return (
     <AdminShell title="Settings">
       <GlassCard>
-        <p className="text-neutral-400">Console preferences and feature flags (mock).</p>
+        <p className="text-neutral-500">Console preferences and feature flags (mock).</p>
       </GlassCard>
     </AdminShell>
   )

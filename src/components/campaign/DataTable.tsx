@@ -10,10 +10,10 @@ export function DataTable({
   rows: Record<string, React.ReactNode>[]
 }) {
   return (
-    <div className="overflow-x-auto rounded-xl border border-white/10">
+    <div className="overflow-x-auto rounded-xl border border-neutral-200">
       <table className="w-full min-w-[640px] text-left text-sm">
         <thead>
-          <tr className="border-b border-white/10 bg-white/[0.03] text-xs uppercase tracking-wider text-neutral-500">
+          <tr className="border-b border-neutral-200 bg-neutral-50 text-xs uppercase tracking-wider text-neutral-500">
             {columns.map((c) => (
               <th key={c.key} className={clsx('px-4 py-3 font-medium', c.className)}>
                 {c.label}
@@ -23,9 +23,9 @@ export function DataTable({
         </thead>
         <tbody>
           {rows.map((row, i) => (
-            <tr key={i} className="border-b border-white/5 transition hover:bg-white/[0.05]">
+            <tr key={i} className="border-b border-neutral-100 transition hover:bg-neutral-50/50">
               {columns.map((c) => (
-                <td key={c.key} className="px-4 py-3 text-neutral-300">
+                <td key={c.key} className="px-4 py-3 text-neutral-600">
                   {row[c.key]}
                 </td>
               ))}

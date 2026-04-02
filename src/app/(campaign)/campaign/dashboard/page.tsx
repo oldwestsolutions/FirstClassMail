@@ -34,52 +34,52 @@ export default function CampaignDashboardPage() {
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
           <GlassCard className="lg:col-span-3">
-            <p className="text-xs font-medium uppercase tracking-wider text-neutral-500">Last 30 days</p>
-            <h3 className="mt-1 font-serif text-lg text-white">Impressions &amp; clicks</h3>
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Last 30 days</p>
+            <h3 className="mt-1 font-serif text-lg text-neutral-900">Impressions &amp; clicks</h3>
             <div className="mt-4 h-72 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <ComposedChart data={chartData}>
                   <defs>
                     <linearGradient id="imp" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#2dd4bf" stopOpacity={0.35} />
-                      <stop offset="100%" stopColor="#2dd4bf" stopOpacity={0} />
+                      <stop offset="0%" stopColor="#0f172a" stopOpacity={0.12} />
+                      <stop offset="100%" stopColor="#0f172a" stopOpacity={0} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false} />
-                  <XAxis dataKey="day" stroke="#52525b" tick={{ fill: '#71717a', fontSize: 11 }} />
-                  <YAxis stroke="#52525b" tick={{ fill: '#71717a', fontSize: 11 }} />
+                  <CartesianGrid stroke="#e5e7eb" strokeDasharray="3 3" vertical={false} />
+                  <XAxis dataKey="day" stroke="#a1a1aa" tick={{ fill: '#71717a', fontSize: 11 }} />
+                  <YAxis stroke="#a1a1aa" tick={{ fill: '#71717a', fontSize: 11 }} />
                   <Tooltip
                     contentStyle={{
-                      background: 'rgba(15,15,18,0.92)',
-                      border: '1px solid rgba(255,255,255,0.1)',
+                      background: '#fff',
+                      border: '1px solid #e5e7eb',
                       borderRadius: 12,
-                      backdropFilter: 'blur(8px)',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.06)',
                     }}
-                    labelStyle={{ color: '#a1a1aa' }}
+                    labelStyle={{ color: '#71717a' }}
                   />
-                  <Area type="monotone" dataKey="impressions" stroke="#2dd4bf" fill="url(#imp)" strokeWidth={2} />
-                  <Line type="monotone" dataKey="clicks" stroke="#60a5fa" strokeWidth={2} dot={false} />
+                  <Area type="monotone" dataKey="impressions" stroke="#0f172a" fill="url(#imp)" strokeWidth={2} />
+                  <Line type="monotone" dataKey="clicks" stroke="#7c3aed" strokeWidth={2} dot={false} />
                 </ComposedChart>
               </ResponsiveContainer>
             </div>
           </GlassCard>
 
           <GlassCard className="lg:col-span-2">
-            <h3 className="font-serif text-lg text-white">Top campaigns</h3>
+            <h3 className="font-serif text-lg text-neutral-900">Top campaigns</h3>
             <ul className="mt-4 space-y-4">
               {campaigns.map((c) => (
-                <li key={c.name} className="rounded-xl border border-white/5 bg-white/[0.03] p-3">
+                <li key={c.name} className="rounded-xl border border-neutral-200/70 bg-neutral-50/50 p-3">
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <p className="text-sm font-medium text-white">{c.name}</p>
+                      <p className="text-sm font-medium text-neutral-900">{c.name}</p>
                       <p className="text-xs text-neutral-500">{c.carrier}</p>
                     </div>
                     <StatusBadge variant={c.status === 'Active' ? 'teal' : 'warning'}>{c.status}</StatusBadge>
                   </div>
-                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
-                    <div className="h-full rounded-full bg-gradient-to-r from-teal-500 to-blue-500" style={{ width: `${c.imp}%` }} />
+                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-neutral-200">
+                    <div className="h-full rounded-full bg-neutral-900" style={{ width: `${c.imp}%` }} />
                   </div>
-                  <p className="mt-2 text-xs text-neutral-400">{c.usdc} USDC earned</p>
+                  <p className="mt-2 text-xs text-neutral-500">{c.usdc} USDC earned</p>
                 </li>
               ))}
             </ul>
@@ -88,19 +88,19 @@ export default function CampaignDashboardPage() {
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <GlassCard>
-            <h3 className="font-serif text-lg text-white">Recent inbox</h3>
+            <h3 className="font-serif text-lg text-neutral-900">Recent inbox</h3>
             <ul className="mt-4 space-y-3">
               {[
                 { subject: 'Carrier creative approved — UHC MAPD', from: 'Verified Ops', t: '2m ago', unread: true },
                 { subject: 'ZK proof bundle ready for audit', from: 'Compliance', t: '1h ago', unread: true },
                 { subject: 'Budget pacing on track', from: 'Finance Bot', t: '3h ago', unread: false },
               ].map((m, i) => (
-                <li key={i} className="flex gap-3 border-b border-white/5 pb-3 last:border-0">
-                  <span className="relative mt-1">
-                    {m.unread && <span className="absolute -left-1 top-1 h-2 w-2 rounded-full bg-teal-400" />}
+                <li key={i} className="flex gap-3 border-b border-neutral-100 pb-3 last:border-0">
+                  <span className="relative mt-1.5">
+                    {m.unread && <span className="absolute -left-0.5 top-0 h-2 w-2 rounded-full bg-neutral-900" />}
                   </span>
                   <div>
-                    <p className="text-sm text-white">{m.subject}</p>
+                    <p className="text-sm text-neutral-900">{m.subject}</p>
                     <p className="text-xs text-neutral-500">
                       {m.from} · {m.t}
                     </p>
@@ -111,16 +111,16 @@ export default function CampaignDashboardPage() {
           </GlassCard>
 
           <GlassCard>
-            <h3 className="font-serif text-lg text-white">Active campaigns</h3>
+            <h3 className="font-serif text-lg text-neutral-900">Active campaigns</h3>
             <div className="mt-4 space-y-4 text-sm">
               {['Open Enrollment Push', 'SNP Educational'].map((name) => (
                 <div key={name}>
-                  <div className="flex justify-between text-neutral-400">
+                  <div className="flex justify-between text-neutral-600">
                     <span>{name}</span>
-                    <span className="text-teal-300">$18.40 CPM</span>
+                    <span className="font-mono text-xs text-neutral-900">$18.40 CPM</span>
                   </div>
-                  <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10">
-                    <div className="h-full w-[68%] rounded-full bg-teal-500/80" />
+                  <div className="mt-2 h-2 overflow-hidden rounded-full bg-neutral-200">
+                    <div className="h-full w-[68%] rounded-full bg-neutral-900" />
                   </div>
                   <p className="mt-1 text-xs text-neutral-500">42 days remaining</p>
                 </div>
@@ -129,21 +129,24 @@ export default function CampaignDashboardPage() {
           </GlassCard>
 
           <GlassCard>
-            <h3 className="font-serif text-lg text-white">USDC wallet</h3>
-            <p className="mt-2 font-mono text-3xl text-teal-300">4,218.50</p>
+            <h3 className="font-serif text-lg text-neutral-900">USDC wallet</h3>
+            <p className="mt-2 font-mono text-3xl text-neutral-900">4,218.50</p>
             <p className="text-xs text-neutral-500">Available balance</p>
-            <p className="mt-4 text-sm text-neutral-400">
-              Pending payouts <span className="text-white">1,204.00 USDC</span>
+            <p className="mt-4 text-sm text-neutral-600">
+              Pending payouts <span className="font-medium text-neutral-900">1,204.00 USDC</span>
             </p>
             <p className="text-xs text-neutral-500">Last payout Mar 28, 2026</p>
             <div className="mt-6 flex flex-col gap-2 sm:flex-row">
               <button
                 type="button"
-                className="flex-1 rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 py-2.5 text-sm font-medium text-white"
+                className="flex-1 rounded-full bg-neutral-900 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800"
               >
                 Withdraw
               </button>
-              <button type="button" className="flex-1 rounded-xl border border-white/15 py-2.5 text-sm text-white hover:bg-white/5">
+              <button
+                type="button"
+                className="flex-1 rounded-full border border-neutral-200 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50"
+              >
                 Add funds
               </button>
             </div>

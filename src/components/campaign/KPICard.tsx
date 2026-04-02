@@ -4,10 +4,10 @@ import { GlassCard } from '@/components/shared/GlassCard'
 import { MetricSparkline } from '@/components/shared/MetricSparkline'
 
 const accent: Record<string, string> = {
-  blue: '#60a5fa',
-  violet: '#a78bfa',
-  teal: '#2dd4bf',
-  green: '#4ade80',
+  blue: '#1d4ed8',
+  violet: '#7c3aed',
+  teal: '#0d9488',
+  green: '#15803d',
 }
 
 export function KPICard({
@@ -23,9 +23,9 @@ export function KPICard({
 }) {
   return (
     <GlassCard hoverTilt className="relative overflow-hidden">
-      <p className="text-xs font-medium uppercase tracking-wider text-neutral-500">{label}</p>
-      <p className="mt-2 font-mono text-2xl text-white md:text-3xl">{value}</p>
-      <p className="mt-1 text-xs text-emerald-400/90">{delta}</p>
+      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">{label}</p>
+      <p className="mt-2 font-mono text-2xl text-neutral-900 md:text-3xl">{value}</p>
+      <p className="mt-1 text-xs font-medium text-emerald-600">{delta}</p>
       <div className="absolute bottom-3 right-3">
         <MetricSparkline color={accent[tone]} />
       </div>

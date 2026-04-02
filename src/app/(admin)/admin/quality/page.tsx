@@ -11,11 +11,11 @@ export default function AdminQualityPage() {
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         <GlassCard className="lg:col-span-1 flex flex-col items-center">
           <GaugeChart value={94} max={100} label="Overall score" />
-          <p className="mt-2 text-sm text-emerald-400">Excellent</p>
+          <p className="mt-2 text-sm text-emerald-600">Excellent</p>
         </GlassCard>
         <GlassCard className="lg:col-span-2">
-          <h3 className="font-serif text-lg text-white">Dimensions</h3>
-          <ul className="mt-4 space-y-2 text-sm text-neutral-400">
+          <h3 className="font-serif text-lg text-neutral-900">Dimensions</h3>
+          <ul className="mt-4 space-y-2 text-sm text-neutral-500">
             <li>Verified audience match — 98%</li>
             <li>CMS compliance — 96%</li>
             <li>Creative quality — 89%</li>
@@ -25,7 +25,7 @@ export default function AdminQualityPage() {
         </GlassCard>
       </div>
       <GlassCard className="mt-8">
-        <h3 className="font-serif text-lg text-white">Per carrier</h3>
+        <h3 className="font-serif text-lg text-neutral-900">Per carrier</h3>
         <table className="mt-4 w-full text-left text-sm">
           <thead className="text-xs text-neutral-500">
             <tr>
@@ -35,9 +35,9 @@ export default function AdminQualityPage() {
               <th className="py-2"> </th>
             </tr>
           </thead>
-          <tbody className="text-neutral-300">
+          <tbody className="text-neutral-600">
             {['UHC', 'Humana', 'Aetna'].map((c) => (
-              <tr key={c} className="border-t border-white/5">
+              <tr key={c} className="border-t border-neutral-200/70">
                 <td className="py-3">{c}</td>
                 <td className="py-3">94–96</td>
                 <td className="py-3">0–2</td>
@@ -50,12 +50,12 @@ export default function AdminQualityPage() {
         </table>
       </GlassCard>
       <GlassCard className="mt-8">
-        <h3 className="font-serif text-lg text-white">Flagged queue</h3>
+        <h3 className="font-serif text-lg text-neutral-900">Flagged queue</h3>
         <div className="mt-4 flex flex-wrap gap-2">
-          <button type="button" className="rounded-lg bg-emerald-600/20 px-3 py-1 text-xs text-emerald-300">
+          <button type="button" className="rounded-lg bg-emerald-600/20 px-3 py-1 text-xs text-emerald-600">
             Approve
           </button>
-          <button type="button" className="rounded-lg bg-red-600/20 px-3 py-1 text-xs text-red-300">
+          <button type="button" className="rounded-lg bg-red-600/20 px-3 py-1 text-xs text-red-600">
             Reject
           </button>
         </div>

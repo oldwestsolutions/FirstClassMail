@@ -32,14 +32,14 @@ export function CampaignShell({ title, children }: { title: string; children: Re
 
   if (!ok) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#050508] text-neutral-400">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/20 border-t-teal-400" />
+      <div className="flex min-h-screen items-center justify-center bg-white text-neutral-400">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-neutral-200 border-t-neutral-900" />
       </div>
     )
   }
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-screen bg-[#050508] text-neutral-200">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-screen bg-neutral-50/50 text-neutral-600">
       <CampaignSidebar onSignOut={onSignOut} />
       <div className="lg:pl-64">
         <CampaignTopBar title={title} />

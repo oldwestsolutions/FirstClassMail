@@ -7,7 +7,7 @@ export default async function AdminRouteLayout({ children }: { children: React.R
   const host = hostFromRequestHeaders((name) => h.get(name))
   return (
     <AdminPathProvider shortPaths={isAdminAppHost(host)}>
-      <div className="min-h-screen bg-[#070708] text-neutral-200 antialiased">{children}</div>
+      <div className="min-h-screen bg-white text-neutral-600 antialiased">{children}</div>
     </AdminPathProvider>
   )
 }

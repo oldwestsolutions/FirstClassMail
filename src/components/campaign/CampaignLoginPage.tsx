@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Eye, EyeOff, Sparkles } from 'lucide-react'
+import { Eye, EyeOff, Mail, ArrowRight, Sparkles, Shield, BarChart3 } from 'lucide-react'
+import Link from 'next/link'
 import { hrefForCampaignSegment, useCampaignPaths } from '@/components/campaign/CampaignPathContext'
 import { MAIN_SITE_ORIGIN } from '@/lib/publicUrls'
 
@@ -48,102 +49,121 @@ export default function CampaignLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col lg:flex-row">
-      <div className="relative hidden min-h-[40vh] flex-1 overflow-hidden bg-[#030712] lg:flex lg:min-h-screen">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.07)_1px,transparent_1px)] [background-size:40px_40px]" />
-        <motion.div
-          animate={{ rotate: [0, 360] }}
-          transition={{ duration: 100, repeat: Infinity, ease: 'linear' }}
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[min(120vw,720px)] w-[min(120vw,720px)] -translate-x-1/2 -translate-y-1/2 rounded-[40%] border border-white/[0.06] bg-gradient-to-br from-blue-500/25 via-violet-600/10 to-transparent blur-2xl"
-        />
-        <motion.div
-          animate={{ y: [0, -12, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-          className="pointer-events-none absolute bottom-0 left-10 h-48 w-48 rounded-3xl border border-white/10 bg-gradient-to-tr from-teal-500/20 to-transparent backdrop-blur-sm"
-        />
-        <div className="relative z-10 flex h-full flex-col justify-center px-12 py-16">
-          <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-blue-300/80">Medicare advertising</p>
-          <h1 className="mt-4 max-w-lg font-serif text-4xl font-medium leading-tight text-white md:text-5xl">
-            FirstClass Campaign Portal
-          </h1>
-          <p className="mt-6 max-w-md text-lg text-neutral-400">
-            Verified advertising intelligence for the Medicare market.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            {['ZK Verified Identity', 'Circle Wallet Connected', 'USDC Powered Payouts'].map((t) => (
-              <span
-                key={t}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-neutral-300"
-              >
-                <Sparkles className="h-3.5 w-3.5 text-teal-400" />
-                {t}
-              </span>
-            ))}
+    <div className="flex min-h-screen flex-col bg-white lg:flex-row">
+      <div className="relative hidden flex-1 overflow-hidden border-r border-neutral-200 bg-neutral-50 lg:flex">
+        <div className="relative z-10 flex h-full w-full flex-col justify-between px-12 py-12">
+          <Link href={MAIN_SITE_ORIGIN} className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-200 bg-white shadow-sm">
+              <Mail className="h-4 w-4 text-neutral-900" strokeWidth={1.25} />
+            </div>
+            <span className="font-serif text-lg tracking-wide text-neutral-900">FirstClassMail</span>
+          </Link>
+
+          <div className="max-w-md">
+            <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-neutral-500">Campaign Portal</p>
+            <h1 className="mt-5 font-serif text-4xl font-medium leading-[1.08] tracking-tight text-neutral-900 md:text-5xl">
+              Verified advertising intelligence.
+            </h1>
+            <p className="mt-6 text-base leading-[1.75] text-neutral-600">
+              Campaign management, audience analytics, USDC-powered payouts, and compliance tools for the Medicare advertising market.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              {[
+                { label: 'ZK Verified Identity', icon: Shield },
+                { label: 'Campaign Analytics', icon: BarChart3 },
+                { label: 'USDC Payouts', icon: Sparkles },
+              ].map(({ label, icon: Icon }) => (
+                <span
+                  key={label}
+                  className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-xs text-neutral-600 shadow-sm"
+                >
+                  <Icon className="h-3.5 w-3.5 text-neutral-400" strokeWidth={1.5} />
+                  {label}
+                </span>
+              ))}
+            </div>
           </div>
+
+          <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-400">
+            Encrypted transit · Verified recipients · Privacy by design
+          </p>
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
-        <div className="w-full max-w-md rounded-3xl border border-white/10 bg-white/[0.05] p-8 shadow-2xl backdrop-blur-md">
-          <div className="mb-8 flex flex-col items-center text-center">
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-violet-600 text-lg font-bold text-white">
-              FC
+      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12 lg:px-12">
+        <div className="flex w-full max-w-md flex-col lg:hidden">
+          <Link href={MAIN_SITE_ORIGIN} className="mb-10 flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-200 bg-neutral-50">
+              <Mail className="h-4 w-4 text-neutral-900" strokeWidth={1.25} />
             </div>
-            <h2 className="font-serif text-2xl text-white">Sign in to Campaign</h2>
-            <p className="mt-2 text-sm text-neutral-400">Access your advertising portal</p>
+            <span className="font-serif text-lg tracking-wide text-neutral-900">FirstClassMail</span>
+          </Link>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full max-w-md"
+        >
+          <div className="mb-8">
+            <h2 className="font-serif text-3xl tracking-tight text-neutral-900">Sign in</h2>
+            <p className="mt-2 text-sm text-neutral-500">Access your campaign portal</p>
           </div>
 
-          <form onSubmit={onSubmit} className="space-y-4">
+          <form onSubmit={onSubmit} className="space-y-5">
             <div>
-              <label className="mb-1.5 block text-xs font-medium text-neutral-400">Email</label>
+              <label className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-neutral-500">Email</label>
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder:text-neutral-600 focus:border-teal-500/50 focus:outline-none focus:ring-2 focus:ring-teal-500/30"
                 placeholder="you@company.com"
+                className="flex h-12 w-full rounded-2xl border border-neutral-200 bg-white px-4 text-sm text-neutral-900 placeholder:text-neutral-400 transition focus:border-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900/10"
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-xs font-medium text-neutral-400">Password</label>
+              <label className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-neutral-500">Password</label>
               <div className="relative">
                 <input
                   type={show ? 'text' : 'password'}
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 pr-11 text-sm text-white placeholder:text-neutral-600 focus:border-teal-500/50 focus:outline-none focus:ring-2 focus:ring-teal-500/30"
                   placeholder="••••••••"
+                  className="flex h-12 w-full rounded-2xl border border-neutral-200 bg-white px-4 pr-11 text-sm text-neutral-900 placeholder:text-neutral-400 transition focus:border-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900/10"
                 />
                 <button
                   type="button"
                   onClick={() => setShow(!show)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-neutral-400 transition hover:text-neutral-900"
                   aria-label={show ? 'Hide password' : 'Show password'}
                 >
                   {show ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
             </div>
+
             <div className="flex items-center justify-between gap-4 text-sm">
-              <label className="flex cursor-pointer items-center gap-2 text-neutral-400">
+              <label className="flex cursor-pointer items-center gap-2 text-neutral-500">
                 <input
                   type="checkbox"
                   checked={remember}
                   onChange={(e) => setRemember(e.target.checked)}
-                  className="rounded border-white/20 bg-black/40 text-teal-500 focus:ring-teal-500/40"
+                  className="rounded border-neutral-300 text-neutral-900 focus:ring-neutral-900/20"
                 />
                 Remember me
               </label>
-              <button type="button" className="text-white/40 hover:text-white/70">
+              <button type="button" className="text-neutral-400 transition hover:text-neutral-900">
                 Forgot password?
               </button>
             </div>
+
             <button
               type="submit"
               disabled={loading}
-              className="relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(59,130,246,0.35)] transition hover:shadow-[0_0_32px_rgba(139,92,246,0.45)] disabled:opacity-60"
+              className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-neutral-900 text-sm font-medium text-white transition-colors duration-200 hover:bg-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 disabled:opacity-50"
             >
               {loading ? (
                 <span className="inline-flex items-center gap-2">
@@ -151,41 +171,44 @@ export default function CampaignLoginPage() {
                   Signing in…
                 </span>
               ) : (
-                'Sign In'
+                <>
+                  Sign In
+                  <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
+                </>
               )}
             </button>
           </form>
 
           <div className="my-8 flex items-center gap-3">
-            <div className="h-px flex-1 bg-white/10" />
-            <span className="text-xs uppercase tracking-wider text-neutral-500">or continue with</span>
-            <div className="h-px flex-1 bg-white/10" />
+            <div className="h-px flex-1 bg-neutral-200" />
+            <span className="font-mono text-[10px] uppercase tracking-wider text-neutral-400">or continue with</span>
+            <div className="h-px flex-1 bg-neutral-200" />
           </div>
 
           <div className="flex flex-col gap-3">
             <button
               type="button"
-              className="flex w-full items-center justify-center gap-2 rounded-xl border border-[#0052FF]/40 bg-transparent py-3 text-sm text-white transition hover:bg-[#0052FF]/10"
+              className="flex h-12 w-full items-center justify-center gap-2 rounded-full border border-neutral-200 bg-white text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 hover:border-neutral-300"
             >
               <CoinbaseIcon />
               Coinbase Wallet
             </button>
             <button
               type="button"
-              className="flex w-full items-center justify-center gap-2 rounded-xl border border-[#0C6CF2]/40 bg-transparent py-3 text-sm text-white transition hover:bg-[#0C6CF2]/10"
+              className="flex h-12 w-full items-center justify-center gap-2 rounded-full border border-neutral-200 bg-white text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 hover:border-neutral-300"
             >
               <CircleIcon />
               Circle Wallet
             </button>
           </div>
 
-          <p className="mt-8 text-center text-xs text-neutral-500">
+          <p className="mt-10 text-center text-xs text-neutral-500">
             Need access? Contact your administrator ·{' '}
-            <a href={MAIN_SITE_ORIGIN} className="text-teal-400/90 hover:underline">
+            <a href={MAIN_SITE_ORIGIN} className="text-neutral-900 underline-offset-4 transition hover:underline">
               FirstClassMail home
             </a>
           </p>
-        </div>
+        </motion.div>
       </div>
     </div>
   )

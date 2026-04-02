@@ -14,14 +14,14 @@ export default function AdminPayoutsPage() {
         ].map(([a, b]) => (
           <GlassCard key={a}>
             <p className="text-xs text-neutral-500">{a}</p>
-            <p className="mt-2 font-mono text-lg text-white">{b}</p>
+            <p className="mt-2 font-mono text-lg text-neutral-900">{b}</p>
           </GlassCard>
         ))}
       </div>
       <GlassCard>
         <div className="mb-4 flex justify-between">
-          <h3 className="font-serif text-lg text-white">Pending</h3>
-          <button type="button" className="rounded-lg bg-emerald-600/30 px-3 py-1 text-xs text-emerald-200">
+          <h3 className="font-serif text-lg text-neutral-900">Pending</h3>
+          <button type="button" className="rounded-lg bg-emerald-600/20 px-3 py-1 text-xs text-emerald-700">
             Bulk approve
           </button>
         </div>
@@ -35,12 +35,12 @@ export default function AdminPayoutsPage() {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-t border-white/5">
+            <tr className="border-t border-neutral-200/70">
               <td className="py-3 font-mono text-xs">sub_****291</td>
               <td className="py-3">420 USDC</td>
               <td className="py-3">Conversion</td>
               <td className="py-3">
-                <button type="button" className="text-xs text-teal-400">
+                <button type="button" className="text-xs text-teal-700">
                   Approve
                 </button>
               </td>
@@ -49,8 +49,8 @@ export default function AdminPayoutsPage() {
         </table>
       </GlassCard>
       <GlassCard className="mt-8">
-        <h3 className="font-serif text-lg text-white">Circle settings</h3>
-        <p className="mt-4 text-sm text-neutral-400">Min threshold 50 USDC · Weekly · Paymaster enabled</p>
+        <h3 className="font-serif text-lg text-neutral-900">Circle settings</h3>
+        <p className="mt-4 text-sm text-neutral-500">Min threshold 50 USDC · Weekly · Paymaster enabled</p>
       </GlassCard>
     </AdminShell>
   )

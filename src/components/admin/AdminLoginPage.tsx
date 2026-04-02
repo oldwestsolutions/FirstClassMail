@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Eye, EyeOff, Server } from 'lucide-react'
+import { Eye, EyeOff, Mail, ArrowRight, Server, Shield, Activity } from 'lucide-react'
+import Link from 'next/link'
 import { hrefForAdminSegment, useAdminPaths } from '@/components/admin/AdminPathContext'
 import { MAIN_SITE_ORIGIN } from '@/lib/publicUrls'
 
@@ -28,72 +29,123 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col lg:flex-row">
-      <div className="relative hidden flex-1 overflow-hidden bg-[#09090b] lg:flex">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(251,191,36,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(251,191,36,0.06)_1px,transparent_1px)] [background-size:40px_40px]" />
-        <div className="relative z-10 flex h-full flex-col justify-center px-12 py-16">
-          <h1 className="font-serif text-4xl font-medium text-white md:text-5xl">FirstClass Admin Console</h1>
-          <p className="mt-6 max-w-md text-lg text-neutral-400">Platform operations and intelligence.</p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            {['Server Health Monitoring', 'Linode Infrastructure', 'Full Platform Control'].map((t) => (
-              <span key={t} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-neutral-300">
-                <Server className="h-3.5 w-3.5 text-amber-400" />
-                {t}
-              </span>
-            ))}
+    <div className="flex min-h-screen flex-col bg-white lg:flex-row">
+      <div className="relative hidden flex-1 overflow-hidden border-r border-neutral-200 bg-neutral-50 lg:flex">
+        <div className="relative z-10 flex h-full w-full flex-col justify-between px-12 py-12">
+          <Link href={MAIN_SITE_ORIGIN} className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-200 bg-white shadow-sm">
+              <Mail className="h-4 w-4 text-neutral-900" strokeWidth={1.25} />
+            </div>
+            <span className="font-serif text-lg tracking-wide text-neutral-900">FirstClassMail</span>
+          </Link>
+
+          <div className="max-w-md">
+            <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-neutral-500">Admin Console</p>
+            <h1 className="mt-5 font-serif text-4xl font-medium leading-[1.08] tracking-tight text-neutral-900 md:text-5xl">
+              Platform operations and intelligence.
+            </h1>
+            <p className="mt-6 text-base leading-[1.75] text-neutral-600">
+              Server health monitoring, subscriber management, deliverability controls, and full platform oversight in a unified console.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              {[
+                { label: 'Server Health', icon: Server },
+                { label: 'Infrastructure', icon: Activity },
+                { label: 'Platform Control', icon: Shield },
+              ].map(({ label, icon: Icon }) => (
+                <span
+                  key={label}
+                  className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-xs text-neutral-600 shadow-sm"
+                >
+                  <Icon className="h-3.5 w-3.5 text-neutral-400" strokeWidth={1.5} />
+                  {label}
+                </span>
+              ))}
+            </div>
           </div>
+
+          <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-400">
+            Encrypted transit · Verified routing · Auditable logs
+          </p>
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12 lg:px-12">
+        <div className="flex w-full max-w-md flex-col lg:hidden">
+          <Link href={MAIN_SITE_ORIGIN} className="mb-10 flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-200 bg-neutral-50">
+              <Mail className="h-4 w-4 text-neutral-900" strokeWidth={1.25} />
+            </div>
+            <span className="font-serif text-lg tracking-wide text-neutral-900">FirstClassMail</span>
+          </Link>
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          className="w-full max-w-md rounded-3xl border border-white/10 bg-white/[0.05] p-8 backdrop-blur-md"
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full max-w-md"
         >
-          <div className="mb-8 text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-red-700 text-lg font-bold text-white">
-              AD
-            </div>
-            <h2 className="font-serif text-2xl text-white">Admin Access</h2>
-            <p className="mt-2 text-sm text-neutral-400">Sign in to the operations console</p>
+          <div className="mb-8">
+            <h2 className="font-serif text-3xl tracking-tight text-neutral-900">Sign in</h2>
+            <p className="mt-2 text-sm text-neutral-500">Access the admin operations console</p>
           </div>
-          <form onSubmit={onSubmit} className="space-y-4">
+
+          <form onSubmit={onSubmit} className="space-y-5">
             <div>
-              <label className="mb-1.5 block text-xs text-neutral-400">Email</label>
+              <label className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-neutral-500">Email</label>
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white focus:ring-2 focus:ring-amber-500/40"
+                placeholder="admin@firstclassmail.xyz"
+                className="flex h-12 w-full rounded-2xl border border-neutral-200 bg-white px-4 text-sm text-neutral-900 placeholder:text-neutral-400 transition focus:border-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900/10"
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-xs text-neutral-400">Password</label>
+              <label className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-neutral-500">Password</label>
               <div className="relative">
                 <input
                   type={show ? 'text' : 'password'}
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 pr-11 text-sm text-white focus:ring-2 focus:ring-amber-500/40"
+                  placeholder="••••••••"
+                  className="flex h-12 w-full rounded-2xl border border-neutral-200 bg-white px-4 pr-11 text-sm text-neutral-900 placeholder:text-neutral-400 transition focus:border-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900/10"
                 />
-                <button type="button" onClick={() => setShow(!show)} className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500">
+                <button
+                  type="button"
+                  onClick={() => setShow(!show)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-neutral-400 transition hover:text-neutral-900"
+                  aria-label={show ? 'Hide password' : 'Show password'}
+                >
                   {show ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
             </div>
+
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-xl bg-gradient-to-r from-amber-600 to-red-700 py-3 text-sm font-semibold text-white disabled:opacity-60"
+              className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-neutral-900 text-sm font-medium text-white transition-colors duration-200 hover:bg-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 disabled:opacity-50"
             >
-              {loading ? 'Signing in…' : 'Sign In'}
+              {loading ? (
+                <span className="inline-flex items-center gap-2">
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                  Signing in…
+                </span>
+              ) : (
+                <>
+                  Sign In
+                  <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
+                </>
+              )}
             </button>
           </form>
-          <p className="mt-8 text-center text-xs text-neutral-500">
-            <a href={MAIN_SITE_ORIGIN} className="text-amber-400/90 hover:underline">
+
+          <p className="mt-10 text-center text-xs text-neutral-500">
+            <a href={MAIN_SITE_ORIGIN} className="text-neutral-900 underline-offset-4 transition hover:underline">
               Back to FirstClassMail
             </a>
           </p>

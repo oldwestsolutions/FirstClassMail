@@ -16,9 +16,9 @@ export default function AdminSubscribersPage() {
               <th className="py-2">Since</th>
             </tr>
           </thead>
-          <tbody className="text-neutral-300">
+          <tbody className="text-neutral-600">
             {['9281', '9280', '9279'].map((id) => (
-              <tr key={id} className="border-t border-white/5">
+              <tr key={id} className="border-t border-neutral-200/70">
                 <td className="py-3 font-mono">{id}</td>
                 <td className="py-3">MAPD</td>
                 <td className="py-3">FL</td>

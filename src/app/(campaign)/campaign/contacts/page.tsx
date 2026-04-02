@@ -19,24 +19,24 @@ export default function CampaignContactsPage() {
   return (
     <CampaignShell title="Contacts">
       <div className="mb-6 flex flex-wrap items-center gap-3">
-        <input placeholder="Search" className="rounded-xl border border-white/10 bg-black/40 px-4 py-2 text-sm text-white" />
-        <select className="rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-sm text-white">
+        <input placeholder="Search" className="rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2 text-sm text-neutral-900" />
+        <select className="rounded-xl border border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-900">
           <option>All types</option>
           <option>Carrier</option>
           <option>Agent</option>
           <option>Subscriber</option>
         </select>
-        <button type="button" className="rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 px-4 py-2 text-sm text-white">
+        <button type="button" className="rounded-full bg-neutral-900 px-4 py-2 text-sm text-white hover:bg-neutral-800">
           Add contact
         </button>
-        <button type="button" className="rounded-xl border border-white/15 px-4 py-2 text-sm hover:bg-white/5">
+        <button type="button" className="rounded-full border border-neutral-200 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50">
           Import CSV
         </button>
         <div className="ml-auto flex gap-2 text-xs">
-          <button type="button" className={view === 'card' ? 'text-teal-400' : 'text-neutral-500'} onClick={() => setView('card')}>
+          <button type="button" className={view === 'card' ? 'text-neutral-900' : 'text-neutral-500'} onClick={() => setView('card')}>
             Cards
           </button>
-          <button type="button" className={view === 'list' ? 'text-teal-400' : 'text-neutral-500'} onClick={() => setView('list')}>
+          <button type="button" className={view === 'list' ? 'text-neutral-900' : 'text-neutral-500'} onClick={() => setView('list')}>
             List
           </button>
         </div>
@@ -47,7 +47,7 @@ export default function CampaignContactsPage() {
           {contacts.map((c) => (
             <GlassCard key={c.id}>
               <div className="flex items-start justify-between">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-sm font-medium text-white">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-100 text-sm font-medium text-neutral-900">
                   {c.name
                     .split(' ')
                     .map((s) => s[0])
@@ -55,14 +55,14 @@ export default function CampaignContactsPage() {
                 </div>
                 <StatusBadge variant="teal">{c.type}</StatusBadge>
               </div>
-              <h3 className="mt-4 font-medium text-white">{c.name}</h3>
+              <h3 className="mt-4 font-medium text-neutral-900">{c.name}</h3>
               <p className="text-xs text-neutral-500">{c.org}</p>
-              <p className="mt-2 text-xs text-neutral-400">Last: {c.last}</p>
+              <p className="mt-2 text-xs text-neutral-500">Last: {c.last}</p>
               <div className="mt-4 flex gap-2">
-                <button type="button" className="flex-1 rounded-lg border border-white/15 py-2 text-xs">
+                <button type="button" className="flex-1 rounded-full border border-neutral-200 py-2 text-xs text-neutral-700">
                   Message
                 </button>
-                <button type="button" onClick={() => setDrawer(c.id)} className="flex-1 rounded-lg bg-white/10 py-2 text-xs">
+                <button type="button" onClick={() => setDrawer(c.id)} className="flex-1 rounded-full bg-neutral-100 py-2 text-xs text-neutral-900">
                   Profile
                 </button>
               </div>
@@ -83,8 +83,8 @@ export default function CampaignContactsPage() {
             </thead>
             <tbody>
               {contacts.map((c) => (
-                <tr key={c.id} className="border-t border-white/5">
-                  <td className="py-3 text-white">{c.name}</td>
+                <tr key={c.id} className="border-t border-neutral-200/70">
+                  <td className="py-3 text-neutral-900">{c.name}</td>
                   <td className="py-3">{c.org}</td>
                   <td className="py-3">{c.type}</td>
                   <td className="py-3">{c.ver ? 'Yes' : 'No'}</td>
@@ -104,7 +104,7 @@ export default function CampaignContactsPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-black/70"
+              className="fixed inset-0 z-50 bg-black/40"
               onClick={() => setDrawer(null)}
               aria-label="Close"
             />
@@ -113,15 +113,15 @@ export default function CampaignContactsPage() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.25 }}
-              className="fixed right-0 top-0 z-50 h-full w-full max-w-md overflow-y-auto border-l border-white/10 bg-neutral-950 p-6 shadow-2xl"
+              className="fixed right-0 top-0 z-50 h-full w-full max-w-md overflow-y-auto border-l border-neutral-200 bg-white p-6 shadow-2xl"
             >
               <div className="flex items-center justify-between">
-                <h3 className="font-serif text-xl text-white">Contact detail</h3>
-                <button type="button" onClick={() => setDrawer(null)} className="text-neutral-400 hover:text-white">
+                <h3 className="font-serif text-xl text-neutral-900">Contact detail</h3>
+                <button type="button" onClick={() => setDrawer(null)} className="text-neutral-500 hover:text-neutral-900">
                   <X className="h-5 w-5" />
                 </button>
               </div>
-              <p className="mt-6 text-sm text-neutral-400">Verified credentials, message history, campaign associations, and USDC history (mock).</p>
+              <p className="mt-6 text-sm text-neutral-500">Verified credentials, message history, campaign associations, and USDC history (mock).</p>
             </motion.aside>
           </>
         )}

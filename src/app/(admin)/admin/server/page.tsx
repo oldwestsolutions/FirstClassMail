@@ -39,23 +39,23 @@ export default function AdminServerPage() {
         ))}
       </div>
       <GlassCard className="mt-8">
-        <h3 className="font-serif text-lg text-white">Network traffic (24h)</h3>
+        <h3 className="font-serif text-lg text-neutral-900">Network traffic (24h)</h3>
         <div className="mt-4 h-64">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={traffic}>
-              <CartesianGrid stroke="rgba(255,255,255,0.06)" />
+              <CartesianGrid stroke="#e5e7eb" strokeDasharray="3 3" />
               <XAxis dataKey="h" stroke="#71717a" />
               <YAxis stroke="#71717a" />
-              <Tooltip contentStyle={{ background: '#111', border: '1px solid rgba(255,255,255,0.1)' }} />
-              <Area type="monotone" dataKey="in" stroke="#2dd4bf" fill="rgba(45,212,191,0.12)" />
-              <Area type="monotone" dataKey="out" stroke="#60a5fa" fill="rgba(96,165,250,0.08)" />
+              <Tooltip contentStyle={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }} />
+              <Area type="monotone" dataKey="in" stroke="#0d9488" fill="rgba(13,148,136,0.08)" />
+              <Area type="monotone" dataKey="out" stroke="#1d4ed8" fill="rgba(29,78,216,0.06)" />
             </AreaChart>
           </ResponsiveContainer>
         </div>
       </GlassCard>
       <GlassCard className="mt-8">
-        <h3 className="font-mono text-sm text-neutral-400">Error log</h3>
-        <pre className="mt-4 max-h-48 overflow-auto rounded-xl bg-black/60 p-4 text-xs text-emerald-400/90">
+        <h3 className="font-mono text-sm text-neutral-500">Error log</h3>
+        <pre className="mt-4 max-h-48 overflow-auto rounded-xl bg-neutral-100 p-4 text-xs text-emerald-600">
           {`[INFO] postfix/smtpd: connect from mta.example.com
 [WARN] rspamd: metric adjusted (bulk)
 [INFO] dovecot: imap-login: Login`}

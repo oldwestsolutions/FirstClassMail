@@ -18,6 +18,7 @@ import {
   LogOut,
   Menu,
   X,
+  Mail,
 } from 'lucide-react'
 import { useState } from 'react'
 import { clsx } from 'clsx'
@@ -46,16 +47,16 @@ export function AdminSidebar({ onSignOut }: { onSignOut: () => void }) {
 
   const nav = (
     <>
-      <div className="mb-8 flex items-center gap-2 px-2">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500/90 to-red-600 text-sm font-bold text-white">
-          AD
+      <div className="mb-8 flex items-center gap-3 px-2">
+        <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-200 bg-neutral-50">
+          <Mail className="h-4 w-4 text-neutral-900" strokeWidth={1.25} />
         </div>
         <div>
-          <p className="font-serif text-sm text-white">Admin</p>
-          <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">Console</p>
+          <p className="font-serif text-sm tracking-wide text-neutral-900">Admin</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500">Console</p>
         </div>
       </div>
-      <nav className="flex flex-1 flex-col gap-1 overflow-y-auto">
+      <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto">
         {items.map(({ segment, label, icon: Icon }) => {
           const href = hrefForAdminSegment(shortPaths, segment)
           const active = adminNavActive(pathname, shortPaths, segment)
@@ -65,8 +66,10 @@ export function AdminSidebar({ onSignOut }: { onSignOut: () => void }) {
               href={href}
               onClick={() => setOpen(false)}
               className={clsx(
-                'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition',
-                active ? 'bg-white/10 text-white' : 'text-neutral-400 hover:bg-white/5 hover:text-neutral-200'
+                'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors duration-200',
+                active
+                  ? 'bg-neutral-100 text-neutral-900 font-medium'
+                  : 'text-neutral-500 hover:bg-neutral-100/70 hover:text-neutral-900'
               )}
             >
               <Icon className="h-4 w-4 shrink-0" strokeWidth={1.5} />
@@ -75,14 +78,14 @@ export function AdminSidebar({ onSignOut }: { onSignOut: () => void }) {
           )
         })}
       </nav>
-      <div className="mt-auto border-t border-white/10 pt-4">
+      <div className="mt-auto border-t border-neutral-200 pt-4">
         <div className="mb-3 px-2">
           <p className="truncate text-xs text-neutral-500">admin@firstclassmail.xyz</p>
         </div>
         <button
           type="button"
           onClick={onSignOut}
-          className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-red-300/90 hover:bg-red-500/10"
+          className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-900"
         >
           <LogOut className="h-4 w-4" />
           Sign out
@@ -95,13 +98,13 @@ export function AdminSidebar({ onSignOut }: { onSignOut: () => void }) {
     <>
       <button
         type="button"
-        className="fixed left-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white lg:hidden"
+        className="fixed left-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-600 shadow-sm lg:hidden"
         onClick={() => setOpen(true)}
         aria-label="Open menu"
       >
         <Menu className="h-5 w-5" />
       </button>
-      <aside className="fixed left-0 top-0 z-40 hidden h-screen w-64 flex-col border-r border-white/10 bg-black/50 px-4 py-6 backdrop-blur-xl lg:flex">
+      <aside className="fixed left-0 top-0 z-40 hidden h-screen w-64 flex-col border-r border-neutral-200 bg-white px-4 py-6 lg:flex">
         {nav}
       </aside>
       <AnimatePresence>
@@ -112,16 +115,17 @@ export function AdminSidebar({ onSignOut }: { onSignOut: () => void }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/60 lg:hidden"
+              className="fixed inset-0 z-40 bg-neutral-900/20 backdrop-blur-sm lg:hidden"
               onClick={() => setOpen(false)}
             />
             <motion.aside
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
-              className="fixed left-0 top-0 z-50 flex h-full w-[min(100%,18rem)] flex-col border-r border-white/10 bg-neutral-950/95 px-4 py-6 backdrop-blur-xl lg:hidden"
+              transition={{ type: 'tween', duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed left-0 top-0 z-50 flex h-full w-[min(100%,18rem)] flex-col border-r border-neutral-200 bg-white px-4 py-6 shadow-2xl lg:hidden"
             >
-              <button type="button" className="mb-4 ml-auto text-neutral-400" onClick={() => setOpen(false)}>
+              <button type="button" className="mb-4 ml-auto rounded-full p-1.5 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900" onClick={() => setOpen(false)}>
                 <X className="h-5 w-5" />
               </button>
               {nav}

@@ -7,7 +7,7 @@ export default async function CampaignRouteLayout({ children }: { children: Reac
   const host = hostFromRequestHeaders((name) => h.get(name))
   return (
     <CampaignPathProvider shortPaths={isCampaignAppHost(host)}>
-      <div className="min-h-screen bg-[#050508] text-neutral-200 antialiased">{children}</div>
+      <div className="min-h-screen bg-white text-neutral-600 antialiased">{children}</div>
     </CampaignPathProvider>
   )
 }

@@ -1,4 +1,4 @@
-export function GaugeChart({ value, max = 100, label, color = '#2dd4bf' }: { value: number; max?: number; label: string; color?: string }) {
+export function GaugeChart({ value, max = 100, label, color = '#0f172a' }: { value: number; max?: number; label: string; color?: string }) {
   const pct = Math.min(100, (value / max) * 100)
   const r = 36
   const cx = 44
@@ -12,7 +12,7 @@ export function GaugeChart({ value, max = 100, label, color = '#2dd4bf' }: { val
         <path
           d={`M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy}`}
           fill="none"
-          stroke="rgba(255,255,255,0.08)"
+          stroke="#e5e7eb"
           strokeWidth={stroke}
           strokeLinecap="round"
         />
@@ -27,7 +27,7 @@ export function GaugeChart({ value, max = 100, label, color = '#2dd4bf' }: { val
           style={{ transition: 'stroke-dashoffset 0.6s ease' }}
         />
       </svg>
-      <p className="mt-1 font-mono text-lg text-white">{value}%</p>
+      <p className="mt-1 font-mono text-lg text-neutral-900">{value}%</p>
       <p className="text-center text-[10px] uppercase tracking-wider text-neutral-500">{label}</p>
     </div>
   )

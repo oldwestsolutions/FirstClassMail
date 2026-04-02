@@ -75,12 +75,12 @@ export default function CampaignAnalyticsPage() {
           <button
             key={r}
             type="button"
-            className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-neutral-300 hover:bg-white/10"
+            className="rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-xs text-neutral-600 hover:bg-neutral-100"
           >
             {r}
           </button>
         ))}
-        <select className="rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-xs text-white">
+        <select className="rounded-xl border border-neutral-200 bg-neutral-50 px-3 py-2 text-xs text-neutral-900">
           <option>All plans</option>
           <option>MAPD</option>
           <option>PDP</option>
@@ -88,14 +88,14 @@ export default function CampaignAnalyticsPage() {
         </select>
         <input
           placeholder="Zip"
-          className="w-28 rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-xs text-white"
+          className="w-28 rounded-xl border border-neutral-200 bg-neutral-50 px-3 py-2 text-xs text-neutral-900"
         />
-        <select className="rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-xs text-white">
+        <select className="rounded-xl border border-neutral-200 bg-neutral-50 px-3 py-2 text-xs text-neutral-900">
           <option>All carriers</option>
           <option>UnitedHealthcare</option>
           <option>Humana</option>
         </select>
-        <button type="button" className="ml-auto rounded-xl border border-white/15 px-4 py-2 text-xs text-white hover:bg-white/5">
+        <button type="button" className="ml-auto rounded-full border border-neutral-200 px-4 py-2 text-xs text-neutral-700 hover:bg-neutral-50">
           Export CSV
         </button>
       </div>
@@ -107,7 +107,7 @@ export default function CampaignAnalyticsPage() {
               key={m}
               type="button"
               onClick={() => setMetric(m)}
-              className={`rounded-full px-3 py-1 text-xs ${metric === m ? 'bg-teal-500/20 text-teal-200' : 'bg-white/5 text-neutral-400'}`}
+              className={`rounded-full px-3 py-1 text-xs ${metric === m ? 'bg-neutral-900 text-white' : 'bg-neutral-50 text-neutral-500'}`}
             >
               {m === 'imp' ? 'Impressions' : m === 'clk' ? 'Clicks' : 'Conversions'}
             </button>
@@ -116,11 +116,11 @@ export default function CampaignAnalyticsPage() {
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={series}>
-              <CartesianGrid stroke="rgba(255,255,255,0.06)" />
+              <CartesianGrid stroke="#e5e7eb" strokeDasharray="3 3" />
               <XAxis dataKey="d" stroke="#71717a" tick={{ fill: '#71717a', fontSize: 10 }} />
               <YAxis stroke="#71717a" tick={{ fill: '#71717a', fontSize: 10 }} />
-              <Tooltip contentStyle={{ background: '#111', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12 }} />
-              <Area type="monotone" dataKey={metric} stroke="#2dd4bf" fill="rgba(45,212,191,0.15)" />
+              <Tooltip contentStyle={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }} />
+              <Area type="monotone" dataKey={metric} stroke="#0d9488" fill="rgba(13,148,136,0.10)" />
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -128,29 +128,29 @@ export default function CampaignAnalyticsPage() {
 
       <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
         <GlassCard>
-          <h3 className="mb-4 font-serif text-lg text-white">CTR by carrier</h3>
+          <h3 className="mb-4 font-serif text-lg text-neutral-900">CTR by carrier</h3>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={carriers} layout="vertical">
-                <CartesianGrid stroke="rgba(255,255,255,0.06)" />
+                <CartesianGrid stroke="#e5e7eb" strokeDasharray="3 3" />
                 <XAxis type="number" stroke="#71717a" />
                 <YAxis dataKey="c" type="category" stroke="#71717a" width={72} />
-                <Tooltip contentStyle={{ background: '#111', border: '1px solid rgba(255,255,255,0.1)' }} />
-                <Bar dataKey="ctr" fill="#60a5fa" radius={[0, 4, 4, 0]} />
+                <Tooltip contentStyle={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }} />
+                <Bar dataKey="ctr" fill="#1d4ed8" radius={[0, 4, 4, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </GlassCard>
         <GlassCard>
-          <h3 className="mb-4 font-serif text-lg text-white">Conversion rate by zip</h3>
+          <h3 className="mb-4 font-serif text-lg text-neutral-900">Conversion rate by zip</h3>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={zips}>
-                <CartesianGrid stroke="rgba(255,255,255,0.06)" />
+                <CartesianGrid stroke="#e5e7eb" strokeDasharray="3 3" />
                 <XAxis dataKey="z" stroke="#71717a" />
                 <YAxis stroke="#71717a" />
-                <Tooltip contentStyle={{ background: '#111', border: '1px solid rgba(255,255,255,0.1)' }} />
-                <Bar dataKey="r" fill="#a78bfa" radius={[4, 4, 0, 0]} />
+                <Tooltip contentStyle={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }} />
+                <Bar dataKey="r" fill="#7c3aed" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

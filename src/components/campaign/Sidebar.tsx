@@ -42,16 +42,16 @@ export function CampaignSidebar({ onSignOut }: { onSignOut: () => void }) {
 
   const nav = (
     <>
-      <div className="mb-8 flex items-center gap-2 px-2">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-violet-600 text-sm font-bold text-white">
-          FC
+      <div className="mb-8 flex items-center gap-3 px-2">
+        <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-200 bg-neutral-50">
+          <Mail className="h-4 w-4 text-neutral-900" strokeWidth={1.25} />
         </div>
         <div>
-          <p className="font-serif text-sm text-white">Campaign</p>
-          <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">Portal</p>
+          <p className="font-serif text-sm tracking-wide text-neutral-900">Campaign</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-500">Portal</p>
         </div>
       </div>
-      <nav className="flex flex-1 flex-col gap-1">
+      <nav className="flex flex-1 flex-col gap-0.5">
         {items.map(({ segment, label, icon: Icon }) => {
           const href = hrefForCampaignSegment(shortPaths, segment)
           const active = campaignNavActive(pathname, shortPaths, segment)
@@ -61,8 +61,10 @@ export function CampaignSidebar({ onSignOut }: { onSignOut: () => void }) {
               href={href}
               onClick={() => setOpen(false)}
               className={clsx(
-                'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition',
-                active ? 'bg-white/10 text-white' : 'text-neutral-400 hover:bg-white/5 hover:text-neutral-200'
+                'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors duration-200',
+                active
+                  ? 'bg-neutral-100 text-neutral-900 font-medium'
+                  : 'text-neutral-500 hover:bg-neutral-100/70 hover:text-neutral-900'
               )}
             >
               <Icon className="h-4 w-4 shrink-0" strokeWidth={1.5} />
@@ -71,17 +73,17 @@ export function CampaignSidebar({ onSignOut }: { onSignOut: () => void }) {
           )
         })}
       </nav>
-      <div className="mt-auto border-t border-white/10 pt-4">
+      <div className="mt-auto border-t border-neutral-200 pt-4">
         <div className="mb-3 flex items-center gap-3 px-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-xs text-neutral-300">CM</div>
+          <div className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-neutral-50 text-xs font-medium text-neutral-600">CM</div>
           <div className="min-w-0">
-            <p className="truncate text-xs text-neutral-400">campaign@firstclassmail.xyz</p>
+            <p className="truncate text-xs text-neutral-500">campaign@firstclassmail.xyz</p>
           </div>
         </div>
         <button
           type="button"
           onClick={onSignOut}
-          className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-red-300/90 hover:bg-red-500/10"
+          className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-900"
         >
           <LogOut className="h-4 w-4" />
           Sign out
@@ -94,13 +96,13 @@ export function CampaignSidebar({ onSignOut }: { onSignOut: () => void }) {
     <>
       <button
         type="button"
-        className="fixed left-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white lg:hidden"
+        className="fixed left-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-600 shadow-sm lg:hidden"
         onClick={() => setOpen(true)}
         aria-label="Open menu"
       >
         <Menu className="h-5 w-5" />
       </button>
-      <aside className="fixed left-0 top-0 z-40 hidden h-screen w-64 flex-col border-r border-white/10 bg-black/40 px-4 py-6 backdrop-blur-xl lg:flex">
+      <aside className="fixed left-0 top-0 z-40 hidden h-screen w-64 flex-col border-r border-neutral-200 bg-white px-4 py-6 lg:flex">
         {nav}
       </aside>
       <AnimatePresence>
@@ -111,7 +113,7 @@ export function CampaignSidebar({ onSignOut }: { onSignOut: () => void }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/60 lg:hidden"
+              className="fixed inset-0 z-40 bg-neutral-900/20 backdrop-blur-sm lg:hidden"
               onClick={() => setOpen(false)}
               aria-label="Close menu"
             />
@@ -119,10 +121,10 @@ export function CampaignSidebar({ onSignOut }: { onSignOut: () => void }) {
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
-              transition={{ type: 'tween', duration: 0.25 }}
-              className="fixed left-0 top-0 z-50 flex h-full w-[min(100%,18rem)] flex-col border-r border-white/10 bg-neutral-950/95 px-4 py-6 backdrop-blur-xl lg:hidden"
+              transition={{ type: 'tween', duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed left-0 top-0 z-50 flex h-full w-[min(100%,18rem)] flex-col border-r border-neutral-200 bg-white px-4 py-6 shadow-2xl lg:hidden"
             >
-              <button type="button" className="mb-4 ml-auto text-neutral-400" onClick={() => setOpen(false)} aria-label="Close">
+              <button type="button" className="mb-4 ml-auto rounded-full p-1.5 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900" onClick={() => setOpen(false)} aria-label="Close">
                 <X className="h-5 w-5" />
               </button>
               {nav}

@@ -31,14 +31,14 @@ export function AdminShell({ title, children }: { title: string; children: React
 
   if (!ok) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#070708] text-neutral-400">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/20 border-t-amber-400" />
+      <div className="flex min-h-screen items-center justify-center bg-white text-neutral-400">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-neutral-200 border-t-neutral-900" />
       </div>
     )
   }
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-screen bg-[#070708] text-neutral-200">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-screen bg-neutral-50/50 text-neutral-600">
       <AdminSidebar onSignOut={onSignOut} />
       <div className="lg:pl-64">
         <AdminTopBar title={title} />

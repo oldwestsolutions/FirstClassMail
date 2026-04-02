@@ -10,15 +10,15 @@ export default function AdminPlatformPage() {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         <GlassCard>
           <h3 className="text-sm text-neutral-500">API latency p99</h3>
-          <p className="mt-2 font-mono text-3xl text-white">118ms</p>
+          <p className="mt-2 font-mono text-3xl text-neutral-900">118ms</p>
         </GlassCard>
         <GlassCard>
           <h3 className="text-sm text-neutral-500">Queue depth</h3>
-          <p className="mt-2 font-mono text-3xl text-teal-300">420</p>
+          <p className="mt-2 font-mono text-3xl text-neutral-900">420</p>
         </GlassCard>
         <GlassCard>
           <h3 className="text-sm text-neutral-500">Failed jobs (24h)</h3>
-          <p className="mt-2 font-mono text-3xl text-amber-300">3</p>
+          <p className="mt-2 font-mono text-3xl text-neutral-700">3</p>
         </GlassCard>
       </div>
       <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">

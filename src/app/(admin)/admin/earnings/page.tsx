@@ -23,32 +23,32 @@ export default function AdminEarningsPage() {
         ].map(([a, b]) => (
           <GlassCard key={a}>
             <p className="text-xs text-neutral-500">{a}</p>
-            <p className="mt-2 font-mono text-xl text-white">{b}</p>
+            <p className="mt-2 font-mono text-xl text-neutral-900">{b}</p>
           </GlassCard>
         ))}
       </div>
       <GlassCard className="mt-8">
-        <h3 className="font-serif text-lg text-white">Revenue breakdown</h3>
+        <h3 className="font-serif text-lg text-neutral-900">Revenue breakdown</h3>
         <div className="mt-4 h-72">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={stack}>
-              <CartesianGrid stroke="rgba(255,255,255,0.06)" />
+              <CartesianGrid stroke="#e5e7eb" strokeDasharray="3 3" />
               <XAxis dataKey="s" stroke="#71717a" />
               <YAxis stroke="#71717a" />
-              <Tooltip contentStyle={{ background: '#111', border: '1px solid rgba(255,255,255,0.1)' }} />
-              <Bar dataKey="a" stackId="x" fill="#2dd4bf" />
-              <Bar dataKey="b" stackId="x" fill="#60a5fa" />
-              <Bar dataKey="c" stackId="x" fill="#a78bfa" />
-              <Bar dataKey="d" stackId="x" fill="#fbbf24" />
+              <Tooltip contentStyle={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }} />
+              <Bar dataKey="a" stackId="x" fill="#0f172a" />
+              <Bar dataKey="b" stackId="x" fill="#1d4ed8" />
+              <Bar dataKey="c" stackId="x" fill="#7c3aed" />
+              <Bar dataKey="d" stackId="x" fill="#0f172a" />
               <Bar dataKey="e" stackId="x" fill="#64748b" />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </GlassCard>
       <GlassCard className="mt-8">
-        <h3 className="font-serif text-lg text-white">Circle treasury</h3>
-        <p className="mt-4 font-mono text-2xl text-teal-300">4.82M USDC</p>
-        <button type="button" className="mt-4 rounded-xl border border-white/15 px-4 py-2 text-sm hover:bg-white/5">
+        <h3 className="font-serif text-lg text-neutral-900">Circle treasury</h3>
+        <p className="mt-4 font-mono text-2xl text-neutral-900">4.82M USDC</p>
+        <button type="button" className="mt-4 rounded-xl border border-neutral-200 px-4 py-2 text-sm hover:bg-neutral-100">
           Withdraw to bank (mock)
         </button>
       </GlassCard>
