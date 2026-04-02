@@ -3,22 +3,14 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
-  LayoutDashboard,
+  Home,
+  Mail,
+  BookUser,
+  Briefcase,
   Server,
-  Activity,
-  TrendingUp,
-  Shield,
-  Users,
-  Send,
-  FileCheck,
-  Building2,
-  Banknote,
-  Brain,
-  Settings,
   LogOut,
   Menu,
   X,
-  Mail,
 } from 'lucide-react'
 import { useState } from 'react'
 import { clsx } from 'clsx'
@@ -26,18 +18,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { hrefForAdminSegment, adminNavActive, useAdminPaths } from '@/components/admin/AdminPathContext'
 
 const items = [
-  { segment: '/dashboard', label: 'Overview', icon: LayoutDashboard },
-  { segment: '/server', label: 'Server Health', icon: Server },
-  { segment: '/platform', label: 'Platform Health', icon: Activity },
-  { segment: '/earnings', label: 'Earnings', icon: TrendingUp },
-  { segment: '/quality', label: 'Ad Quality', icon: Shield },
-  { segment: '/subscribers', label: 'Subscribers', icon: Users },
-  { segment: '/deliverability', label: 'Deliverability', icon: Send },
-  { segment: '/compliance', label: 'Compliance', icon: FileCheck },
-  { segment: '/carriers', label: 'Carriers', icon: Building2 },
-  { segment: '/payouts', label: 'Payouts', icon: Banknote },
-  { segment: '/intelligence', label: 'Intelligence', icon: Brain },
-  { segment: '/settings', label: 'Settings', icon: Settings },
+  { segment: '/dashboard', label: 'Home', icon: Home },
+  { segment: '/inbox', label: 'Mailbox', icon: Mail },
+  { segment: '/subscribers', label: 'Registry', icon: BookUser },
+  { segment: '/earnings', label: 'Accounts', icon: Briefcase },
+  { segment: '/server', label: 'Mail Server', icon: Server },
 ] as const
 
 export function AdminSidebar({ onSignOut }: { onSignOut: () => void }) {
