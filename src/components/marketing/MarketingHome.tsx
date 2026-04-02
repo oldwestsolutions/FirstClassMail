@@ -80,13 +80,13 @@ function IllustrationHoverCard({
       <p id={`card-desc-${slug}`} className="sr-only">
         {body}
       </p>
-      <div className="relative z-0 flex w-full flex-col items-center">
+      <div className="relative z-0 flex w-full flex-1 flex-col items-center">
         <div className="w-full shrink-0 px-0.5 text-center">
           <h3 className="mx-auto max-w-[20ch] font-serif text-[1.125rem] font-medium leading-tight tracking-[-0.02em] text-neutral-900 sm:text-[1.25rem]">
             {title}
           </h3>
         </div>
-        <div className="relative mx-auto mt-3 w-full max-w-[220px] shrink-0 sm:max-w-[236px]">
+        <div className="relative mx-auto mt-3 w-full max-w-[220px] shrink-0 sm:max-w-[236px] lg:mt-auto">
           <motion.div
             aria-hidden
             className="will-change-transform"
@@ -134,7 +134,7 @@ function IllustrationHoverCard({
     return (
       <Link
         href={href}
-        className={`${simpleClassName} block cursor-pointer`}
+        className={`${simpleClassName} h-full min-h-0 cursor-pointer`}
         aria-describedby={`card-desc-${slug}`}
         aria-expanded={isActive}
       >
@@ -445,7 +445,7 @@ export default function MarketingHome() {
             </div>
             <div
               ref={correspondenceGridRef}
-              className="col-span-12 mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-8 lg:grid-cols-3 lg:gap-6"
+              className="col-span-12 mt-4 grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 lg:mt-8 lg:grid-cols-3 lg:gap-6"
               onMouseLeave={() => setOpenCorrespondencePreset(null)}
             >
               {(
@@ -472,6 +472,7 @@ export default function MarketingHome() {
               ).map(([title, body, preset, href], i) => (
                 <motion.div
                   key={title}
+                  className="h-full"
                   initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}

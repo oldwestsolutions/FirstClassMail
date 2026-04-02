@@ -31,6 +31,12 @@ export function PortalMockMini({
   const innerPad = compactHeader ? 'p-2' : 'p-2.5'
   const innerGap = compactHeader ? 'gap-1.5' : 'gap-2'
 
+  /** Fixed chrome height so Forms / eDocuments / Blockchain cards align in the Correspondence grid */
+  const correspondenceTrio =
+    compactHeader && (preset === 'forms' || preset === 'edocuments' || preset === 'blockchain')
+  const outerClass = correspondenceTrio ? 'h-[132px]' : outerMin
+  const innerClass = correspondenceTrio ? 'min-h-0 flex-1' : `${innerMin} flex-1`
+
   switch (preset) {
     case 'encryption':
       return (
@@ -98,7 +104,7 @@ export function PortalMockMini({
       )
     case 'forms':
       return (
-        <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
+        <div className={`${base} flex flex-col ${outerClass}`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <FileText className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
@@ -106,7 +112,7 @@ export function PortalMockMini({
             </span>
             <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">TLS</span>
           </div>
-          <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
+          <div className={`flex flex-col justify-between ${innerClass} ${innerGap} ${innerPad}`}>
             <div className="rounded-md border border-neutral-200 bg-white p-1.5">
               <div className="mb-1 flex items-center gap-1.5">
                 <div className="h-1.5 w-1.5 rounded-full bg-neutral-400" />
@@ -121,7 +127,7 @@ export function PortalMockMini({
                 <div className="h-1.5 w-3/4 rounded bg-neutral-200" />
               </div>
             </div>
-            <div className="flex items-center gap-1 rounded-md border border-neutral-200 bg-neutral-50 px-2 py-1 text-left">
+            <div className="flex shrink-0 items-center gap-1 rounded-md border border-neutral-200 bg-neutral-50 px-2 py-1 text-left">
               <span className="h-1 w-1 rounded-full bg-neutral-500" />
               <span className="font-mono text-[7px] text-neutral-600">Unified thread</span>
             </div>
@@ -130,7 +136,7 @@ export function PortalMockMini({
       )
     case 'edocuments':
       return (
-        <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
+        <div className={`${base} flex flex-col ${outerClass}`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <FileText className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
@@ -138,30 +144,30 @@ export function PortalMockMini({
             </span>
             <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">PDF</span>
           </div>
-          <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
-            <div className="space-y-1">
-              <div className="flex items-center gap-1.5 rounded border border-neutral-200 bg-white px-1.5 py-1">
-                <div className="flex h-5 w-4 shrink-0 items-center justify-center rounded-sm bg-neutral-200/80 font-mono text-[6px] text-neutral-600">PDF</div>
-                <div className="min-w-0 flex-1">
+          <div className={`flex flex-col justify-between ${innerClass} ${innerGap} ${innerPad}`}>
+            <div className="min-h-0 flex-1 space-y-1">
+              <div className="flex items-center gap-1.5 rounded border border-neutral-200 bg-white px-1.5 py-0.5">
+                <div className="flex h-4 w-3.5 shrink-0 items-center justify-center rounded-sm bg-neutral-200/80 font-mono text-[5px] text-neutral-600">PDF</div>
+                <div className="min-w-0 flex-1 py-0.5">
                   <div className="h-1.5 w-full rounded bg-neutral-200" />
                   <div className="mt-0.5 h-1 w-2/3 rounded bg-neutral-200/70" />
                 </div>
               </div>
-              <div className="flex items-center gap-1.5 rounded border border-neutral-200 bg-white px-1.5 py-1">
-                <div className="flex h-5 w-4 shrink-0 items-center justify-center rounded-sm bg-neutral-200/80 font-mono text-[6px] text-neutral-600">PDF</div>
-                <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-1.5 rounded border border-neutral-200 bg-white px-1.5 py-0.5">
+                <div className="flex h-4 w-3.5 shrink-0 items-center justify-center rounded-sm bg-neutral-200/80 font-mono text-[5px] text-neutral-600">PDF</div>
+                <div className="min-w-0 flex-1 py-0.5">
                   <div className="h-1.5 w-4/5 rounded bg-neutral-200" />
                   <div className="mt-0.5 h-1 w-1/2 rounded bg-neutral-200/70" />
                 </div>
               </div>
             </div>
-            <p className="text-left font-mono text-[7px] leading-snug text-neutral-500">Bound to thread · provenance tracked</p>
+            <p className="shrink-0 text-left font-mono text-[7px] leading-snug text-neutral-500">Bound to thread · provenance tracked</p>
           </div>
         </div>
       )
     case 'blockchain':
       return (
-        <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
+        <div className={`${base} flex flex-col ${outerClass}`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <Coins className="h-3 w-3 shrink-0 text-neutral-700" strokeWidth={1.25} />
@@ -169,7 +175,7 @@ export function PortalMockMini({
             </span>
             <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">USDC</span>
           </div>
-          <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
+          <div className={`flex flex-col justify-between ${innerClass} ${innerGap} ${innerPad}`}>
             <div className="rounded-md border border-neutral-200 bg-white px-2 py-1.5">
               <div className="flex items-center justify-between">
                 <span className="font-mono text-[7px] text-neutral-500">Settlement</span>
@@ -181,7 +187,7 @@ export function PortalMockMini({
                 <span className="font-mono text-[6px] text-neutral-500">0x7a3b…4c2d</span>
               </div>
             </div>
-            <p className="text-left font-mono text-[7px] leading-snug text-neutral-500">Programmable wallets · on-chain</p>
+            <p className="shrink-0 text-left font-mono text-[7px] leading-snug text-neutral-500">Programmable wallets · on-chain</p>
           </div>
         </div>
       )
