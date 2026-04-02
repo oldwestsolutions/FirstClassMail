@@ -26,7 +26,7 @@ export default function CampaignContactsPage() {
           <option>Agent</option>
           <option>Subscriber</option>
         </select>
-        <button type="button" className="rounded-full bg-neutral-900 px-4 py-2 text-sm text-white hover:bg-neutral-800">
+        <button type="button" className="rounded-full bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700">
           Add contact
         </button>
         <button type="button" className="rounded-full border border-neutral-200 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50">

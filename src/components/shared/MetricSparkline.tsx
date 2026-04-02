@@ -1,4 +1,4 @@
-export function MetricSparkline({ color = '#0f172a' }: { color?: string }) {
+export function MetricSparkline({ color = '#2563eb' }: { color?: string }) {
   const pts = [4, 7, 5, 9, 6, 10, 8, 12, 9, 14, 11, 15]
   const w = 80
   const h = 28

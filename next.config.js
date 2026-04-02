@@ -60,15 +60,11 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
-  experimental: {
-    serverComponentsExternalPackages: ['sqlite3', 'bcryptjs']
+  serverExternalPackages: ['sqlite3', 'bcryptjs'],
+  turbopack: {
+    root: '.',
   },
   output: 'standalone',
-  // Optimize for Vercel deployment
-  swcMinify: true,
   compress: true,
   poweredByHeader: false
 }

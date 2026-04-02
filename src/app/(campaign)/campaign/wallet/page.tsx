@@ -15,7 +15,7 @@ export default function CampaignWalletPage() {
           <p className="mt-1 font-mono text-sm text-neutral-500">0x1a2b…3c4d</p>
           <span className="mt-3 inline-block rounded-full bg-emerald-500/20 px-2 py-0.5 text-xs text-emerald-600">Connected</span>
           <div className="mt-6 flex gap-2">
-            <button type="button" className="flex-1 rounded-full bg-neutral-900 py-2 text-sm text-white hover:bg-neutral-800">
+            <button type="button" className="flex-1 rounded-full bg-blue-600 py-2 text-sm text-white hover:bg-blue-700">
               Send USDC
             </button>
             <button type="button" className="flex-1 rounded-full border border-neutral-200 py-2 text-sm text-neutral-700 hover:bg-neutral-50">

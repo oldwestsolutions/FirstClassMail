@@ -10,7 +10,7 @@ const byCarrier = [
   { name: 'Humana', value: 33 },
   { name: 'Aetna', value: 25 },
 ]
-const COLORS = ['#0f172a', '#1d4ed8', '#7c3aed']
+const COLORS = ['#2563eb', '#7c3aed', '#0891b2']
 
 export default function CampaignSpendingPage() {
   return (
@@ -31,7 +31,7 @@ export default function CampaignSpendingPage() {
           </div>
         </div>
         <div className="mt-6 h-3 overflow-hidden rounded-full bg-neutral-200">
-          <div className="h-full w-[33.7%] rounded-full bg-neutral-900" />
+          <div className="h-full w-[33.7%] rounded-full bg-gradient-to-r from-blue-500 to-violet-500" />
         </div>
       </GlassCard>
 
@@ -61,7 +61,7 @@ export default function CampaignSpendingPage() {
                 <td className="px-4 py-3 font-mono">2,500</td>
                 <td className="px-4 py-3">
                   <div className="h-2 w-24 overflow-hidden rounded-full bg-neutral-200">
-                    <div className="h-full w-[64%] rounded-full bg-neutral-900" />
+                    <div className="h-full w-[64%] rounded-full bg-blue-500" />
                   </div>
                 </td>
                 <td className="px-4 py-3">
@@ -79,7 +79,7 @@ export default function CampaignSpendingPage() {
       </div>
 
       <div className="mb-8 flex flex-wrap gap-4">
-        <button type="button" className="rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white hover:bg-neutral-800">
+        <button type="button" className="rounded-full bg-blue-600 px-6 py-3 text-sm font-medium text-white hover:bg-blue-700">
           Add campaign budget
         </button>
       </div>

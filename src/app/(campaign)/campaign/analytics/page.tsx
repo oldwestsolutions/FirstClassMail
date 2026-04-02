@@ -107,7 +107,7 @@ export default function CampaignAnalyticsPage() {
               key={m}
               type="button"
               onClick={() => setMetric(m)}
-              className={`rounded-full px-3 py-1 text-xs ${metric === m ? 'bg-neutral-900 text-white' : 'bg-neutral-50 text-neutral-500'}`}
+              className={`rounded-full px-3 py-1 text-xs ${metric === m ? 'bg-blue-600 text-white' : 'bg-neutral-50 text-neutral-500'}`}
             >
               {m === 'imp' ? 'Impressions' : m === 'clk' ? 'Clicks' : 'Conversions'}
             </button>

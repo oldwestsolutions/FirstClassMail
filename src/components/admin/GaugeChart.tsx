@@ -1,4 +1,4 @@
-export function GaugeChart({ value, max = 100, label, color = '#0f172a' }: { value: number; max?: number; label: string; color?: string }) {
+export function GaugeChart({ value, max = 100, label, color = '#2563eb' }: { value: number; max?: number; label: string; color?: string }) {
   const pct = Math.min(100, (value / max) * 100)
   const r = 36
   const cx = 44

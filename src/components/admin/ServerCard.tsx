@@ -47,7 +47,7 @@ export function ServerCard({
       <div className="mt-3">
         <p className="text-xs text-neutral-500">Storage</p>
         <div className="mt-1 h-2 overflow-hidden rounded-full bg-neutral-200">
-          <div className="h-full rounded-full bg-neutral-900" style={{ width: `${storagePct}%` }} />
+          <div className="h-full rounded-full bg-blue-500" style={{ width: `${storagePct}%` }} />
         </div>
       </div>
       <p className="mt-3 text-xs text-neutral-500">

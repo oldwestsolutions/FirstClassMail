@@ -42,7 +42,7 @@ export function CampaignShell({ title, children }: { title: string; children: Re
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-screen bg-neutral-50/50 text-neutral-600">
       <CampaignSidebar onSignOut={onSignOut} />
       <div className="lg:pl-64">
-        <CampaignTopBar title={title} />
+        <CampaignTopBar title={title} onLogout={onSignOut} />
         <main className="p-4 pb-16 pt-20 md:p-8 md:pt-8">{children}</main>
       </div>
     </motion.div>

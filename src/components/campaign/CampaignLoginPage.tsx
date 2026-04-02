@@ -163,7 +163,7 @@ export default function CampaignLoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-neutral-900 text-sm font-medium text-white transition-colors duration-200 hover:bg-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 disabled:opacity-50"
+              className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-blue-600 text-sm font-medium text-white transition-colors duration-200 hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 disabled:opacity-50"
             >
               {loading ? (
                 <span className="inline-flex items-center gap-2">

@@ -9,7 +9,7 @@ const pie = [
   { name: 'PDP', value: 27 },
   { name: 'D-SNP', value: 15 },
 ]
-const COLORS = ['#0f172a', '#1d4ed8', '#7c3aed']
+const COLORS = ['#2563eb', '#7c3aed', '#0891b2']
 
 const hours = Array.from({ length: 12 }, (_, i) => ({ h: `${8 + i}h`, o: 20 + i * 7 }))
 const growth = Array.from({ length: 12 }, (_, i) => ({ n: i + 1, new: 400 + i * 22, ret: 1200 + i * 40 }))
@@ -27,7 +27,7 @@ export default function CampaignIntelligencePage() {
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie data={[{ v: 94.2 }, { v: 5.8 }]} dataKey="v" innerRadius={56} outerRadius={80} startAngle={90} endAngle={-270}>
-                  <Cell fill="#0f172a" />
+                  <Cell fill="#2563eb" />
                   <Cell fill="#e5e7eb" />
                 </Pie>
               </PieChart>
@@ -77,7 +77,7 @@ export default function CampaignIntelligencePage() {
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={hours}>
                 <XAxis dataKey="h" stroke="#71717a" fontSize={10} />
-                <Bar dataKey="o" fill="#0f172a" />
+                <Bar dataKey="o" fill="#2563eb" />
               </BarChart>
             </ResponsiveContainer>
           </div>

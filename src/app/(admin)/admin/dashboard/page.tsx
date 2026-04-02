@@ -85,7 +85,7 @@ export default function AdminDashboardPage() {
                     boxShadow: '0 4px 12px rgba(0,0,0,0.06)',
                   }}
                 />
-                <Line type="monotone" dataKey="v" stroke="#0f172a" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="v" stroke="#2563eb" strokeWidth={2} dot={false} />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -95,7 +95,7 @@ export default function AdminDashboardPage() {
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Infrastructure</p>
           <h3 className="mb-4 mt-1 font-serif text-lg text-neutral-900">Infrastructure health</h3>
           <div className="grid grid-cols-2 gap-4">
-            <GaugeChart value={42} label="CPU" color="#0f172a" />
+            <GaugeChart value={42} label="CPU" color="#2563eb" />
             <GaugeChart value={61} label="RAM" color="#1d4ed8" />
             <GaugeChart value={54} label="Disk" color="#7c3aed" />
             <GaugeChart value={38} label="Bandwidth" color="#0d9488" />
@@ -125,7 +125,7 @@ export default function AdminDashboardPage() {
                 </div>
                 <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-neutral-200">
                   <div
-                    className="h-full rounded-full bg-neutral-900 transition-all"
+                    className="h-full rounded-full bg-gradient-to-r from-blue-500 to-violet-500 transition-all"
                     style={{ width: `${c.score}%` }}
                   />
                 </div>
@@ -147,7 +147,7 @@ export default function AdminDashboardPage() {
                 </div>
                 <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-neutral-200">
                   <div
-                    className="h-full rounded-full bg-neutral-900 transition-all"
+                    className="h-full rounded-full bg-gradient-to-r from-blue-500 to-teal-500 transition-all"
                     style={{ width: `${r.pct}%` }}
                   />
                 </div>
@@ -223,7 +223,7 @@ export default function AdminDashboardPage() {
                     boxShadow: '0 4px 12px rgba(0,0,0,0.06)',
                   }}
                 />
-                <Bar dataKey="r" fill="#0f172a" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="r" fill="#2563eb" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

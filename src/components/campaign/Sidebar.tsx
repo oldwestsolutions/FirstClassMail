@@ -3,15 +3,14 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
-  LayoutDashboard,
-  BarChart3,
   Brain,
+  BarChart3,
   DollarSign,
   Wallet,
-  Megaphone,
-  Image,
   Mail,
   BookUser,
+  FileText,
+  Upload,
   Clock,
   LogOut,
   Menu,
@@ -23,15 +22,14 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { hrefForCampaignSegment, campaignNavActive, useCampaignPaths } from '@/components/campaign/CampaignPathContext'
 
 const items = [
-  { segment: '/dashboard', label: 'Overview', icon: LayoutDashboard },
+  { segment: '/dashboard', label: 'Intelligence', icon: Brain },
   { segment: '/analytics', label: 'Analytics', icon: BarChart3 },
-  { segment: '/intelligence', label: 'Intelligence', icon: Brain },
+  { segment: '/inbox', label: 'Mailbox', icon: Mail },
+  { segment: '/contacts', label: 'Contacts', icon: BookUser },
+  { segment: '/campaigns', label: 'Documents', icon: FileText },
+  { segment: '/creatives', label: 'Upload', icon: Upload },
   { segment: '/spending', label: 'Ad Spend', icon: DollarSign },
   { segment: '/wallet', label: 'Wallet', icon: Wallet },
-  { segment: '/campaigns', label: 'Campaigns', icon: Megaphone },
-  { segment: '/creatives', label: 'Creatives', icon: Image },
-  { segment: '/inbox', label: 'Inbox', icon: Mail },
-  { segment: '/contacts', label: 'Contacts', icon: BookUser },
   { segment: '/history', label: 'History', icon: Clock },
 ] as const
 
@@ -44,7 +42,7 @@ export function CampaignSidebar({ onSignOut }: { onSignOut: () => void }) {
     <>
       <div className="mb-8 flex items-center gap-3 px-2">
         <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-neutral-200 bg-neutral-50">
-          <Mail className="h-4 w-4 text-neutral-900" strokeWidth={1.25} />
+          <Mail className="h-4 w-4 text-blue-600" strokeWidth={1.25} />
         </div>
         <div>
           <p className="font-serif text-sm tracking-wide text-neutral-900">Campaign</p>
@@ -63,7 +61,7 @@ export function CampaignSidebar({ onSignOut }: { onSignOut: () => void }) {
               className={clsx(
                 'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors duration-200',
                 active
-                  ? 'bg-neutral-100 text-neutral-900 font-medium'
+                  ? 'bg-blue-50 text-blue-700 font-medium'
                   : 'text-neutral-500 hover:bg-neutral-100/70 hover:text-neutral-900'
               )}
             >
@@ -83,7 +81,7 @@ export function CampaignSidebar({ onSignOut }: { onSignOut: () => void }) {
         <button
           type="button"
           onClick={onSignOut}
-          className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-900"
+          className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-neutral-500 transition hover:bg-red-50 hover:text-red-600"
         >
           <LogOut className="h-4 w-4" />
           Sign out

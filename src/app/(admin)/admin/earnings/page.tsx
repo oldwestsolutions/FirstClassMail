@@ -36,10 +36,10 @@ export default function AdminEarningsPage() {
               <XAxis dataKey="s" stroke="#71717a" />
               <YAxis stroke="#71717a" />
               <Tooltip contentStyle={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }} />
-              <Bar dataKey="a" stackId="x" fill="#0f172a" />
+              <Bar dataKey="a" stackId="x" fill="#2563eb" />
               <Bar dataKey="b" stackId="x" fill="#1d4ed8" />
               <Bar dataKey="c" stackId="x" fill="#7c3aed" />
-              <Bar dataKey="d" stackId="x" fill="#0f172a" />
+              <Bar dataKey="d" stackId="x" fill="#0891b2" />
               <Bar dataKey="e" stackId="x" fill="#64748b" />
             </BarChart>
           </ResponsiveContainer>

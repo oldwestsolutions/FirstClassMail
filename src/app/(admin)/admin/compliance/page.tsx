@@ -43,7 +43,7 @@ export default function AdminCompliancePage() {
             </tr>
           </tbody>
         </table>
-        <button type="button" className="mt-6 rounded-xl bg-neutral-900 px-4 py-2 text-sm text-white">
+        <button type="button" className="mt-6 rounded-xl bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700">
           Export compliance report
         </button>
       </GlassCard>
