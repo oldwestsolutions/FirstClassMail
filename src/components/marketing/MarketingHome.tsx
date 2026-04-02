@@ -256,15 +256,15 @@ export default function MarketingHome() {
   const mailPath = [
     {
       step: 'Step 1',
-      title: 'Automation',
-      illustration: 'users',
-      body: 'Use automated intake and sorting to classify inbound messages by policy, priority, and destination.',
-    },
-    {
-      step: 'Step 2',
       title: 'Enforcement',
       illustration: 'platform',
       body: 'Configure and enforce email authentication standards before messages are released or forwarded.',
+    },
+    {
+      step: 'Step 2',
+      title: 'Delivery',
+      illustration: 'delivery',
+      body: 'Route authenticated messages through encrypted channels to verified office endpoints with full chain-of-custody tracking.',
     },
     {
       step: 'Step 3',
@@ -312,7 +312,7 @@ export default function MarketingHome() {
                 {[
                   ['Correspondence', '/correspondence'],
                   ['The Journey', '/journey'],
-                  ['Pricing', '/pricing'],
+                  ['The Practice', '/practice'],
                   ['Contact', '/#contact'],
                 ].map(([label, href]) => (
                   <Link
@@ -363,8 +363,8 @@ export default function MarketingHome() {
               <Link href="/journey" className="text-sm text-neutral-600 transition hover:text-neutral-900">
                 The Journey
               </Link>
-              <Link href="/pricing" className="text-sm text-neutral-600 transition hover:text-neutral-900">
-                Pricing
+              <Link href="/practice" className="text-sm text-neutral-600 transition hover:text-neutral-900">
+                The Practice
               </Link>
               <a href={campaignAbsoluteUrl('/')} className="btn btn-primary px-6 py-2.5 text-xs uppercase tracking-widest">
                 Open portal

@@ -588,7 +588,8 @@ export default function DashboardPage() {
         {openEmail !== null && emailObj && (
           <>
             <motion.button type="button" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-neutral-900/30 backdrop-blur-sm" onClick={() => setOpenEmail(null)} aria-label="Close" />
-            <motion.div initial={{ opacity: 0, y: 24, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 24, scale: 0.97 }} className="fixed inset-x-4 top-[10%] z-50 mx-auto flex max-h-[80vh] max-w-xl flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-2xl sm:inset-x-auto sm:w-full">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+            <motion.div initial={{ opacity: 0, y: 24, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 24, scale: 0.97 }} className="pointer-events-auto flex max-h-[80vh] w-full max-w-xl flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-2xl">
               <div className="flex items-center justify-between border-b border-neutral-200 px-5 py-3">
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-50 text-xs font-medium text-blue-700">{emailObj.avatar}</div>
@@ -624,6 +625,7 @@ export default function DashboardPage() {
                 </div>
               </div>
             </motion.div>
+            </div>
           </>
         )}
       </AnimatePresence>
@@ -652,14 +654,16 @@ export default function DashboardPage() {
         {showLogout && (
           <>
             <motion.button type="button" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-neutral-900/30 backdrop-blur-sm" onClick={() => setShowLogout(false)} aria-label="Close" />
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="fixed left-1/2 top-1/2 z-50 w-full max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-neutral-200 bg-white p-6 shadow-2xl">
-              <h3 className="font-serif text-lg text-neutral-900">Confirm Logout</h3>
-              <p className="mt-2 text-sm text-neutral-500">Are you sure you want to sign out? You'll be redirected to the login page.</p>
-              <div className="mt-6 flex gap-3">
-                <button type="button" onClick={() => setShowLogout(false)} className="flex-1 rounded-lg border border-neutral-200 py-2.5 text-sm text-neutral-700 hover:bg-neutral-50">Cancel</button>
-                <button type="button" onClick={doLogout} className="flex-1 rounded-lg bg-red-600 py-2.5 text-sm font-medium text-white hover:bg-red-700">Logout</button>
-              </div>
-            </motion.div>
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="pointer-events-auto w-full max-w-sm rounded-2xl border border-neutral-200 bg-white p-6 shadow-2xl">
+                <h3 className="font-serif text-lg text-neutral-900">Confirm Logout</h3>
+                <p className="mt-2 text-sm text-neutral-500">Are you sure you want to sign out? You&apos;ll be redirected to the login page.</p>
+                <div className="mt-6 flex gap-3">
+                  <button type="button" onClick={() => setShowLogout(false)} className="flex-1 rounded-lg border border-neutral-200 py-2.5 text-sm text-neutral-700 hover:bg-neutral-50">Cancel</button>
+                  <button type="button" onClick={doLogout} className="flex-1 rounded-lg bg-red-600 py-2.5 text-sm font-medium text-white hover:bg-red-700">Logout</button>
+                </div>
+              </motion.div>
+            </div>
           </>
         )}
       </AnimatePresence>

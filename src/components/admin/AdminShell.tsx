@@ -55,14 +55,16 @@ export function AdminShell({ title, children }: { title: string; children: React
         {showLogout && (
           <>
             <motion.button type="button" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-neutral-900/30 backdrop-blur-sm" onClick={() => setShowLogout(false)} aria-label="Close" />
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="fixed left-1/2 top-1/2 z-50 w-full max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-neutral-200 bg-white p-6 shadow-2xl">
-              <h3 className="font-serif text-lg text-neutral-900">Confirm Logout</h3>
-              <p className="mt-2 text-sm text-neutral-500">Are you sure you want to sign out? You will be redirected to the login page.</p>
-              <div className="mt-6 flex gap-3">
-                <button type="button" onClick={() => setShowLogout(false)} className="flex-1 rounded-lg border border-neutral-200 py-2.5 text-sm text-neutral-700 hover:bg-neutral-50">Cancel</button>
-                <button type="button" onClick={doLogout} className="flex-1 rounded-lg bg-red-600 py-2.5 text-sm font-medium text-white hover:bg-red-700">Logout</button>
-              </div>
-            </motion.div>
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="pointer-events-auto w-full max-w-sm rounded-2xl border border-neutral-200 bg-white p-6 shadow-2xl">
+                <h3 className="font-serif text-lg text-neutral-900">Confirm Logout</h3>
+                <p className="mt-2 text-sm text-neutral-500">Are you sure you want to sign out? You will be redirected to the login page.</p>
+                <div className="mt-6 flex gap-3">
+                  <button type="button" onClick={() => setShowLogout(false)} className="flex-1 rounded-lg border border-neutral-200 py-2.5 text-sm text-neutral-700 hover:bg-neutral-50">Cancel</button>
+                  <button type="button" onClick={doLogout} className="flex-1 rounded-lg bg-red-600 py-2.5 text-sm font-medium text-white hover:bg-red-700">Logout</button>
+                </div>
+              </motion.div>
+            </div>
           </>
         )}
       </AnimatePresence>

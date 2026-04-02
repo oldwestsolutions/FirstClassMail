@@ -10,7 +10,7 @@ import { campaignAbsoluteUrl } from '@/lib/publicUrls'
 const nav = [
   { href: '/correspondence', label: 'Correspondence' },
   { href: '/journey', label: 'The Journey' },
-  { href: '/pricing', label: 'Pricing' },
+  { href: '/practice', label: 'The Practice' },
 ] as const
 
 export function MarketingHeader() {
