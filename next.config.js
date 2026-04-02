@@ -24,9 +24,19 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: '/',
+        has: [{ type: 'host', value: campaignRewriteHost }],
+        destination: '/campaign',
+      },
+      {
         source: '/:path*',
         has: [{ type: 'host', value: campaignRewriteHost }],
         destination: '/campaign/:path*',
+      },
+      {
+        source: '/',
+        has: [{ type: 'host', value: adminRewriteHost }],
+        destination: '/admin',
       },
       {
         source: '/:path*',

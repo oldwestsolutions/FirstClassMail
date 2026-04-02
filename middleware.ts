@@ -1,14 +1,11 @@
 import { type NextRequest, NextResponse } from 'next/server'
+import { isAdminAppHost, isCampaignAppHost } from '@/lib/subdomainHosts'
 
-/** Local dev only — production uses `next.config.js` host rewrites for campaign/admin subdomains. */
-function isCampaignLocal(host: string) {
-  return host.startsWith('campaign.localhost')
-}
-
-function isAdminLocal(host: string) {
-  return host.startsWith('admin.localhost')
-}
-
+/**
+ * Map campaign.* / admin.* (and localhost dev aliases) to internal `/campaign/*`, `/admin/*`
+ * so the browser URL stays short (`/`, `/dashboard`) while Next resolves app routes.
+ * Without this, `GET /` on a subdomain could hit the marketing `app/page.tsx`.
+ */
 export function middleware(request: NextRequest) {
   const host = request.headers.get('host') || ''
   const { pathname } = request.nextUrl
@@ -17,14 +14,14 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  if (isCampaignLocal(host) && !pathname.startsWith('/campaign')) {
+  if (isCampaignAppHost(host) && !pathname.startsWith('/campaign')) {
     const url = request.nextUrl.clone()
     const suffix = pathname === '/' ? '' : pathname
     url.pathname = `/campaign${suffix}`
     return NextResponse.rewrite(url)
   }
 
-  if (isAdminLocal(host) && !pathname.startsWith('/admin')) {
+  if (isAdminAppHost(host) && !pathname.startsWith('/admin')) {
     const url = request.nextUrl.clone()
     const suffix = pathname === '/' ? '' : pathname
     url.pathname = `/admin${suffix}`

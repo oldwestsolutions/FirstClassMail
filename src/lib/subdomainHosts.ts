@@ -25,3 +25,14 @@ export function adminAppHostname(): string {
   }
   return 'admin.firstclassmail.xyz'
 }
+
+/** `Host` header (with optional port): campaign app, production or `campaign.localhost` dev. */
+export function isCampaignAppHost(hostHeader: string): boolean {
+  const h = hostHeader.split(':')[0]?.toLowerCase() ?? ''
+  return h === campaignAppHostname().toLowerCase() || h.startsWith('campaign.localhost')
+}
+
+export function isAdminAppHost(hostHeader: string): boolean {
+  const h = hostHeader.split(':')[0]?.toLowerCase() ?? ''
+  return h === adminAppHostname().toLowerCase() || h.startsWith('admin.localhost')
+}
