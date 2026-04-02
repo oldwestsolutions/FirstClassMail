@@ -47,13 +47,13 @@ export function MarketingFooter() {
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">Products</p>
             <ul className="mt-5 space-y-3 text-sm text-neutral-600">
               <li>
-                <Link href="/delivery" className="transition hover:text-neutral-900">
-                  Delivery
+                <Link href="/mailbox" className="transition hover:text-neutral-900">
+                  Mailbox
                 </Link>
               </li>
               <li>
-                <Link href="/mailbox" className="transition hover:text-neutral-900">
-                  Mailbox
+                <Link href="/delivery" className="transition hover:text-neutral-900">
+                  Delivery
                 </Link>
               </li>
               <li>
