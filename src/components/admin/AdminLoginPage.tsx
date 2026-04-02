@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Eye, EyeOff, Mail, ArrowRight, Server, Shield, Activity } from 'lucide-react'
+import { Eye, EyeOff, Mail, ArrowRight, BarChart3, DollarSign, HeartPulse } from 'lucide-react'
 import Link from 'next/link'
 import { hrefForAdminSegment, useAdminPaths } from '@/components/admin/AdminPathContext'
 import { MAIN_SITE_ORIGIN } from '@/lib/publicUrls'
@@ -42,16 +42,16 @@ export default function AdminLoginPage() {
           <div className="max-w-md">
             <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-neutral-500">Admin Console</p>
             <h1 className="mt-5 font-serif text-4xl font-medium leading-[1.08] tracking-tight text-neutral-900 md:text-5xl">
-              Platform operations and intelligence.
+              Marketing operations command center.
             </h1>
             <p className="mt-6 text-base leading-[1.75] text-neutral-600">
-              Server health monitoring, subscriber management, deliverability controls, and full platform oversight in a unified console.
+              Manage marketing services for clients, monitor platform health, track earned revenue, and oversee server infrastructure — all from a single console.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               {[
-                { label: 'Server Health', icon: Server },
-                { label: 'Infrastructure', icon: Activity },
-                { label: 'Platform Control', icon: Shield },
+                { label: 'Client Performance', icon: BarChart3 },
+                { label: 'Revenue Analytics', icon: DollarSign },
+                { label: 'Platform Health', icon: HeartPulse },
               ].map(({ label, icon: Icon }) => (
                 <span
                   key={label}

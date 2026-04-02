@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Eye, EyeOff, Mail, ArrowRight, Sparkles, Shield, BarChart3 } from 'lucide-react'
+import { Eye, EyeOff, Mail, ArrowRight, BarChart3, TrendingUp, Target } from 'lucide-react'
 import Link from 'next/link'
 import { hrefForCampaignSegment, useCampaignPaths } from '@/components/campaign/CampaignPathContext'
 import { MAIN_SITE_ORIGIN } from '@/lib/publicUrls'
@@ -60,18 +60,18 @@ export default function CampaignLoginPage() {
           </Link>
 
           <div className="max-w-md">
-            <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-neutral-500">Campaign Portal</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-neutral-500">Business Intelligence</p>
             <h1 className="mt-5 font-serif text-4xl font-medium leading-[1.08] tracking-tight text-neutral-900 md:text-5xl">
-              Verified advertising intelligence.
+              Business Intelligence Portal.
             </h1>
             <p className="mt-6 text-base leading-[1.75] text-neutral-600">
-              Campaign management, audience analytics, USDC-powered payouts, and compliance tools for the Medicare advertising market.
+              Unified business intelligence and marketing analytics — manage Meta and Facebook ad campaigns, unlock audience insights, and track performance across every channel.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               {[
-                { label: 'ZK Verified Identity', icon: Shield },
-                { label: 'Campaign Analytics', icon: BarChart3 },
-                { label: 'USDC Payouts', icon: Sparkles },
+                { label: 'Marketing Analytics', icon: BarChart3 },
+                { label: 'Meta Ads Integration', icon: Target },
+                { label: 'Performance Insights', icon: TrendingUp },
               ].map(({ label, icon: Icon }) => (
                 <span
                   key={label}
@@ -108,7 +108,7 @@ export default function CampaignLoginPage() {
         >
           <div className="mb-8">
             <h2 className="font-serif text-3xl tracking-tight text-neutral-900">Sign in</h2>
-            <p className="mt-2 text-sm text-neutral-500">Access your campaign portal</p>
+            <p className="mt-2 text-sm text-neutral-500">Access business intelligence</p>
           </div>
 
           <form onSubmit={onSubmit} className="space-y-5">

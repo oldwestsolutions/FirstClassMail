@@ -16,6 +16,7 @@ import {
   Shield,
 } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
+import { campaignAbsoluteUrl } from '@/lib/publicUrls'
 import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 import { PortalMockMini } from '@/components/PortalMock'
 import { PathIllustration } from '@/components/PracticeIllustrations'
@@ -118,15 +119,15 @@ export default function JourneyPage() {
                 perspective.
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-4">
-                <Link href="/portal" className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
+                <a href={campaignAbsoluteUrl('/')} className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
                   Open portal
                   <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
-                </Link>
+                </a>
                 <Link
-                  href="/practice"
+                  href="/pricing"
                   className="inline-flex items-center rounded-full border border-neutral-200 px-6 py-3 text-sm text-neutral-700 transition hover:border-neutral-400"
                 >
-                  Practice & surfaces
+                  Pricing
                 </Link>
               </div>
             </div>
@@ -338,9 +339,9 @@ export default function JourneyPage() {
                 against these expectations.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-5">
-                <Link href="/portal" className="btn btn-primary px-10 py-3.5 text-xs uppercase tracking-[0.2em]">
+                <a href={campaignAbsoluteUrl('/')} className="btn btn-primary px-10 py-3.5 text-xs uppercase tracking-[0.2em]">
                   Open portal
-                </Link>
+                </a>
                 <Link
                   href="/platform"
                   className="rounded-full px-6 py-3 text-sm text-neutral-600 hover:bg-white hover:text-neutral-900"

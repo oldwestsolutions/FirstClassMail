@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, Inbox, Archive, Filter, Clock } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
+import { campaignAbsoluteUrl } from '@/lib/publicUrls'
 
 export default function MailboxPage() {
   return (
@@ -31,10 +32,10 @@ export default function MailboxPage() {
                   trail, without exposing personal addresses or breaking policy continuity.
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">
-                  <Link href="/portal" className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
+                  <a href={campaignAbsoluteUrl('/')} className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
                     Open mailbox
                     <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
-                  </Link>
+                  </a>
                   <Link
                     href="/wallet"
                     className="inline-flex items-center rounded-full border border-neutral-200 px-6 py-3 text-sm text-neutral-700 transition hover:border-neutral-400"
@@ -110,9 +111,9 @@ export default function MailboxPage() {
                 Calendar for scheduling context and Wallet when correspondence has a financial dimension.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-5">
-                <Link href="/portal" className="btn btn-primary px-10 py-3.5 text-xs uppercase tracking-[0.2em]">
+                <a href={campaignAbsoluteUrl('/')} className="btn btn-primary px-10 py-3.5 text-xs uppercase tracking-[0.2em]">
                   Open portal
-                </Link>
+                </a>
                 <Link href="/calendar" className="rounded-full px-6 py-3 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900">
                   Calendar overview
                 </Link>

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, BadgeCheck, Mail, Send, SlidersHorizontal } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
+import { campaignAbsoluteUrl } from '@/lib/publicUrls'
 import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 import { PortalMockMini } from '@/components/PortalMock'
 
@@ -33,10 +34,10 @@ export default function StampsPage() {
                   without bolting on a separate tracking system outside verified correspondence.
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">
-                  <Link href="/portal" className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
+                  <a href={campaignAbsoluteUrl('/')} className="btn btn-primary px-8 py-3 text-xs uppercase tracking-[0.2em]">
                     Open portal
                     <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
-                  </Link>
+                  </a>
                   <Link
                     href="/mailbox"
                     className="inline-flex items-center rounded-full border border-neutral-200 px-6 py-3 text-sm text-neutral-700 transition hover:border-neutral-400"

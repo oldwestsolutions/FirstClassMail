@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, Wallet, Coins, Share2, Building2, Smartphone } from 'lucide-react'
 import { MarketingHeader } from '@/components/marketing/MarketingHeader'
+import { campaignAbsoluteUrl } from '@/lib/publicUrls'
 
 const sections = [
   {
@@ -182,12 +183,12 @@ export default function BlockchainPage() {
                 Open the portal to explore wallet-enabled flows alongside encrypted threads and verified sourcing.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-5">
-                <Link href="/portal" className="btn btn-primary px-10 py-3.5 text-xs uppercase tracking-[0.2em]">
+                <a href={campaignAbsoluteUrl('/')} className="btn btn-primary px-10 py-3.5 text-xs uppercase tracking-[0.2em]">
                   Open portal
                   <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
-                </Link>
-                <Link href="/practice" className="rounded-full px-6 py-3 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900">
-                  Practice overview
+                </a>
+                <Link href="/pricing" className="rounded-full px-6 py-3 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900">
+                  View pricing
                 </Link>
               </div>
             </motion.div>

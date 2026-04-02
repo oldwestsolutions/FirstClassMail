@@ -1,7 +1,7 @@
 'use client'
 
 import { FormEvent, useState } from 'react'
-import Link from 'next/link'
+import { campaignAbsoluteUrl } from '@/lib/publicUrls'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { ArrowRight, Building2, User } from 'lucide-react'
@@ -219,12 +219,12 @@ export default function SignupPage() {
                         {loading ? 'Creating...' : 'Create Account'}
                         <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
                       </button>
-                      <Link
-                        href="/portal"
+                      <a
+                        href={campaignAbsoluteUrl('/')}
                         className="text-sm text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline"
                       >
                         Already have an account? Sign in
-                      </Link>
+                      </a>
                     </div>
                   </form>
                 </div>

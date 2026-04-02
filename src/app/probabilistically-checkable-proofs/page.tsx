@@ -31,10 +31,10 @@ export default function PcpPage() {
                   <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
                 </Link>
                 <Link
-                  href="/practice"
+                  href="/pricing"
                   className="inline-flex items-center rounded-full border border-neutral-200 px-6 py-3 text-sm text-neutral-700 transition hover:border-neutral-400"
                 >
-                  Practice & protocol
+                  Pricing
                 </Link>
               </div>
             </div>

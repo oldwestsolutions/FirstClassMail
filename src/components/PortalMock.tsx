@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { CalendarClock, CheckCircle, FileText, Inbox, Mail, Send, Shield, Wallet } from 'lucide-react'
+import { Bell, CalendarClock, CheckCircle, Coins, FileText, Inbox, Lock, Mail, Send, Shield, Wallet } from 'lucide-react'
 
 const demoEase = [0.22, 1, 0.36, 1] as const
 
@@ -141,90 +141,87 @@ export function PortalMockMini({
           </div>
         </div>
       )
-    case 'stamps':
+    case 'blockchain':
       return (
         <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
-              <Mail className="h-3 w-3 shrink-0 text-neutral-700" strokeWidth={1.25} />
-              {compactHeader ? <span className="text-neutral-400">Preview</span> : 'Stamps'}
+              <Coins className="h-3 w-3 shrink-0 text-neutral-700" strokeWidth={1.25} />
+              {compactHeader ? <span className="text-neutral-400">Preview</span> : 'Blockchain'}
             </span>
-            <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">Out</span>
+            <span className="shrink-0 rounded bg-emerald-50 px-1.5 py-0.5 font-mono text-[7px] text-emerald-800">USDC</span>
           </div>
           <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
-            <div className="rounded-md border border-dashed border-neutral-300 bg-white px-2 py-2 text-center">
-              <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.15em] text-neutral-700">First-Class</p>
-              <p className="mt-0.5 font-mono text-[7px] text-neutral-400">Postmark · applied</p>
+            <div className="rounded-md border border-neutral-200 bg-white px-2 py-1.5">
+              <p className="font-mono text-[8px] text-neutral-400">Settlement</p>
+              <p className="mt-0.5 font-mono text-[10px] tabular-nums text-neutral-800">On-chain · verified</p>
             </div>
-            <p className="text-left font-mono text-[8px] leading-snug text-neutral-500">Shows on send</p>
+            <p className="text-left font-mono text-[8px] leading-snug text-neutral-500">Programmable wallets</p>
           </div>
         </div>
       )
-    case 'mailbox':
+    case 'notifications':
       return (
         <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
-              <Inbox className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
-              {compactHeader ? <span className="text-neutral-400">Preview</span> : 'Mailbox'}
+              <Bell className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
+              {compactHeader ? <span className="text-neutral-400">Preview</span> : 'Notifications'}
             </span>
-            <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">Inbox</span>
+            <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">Live</span>
           </div>
           <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
             <div className="space-y-1.5">
-              <div className="h-2 rounded bg-neutral-200/80" />
-              <div className="h-2 w-4/5 rounded bg-neutral-200/80" />
+              <div className="flex items-center gap-1.5 rounded-md border border-neutral-200 bg-white px-2 py-1">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+                <span className="font-mono text-[8px] text-neutral-700">Delivered · verified</span>
+              </div>
+              <div className="flex items-center gap-1.5 rounded-md border border-neutral-200 bg-white px-2 py-1">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-neutral-400" />
+                <span className="font-mono text-[8px] text-neutral-500">Policy update</span>
+              </div>
             </div>
-            <div className="rounded-md border border-neutral-200 bg-white px-2 py-1.5 text-left font-mono text-[8px] leading-snug text-neutral-600">
-              <span className="text-neutral-400">Route · </span>
-              Verified office thread
-            </div>
+            <p className="text-left font-mono text-[8px] leading-snug text-neutral-500">Real-time alerts</p>
           </div>
         </div>
       )
-    case 'wallet':
+    case 'payments':
       return (
         <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
               <Wallet className="h-3 w-3 shrink-0 text-neutral-700" strokeWidth={1.25} />
-              {compactHeader ? <span className="text-neutral-400">Preview</span> : 'Wallet'}
+              {compactHeader ? <span className="text-neutral-400">Preview</span> : 'Payments'}
             </span>
             <span className="shrink-0 rounded bg-emerald-50 px-1.5 py-0.5 font-mono text-[7px] text-emerald-800">USDC</span>
           </div>
           <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
             <div className="flex items-baseline justify-between rounded-md border border-neutral-200 bg-white px-2 py-1.5">
               <span className="font-mono text-[8px] text-neutral-400">Balance</span>
-              <span className="font-mono text-[10px] tabular-nums text-neutral-800">124.00</span>
+              <span className="font-mono text-[10px] tabular-nums text-neutral-800">2,480.00</span>
             </div>
-            <p className="text-left font-mono text-[8px] leading-snug text-neutral-500">Mailbox subscription · settled on-chain</p>
+            <p className="text-left font-mono text-[8px] leading-snug text-neutral-500">Subscription · settled on-chain</p>
           </div>
         </div>
       )
-    case 'calendar':
+    case 'security':
       return (
         <div className={`${base} flex ${outerMin} flex-col`} aria-hidden>
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-neutral-200 bg-white px-2.5">
             <span className="flex min-w-0 items-center gap-1.5 font-mono text-[7px] uppercase tracking-widest text-neutral-500">
-              <CalendarClock className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
-              {compactHeader ? <span className="text-neutral-400">Preview</span> : 'Calendar'}
+              <Lock className="h-3 w-3 shrink-0 text-neutral-600" strokeWidth={1.25} />
+              {compactHeader ? <span className="text-neutral-400">Preview</span> : 'Security'}
             </span>
-            <span className="shrink-0 rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[7px] text-neutral-700">Week</span>
+            <span className="shrink-0 rounded bg-emerald-50 px-1.5 py-0.5 font-mono text-[7px] text-emerald-800">ZK</span>
           </div>
           <div className={`flex ${innerMin} flex-1 flex-col justify-between ${innerGap} ${innerPad}`}>
-            <div className="flex justify-between gap-0.5 font-mono text-[7px] text-neutral-400">
-              {['M', 'T', 'W', 'T', 'F'].map((d, i) => (
-                <span
-                  key={i}
-                  className={`flex h-5 w-5 shrink-0 items-center justify-center rounded ${i === 2 ? 'bg-neutral-900 text-white' : 'bg-neutral-100 text-neutral-500'}`}
-                >
-                  {d}
-                </span>
-              ))}
+            <div className="rounded-md border border-neutral-200 bg-white px-2 py-1.5">
+              <p className="flex items-center gap-1 font-mono text-[8px] text-emerald-700">
+                <CheckCircle className="h-2.5 w-2.5 shrink-0" strokeWidth={1.5} />
+                End-to-end encrypted
+              </p>
             </div>
-            <div className="rounded-md border border-emerald-100 bg-emerald-50/80 px-2 py-1.5 text-left font-mono text-[8px] leading-snug text-emerald-900">
-              Thu 2:00 · Confirmed in thread
-            </div>
+            <p className="text-left font-mono text-[8px] leading-snug text-neutral-500">Zero-knowledge verified</p>
           </div>
         </div>
       )

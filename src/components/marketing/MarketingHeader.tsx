@@ -5,12 +5,12 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Mail, ArrowRight } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { adminAbsoluteUrl, campaignAbsoluteUrl } from '@/lib/publicUrls'
+import { campaignAbsoluteUrl } from '@/lib/publicUrls'
 
 const nav = [
   { href: '/correspondence', label: 'Correspondence' },
   { href: '/journey', label: 'The Journey' },
-  { href: '/practice', label: 'Practice' },
+  { href: '/pricing', label: 'Pricing' },
 ] as const
 
 export function MarketingHeader() {
@@ -71,14 +71,14 @@ export function MarketingHeader() {
                 >
                   Contact
                 </Link>
-                <Link
-                  href="/portal"
+                <a
+                  href={campaignAbsoluteUrl('/')}
                   className="btn btn-primary mt-6 justify-center"
                   onClick={() => setOpen(false)}
                 >
                   Open portal
                   <ArrowRight className="ml-2 h-4 w-4" strokeWidth={1.5} />
-                </Link>
+                </a>
               </nav>
             </motion.aside>
           </>
@@ -111,23 +111,9 @@ export function MarketingHeader() {
                   {label}
                 </Link>
               ))}
-              <a
-                href={campaignAbsoluteUrl('/')}
-                className="hidden text-sm text-neutral-600 transition hover:text-neutral-900 md:inline"
-                rel="noopener noreferrer"
-              >
-                Campaign
-              </a>
-              <a
-                href={adminAbsoluteUrl('/')}
-                className="hidden text-sm text-neutral-600 transition hover:text-neutral-900 md:inline"
-                rel="noopener noreferrer"
-              >
-                Admin
-              </a>
-              <Link href="/portal" className="btn btn-primary px-6 py-2.5 text-xs uppercase tracking-widest">
+              <a href={campaignAbsoluteUrl('/')} className="btn btn-primary px-6 py-2.5 text-xs uppercase tracking-widest">
                 Open portal
-              </Link>
+              </a>
             </div>
             <button
               type="button"

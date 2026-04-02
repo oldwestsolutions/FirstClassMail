@@ -36,7 +36,7 @@ export default function CampaignWalletPage() {
 
         <GlassCard className="border-blue-500/20 shadow-sm">
           <p className="text-xs text-neutral-500">Coinbase Wallet</p>
-          <button type="button" className="mt-4 w-full rounded-full border border-[#0052FF]/50 py-3 text-sm text-neutral-900 hover:bg-[#0052FF]/10">
+          <button type="button" className="mt-4 w-full rounded-full border border-neutral-200 py-3 text-sm text-neutral-900 hover:bg-neutral-50">
             Connect Coinbase Wallet
           </button>
           <p className="mt-3 text-xs text-neutral-500">Fund campaigns directly from Coinbase.</p>

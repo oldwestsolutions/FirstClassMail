@@ -13,6 +13,7 @@ import Link from 'next/link'
 import { PortalMockMini, PortalProductDemo } from '@/components/PortalMock'
 import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 import { PathIllustration } from '@/components/PracticeIllustrations'
+import { campaignAbsoluteUrl } from '@/lib/publicUrls'
 
 /** Smooth luxury-style easing (slow-out) */
 const luxeOut = [0.45, 0, 0.2, 1] as const
@@ -232,23 +233,23 @@ export default function MarketingHome() {
     {
       accent: 'bg-rgb-red/90',
       border: 'border-l-rgb-red/88',
-      illustration: 'mailbox',
-      title: 'Mailbox',
-      body: 'Structured intake, policy triage, and controlled delivery—inbound and outbound mail stays auditable in one place.',
+      illustration: 'notifications',
+      title: 'Notifications',
+      body: 'Real-time alerts and status updates for every message—delivery confirmations, policy changes, and system events stay organized in your correspondence feed.',
     },
     {
       accent: 'bg-rgb-green/90',
       border: 'border-l-rgb-green/88',
-      illustration: 'wallet',
-      title: 'Wallet',
-      body: 'USDC-ready balances and settlement beside the thread: pay for tiers, share value, or settle fees without a separate app stack.',
+      illustration: 'payments',
+      title: 'Payments',
+      body: 'USDC-powered billing and settlement within the platform—subscription fees, service charges, and payouts processed without leaving your mail workflow.',
     },
     {
       accent: 'bg-rgb-blue/90',
       border: 'border-l-rgb-blue/88',
-      illustration: 'calendar',
-      title: 'Calendar',
-      body: 'Invitations, confirmations, and reminders stay in the same verified channel as your mail—scheduling stays with the conversation.',
+      illustration: 'security',
+      title: 'Security',
+      body: 'End-to-end encryption, zero-knowledge verification, and audit-ready compliance controls protecting every thread and transaction.',
     },
   ] as const
 
@@ -311,7 +312,7 @@ export default function MarketingHome() {
                 {[
                   ['Correspondence', '/correspondence'],
                   ['The Journey', '/journey'],
-                  ['Practice', '/practice'],
+                  ['Pricing', '/pricing'],
                   ['Contact', '/#contact'],
                 ].map(([label, href]) => (
                   <Link
@@ -323,13 +324,13 @@ export default function MarketingHome() {
                     {label}
                   </Link>
                 ))}
-                <Link
-                  href="/portal"
+                <a
+                  href={campaignAbsoluteUrl('/')}
                   className="btn btn-primary mt-6 justify-center"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Client portal
-                </Link>
+                  Open portal
+                </a>
               </nav>
             </motion.aside>
           </>
@@ -362,12 +363,12 @@ export default function MarketingHome() {
               <Link href="/journey" className="text-sm text-neutral-600 transition hover:text-neutral-900">
                 The Journey
               </Link>
-              <Link href="/practice" className="text-sm text-neutral-600 transition hover:text-neutral-900">
-                Practice
+              <Link href="/pricing" className="text-sm text-neutral-600 transition hover:text-neutral-900">
+                Pricing
               </Link>
-              <Link href="/portal" className="btn btn-primary px-6 py-2.5 text-xs uppercase tracking-widest">
+              <a href={campaignAbsoluteUrl('/')} className="btn btn-primary px-6 py-2.5 text-xs uppercase tracking-widest">
                 Open portal
-              </Link>
+              </a>
             </div>
             <button
               type="button"
@@ -410,7 +411,7 @@ export default function MarketingHome() {
                     href="/journey"
                     className="text-center text-sm text-neutral-500 underline-offset-4 transition hover:text-neutral-900 hover:underline sm:text-left"
                   >
-                    Messaging Protocol
+                    Mail Protocol
                   </Link>
                 </div>
               </div>
@@ -462,10 +463,10 @@ export default function MarketingHome() {
                     '/edocuments',
                   ],
                   [
-                    'Stamps',
-                    'Outbound class and intent are visible on the message: lightweight postmarks applied at send time so routing and handling stay explicit in the thread.',
-                    'stamps',
-                    '/stamps',
+                    'Blockchain',
+                    'Stablecoin settlement and programmable wallets embedded in the mail workflow—USDC for subscriptions, automated revenue sharing, and on-chain audit trails.',
+                    'blockchain',
+                    '/blockchain',
                   ],
                 ] as const
               ).map(([title, body, preset, href], i) => (
@@ -505,7 +506,7 @@ export default function MarketingHome() {
                 FirstClassMail Delivers
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
-                Mailbox, wallet, and calendar are the primary day-to-day surfaces. The diagram that follows shows how sessions
+                Notifications, payments, and security are the primary day-to-day surfaces. The diagram that follows shows how sessions
                 move from the client through FirstClassMail to each office’s own mail endpoint—authenticated, routed, and released
                 under policy rather than across an unmanaged internet path.
               </p>
@@ -626,9 +627,9 @@ export default function MarketingHome() {
               and run mail on FirstClassMail.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
-              <Link href="/portal" className="btn btn-primary px-11 py-3.5 text-xs uppercase tracking-[0.2em]">
+              <a href={campaignAbsoluteUrl('/')} className="btn btn-primary px-11 py-3.5 text-xs uppercase tracking-[0.2em]">
                 Enter portal
-              </Link>
+              </a>
               <Link
                 href="/correspondence"
                 className="rounded-full px-6 py-3 text-sm text-neutral-600 transition hover:bg-neutral-100 hover:text-neutral-900"
