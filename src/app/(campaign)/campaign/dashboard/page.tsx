@@ -218,7 +218,7 @@ export default function CampaignDashboardPage() {
                       borderRadius: 12,
                       boxShadow: '0 4px 12px rgba(0,0,0,0.06)',
                     }}
-                    formatter={(value: number) => [`${value}%`, 'Share']}
+                    formatter={(value) => [`${value}%`, 'Share']}
                   />
                 </PieChart>
               </ResponsiveContainer>
